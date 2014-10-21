@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/projetF.iml" filepath="$PROJECT_DIR$/projetF.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projetF-modele/projetF-modele.iml" filepath="$PROJECT_DIR$/projetF-modele/projetF-modele.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projetF-struts/projetF-struts.iml" filepath="$PROJECT_DIR$/projetF-struts/projetF-struts.iml" />
+      <module fileurl="file://$PROJECT_DIR$/projetF-swing/projetF-swing.iml" filepath="$PROJECT_DIR$/projetF-swing/projetF-swing.iml" />
+    </modules>
+  </component>
+</project>
+

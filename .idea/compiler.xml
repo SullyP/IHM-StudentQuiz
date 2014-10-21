@@ -27,6 +27,9 @@
         <module name="projetF-swing" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="projetF-modele" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 

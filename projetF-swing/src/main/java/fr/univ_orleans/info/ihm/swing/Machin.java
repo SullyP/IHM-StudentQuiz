@@ -1,6 +1,8 @@
 package fr.univ_orleans.info.ihm.swing;
 
-public class Main {
+import fr.univ_orleans.info.ihm.modele.Main;
+
+public class Machin {
 
     public static void main(String[] args) {
 

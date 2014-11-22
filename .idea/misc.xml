@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/projetF-struts" />
+    <file type="web" url="file://$PROJECT_DIR$/projetF-swing" />
+  </component>
+  <component name="IdProvider" IDEtalkID="9ED62AC84DD98033BE7912594AD9E937" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/projetF-modele/src/main/java/fr">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="https://orleans.miage.fr/svn/ihmF/projetF/projetF-struts/src/test/java/fr" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/projetF-modele/src/main/resources/fr">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="https://orleans.miage.fr/svn/ihmF/projetF/projetF-struts/src/test/java/fr" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/projetF-modele/src/test/java/fr">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="https://orleans.miage.fr/svn/ihmF/projetF/projetF-struts/src/test/java/fr" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/projetF-struts/src/main/java/fr/univ_orleans/info/ihm/struts/example">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="https://orleans.miage.fr/svn/ihmF/projetF/projetF-struts/src/main/java/fr/univ_orleans/info/ihm/example" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/projetF-struts/src/main/resources/fr/univ_orleans/info/ihm/struts/resources">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="https://orleans.miage.fr/svn/ihmF/projetF/projetF-struts/src/main/resources/fr/univ_orleans/info/ihm/example" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/projetF-struts/src/test/java/fr/univ_orleans/info/ihm/struts/test">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="https://orleans.miage.fr/svn/ihmF/projetF/projetF-struts/src/test/java/fr/univ_orleans/info/ihm/test" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/projetF-swing/src/main/java/fr">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="https://orleans.miage.fr/svn/ihmF/projetF/projetF-struts/src/test/java/fr" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/projetF-swing/src/main/resources/fr">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="https://orleans.miage.fr/svn/ihmF/projetF/projetF-struts/src/test/java/fr" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/projetF-swing/src/test/java/fr">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="https://orleans.miage.fr/svn/ihmF/projetF/projetF-struts/src/test/java/fr" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+</project>

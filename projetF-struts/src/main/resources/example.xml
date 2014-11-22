@@ -11,16 +11,16 @@
 
         <default-action-ref name="HelloWorld" />
 
-        <action name="HelloWorld" class="fr.univ_orleans.info.ihm.example.HelloWorld">
+        <action name="HelloWorld" class="fr.univ_orleans.info.ihm.struts.example.HelloWorld">
             <result>/example/HelloWorld.jsp</result>
         </action>
 
-        <action name="Login_*" method="{1}" class="fr.univ_orleans.info.ihm.example.Login">
+        <action name="Login_*" method="{1}" class="fr.univ_orleans.info.ihm.struts.example.Login">
             <result name="input">/example/Login.jsp</result>
             <result type="redirectAction">Menu</result>
         </action>
 
-        <action name="*" class="fr.univ_orleans.info.ihm.example.ExampleSupport">
+        <action name="*" class="fr.univ_orleans.info.ihm.struts.example.ExampleSupport">
             <result>/example/{1}.jsp</result>
         </action>
 

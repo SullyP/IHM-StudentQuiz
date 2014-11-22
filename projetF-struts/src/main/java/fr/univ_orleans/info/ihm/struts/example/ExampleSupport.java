@@ -19,7 +19,7 @@
  * under the License.
  */
 
-package fr.univ_orleans.info.ihm.example;
+package fr.univ_orleans.info.ihm.struts.example;
 
 import com.opensymphony.xwork2.ActionSupport;
 

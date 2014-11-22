@@ -8,6 +8,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>projetF-struts</artifactId>
+    <!--<packaging>war</packaging>-->
     <packaging>war</packaging>
     <name>projetF-struts</name>
 
@@ -21,6 +22,7 @@
         <dependency>
             <groupId>fr.univ-orleans.info.ihm</groupId>
             <artifactId>projetF-modele</artifactId>
+            <version>1.0</version>
         </dependency>
 
         <dependency>

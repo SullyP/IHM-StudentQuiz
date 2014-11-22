@@ -1,5 +1,5 @@
 /*
- * $Id: Login.java 739661 2009-02-01 00:06:00Z davenewton $
+ * $Id: HelloWorldTest.java 739661 2009-02-01 00:06:00Z davenewton $
  *
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -19,41 +19,19 @@
  * under the License.
  */
 
-package fr.univ-orleans.info.ihm.example;
+package fr.univ_orleans.info.ihm.example;
 
-public class Login extends ExampleSupport {
+import com.opensymphony.xwork2.ActionSupport;
+import org.apache.struts2.StrutsTestCase;
 
-    public String execute() throws Exception {
+public class HelloWorldTest extends StrutsTestCase {
 
-        if (isInvalid(getUsername())) return INPUT;
-
-        if (isInvalid(getPassword())) return INPUT;
-
-        return SUCCESS;
+    public void testHelloWorld() throws Exception {
+        HelloWorld hello_world = new HelloWorld();
+        String result = hello_world.execute();
+        assertTrue("Expected a success result!",
+                ActionSupport.SUCCESS.equals(result));
+        assertTrue("Expected the default message!",
+                hello_world.getText(HelloWorld.MESSAGE).equals(hello_world.getMessage()));
     }
-
-    private boolean isInvalid(String value) {
-        return (value == null || value.length() == 0);
-    }
-
-    private String username;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    private String password;
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
 }

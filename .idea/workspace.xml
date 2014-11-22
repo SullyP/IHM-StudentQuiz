@@ -7,118 +7,10 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="41485395-54d4-4cb9-8966-d4306aec7b4a" name="Default" comment="Reset">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/webapp/WEB-INF" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/java/fr/univ_orleans/info/ihm/struts/example" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/webapp/example" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main/java/fr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main/resources/fr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/test/java/fr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/java/fr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/resources/fr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/test/java/fr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main/java/fr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main/resources/fr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/test/java/fr" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main/java/fr/univ_orleans/info/ihm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main/resources/fr/univ_orleans/info/ihm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/test/java/fr/univ_orleans/info/ihm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/java/fr/univ_orleans/info/ihm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/resources/fr/univ_orleans/info/ihm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/test/java/fr/univ_orleans/info/ihm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main/java/fr/univ_orleans/info/ihm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main/resources/fr/univ_orleans/info/ihm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/test/java/fr/univ_orleans/info/ihm" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main/java/fr/univ_orleans/info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main/resources/fr/univ_orleans/info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/test/java/fr/univ_orleans/info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/java/fr/univ_orleans/info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/resources/fr/univ_orleans/info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/test/java/fr/univ_orleans/info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main/java/fr/univ_orleans/info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main/resources/fr/univ_orleans/info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/test/java/fr/univ_orleans/info" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main/java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/test/java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/test/java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main/java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/test/java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main/java/fr/univ_orleans/info/ihm/modele" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main/resources/fr/univ_orleans/info/ihm/modele" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/test/java/fr/univ_orleans/info/ihm/modele" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main/resources" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/resources" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/resources/fr/univ_orleans/info/ihm/struts/resources" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main/resources" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main/resources/fr/univ_orleans/info/ihm/swing/resources" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/java/fr/univ_orleans/info/ihm/struts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/resources/fr/univ_orleans/info/ihm/struts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/test/java/fr/univ_orleans/info/ihm/struts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main/java/fr/univ_orleans/info/ihm/swing" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main/resources/fr/univ_orleans/info/ihm/swing" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/test/java/fr/univ_orleans/info/ihm/swing" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/test" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/test/java/fr/univ_orleans/info/ihm/modele/test" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/test" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/test/java/fr/univ_orleans/info/ihm/struts/test" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/test" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/test/java/fr/univ_orleans/info/ihm/swing/test" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main/java/fr/univ_orleans" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main/resources/fr/univ_orleans" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/test/java/fr/univ_orleans" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/java/fr/univ_orleans" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/resources/fr/univ_orleans" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/test/java/fr/univ_orleans" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main/java/fr/univ_orleans" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/main/resources/fr/univ_orleans" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/src/test/java/fr/univ_orleans" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/webapp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/java/fr/univ_orleans/info/ihm/struts/example/ExampleSupport.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/java/fr/univ_orleans/info/ihm/struts/example/HelloWorld.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/webapp/example/HelloWorld.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/java/fr/univ_orleans/info/ihm/struts/example/Login.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/webapp/example/Login.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/webapp/example/Menu.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/webapp/example/Missing.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/webapp/example/Register.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/webapp/example/Welcome.jsp" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/resources/example.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/webapp/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/resources/log4j.properties" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/pom.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/projetF-modele.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/projetF-struts.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-swing/projetF-swing.iml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/projetF_struts_war.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/projetF_struts_war_exploded.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/resources/struts.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-struts/src/main/webapp/WEB-INF/web.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    <list default="true" readonly="true" id="41485395-54d4-4cb9-8966-d4306aec7b4a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/projetF-modele/src/main/resources/fr/univ_orleans/info/ihm/modele/resources" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="47d18fb2-273f-4586-9c29-3f236dfb4131" name="Trash" comment="Remove .idea/libraries folder." />
     <list id="f29b0dd6-3699-44b9-869d-c292bb248cac" name="Failed commit: Default" comment="Correction des pom.xml du projet pour permettre la compilation de celui-ci._2" />
@@ -1128,7 +1020,7 @@
       <workItem from="1416665108832" duration="576000" />
       <workItem from="1416665878988" duration="1249000" />
       <workItem from="1416669246905" duration="283000" />
-      <workItem from="1416669559970" duration="115000" />
+      <workItem from="1416669559970" duration="321000" />
     </task>
     <task id="LOCAL-00001" summary="All pom.xml of the three modules have been updated with a proper build version.">
       <created>1413902822103</created>
@@ -1232,11 +1124,17 @@
       <option name="project" value="LOCAL" />
       <updated>1416666983101</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Reset.">
+      <created>1416669725109</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1416669725109</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24002000" />
+    <option name="totallyTimeSpent" value="24208000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -1264,10 +1162,11 @@
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31438127" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31438127" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3277592" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32943144" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32833335" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1276,21 +1175,20 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31438127" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3282572" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.325" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34280938" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.326284" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15181269" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15181269" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32666665" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="SVN Properties" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32901135" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.325" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1330,7 +1228,8 @@
     <MESSAGE value="Correction des pom.xml du projet pour permettre la compilation de celui-ci._14" />
     <MESSAGE value="Correction des pom.xml du projet pour permettre la compilation de celui-ci._15" />
     <MESSAGE value="Correction des pom.xml du projet pour permettre la compilation de celui-ci._16" />
-    <option name="LAST_COMMIT_MESSAGE" value="Correction des pom.xml du projet pour permettre la compilation de celui-ci._16" />
+    <MESSAGE value="Reset." />
+    <option name="LAST_COMMIT_MESSAGE" value="Reset." />
   </component>
   <component name="VssConfiguration">
     <option name="CLIENT_PATH" value="" />

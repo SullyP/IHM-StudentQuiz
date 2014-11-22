@@ -29,7 +29,8 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="projetF-modele" target="1.7" />
+      <module name="projetF-struts" target="1.7" />
+      <module name="projetF-swing" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
-

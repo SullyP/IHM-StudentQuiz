@@ -10,14 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>projetF-swing</artifactId>
+    <!--<packaging>jar</packaging>-->
 
     <dependencies>
-
         <dependency>
             <groupId>fr.univ-orleans.info.ihm</groupId>
             <artifactId>projetF-modele</artifactId>
+            <version>1.0</version>
         </dependency>
-
     </dependencies>
 
     <build>

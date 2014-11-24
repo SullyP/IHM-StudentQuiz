@@ -6,5 +6,5 @@ public interface IEntiteDAO {
     public IEntite creerEntite(String nom);
     public IEntite getEntite(int idEntite);
     public IEntite majEntite(int idEntite, String nom);
-    public void suppressionEntite(IEntite entite);
+    public void suppressionEntite(int idEntite);
 }

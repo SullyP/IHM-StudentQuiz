@@ -7,7 +7,6 @@ public class Utilisateur implements IUtilisateur{
     private String prenomUtilisateur;
     private String identifiantUtilisateur;
     private String motDePasseUtilisateur;
-    private IDroit droitUtilisateur;
     private IEntite entiteUtilisateur;
 
     public Utilisateur(int idUtilisateur, int numeroEtudiant, String nomUtilisateur, String prenomUtilisateur, String identifiantUtilisateur, String motDePasseUtilisateur){
@@ -27,11 +26,6 @@ public class Utilisateur implements IUtilisateur{
     @Override
     public int getIdEntiteUtilisateur() {
         return this.entiteUtilisateur.getIdEntite();
-    }
-
-    @Override
-    public int getIdDroitUtilisateur() {
-        return this.droitUtilisateur.getIdDroit();
     }
 
     @Override
@@ -55,11 +49,6 @@ public class Utilisateur implements IUtilisateur{
     }
 
     @Override
-    public String getTypeDroitUtilisateur() {
-        return this.droitUtilisateur.getTypeDroit();
-    }
-
-    @Override
     public String getIdentifiantUtilisateur() {
         return this.identifiantUtilisateur;
     }
@@ -67,11 +56,6 @@ public class Utilisateur implements IUtilisateur{
     @Override
     public IUtilisateur getUtilisateur() {
         return this;
-    }
-
-    @Override
-    public IDroit getDroitUtilisateur() {
-        return this.droitUtilisateur;
     }
 
     @Override
@@ -86,19 +70,13 @@ public class Utilisateur implements IUtilisateur{
         this.idUtilisateur = utilisateur.getIdUtilisateur();
         this.identifiantUtilisateur = utilisateur.getIdentifiantUtilisateur();
         this.numeroEtudiant = utilisateur.getNumeroEtudiant();
-        this.droitUtilisateur.setDroit(utilisateur.getDroitUtilisateur());
-        this.entiteUtilisateur.setEntite(utilisateur.getEntiteUtilisateur());
+        this.entiteUtilisateur = new Entite(utilisateur.getIdEntiteUtilisateur(), utilisateur.getNomEntiteUtilisateur());
         this.motDePasseUtilisateur = ((Utilisateur)utilisateur).motDePasseUtilisateur;
     }
 
     @Override
-    public void setDroitUtilisateur(IDroit d) {
-        this.droitUtilisateur.setDroit(d);
-    }
-
-    @Override
     public void setEntiteUtilisateur(IEntite e) {
-        this.entiteUtilisateur.setEntite(e);
+        this.entiteUtilisateur = new Entite(e.getIdEntite(), e.getNomEntite());
     }
 
     @Override

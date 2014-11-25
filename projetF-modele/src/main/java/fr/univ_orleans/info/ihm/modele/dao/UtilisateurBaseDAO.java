@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 
 
-public class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateurDAO {
+public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateurDAO {
     private static IUtilisateurDAO instance=null;
 
     private UtilisateurBaseDAO(){
@@ -55,7 +55,7 @@ public class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateu
             resultSet = preparedStatement.getGeneratedKeys();
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getInstance().getLogger().logp(Level.SEVERE, UtilisateurBaseDAO.class.getName(), "creerUtilisateur", e.toString());
+            MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "creerUtilisateur", "Erreur lors de l'éxécution d'une requête SQL.", e);
         }
 
         if(resultSet!=null){
@@ -67,7 +67,7 @@ public class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateu
                 resultSet.close();
             } catch (SQLException e) {
                 //On log l'exception
-                MyLogger.getInstance().getLogger().logp(Level.SEVERE, UtilisateurBaseDAO.class.getName(), "creerUtilisateur", e.toString());
+                MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "creerUtilisateur", "Erreur lors de l'éxécution d'une requête SQL.", e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -95,7 +95,7 @@ public class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateu
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getInstance().getLogger().logp(Level.SEVERE, UtilisateurBaseDAO.class.getName(), "getUtilisateur", e.toString());
+            MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "getUtilisateur", "Erreur lors de l'éxécution d'une requête SQL.", e);
         }
 
         if(resultSet!=null){
@@ -116,7 +116,7 @@ public class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateu
                 resultSet.close();
             } catch (SQLException e) {
                 //On log l'exception
-                MyLogger.getInstance().getLogger().logp(Level.SEVERE, UtilisateurBaseDAO.class.getName(), "getUtilisateur", e.toString());
+                MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "getUtilisateur", "Erreur lors de l'éxécution d'une requête SQL.", e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -148,7 +148,7 @@ public class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateu
             preparedStatement.executeUpdate();
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getInstance().getLogger().logp(Level.SEVERE, UtilisateurBaseDAO.class.getName(), "suppressionUtilisateur", e.toString());
+            MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "suppressionUtilisateur", "Erreur lors de l'éxécution d'une requête SQL.", e);
         }
 
         this.getBd().closePrepared(preparedStatement);

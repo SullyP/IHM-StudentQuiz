@@ -4,10 +4,10 @@ package fr.univ_orleans.info.ihm.modele.dao.db;
  * Enumération contenant l'ensemble des champs contenu dans la table ResultatUtilisateur.
  */
 public enum ResultatUtilisateurEnum {
-    idResultatUtilisateur ("idResultatUtilisateur"),
-    idUtilisateur ("idUtilisateur"),
-    idQCM ("idQCM"),
-    dateResultatUtilisateur ("dateResultatUtilisateur");
+    ID_RESULTAT_UTILISATEUR("idResultatUtilisateur"),
+    ID_UTILISATEUR("idUtilisateur"),
+    ID_QCM("idQCM"),
+    DATE_RESULTAT_UTILISATEUR("dateResultatUtilisateur");
 
     private String nomChampTableBaseDonnee;
     ResultatUtilisateurEnum(String nomChampTableBaseDonnee){

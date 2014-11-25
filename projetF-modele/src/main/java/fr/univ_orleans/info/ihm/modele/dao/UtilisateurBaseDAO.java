@@ -1,5 +1,6 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
+import fr.univ_orleans.info.ihm.modele.MyLogger;
 import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.EntiteEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.UtilisateurEnum;
@@ -11,6 +12,7 @@ import fr.univ_orleans.info.ihm.modele.modele.Utilisateur;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 
 public class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateurDAO {
@@ -32,32 +34,28 @@ public class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateu
         IUtilisateur utilisateur = null;
         //On écrit la requête à éxécuter
         String sqlQuery = String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s) VALUES (?,?,?,?,?,?);",
-                BaseDonneeEnum.Utilisateur,
-                UtilisateurEnum.prenomUtilisateur, UtilisateurEnum.nomUtilisateur, UtilisateurEnum.identifiantUtilisateur,
-                UtilisateurEnum.motDePasseUtilisateur, UtilisateurEnum.numeroEtudiant, UtilisateurEnum.idEntite);
+                BaseDonneeEnum.UTILISATEUR,
+                UtilisateurEnum.PRENOM_UTILISATEUR, UtilisateurEnum.NOM_UTILISATEUR, UtilisateurEnum.IDENTIFIANT_UTILISATEUR,
+                UtilisateurEnum.MOT_DE_PASSE_UTILISATEUR, UtilisateurEnum.NUMERO_ETUDIANT, UtilisateurEnum.ID_ENTITE);
         //On ouvre la connection à la bdd et on prépare la requête
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
-        //On ajoute les valeurs de la requête préparée
+
+        ResultSet resultSet = null;
         try {
+            //On ajoute les valeurs de la requête préparée
             preparedStatement.setString(1, prenom);
             preparedStatement.setString(2, nom);
             preparedStatement.setString(3, identifiant);
             preparedStatement.setString(4, motDePasse);
             preparedStatement.setInt(5, numeroEtudiant);
             preparedStatement.setInt(6, idEntite);
-        } catch (SQLException e){
-            //TODO Système de log
-            e.printStackTrace();
-        }
-
-        ResultSet resultSet = null;
-        try {
+            //On éxécute la requête
             preparedStatement.executeUpdate();
             //On cherche à obtenir l'idUtilisateur généré.
             resultSet = preparedStatement.getGeneratedKeys();
-        } catch (SQLException e) {
-            //TODO Système de log
-            e.printStackTrace();
+        } catch (SQLException e){
+            //On log l'exception
+            MyLogger.getInstance().getLogger().logp(Level.SEVERE, UtilisateurBaseDAO.class.getName(), "creerUtilisateur", e.toString());
         }
 
         if(resultSet!=null){
@@ -68,7 +66,8 @@ public class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateu
                 utilisateur = new Utilisateur(resultSet.getInt(1), numeroEtudiant, nom, prenom, identifiant, motDePasse);
                 resultSet.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                //On log l'exception
+                MyLogger.getInstance().getLogger().logp(Level.SEVERE, UtilisateurBaseDAO.class.getName(), "creerUtilisateur", e.toString());
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -81,26 +80,22 @@ public class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateu
         IUtilisateur utilisateur = null;
         //On écrit la requête à éxécuter
         String sqlQuery = String.format("SELECT u.%s, u.%s, u.%s, u.%s, u.%s, u.%s, u.%s, e.%s  FROM %s u JOIN %s e ON u.%s = e.%s AND u.%s=?;",
-                UtilisateurEnum.idUtilisateur, UtilisateurEnum.numeroEtudiant, UtilisateurEnum.nomUtilisateur, UtilisateurEnum.prenomUtilisateur,
-                UtilisateurEnum.identifiantUtilisateur, UtilisateurEnum.motDePasseUtilisateur, UtilisateurEnum.idEntite, EntiteEnum.nomEntite,
-                BaseDonneeEnum.Utilisateur, BaseDonneeEnum.Entite,
-                UtilisateurEnum.idEntite, EntiteEnum.idEntite, UtilisateurEnum.idUtilisateur);
+                UtilisateurEnum.ID_UTILISATEUR, UtilisateurEnum.NUMERO_ETUDIANT, UtilisateurEnum.NOM_UTILISATEUR, UtilisateurEnum.PRENOM_UTILISATEUR,
+                UtilisateurEnum.IDENTIFIANT_UTILISATEUR, UtilisateurEnum.MOT_DE_PASSE_UTILISATEUR, UtilisateurEnum.ID_ENTITE, EntiteEnum.NOM_ENTITE,
+                BaseDonneeEnum.UTILISATEUR, BaseDonneeEnum.ENTITE,
+                UtilisateurEnum.ID_ENTITE, EntiteEnum.ID_ENTITE, UtilisateurEnum.ID_UTILISATEUR);
         //On ouvre la connection à la bdd et on prépare la requête
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
-        //On ajoute les valeurs de la requête préparée
-        try {
-            preparedStatement.setInt(1, idUtilisateur);
-        } catch (SQLException e){
-            //TODO Système de log
-            e.printStackTrace();
-        }
 
         ResultSet resultSet = null;
         try {
+            //On ajoute les valeurs de la requête préparée
+            preparedStatement.setInt(1, idUtilisateur);
+            //On éxécute la requête
             resultSet = preparedStatement.executeQuery();
-        } catch (SQLException e) {
-            //TODO Système de log
-            e.printStackTrace();
+        } catch (SQLException e){
+            //On log l'exception
+            MyLogger.getInstance().getLogger().logp(Level.SEVERE, UtilisateurBaseDAO.class.getName(), "getUtilisateur", e.toString());
         }
 
         if(resultSet!=null){
@@ -108,19 +103,20 @@ public class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateu
                 //Si resusltSet n'est pas nul, on accède à la première ligne.
                 resultSet.next();
                 //On créé une instance Utilisateur avec les informations à notre disposition.
-                utilisateur = new Utilisateur(resultSet.getInt(UtilisateurEnum.idUtilisateur.toString()),
-                        resultSet.getInt(UtilisateurEnum.numeroEtudiant.toString()),
-                        resultSet.getString(UtilisateurEnum.nomUtilisateur.toString()),
-                        resultSet.getString(UtilisateurEnum.prenomUtilisateur.toString()),
-                        resultSet.getString(UtilisateurEnum.identifiantUtilisateur.toString()),
-                        resultSet.getString(UtilisateurEnum.motDePasseUtilisateur.toString()));
-                //Ainsi qu'une instance d'Entite que l'on ajoutera dans Utilisateur
-                IEntite entite = new Entite(resultSet.getInt(UtilisateurEnum.idEntite.toString()),
-                        resultSet.getString(EntiteEnum.nomEntite.toString()));
+                utilisateur = new Utilisateur(resultSet.getInt(UtilisateurEnum.ID_UTILISATEUR.toString()),
+                        resultSet.getInt(UtilisateurEnum.NUMERO_ETUDIANT.toString()),
+                        resultSet.getString(UtilisateurEnum.NOM_UTILISATEUR.toString()),
+                        resultSet.getString(UtilisateurEnum.PRENOM_UTILISATEUR.toString()),
+                        resultSet.getString(UtilisateurEnum.IDENTIFIANT_UTILISATEUR.toString()),
+                        resultSet.getString(UtilisateurEnum.MOT_DE_PASSE_UTILISATEUR.toString()));
+                //Ainsi qu'une instance d'ENTITE que l'on ajoutera dans Utilisateur
+                IEntite entite = new Entite(resultSet.getInt(UtilisateurEnum.ID_ENTITE.toString()),
+                        resultSet.getString(EntiteEnum.NOM_ENTITE.toString()));
                 utilisateur.setEntiteUtilisateur(entite);
                 resultSet.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                //On log l'exception
+                MyLogger.getInstance().getLogger().logp(Level.SEVERE, UtilisateurBaseDAO.class.getName(), "getUtilisateur", e.toString());
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -141,7 +137,7 @@ public class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateu
     @Override
     public void suppressionUtilisateur(int idUtilisateur) {
         String sqlQuery = String.format("DELETE FROM %s WHERE %s=?;",
-                BaseDonneeEnum.Utilisateur, UtilisateurEnum.idUtilisateur);
+                BaseDonneeEnum.UTILISATEUR, UtilisateurEnum.ID_UTILISATEUR);
         //On ouvre la connection à la bdd et on prépare la requête
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
@@ -151,8 +147,8 @@ public class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateu
             //On éxécute la requête
             preparedStatement.executeUpdate();
         } catch (SQLException e){
-            //TODO Système de log
-            e.printStackTrace();
+            //On log l'exception
+            MyLogger.getInstance().getLogger().logp(Level.SEVERE, UtilisateurBaseDAO.class.getName(), "suppressionUtilisateur", e.toString());
         }
 
         this.getBd().closePrepared(preparedStatement);

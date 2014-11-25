@@ -1,11 +1,11 @@
 package fr.univ_orleans.info.ihm.modele.dao.db;
 
 /**
- * Enumération contenant l'ensemble des champs contenu dans la table Entite.
+ * Enumération contenant l'ensemble des champs contenu dans la table ENTITE.
  */
 public enum EntiteEnum {
-    idEntite ("idEntite"),
-    nomEntite ("nomEntite");
+    ID_ENTITE("idEntite"),
+    NOM_ENTITE("nomEntite");
 
     private String nomChampTableBaseDonnee;
     EntiteEnum(String nomChampTableBaseDonnee){

@@ -4,10 +4,10 @@ package fr.univ_orleans.info.ihm.modele.dao.db;
  * Enumération contenant l'ensemble des champs contenu dans la table QCM.
  */
 public enum QCMEnum {
-    idQCM ("idQCM"),
-    idCreateur ("idCreateur"),
-    nomQCM ("nomQCM"),
-    dateCreation ("dateCreation");
+    ID_QCM("idQCM"),
+    ID_CREATEUR("idCreateur"),
+    NOM_QCM("nomQCM"),
+    DATE_CREATION("dateCreation");
 
     private String nomChampTableBaseDonnee;
     QCMEnum(String nomChampTableBaseDonnee){

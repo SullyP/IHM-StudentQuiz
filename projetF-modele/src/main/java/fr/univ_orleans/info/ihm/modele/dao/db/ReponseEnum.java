@@ -4,10 +4,10 @@ package fr.univ_orleans.info.ihm.modele.dao.db;
  * Enumération contenant l'ensemble des champs contenu dans la table Reponse.
  */
 public enum ReponseEnum {
-    idReponse ("idReponse"),
-    idQuestion ("idQuestion"),
-    initituleReponse ("initituleReponse"),
-    correctReponse ("correctReponse");
+    ID_REPONSE("idReponse"),
+    ID_QUESTION("idQuestion"),
+    INITITULE_REPONSE("initituleReponse"),
+    CORRECT_REPONSE("correctReponse");
 
     private String nomChampTableBaseDonnee;
     ReponseEnum(String nomChampTableBaseDonnee){

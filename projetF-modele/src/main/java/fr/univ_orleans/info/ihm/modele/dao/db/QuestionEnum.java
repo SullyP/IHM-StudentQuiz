@@ -4,11 +4,11 @@ package fr.univ_orleans.info.ihm.modele.dao.db;
  * Enumération contenant l'ensemble des champs contenu dans la table Question.
  */
 public enum QuestionEnum {
-    idQuestion ("idQuestion"),
-    intituleQuestion ("intituleQuestion"),
-    multipleQuestion ("multipleQuestion"),
-    dureeQuestion ("dureeQuestion"),
-    pointQuestion ("pointQuestion");
+    ID_QUESTION("idQuestion"),
+    INTITULE_QUESTION("intituleQuestion"),
+    MULTIPLE_QUESTION("multipleQuestion"),
+    DUREE_QUESTION("dureeQuestion"),
+    POINT_QUESTION("pointQuestion");
 
     private String nomChampTableBaseDonnee;
     QuestionEnum(String nomChampTableBaseDonnee){

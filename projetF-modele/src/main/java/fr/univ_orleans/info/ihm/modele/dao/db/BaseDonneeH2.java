@@ -1,8 +1,10 @@
 package fr.univ_orleans.info.ihm.modele.dao.db;
 
+import fr.univ_orleans.info.ihm.modele.MyLogger;
 import org.h2.jdbcx.JdbcDataSource;
 
 import java.sql.*;
+import java.util.logging.Level;
 
 /**
  * Classe permettant l'abstraction à une base de donnée H2.
@@ -21,11 +23,9 @@ public final class BaseDonneeH2 implements IBaseDonnee {
 			 ds.setURL("jdbc:h2:"+ dbPath);
 			 ds.setUser("sa");
 			 ds.setPassword("");
-	            
      	} catch (ClassNotFoundException e) {
-     		System.err.println("cannot create datasource");
-			 //TODO Système de log
-     		e.printStackTrace();
+			 //On log l'exception
+			 MyLogger.getInstance().getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "Constructeur", "Cannot create data source. " + e.toString());
     	}
 	 }
 
@@ -50,15 +50,10 @@ public final class BaseDonneeH2 implements IBaseDonnee {
 	public void open(){
 		try {
 			this.conn = this.ds.getConnection();
-		} catch (SQLException e1) {
-			//TODO Systeme de log
-			e1.printStackTrace();
-		}
-		try {
 			this.stmt = this.conn.createStatement();
 		} catch (SQLException e) {
-			//TODO Systeme de log
-			e.printStackTrace();
+			//On log l'exception
+			MyLogger.getInstance().getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "open", e.toString());
 		}
 	}
 
@@ -73,16 +68,11 @@ public final class BaseDonneeH2 implements IBaseDonnee {
 		PreparedStatement preparedStatement = null;
 		try {
 			this.conn = this.ds.getConnection();
-		} catch (SQLException e1) {
-			//TODO Systeme de log
-			e1.printStackTrace();
-		}
-		try {
 			//On indique que dans le cas d'un INSERT on souhaite avoir les id générés.
 			preparedStatement = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		} catch (SQLException e1) {
-			//TODO Systeme de log
-			e1.printStackTrace();
+		} catch (SQLException e) {
+			//On log l'exception
+			MyLogger.getInstance().getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "openPrepared" , e.toString());
 		}
 		return preparedStatement;
 	}
@@ -101,8 +91,8 @@ public final class BaseDonneeH2 implements IBaseDonnee {
 				conn.close();
 			}
 		} catch (SQLException e) {
-			//TODO Systeme de log
-			e.printStackTrace();
+			//On log l'exception
+			MyLogger.getInstance().getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "close", e.toString());
 		}
 	}
 
@@ -116,8 +106,8 @@ public final class BaseDonneeH2 implements IBaseDonnee {
 		try {
 			preparedSql.close();
 		} catch (SQLException e) {
-			//TODO Systeme de log
-			e.printStackTrace();
+			//On log l'exception
+			MyLogger.getInstance().getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "closePrepared", e.toString());
 		}
 		this.close();
 	}
@@ -127,10 +117,10 @@ public final class BaseDonneeH2 implements IBaseDonnee {
 	 */
 	private void createSchema() {
 		String query = new StringBuilder().append("CREATE SCHEMA IF NOT EXISTS ProjetFIHM;")
-				//La table Entite contient toutes les entités utilisateurs, par exemple: Etudiant, Professeur...
-				.append("CREATE TABLE IF NOT EXISTS ProjetFIHM.Entite (idEntite INT NOT NULL AUTO_INCREMENT, nomEntite VARCHAR2(50), PRIMARY KEY(idEntite));")
+				//La table ENTITE contient toutes les entités utilisateurs, par exemple: Etudiant, Professeur...
+				.append("CREATE TABLE IF NOT EXISTS ProjetFIHM.ENTITE (idEntite INT NOT NULL AUTO_INCREMENT, nomEntite VARCHAR2(50), PRIMARY KEY(idEntite));")
 				//La table Utilisateur contient tout les utilisateurs.
-				.append("CREATE TABLE IF NOT EXISTS ProjetFIHM.Utilisateur (idUtilisateur INT NOT NULL AUTO_INCREMENT, idEntite INT NOT NULL, numeroEtudiant INT, nomUtilisateur VARCHAR2(50), prenomUtilisateur VARCHAR2(50), identifiantUtilisateur VARCHAR2(50), motDePasseUtilisateur VARCHAR2(50), PRIMARY KEY(idUtilisateur), FOREIGN KEY(idEntite) REFERENCES ProjetFIHM.Entite(idEntite));")
+				.append("CREATE TABLE IF NOT EXISTS ProjetFIHM.Utilisateur (idUtilisateur INT NOT NULL AUTO_INCREMENT, idEntite INT NOT NULL, numeroEtudiant INT, nomUtilisateur VARCHAR2(50), prenomUtilisateur VARCHAR2(50), identifiantUtilisateur VARCHAR2(50), motDePasseUtilisateur VARCHAR2(50), PRIMARY KEY(idUtilisateur), FOREIGN KEY(idEntite) REFERENCES ProjetFIHM.ENTITE(idEntite));")
 				//La table Question contient toutes les questions disponibles pour l'ajout dans un QCM.
 				.append("CREATE TABLE IF NOT EXISTS ProjetFIHM.Question (idQuestion INT NOT NULL AUTO_INCREMENT, intituleQuestion VARCHAR2(250), multipleQuestion BOOLEAN, dureeQuestion INT NOT NULL, pointQuestion INT NOT NULL, PRIMARY KEY(idQuestion));")
 				//La table Reponse contient toutes les réponses associées à une question donnée.
@@ -145,13 +135,10 @@ public final class BaseDonneeH2 implements IBaseDonnee {
 				.append("CREATE TABLE IF NOT EXISTS ProjetFIHM.ReponseUtilisateur (idResultatUtilisateur INT NOT NULL, idReponse INT NOT NULL, PRIMARY KEY(idResultatUtilisateur, idReponse), FOREIGN KEY(idResultatUtilisateur) REFERENCES ProjetFIHM.ResultatUtilisateur(idResultatUtilisateur), FOREIGN KEY(idReponse) REFERENCES ProjetFIHM.Reponse(idReponse));").toString();
 
 		try {
-			if(stmt == null) {
-				stmt = conn.createStatement();
-			}
 			stmt.execute(query);
 		} catch(SQLException e) {
-			//TODO Systeme de log
-			e.printStackTrace();
+			//On log l'exception
+			MyLogger.getInstance().getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "createSchema", e.toString());
 		}
 	}
 

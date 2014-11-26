@@ -23,18 +23,18 @@ import java.util.logging.XMLFormatter;
  */
 public final class MyLogger {
     private static MyLogger instance = null;
-    private static Logger logger = Logger.getLogger(MyLogger.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(MyLogger.class.getName());
 
     private MyLogger() {
         try {
             FileHandler fileHandler = new FileHandler("myLog.log", 10000, 1);
             fileHandler.setFormatter(new XMLFormatter());
-            logger.addHandler(fileHandler);
+            LOGGER.addHandler(fileHandler);
         } catch (IOException e) {
-            logger.throwing(MyLogger.class.getName(), "Constructeur", e);
+            LOGGER.throwing(MyLogger.class.getName(), "Constructeur", e);
         }
         //On définit le niveau de criticité maximal pour lequel les logs seront éffectués
-        logger.setLevel(Level.ALL);
+        LOGGER.setLevel(Level.ALL);
     }
 
     /**
@@ -45,6 +45,6 @@ public final class MyLogger {
         if(instance == null){
             instance = new MyLogger();
         }
-        return logger;
+        return LOGGER;
     }
 }

@@ -22,6 +22,10 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
         super();
     }
 
+    /**
+     * Permet d'obtenir l'instance unique de la classe singleton.
+     * @return instance unique de la classe singleton.
+     */
     public static IUtilisateurDAO getInstance(){
         if(instance == null){
             instance = new UtilisateurBaseDAO();

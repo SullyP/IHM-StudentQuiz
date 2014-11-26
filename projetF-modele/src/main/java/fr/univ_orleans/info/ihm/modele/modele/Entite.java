@@ -9,6 +9,10 @@ public class Entite implements IEntite{
         this.nomEntite = nomEntite;
     }
 
+    public Entite(int idEntite){
+        this.idEntite = idEntite;
+    }
+
     @Override
     public int getIdEntite() {
         return this.idEntite;

@@ -18,6 +18,10 @@ public class Utilisateur implements IUtilisateur{
         this.motDePasseUtilisateur = motDePasseUtilisateur;
     }
 
+    public Utilisateur(int idUtilisateur){
+        this.idUtilisateur = idUtilisateur;
+    }
+
     @Override
     public int getIdUtilisateur() {
         return this.idUtilisateur;

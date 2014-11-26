@@ -130,12 +130,56 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
 
     @Override
     public IUtilisateur majMotDePasse(int idUtilisateur, String motDePasse) {
-        return null;
+        IUtilisateur utilisateur = null;
+        //On écrit la requête à éxécuter
+        String sqlQuery = String.format("UPDATE %s SET %s=? WHERE %s=?;",
+                BaseDonneeEnum.UTILISATEUR, UtilisateurEnum.MOT_DE_PASSE_UTILISATEUR, UtilisateurEnum.ID_UTILISATEUR);
+        //On ouvre la connection à la bdd et on prépare la requête
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+
+        try {
+            //On ajoute les valeurs de la requête préparée
+            preparedStatement.setString(1, motDePasse);
+            preparedStatement.setInt(2, idUtilisateur);
+            //On créé une instance Utilisateur avec les informations à notre disposition.
+            utilisateur = new Utilisateur(idUtilisateur);
+            utilisateur.setMotDePasseUtilisateur(motDePasse);
+            //On éxécute la requête
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            //On log l'exception
+            MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "majMotDePasse", "Erreur lors de l'éxécution d'une requête SQL.", e);
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return utilisateur;
     }
 
     @Override
     public IUtilisateur majEntite(int idUtilisateur, int idEntite) {
-        return null;
+        IUtilisateur utilisateur = null;
+        //On écrit la requête à éxécuter
+        String sqlQuery = String.format("UPDATE %s SET %s=? WHERE %s=?;",
+                BaseDonneeEnum.UTILISATEUR, UtilisateurEnum.ID_ENTITE, UtilisateurEnum.ID_UTILISATEUR);
+        //On ouvre la connection à la bdd et on prépare la requête
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+
+        try {
+            //On ajoute les valeurs de la requête préparée
+            preparedStatement.setInt(1, idEntite);
+            preparedStatement.setInt(2, idUtilisateur);
+            //On créé une instance Utilisateur avec les informations à notre disposition.
+            utilisateur = new Utilisateur(idUtilisateur);
+            utilisateur.setEntiteUtilisateur(new Entite(idEntite));
+            //On éxécute la requête
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            //On log l'exception
+            MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "majMotDePasse", "Erreur lors de l'éxécution d'une requête SQL.", e);
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return utilisateur;
     }
 
     @Override

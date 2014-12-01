@@ -20,4 +20,8 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+
+  <listener>
+    <listener-class>fr.univ_orleans.info.ihm.modele.service.InitRemoteService</listener-class>
+  </listener>
 </web-app>

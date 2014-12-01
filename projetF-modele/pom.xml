@@ -18,6 +18,11 @@
             <artifactId>h2</artifactId>
             <version>1.4.182</version>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
     </dependencies>
 
     <build>

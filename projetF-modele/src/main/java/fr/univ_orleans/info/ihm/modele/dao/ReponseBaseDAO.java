@@ -1,0 +1,167 @@
+package fr.univ_orleans.info.ihm.modele.dao;
+
+import fr.univ_orleans.info.ihm.modele.MyLogger;
+import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
+import fr.univ_orleans.info.ihm.modele.dao.db.ReponseEnum;
+import fr.univ_orleans.info.ihm.modele.modele.IReponse;
+import fr.univ_orleans.info.ihm.modele.modele.Reponse;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+
+public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
+    private static IReponseDAO instance=null;
+
+    private ReponseBaseDAO(){
+        super();
+    }
+
+    /**
+     * Permet d'obtenir l'instance unique de la classe singleton.
+     * @return instance unique de la classe singleton.
+     */
+    public static IReponseDAO getInstance(){
+        if(instance == null){
+            instance = new ReponseBaseDAO();
+        }
+        return instance;
+    }
+
+    /**
+     * Créé une réponse
+     *
+     * @param idQuestion      id de la question associé à la réponse
+     * @param intituleReponse intitule de la réponse
+     * @param correct         vrai si la réponse est correct, faux sinon
+     * @return la réponse
+     */
+    @Override
+    public IReponse creerReponse(int idQuestion, String intituleReponse, boolean correct) {
+        IReponse reponse = null;
+        //On écrit la requête à éxécuter
+        String sqlQuery = String.format("INSERT INTO %s (%s,%s,%s) VALUES (?,?,?);",
+                BaseDonneeEnum.REPONSE,
+                ReponseEnum.ID_QUESTION, ReponseEnum.INITITULE_REPONSE, ReponseEnum.CORRECT_REPONSE);
+        //On ouvre la connection à la bdd et on prépare la requête
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+
+        ResultSet resultSet = null;
+        try {
+            //On ajoute les valeurs de la requête préparée
+            preparedStatement.setInt(1, idQuestion);
+            preparedStatement.setString(2, intituleReponse);
+            preparedStatement.setBoolean(3, correct);
+            //On éxécute la requête
+            preparedStatement.executeUpdate();
+            //On cherche à obtenir l'idReponse généré.
+            resultSet = preparedStatement.getGeneratedKeys();
+        } catch (SQLException e){
+            //On log l'exception
+            MyLogger.getLogger().logp(Level.WARNING, ReponseBaseDAO.class.getName(), "creerReponse", MyLogger.MESSAGE_ERREUR_SQL, e);
+        }
+
+        if(resultSet!=null){
+            try {
+                //Si resusltSet n'est pas nul, on accède à la première ligne.
+                resultSet.next();
+                //On créé une instance Utilisateur avec les informations à notre disposition.
+                reponse = new Reponse(resultSet.getInt(1), intituleReponse, correct);
+                resultSet.close();
+            } catch (SQLException e) {
+                //On log l'exception
+                MyLogger.getLogger().logp(Level.WARNING, ReponseBaseDAO.class.getName(), "creerReponse", MyLogger.MESSAGE_ERREUR_SQL, e);
+            }
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return reponse;
+    }
+
+    /**
+     * Permet d'obtenir une réponse via son id
+     *
+     * @param idReponse id de la réponse
+     * @return la réponse
+     */
+    @Override
+    public IReponse getReponse(int idReponse) {
+        IReponse reponse = null;
+        //On écrit la requête à éxécuter
+        String sqlQuery = String.format("SELECT * FROM %s WHERE %s=?;",
+                BaseDonneeEnum.REPONSE,
+                ReponseEnum.ID_QUESTION);
+        //On ouvre la connection à la bdd et on prépare la requête
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+
+        ResultSet resultSet = null;
+        try {
+            //On ajoute les valeurs de la requête préparée
+            preparedStatement.setInt(1, idReponse);
+            //On éxécute la requête
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e){
+            //On log l'exception
+            MyLogger.getLogger().logp(Level.WARNING, ReponseBaseDAO.class.getName(), "getReponse", MyLogger.MESSAGE_ERREUR_SQL, e);
+        }
+
+        if(resultSet!=null){
+            try {
+                //Si resusltSet n'est pas nul, on accède à la première ligne.
+                resultSet.next();
+                //On créé une instance Utilisateur avec les informations à notre disposition.
+                reponse = new Reponse(resultSet.getInt(ReponseEnum.ID_REPONSE.toString()),
+                        resultSet.getString(ReponseEnum.INITITULE_REPONSE.toString()),
+                        resultSet.getBoolean(ReponseEnum.CORRECT_REPONSE.toString()));
+                resultSet.close();
+            } catch (SQLException e) {
+                //On log l'exception
+                MyLogger.getLogger().logp(Level.WARNING, ReponseBaseDAO.class.getName(), "getReponse", MyLogger.MESSAGE_ERREUR_SQL, e);
+            }
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return reponse;
+    }
+
+    /**
+     * Permet de mettre à jour une réponse
+     *
+     * @param idReponse       id de la réponse
+     * @param intituleReponse intitule de la réponse
+     * @param correct         vrai si la réponse est correct, faux sinon
+     * @return la réponse
+     */
+    @Override
+    public IReponse majReponse(int idReponse, String intituleReponse, boolean correct) {
+        return null;
+    }
+
+    /**
+     * Permet de supprimer une réponse via son id
+     *
+     * @param idReponse id de la réponse
+     */
+    @Override
+    public void suppressionReponse(int idReponse) {
+        //On écrit la requête à éxécuter
+        String sqlQuery = String.format("DELETE FROM %s WHERE %s=?;",
+                BaseDonneeEnum.REPONSE,
+                ReponseEnum.ID_QUESTION);
+        //On ouvre la connection à la bdd et on prépare la requête
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+
+        try {
+            //On ajoute les valeurs de la requête préparée
+            preparedStatement.setInt(1, idReponse);
+            //On éxécute la requête
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            //On log l'exception
+            MyLogger.getLogger().logp(Level.WARNING, ReponseBaseDAO.class.getName(), "suppressionReponse", MyLogger.MESSAGE_ERREUR_SQL, e);
+        }
+
+        this.getBd().closePrepared(preparedStatement);
+    }
+}

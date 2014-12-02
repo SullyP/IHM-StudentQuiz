@@ -24,6 +24,7 @@ import java.util.logging.XMLFormatter;
 public final class MyLogger {
     private static MyLogger instance = null;
     private static final Logger LOGGER = Logger.getLogger(MyLogger.class.getName());
+    public static final String MESSAGE_ERREUR_SQL = "Erreur lors de l'exécution d'une requête SQL.";
 
     private MyLogger() {
         try {

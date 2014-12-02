@@ -13,7 +13,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
     private JdbcDataSource ds;
     private Connection conn;
     private Statement stmt;
-    private String dbPath = "~/test";
+    private String dbPath = "src/db/qcm";
     private static BaseDonneeH2 monInstance;
 
     private BaseDonneeH2() {
@@ -124,21 +124,21 @@ public final class BaseDonneeH2 implements IBaseDonnee {
                         //La table Question contient toutes les questions disponibles pour l'ajout dans un QCM.
                 .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.Question (idQuestion INT NOT NULL AUTO_INCREMENT, intituleQuestion VARCHAR2(250), multipleQuestion BOOLEAN, dureeQuestion INT NOT NULL, pointQuestion INT NOT NULL, PRIMARY KEY(idQuestion));")
                         //La table Reponse contient toutes les réponses associées à une question donnée.
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.Reponse (idReponse INT NOT NULL AUTO_INCREMENT, idQuestion INT NOT NULL, intituleReponse VARCHAR2(250), correctReponse BOOLEAN, PRIMARY KEY(idReponse), FOREIGN KEY(idQuestion) REFERENCES ProjetFIHM.Question(idQuestion));")
+                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.Reponse (idReponse INT NOT NULL AUTO_INCREMENT, idQuestion INT NOT NULL, intituleReponse VARCHAR2(250), correctReponse BOOLEAN, PRIMARY KEY(idReponse), FOREIGN KEY(idQuestion) REFERENCES ProjetFIHM.Question(idQuestion) ON DELETE CASCADE);")
                         //La table QCM contient tout les QCM créés dans l'aplication.
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.QCM (idQCM INT NOT NULL AUTO_INCREMENT, idCreateur INT NOT NULL, nomQCM VARCHAR2(250), dateCreation DATE, PRIMARY KEY(idQCM), FOREIGN KEY(idCreateur) REFERENCES ProjetFIHM.Utilisateur(idUtilisateur));")
+                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.QCM (idQCM INT NOT NULL AUTO_INCREMENT, idCreateur INT NOT NULL, nomQCM VARCHAR2(250), dateCreation DATE, PRIMARY KEY(idQCM), FOREIGN KEY(idCreateur) REFERENCES ProjetFIHM.Utilisateur(idUtilisateur) ON DELETE CASCADE);")
                         //La table QCMQuestion contient toutes les questions associées à un QCM donné.
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.QCMQuestion (idQCM INT NOT NULL, idQuestion INT NOT NULL, PRIMARY KEY(idQCM, idQuestion), FOREIGN KEY(idQCM) REFERENCES ProjetFIHM.QCM(idQCM), FOREIGN KEY(idQuestion) REFERENCES ProjetFIHM.Question(idQuestion));")
+                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.QCMQuestion (idQCM INT NOT NULL, idQuestion INT NOT NULL, PRIMARY KEY(idQCM, idQuestion), FOREIGN KEY(idQCM) REFERENCES ProjetFIHM.QCM(idQCM) ON DELETE CASCADE, FOREIGN KEY(idQuestion) REFERENCES ProjetFIHM.Question(idQuestion) ON DELETE CASCADE);")
                         //La table ResultatUtilisateur contient toutes les participations à un QCM pour un utilisateur donné.
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.ResultatUtilisateur (idResultatUtilisateur INT NOT NULL AUTO_INCREMENT, idUtilisateur INT NOT NULL, idQCM INT NOT NULL, dateResultatUtilisateur DATE, PRIMARY KEY(idResultatUtilisateur), FOREIGN KEY(idQCM) REFERENCES ProjetFIHM.QCM(idQCM), FOREIGN KEY(idUtilisateur) REFERENCES ProjetIHM.Utilisateur(idUtilisateur));")
+                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.ResultatUtilisateur (idResultatUtilisateur INT NOT NULL AUTO_INCREMENT, idUtilisateur INT NOT NULL, idQCM INT NOT NULL, dateResultatUtilisateur DATE, PRIMARY KEY(idResultatUtilisateur), FOREIGN KEY(idQCM) REFERENCES ProjetFIHM.QCM(idQCM) ON DELETE CASCADE, FOREIGN KEY(idUtilisateur) REFERENCES ProjetIHM.Utilisateur(idUtilisateur) ON DELETE CASCADE);")
                         //La table ReponseUtilisateur contient toutes les réponses données par un utilisateur pour un ResultatUtilisateur donné (suite à la participation à un QCM).
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.ReponseUtilisateur (idResultatUtilisateur INT NOT NULL, idReponse INT NOT NULL, PRIMARY KEY(idResultatUtilisateur, idReponse), FOREIGN KEY(idResultatUtilisateur) REFERENCES ProjetFIHM.ResultatUtilisateur(idResultatUtilisateur), FOREIGN KEY(idReponse) REFERENCES ProjetFIHM.Reponse(idReponse));").toString();
+                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.ReponseUtilisateur (idResultatUtilisateur INT NOT NULL, idReponse INT NOT NULL, PRIMARY KEY(idResultatUtilisateur, idReponse), FOREIGN KEY(idResultatUtilisateur) REFERENCES ProjetFIHM.ResultatUtilisateur(idResultatUtilisateur) ON DELETE CASCADE, FOREIGN KEY(idReponse) REFERENCES ProjetFIHM.Reponse(idReponse) ON DELETE CASCADE);").toString();
 
         try {
             stmt.execute(query);
         } catch(SQLException e) {
             //On log l'exception
-            MyLogger.getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "createSchema", "Erreur lors de l'éxécution d'une requête SQL.", e);
+            MyLogger.getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "createSchema", MyLogger.MESSAGE_ERREUR_SQL, e);
         }
     }
 

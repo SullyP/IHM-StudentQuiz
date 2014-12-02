@@ -54,7 +54,7 @@ public class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO {
             resultSet = preparedStatement.getGeneratedKeys();
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getLogger().logp(Level.INFO, EntiteBaseDAO.class.getName(), "creerEntite", "Erreur lors de l'éxécution d'une requête SQL.", e);
+            MyLogger.getLogger().logp(Level.WARNING, EntiteBaseDAO.class.getName(), "creerEntite", MyLogger.MESSAGE_ERREUR_SQL, e);
         }
 
         if(resultSet!=null){
@@ -66,7 +66,7 @@ public class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO {
                 resultSet.close();
             } catch (SQLException e) {
                 //On log l'exception
-                MyLogger.getLogger().logp(Level.INFO, EntiteBaseDAO.class.getName(), "creerEntite", "Erreur lors de l'éxécution d'une requête SQL.", e);
+                MyLogger.getLogger().logp(Level.WARNING, EntiteBaseDAO.class.getName(), "creerEntite", MyLogger.MESSAGE_ERREUR_SQL, e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -97,7 +97,7 @@ public class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO {
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getLogger().logp(Level.INFO, EntiteBaseDAO.class.getName(), "getEntite", "Erreur lors de l'éxécution d'une requête SQL.", e);
+            MyLogger.getLogger().logp(Level.WARNING, EntiteBaseDAO.class.getName(), "getEntite", MyLogger.MESSAGE_ERREUR_SQL, e);
         }
 
         if(resultSet!=null){
@@ -110,7 +110,7 @@ public class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO {
                 resultSet.close();
             } catch (SQLException e) {
                 //On log l'exception
-                MyLogger.getLogger().logp(Level.INFO, EntiteBaseDAO.class.getName(), "getEntite", "Erreur lors de l'éxécution d'une requête SQL.", e);
+                MyLogger.getLogger().logp(Level.WARNING, EntiteBaseDAO.class.getName(), "getEntite", MyLogger.MESSAGE_ERREUR_SQL, e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -144,7 +144,7 @@ public class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO {
             entite = new Entite(idEntite, nom);
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getLogger().logp(Level.INFO, EntiteBaseDAO.class.getName(), "majEntite", "Erreur lors de l'éxécution d'une requête SQL.", e);
+            MyLogger.getLogger().logp(Level.WARNING, EntiteBaseDAO.class.getName(), "majEntite", MyLogger.MESSAGE_ERREUR_SQL, e);
         }
 
         this.getBd().closePrepared(preparedStatement);
@@ -171,7 +171,7 @@ public class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO {
             preparedStatement.executeUpdate();
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getLogger().logp(Level.INFO, EntiteBaseDAO.class.getName(), "suppressionEntite", "Erreur lors de l'éxécution d'une requête SQL.", e);
+            MyLogger.getLogger().logp(Level.WARNING, EntiteBaseDAO.class.getName(), "suppressionEntite", MyLogger.MESSAGE_ERREUR_SQL, e);
         }
 
         this.getBd().closePrepared(preparedStatement);

@@ -59,7 +59,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
             resultSet = preparedStatement.getGeneratedKeys();
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "creerUtilisateur", "Erreur lors de l'éxécution d'une requête SQL.", e);
+            MyLogger.getLogger().logp(Level.WARNING, UtilisateurBaseDAO.class.getName(), "creerUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
         }
 
         if(resultSet!=null){
@@ -71,7 +71,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
                 resultSet.close();
             } catch (SQLException e) {
                 //On log l'exception
-                MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "creerUtilisateur", "Erreur lors de l'éxécution d'une requête SQL.", e);
+                MyLogger.getLogger().logp(Level.WARNING, UtilisateurBaseDAO.class.getName(), "creerUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -99,7 +99,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "getUtilisateur", "Erreur lors de l'éxécution d'une requête SQL.", e);
+            MyLogger.getLogger().logp(Level.WARNING, UtilisateurBaseDAO.class.getName(), "getUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
         }
 
         if(resultSet!=null){
@@ -120,7 +120,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
                 resultSet.close();
             } catch (SQLException e) {
                 //On log l'exception
-                MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "getUtilisateur", "Erreur lors de l'éxécution d'une requête SQL.", e);
+                MyLogger.getLogger().logp(Level.WARNING, UtilisateurBaseDAO.class.getName(), "getUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -148,7 +148,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
             preparedStatement.executeUpdate();
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "majMotDePasse", "Erreur lors de l'éxécution d'une requête SQL.", e);
+            MyLogger.getLogger().logp(Level.WARNING, UtilisateurBaseDAO.class.getName(), "majMotDePasse", MyLogger.MESSAGE_ERREUR_SQL, e);
         }
         this.getBd().closePrepared(preparedStatement);
 
@@ -175,7 +175,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
             preparedStatement.executeUpdate();
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "majMotDePasse", "Erreur lors de l'éxécution d'une requête SQL.", e);
+            MyLogger.getLogger().logp(Level.WARNING, UtilisateurBaseDAO.class.getName(), "majMotDePasse", MyLogger.MESSAGE_ERREUR_SQL, e);
         }
         this.getBd().closePrepared(preparedStatement);
 
@@ -196,7 +196,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
             preparedStatement.executeUpdate();
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getLogger().logp(Level.INFO, UtilisateurBaseDAO.class.getName(), "suppressionUtilisateur", "Erreur lors de l'éxécution d'une requête SQL.", e);
+            MyLogger.getLogger().logp(Level.WARNING, UtilisateurBaseDAO.class.getName(), "suppressionUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
         }
 
         this.getBd().closePrepared(preparedStatement);

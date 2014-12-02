@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 
-public class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO {
+public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO {
     private static IEntiteDAO instance=null;
 
     private EntiteBaseDAO(){

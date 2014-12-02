@@ -47,7 +47,8 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
         ResultSet resultSet = null;
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setString(1, nom);
+            int numeroParametre = 1;
+            preparedStatement.setString(numeroParametre, nom);
             //On éxécute la requête
             preparedStatement.executeUpdate();
             //On cherche à obtenir l'idEntite généré.
@@ -92,7 +93,8 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
         ResultSet resultSet = null;
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setInt(1, idEntite);
+            int numeroParametre = 1;
+            preparedStatement.setInt(numeroParametre, idEntite);
             //On éxécute la requête
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
@@ -136,8 +138,9 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
 
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setString(1, nom);
-            preparedStatement.setInt(2, idEntite);
+            int numeroParametre = 1;
+            preparedStatement.setString(numeroParametre, nom);
+            preparedStatement.setInt(++numeroParametre, idEntite);
             //On éxécute la requête
             preparedStatement.executeUpdate();
             //On créé une instance Entite avec les informations à notre disposition.
@@ -166,7 +169,8 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
 
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setInt(1, idEntite);
+            int numeroParametre = 1;
+            preparedStatement.setInt(numeroParametre, idEntite);
             //On éxécute la requête
             preparedStatement.executeUpdate();
         } catch (SQLException e){

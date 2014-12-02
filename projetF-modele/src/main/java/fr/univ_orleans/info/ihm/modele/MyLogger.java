@@ -24,11 +24,12 @@ import java.util.logging.XMLFormatter;
 public final class MyLogger {
     private static MyLogger instance = null;
     private static final Logger LOGGER = Logger.getLogger(MyLogger.class.getName());
+    private static final int FILE_SIZE = 10000;
     public static final String MESSAGE_ERREUR_SQL = "Erreur lors de l'exécution d'une requête SQL.";
 
     private MyLogger() {
         try {
-            FileHandler fileHandler = new FileHandler("myLog.log", 10000, 1);
+            FileHandler fileHandler = new FileHandler("myLog.log", FILE_SIZE, 1);
             fileHandler.setFormatter(new XMLFormatter());
             LOGGER.addHandler(fileHandler);
         } catch (IOException e) {

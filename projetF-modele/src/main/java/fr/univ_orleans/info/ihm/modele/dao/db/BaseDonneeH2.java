@@ -13,7 +13,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
     private JdbcDataSource ds;
     private Connection conn;
     private Statement stmt;
-    private String dbPath = "src/db/qcm";
+    private static String dbPath = "~/qcm";
     private static BaseDonneeH2 monInstance;
 
     private BaseDonneeH2() {
@@ -130,7 +130,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
                         //La table QCMQuestion contient toutes les questions associées à un QCM donné.
                 .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.QCMQuestion (idQCM INT NOT NULL, idQuestion INT NOT NULL, PRIMARY KEY(idQCM, idQuestion), FOREIGN KEY(idQCM) REFERENCES ProjetFIHM.QCM(idQCM) ON DELETE CASCADE, FOREIGN KEY(idQuestion) REFERENCES ProjetFIHM.Question(idQuestion) ON DELETE CASCADE);")
                         //La table ResultatUtilisateur contient toutes les participations à un QCM pour un utilisateur donné.
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.ResultatUtilisateur (idResultatUtilisateur INT NOT NULL AUTO_INCREMENT, idUtilisateur INT NOT NULL, idQCM INT NOT NULL, dateResultatUtilisateur DATE, PRIMARY KEY(idResultatUtilisateur), FOREIGN KEY(idQCM) REFERENCES ProjetFIHM.QCM(idQCM) ON DELETE CASCADE, FOREIGN KEY(idUtilisateur) REFERENCES ProjetIHM.Utilisateur(idUtilisateur) ON DELETE CASCADE);")
+                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.ResultatUtilisateur (idResultatUtilisateur INT NOT NULL AUTO_INCREMENT, idUtilisateur INT NOT NULL, idQCM INT NOT NULL, dateResultatUtilisateur DATE, PRIMARY KEY(idResultatUtilisateur), FOREIGN KEY(idQCM) REFERENCES ProjetFIHM.QCM(idQCM) ON DELETE CASCADE, FOREIGN KEY(idUtilisateur) REFERENCES ProjetFIHM.Utilisateur(idUtilisateur) ON DELETE CASCADE);")
                         //La table ReponseUtilisateur contient toutes les réponses données par un utilisateur pour un ResultatUtilisateur donné (suite à la participation à un QCM).
                 .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.ReponseUtilisateur (idResultatUtilisateur INT NOT NULL, idReponse INT NOT NULL, PRIMARY KEY(idResultatUtilisateur, idReponse), FOREIGN KEY(idResultatUtilisateur) REFERENCES ProjetFIHM.ResultatUtilisateur(idResultatUtilisateur) ON DELETE CASCADE, FOREIGN KEY(idReponse) REFERENCES ProjetFIHM.Reponse(idReponse) ON DELETE CASCADE);").toString();
 
@@ -178,11 +178,14 @@ public final class BaseDonneeH2 implements IBaseDonnee {
 
     /**
      * Permet de définir le chemin d'accès de la BDD.
-     * @param dbPath chemin d'accès de la BDD.
+     * @param path chemin d'accès de la BDD.
      */
     @Override
-    public void setDbPath(String dbPath) {
-        this.dbPath = dbPath;
+    public void setDbPath(String path) {
+        if(!dbPath.equals(path)) {
+            dbPath = path;
+            monInstance = null;
+        }
     }
 
 }

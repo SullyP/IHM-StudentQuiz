@@ -13,6 +13,7 @@ import java.util.logging.Level;
 public class InitRemoteService implements ServletContextListener {
     private static boolean isRegistered = false;
     private static IFacadeDAO service;
+    private static final int PORT_REGISTRY = 9345;
 
     public InitRemoteService(){
 
@@ -28,7 +29,7 @@ public class InitRemoteService implements ServletContextListener {
             try {
                 service = new FacadeBaseDAO();
                 IFacadeDAO stub = (IFacadeDAO) UnicastRemoteObject.exportObject(service, 0);
-                Registry registry = LocateRegistry.createRegistry(9345);
+                Registry registry = LocateRegistry.createRegistry(PORT_REGISTRY);
                 registry.rebind(IFacadeDAO.SERVICE_NAME, stub);
                 MyLogger.getLogger().logp(Level.INFO, InitRemoteService.class.getName(), "contextInitialized", "RemoteService Started");
                 isRegistered = true;

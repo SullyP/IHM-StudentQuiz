@@ -47,12 +47,13 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
         ResultSet resultSet = null;
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setString(1, prenom);
-            preparedStatement.setString(2, nom);
-            preparedStatement.setString(3, identifiant);
-            preparedStatement.setString(4, motDePasse);
-            preparedStatement.setInt(5, numeroEtudiant);
-            preparedStatement.setInt(6, idEntite);
+            int numeroParametre = 1;
+            preparedStatement.setString(numeroParametre, prenom);
+            preparedStatement.setString(++numeroParametre, nom);
+            preparedStatement.setString(++numeroParametre, identifiant);
+            preparedStatement.setString(++numeroParametre, motDePasse);
+            preparedStatement.setInt(++numeroParametre, numeroEtudiant);
+            preparedStatement.setInt(++numeroParametre, idEntite);
             //On éxécute la requête
             preparedStatement.executeUpdate();
             //On cherche à obtenir l'idUtilisateur généré.
@@ -94,7 +95,8 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
         ResultSet resultSet = null;
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setInt(1, idUtilisateur);
+            int numeroParametre = 1;
+            preparedStatement.setInt(numeroParametre, idUtilisateur);
             //On éxécute la requête
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
@@ -139,8 +141,9 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
 
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setString(1, motDePasse);
-            preparedStatement.setInt(2, idUtilisateur);
+            int numeroParametre = 1;
+            preparedStatement.setString(numeroParametre, motDePasse);
+            preparedStatement.setInt(++numeroParametre, idUtilisateur);
             //On créé une instance Utilisateur avec les informations à notre disposition.
             utilisateur = new Utilisateur(idUtilisateur);
             utilisateur.setMotDePasseUtilisateur(motDePasse);
@@ -166,8 +169,9 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
 
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setInt(1, idEntite);
-            preparedStatement.setInt(2, idUtilisateur);
+            int numeroParametre = 1;
+            preparedStatement.setInt(numeroParametre, idEntite);
+            preparedStatement.setInt(++numeroParametre, idUtilisateur);
             //On créé une instance Utilisateur avec les informations à notre disposition.
             utilisateur = new Utilisateur(idUtilisateur);
             utilisateur.setEntiteUtilisateur(new Entite(idEntite));
@@ -191,7 +195,8 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
 
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setInt(1, idUtilisateur);
+            int numeroParametre = 1;
+            preparedStatement.setInt(numeroParametre, idUtilisateur);
             //On éxécute la requête
             preparedStatement.executeUpdate();
         } catch (SQLException e){

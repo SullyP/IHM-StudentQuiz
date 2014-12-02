@@ -51,10 +51,11 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
         ResultSet resultSet = null;
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setString(1, intitule);
-            preparedStatement.setBoolean(2, multiple);
-            preparedStatement.setInt(3, duree);
-            preparedStatement.setInt(4, pointQuestion);
+            int numeroParametre = 1;
+            preparedStatement.setString(numeroParametre, intitule);
+            preparedStatement.setBoolean(++numeroParametre, multiple);
+            preparedStatement.setInt(++numeroParametre, duree);
+            preparedStatement.setInt(++numeroParametre, pointQuestion);
             //On éxécute la requête
             preparedStatement.executeUpdate();
             //On cherche à obtenir l'idQuestion généré.
@@ -100,7 +101,8 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
         ResultSet resultSet = null;
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setInt(1, idQuestion);
+            int numeroParametre = 1;
+            preparedStatement.setInt(numeroParametre, idQuestion);
             //On exécute la requête
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
@@ -152,10 +154,11 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
 
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setString(1,intitule);
-            preparedStatement.setBoolean(2, multiple);
-            preparedStatement.setInt(3, duree);
-            preparedStatement.setInt(4, pointQuestion);
+            int numeroParametre = 1;
+            preparedStatement.setString(numeroParametre,intitule);
+            preparedStatement.setBoolean(++numeroParametre, multiple);
+            preparedStatement.setInt(++numeroParametre, duree);
+            preparedStatement.setInt(++numeroParametre, pointQuestion);
             //On exécute la requête
             preparedStatement.executeUpdate();
             //On créé une instance de question avec les informations à notre disposition
@@ -186,7 +189,8 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
 
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setInt(1,idQuestion);
+            int numeroParametre = 1;
+            preparedStatement.setInt(numeroParametre,idQuestion);
             //On exécute la requête
             preparedStatement.executeUpdate();
         } catch (SQLException e){

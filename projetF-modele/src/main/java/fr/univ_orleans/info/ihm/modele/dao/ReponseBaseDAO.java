@@ -50,9 +50,10 @@ public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
         ResultSet resultSet = null;
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setInt(1, idQuestion);
-            preparedStatement.setString(2, intituleReponse);
-            preparedStatement.setBoolean(3, correct);
+            int numeroParametre = 1;
+            preparedStatement.setInt(numeroParametre, idQuestion);
+            preparedStatement.setString(++numeroParametre, intituleReponse);
+            preparedStatement.setBoolean(++numeroParametre, correct);
             //On éxécute la requête
             preparedStatement.executeUpdate();
             //On cherche à obtenir l'idReponse généré.
@@ -91,14 +92,15 @@ public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
         //On écrit la requête à éxécuter
         String sqlQuery = String.format("SELECT * FROM %s WHERE %s=?;",
                 BaseDonneeEnum.REPONSE,
-                ReponseEnum.ID_QUESTION);
+                ReponseEnum.ID_REPONSE);
         //On ouvre la connection à la bdd et on prépare la requête
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
         ResultSet resultSet = null;
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setInt(1, idReponse);
+            int numeroParametre = 1;
+            preparedStatement.setInt(numeroParametre, idReponse);
             //On éxécute la requête
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
@@ -135,7 +137,33 @@ public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
      */
     @Override
     public IReponse majReponse(int idReponse, String intituleReponse, boolean correct) {
-        return null;
+        IReponse reponse = null;
+        //On écrit la requête à éxécuter
+        String sqlQuery = String.format("UPDATE %s SET %s=?, %s=? WHERE %s=?;",
+                BaseDonneeEnum.REPONSE,
+                ReponseEnum.INITITULE_REPONSE, ReponseEnum.CORRECT_REPONSE,
+                ReponseEnum.ID_REPONSE);
+        //On ouvre la connection à la bdd et on prépare la requête
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+
+        try {
+            //On ajoute les valeurs de la requête préparée
+            int numeroParametre = 1;
+            preparedStatement.setString(numeroParametre, intituleReponse);
+            preparedStatement.setBoolean(++numeroParametre, correct);
+            preparedStatement.setInt(++numeroParametre, idReponse);
+            //On éxécute la requête
+            preparedStatement.executeUpdate();
+            //On créé une instance de Reponse avec les informations à notre disposition
+            reponse = new Reponse(idReponse,intituleReponse,correct);
+        } catch (SQLException e){
+            //On log l'exception
+            MyLogger.getLogger().logp(Level.WARNING, ReponseBaseDAO.class.getName(), "majReponse", MyLogger.MESSAGE_ERREUR_SQL, e);
+        }
+
+        this.getBd().closePrepared(preparedStatement);
+
+        return reponse;
     }
 
     /**
@@ -148,13 +176,14 @@ public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
         //On écrit la requête à éxécuter
         String sqlQuery = String.format("DELETE FROM %s WHERE %s=?;",
                 BaseDonneeEnum.REPONSE,
-                ReponseEnum.ID_QUESTION);
+                ReponseEnum.ID_REPONSE);
         //On ouvre la connection à la bdd et on prépare la requête
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
         try {
             //On ajoute les valeurs de la requête préparée
-            preparedStatement.setInt(1, idReponse);
+            int numeroParametre = 1;
+            preparedStatement.setInt(numeroParametre, idReponse);
             //On éxécute la requête
             preparedStatement.executeUpdate();
         } catch (SQLException e){

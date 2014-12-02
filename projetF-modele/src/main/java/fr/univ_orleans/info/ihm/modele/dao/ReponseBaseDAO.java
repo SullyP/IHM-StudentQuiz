@@ -43,7 +43,7 @@ public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
         //On écrit la requête à éxécuter
         String sqlQuery = String.format("INSERT INTO %s (%s,%s,%s) VALUES (?,?,?);",
                 BaseDonneeEnum.REPONSE,
-                ReponseEnum.ID_QUESTION, ReponseEnum.INITITULE_REPONSE, ReponseEnum.CORRECT_REPONSE);
+                ReponseEnum.ID_QUESTION, ReponseEnum.INTITULE_REPONSE, ReponseEnum.CORRECT_REPONSE);
         //On ouvre la connection à la bdd et on prépare la requête
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
@@ -114,7 +114,7 @@ public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
                 resultSet.next();
                 //On créé une instance Utilisateur avec les informations à notre disposition.
                 reponse = new Reponse(resultSet.getInt(ReponseEnum.ID_REPONSE.toString()),
-                        resultSet.getString(ReponseEnum.INITITULE_REPONSE.toString()),
+                        resultSet.getString(ReponseEnum.INTITULE_REPONSE.toString()),
                         resultSet.getBoolean(ReponseEnum.CORRECT_REPONSE.toString()));
                 resultSet.close();
             } catch (SQLException e) {
@@ -141,7 +141,7 @@ public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
         //On écrit la requête à éxécuter
         String sqlQuery = String.format("UPDATE %s SET %s=?, %s=? WHERE %s=?;",
                 BaseDonneeEnum.REPONSE,
-                ReponseEnum.INITITULE_REPONSE, ReponseEnum.CORRECT_REPONSE,
+                ReponseEnum.INTITULE_REPONSE, ReponseEnum.CORRECT_REPONSE,
                 ReponseEnum.ID_REPONSE);
         //On ouvre la connection à la bdd et on prépare la requête
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);

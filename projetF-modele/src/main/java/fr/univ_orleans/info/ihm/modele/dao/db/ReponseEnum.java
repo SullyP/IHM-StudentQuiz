@@ -6,7 +6,7 @@ package fr.univ_orleans.info.ihm.modele.dao.db;
 public enum ReponseEnum {
     ID_REPONSE("idReponse"),
     ID_QUESTION("idQuestion"),
-    INITITULE_REPONSE("initituleReponse"),
+    INTITULE_REPONSE("intituleReponse"),
     CORRECT_REPONSE("correctReponse");
 
     private String nomChampTableBaseDonnee;

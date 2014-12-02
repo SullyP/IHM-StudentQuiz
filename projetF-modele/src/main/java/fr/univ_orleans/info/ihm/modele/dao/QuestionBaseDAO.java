@@ -159,6 +159,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
             preparedStatement.setBoolean(++numeroParametre, multiple);
             preparedStatement.setInt(++numeroParametre, duree);
             preparedStatement.setInt(++numeroParametre, pointQuestion);
+            preparedStatement.setInt(++numeroParametre, idQuestion);
             //On exécute la requête
             preparedStatement.executeUpdate();
             //On créé une instance de question avec les informations à notre disposition

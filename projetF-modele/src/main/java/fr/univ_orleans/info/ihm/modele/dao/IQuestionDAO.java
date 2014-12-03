@@ -2,6 +2,8 @@ package fr.univ_orleans.info.ihm.modele.dao;
 
 import fr.univ_orleans.info.ihm.modele.modele.IQuestion;
 
+import java.util.List;
+
 public interface IQuestionDAO {
     /**
      * Créer une nouvelle question
@@ -19,6 +21,13 @@ public interface IQuestionDAO {
      * @return la question
      */
     public IQuestion getQuestion(int idQuestion);
+
+    /**
+     * Permet d'obtenir la liste des questions d'un QCM via son id
+     * @param idQCM id du QCM
+     * @return la liste de questions
+     */
+    public List<IQuestion> getQuestionListByIdQCM(int idQCM);
 
     /**
      * Permet de mettre a jour la question

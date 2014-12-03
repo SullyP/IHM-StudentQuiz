@@ -9,9 +9,11 @@ import fr.univ_orleans.info.ihm.modele.modele.Reponse;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
-public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
+public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
     private static IReponseDAO instance=null;
 
     private ReponseBaseDAO(){
@@ -67,7 +69,7 @@ public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
             try {
                 //Si resusltSet n'est pas nul, on accède à la première ligne.
                 resultSet.next();
-                //On créé une instance Utilisateur avec les informations à notre disposition.
+                //On créé une instance reponse avec les informations à notre disposition.
                 reponse = new Reponse(resultSet.getInt(1), intituleReponse, correct);
                 resultSet.close();
             } catch (SQLException e) {
@@ -99,8 +101,7 @@ public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
         ResultSet resultSet = null;
         try {
             //On ajoute les valeurs de la requête préparée
-            int numeroParametre = 1;
-            preparedStatement.setInt(numeroParametre, idReponse);
+            preparedStatement.setInt(1, idReponse);
             //On éxécute la requête
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
@@ -112,7 +113,7 @@ public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
             try {
                 //Si resusltSet n'est pas nul, on accède à la première ligne.
                 resultSet.next();
-                //On créé une instance Utilisateur avec les informations à notre disposition.
+                //On créé une instance reponse avec les informations à notre disposition.
                 reponse = new Reponse(resultSet.getInt(ReponseEnum.ID_REPONSE.toString()),
                         resultSet.getString(ReponseEnum.INTITULE_REPONSE.toString()),
                         resultSet.getBoolean(ReponseEnum.CORRECT_REPONSE.toString()));
@@ -125,6 +126,53 @@ public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
         this.getBd().closePrepared(preparedStatement);
 
         return reponse;
+    }
+
+    /**
+     * Permet d'obtenir la liste des réponses d'une question via son id
+     *
+     * @param idQuestion id de la question
+     * @return liste de réponses
+     */
+    @Override
+    public List<IReponse> getReponsesByIdQuestion(int idQuestion) {
+        List<IReponse> reponseList = new ArrayList<>();
+        //On écrit la requête à éxécuter
+        String sqlQuery = String.format("SELECT * FROM %s WHERE %s=?;",
+                BaseDonneeEnum.REPONSE,
+                ReponseEnum.ID_QUESTION);
+        //On ouvre la connection à la bdd et on prépare la requête
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+
+        ResultSet resultSet = null;
+        try {
+            //On ajoute les valeurs de la requête préparée
+            preparedStatement.setInt(1, idQuestion);
+            //On exécute la requête
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e){
+            //On log l'exception
+            MyLogger.getLogger().logp(Level.WARNING, ReponseBaseDAO.class.getName(), "getReponsesByIdQuestion", MyLogger.MESSAGE_ERREUR_SQL, e);
+        }
+
+        if(resultSet!=null){
+            try {
+                //Tant qu'il reste des lignes dans le resultSet
+                while(resultSet.next()) {
+                    //On créé une instance réponse avec les informations à notre disposition, et on l'ajoute.
+                    reponseList.add(new Reponse(resultSet.getInt(ReponseEnum.ID_REPONSE.toString()),
+                            resultSet.getString(ReponseEnum.INTITULE_REPONSE.toString()),
+                            resultSet.getBoolean(ReponseEnum.CORRECT_REPONSE.toString())));
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                //On log l'exception
+                MyLogger.getLogger().logp(Level.WARNING, ReponseBaseDAO.class.getName(), "getReponsesByIdQuestion", MyLogger.MESSAGE_ERREUR_SQL, e);
+            }
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return reponseList;
     }
 
     /**
@@ -182,8 +230,7 @@ public class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
 
         try {
             //On ajoute les valeurs de la requête préparée
-            int numeroParametre = 1;
-            preparedStatement.setInt(numeroParametre, idReponse);
+            preparedStatement.setInt(1, idReponse);
             //On éxécute la requête
             preparedStatement.executeUpdate();
         } catch (SQLException e){

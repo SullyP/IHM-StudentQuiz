@@ -2,6 +2,7 @@ package fr.univ_orleans.info.ihm.modele.dao;
 
 import fr.univ_orleans.info.ihm.modele.MyLogger;
 import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
+import fr.univ_orleans.info.ihm.modele.dao.db.QCMQuestionEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.QuestionEnum;
 import fr.univ_orleans.info.ihm.modele.modele.IQuestion;
 import fr.univ_orleans.info.ihm.modele.modele.Question;
@@ -9,6 +10,8 @@ import fr.univ_orleans.info.ihm.modele.modele.Question;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 
 public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestionDAO {
@@ -69,7 +72,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
             try {
                 //Si resusltSet n'est pas nul, on accède à la première ligne.
                 resultSet.next();
-                //On créé une instance Utilisateur avec les informations à notre disposition.
+                //On créé une instance Question avec les informations à notre disposition.
                 question= new Question(resultSet.getInt(1),duree,pointQuestion,multiple,intitule);
                 resultSet.close();
             } catch (SQLException e) {
@@ -101,8 +104,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
         ResultSet resultSet = null;
         try {
             //On ajoute les valeurs de la requête préparée
-            int numeroParametre = 1;
-            preparedStatement.setInt(numeroParametre, idQuestion);
+            preparedStatement.setInt(1, idQuestion);
             //On exécute la requête
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
@@ -114,7 +116,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
             try {
                 //Si resusltSet n'est pas nul, on accède à la première ligne.
                 resultSet.next();
-                //On créé une instance Utilisateur avec les informations à notre disposition.
+                //On créé une instance Question avec les informations à notre disposition.
                 question= new Question(resultSet.getInt(QuestionEnum.ID_QUESTION.toString()),
                         resultSet.getInt(QuestionEnum.DUREE_QUESTION.toString()),
                         resultSet.getInt(QuestionEnum.POINT_QUESTION.toString()),
@@ -129,6 +131,57 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
         this.getBd().closePrepared(preparedStatement);
 
         return question;
+    }
+
+    /**
+     * Permet d'obtenir la liste des questions d'un QCM via son id
+     *
+     * @param idQCM id du QCM
+     * @return la liste de questions
+     */
+    @Override
+    public List<IQuestion> getQuestionListByIdQCM(int idQCM) {
+        List<IQuestion> questionList = new ArrayList<>();
+        //On écrit la requête à éxécuter
+        String sqlQuery = String.format("SELECT q.%s, q.%s, q.%s, q.%s, q.%s FROM %s q JOIN %s qcm ON qcm.%s=? AND q.%s=qcm.%s;",
+                QuestionEnum.ID_QUESTION, QuestionEnum.INTITULE_QUESTION, QuestionEnum.MULTIPLE_QUESTION, QuestionEnum.DUREE_QUESTION, QuestionEnum.POINT_QUESTION,
+                BaseDonneeEnum.QUESTION, BaseDonneeEnum.QCM_QUESTION,
+                QCMQuestionEnum.ID_QCM,
+                QuestionEnum.ID_QUESTION, QCMQuestionEnum.ID_QUESTION);
+        //On ouvre la connection à la bdd et on prépare la requête
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+
+        ResultSet resultSet = null;
+        try {
+            //On ajoute les valeurs de la requête préparée
+            preparedStatement.setInt(1, idQCM);
+            //On exécute la requête
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e){
+            //On log l'exception
+            MyLogger.getLogger().logp(Level.WARNING, QuestionBaseDAO.class.getName(), "getQuestionListByIdQCM", MyLogger.MESSAGE_ERREUR_SQL, e);
+        }
+
+        if(resultSet!=null){
+            try {
+                //Tant qu'il reste des lignes dans le resultSet
+                while(resultSet.next()) {
+                    //On créé une instance Question avec les informations à notre disposition.
+                    questionList.add(new Question(resultSet.getInt(QuestionEnum.ID_QUESTION.toString()),
+                            resultSet.getInt(QuestionEnum.DUREE_QUESTION.toString()),
+                            resultSet.getInt(QuestionEnum.POINT_QUESTION.toString()),
+                            resultSet.getBoolean(QuestionEnum.MULTIPLE_QUESTION.toString()),
+                            resultSet.getString(QuestionEnum.INTITULE_QUESTION.toString())));
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                //On log l'exception
+                MyLogger.getLogger().logp(Level.WARNING, QuestionBaseDAO.class.getName(), "getQuestionListByIdQCM", MyLogger.MESSAGE_ERREUR_SQL, e);
+            }
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return questionList;
     }
 
     /**
@@ -190,8 +243,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
 
         try {
             //On ajoute les valeurs de la requête préparée
-            int numeroParametre = 1;
-            preparedStatement.setInt(numeroParametre,idQuestion);
+            preparedStatement.setInt(1,idQuestion);
             //On exécute la requête
             preparedStatement.executeUpdate();
         } catch (SQLException e){

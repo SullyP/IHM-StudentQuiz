@@ -3,6 +3,8 @@ package fr.univ_orleans.info.ihm.modele.dao;
 
 import fr.univ_orleans.info.ihm.modele.modele.IReponse;
 
+import java.util.List;
+
 public interface IReponseDAO {
     /**
      * Créé une réponse
@@ -19,6 +21,13 @@ public interface IReponseDAO {
      * @return la réponse
      */
     public IReponse getReponse(int idReponse);
+
+    /**
+     * Permet d'obtenir la liste des réponses d'une question via son id
+     * @param idQuestion id de la question
+     * @return liste de réponses
+     */
+    public List<IReponse> getReponsesByIdQuestion(int idQuestion);
 
     /**
      * Permet de mettre à jour une réponse

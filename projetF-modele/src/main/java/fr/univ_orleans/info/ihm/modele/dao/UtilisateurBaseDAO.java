@@ -95,8 +95,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
         ResultSet resultSet = null;
         try {
             //On ajoute les valeurs de la requête préparée
-            int numeroParametre = 1;
-            preparedStatement.setInt(numeroParametre, idUtilisateur);
+            preparedStatement.setInt(1, idUtilisateur);
             //On éxécute la requête
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
@@ -195,8 +194,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
 
         try {
             //On ajoute les valeurs de la requête préparée
-            int numeroParametre = 1;
-            preparedStatement.setInt(numeroParametre, idUtilisateur);
+            preparedStatement.setInt(1, idUtilisateur);
             //On éxécute la requête
             preparedStatement.executeUpdate();
         } catch (SQLException e){

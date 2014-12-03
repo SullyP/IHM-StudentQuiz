@@ -11,6 +11,11 @@ public class QCM implements IQCM{
     private Date dateCreationQCM;
     private List<IQuestion> questions;
 
+    public QCM(int idQCM){
+        this.idQCM = idQCM;
+        this.questions = new ArrayList<>();
+    }
+
     public QCM(int idQCM, int idCreateurQCM, String nomQCM, Date dateCreationQCM){
         this.idQCM = idQCM;
         this.nomQCM = nomQCM;

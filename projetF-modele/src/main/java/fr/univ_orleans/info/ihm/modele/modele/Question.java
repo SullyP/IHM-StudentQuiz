@@ -1,5 +1,6 @@
 package fr.univ_orleans.info.ihm.modele.modele;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Question implements IQuestion {
@@ -12,6 +13,7 @@ public class Question implements IQuestion {
 
     public Question(int idQuestion){
         this.idQuestion = idQuestion;
+        this.reponses = new ArrayList<>();
     }
 
     public Question(int idQuestion, int dureeQuestion, int pointQuestion, boolean multipleQuestion, String intituleQuestion){
@@ -20,6 +22,7 @@ public class Question implements IQuestion {
         this.pointQuestion = pointQuestion;
         this.multipleQuestion = multipleQuestion;
         this.intituleQuestion = intituleQuestion;
+        this.reponses = new ArrayList<>();
     }
 
     @Override

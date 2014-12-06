@@ -38,6 +38,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
             monInstance = new BaseDonneeH2();
             monInstance.open();
             monInstance.createSchema();
+            monInstance.insertInitValue();
             monInstance.close();
         }
         return monInstance;
@@ -142,6 +143,60 @@ public final class BaseDonneeH2 implements IBaseDonnee {
         }
     }
 
+    /**
+     * Permet des valeurs par défaut dans la BDD s'il n'y a rien.
+     */
+    private void insertInitValue() {
+        String query = String.format("SELECT COUNT(*) FROM %s", BaseDonneeEnum.ENTITE);
+
+        ResultSet resultSet = null;
+        try {
+            resultSet = stmt.executeQuery(query);
+        } catch(SQLException e) {
+            //On log l'exception
+            MyLogger.getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "insertInitValue", MyLogger.MESSAGE_ERREUR_SQL, e);
+        }
+
+        boolean insert = false;
+        if(resultSet!=null){
+            try {
+                //Si resusltSet n'est pas nul, on accède à la première ligne.
+                resultSet.next();
+                //Si le nombre d'entité en BDD est de 0, alors on doit insérer des données par défaut (pas d'entité, donc pas d'utilisateur...etc).
+                insert = resultSet.getInt(1) == 0;
+            } catch (SQLException e) {
+                //On log l'exception
+                MyLogger.getLogger().logp(Level.WARNING, BaseDonneeH2.class.getName(), "insertInitValue", MyLogger.MESSAGE_ERREUR_SQL, e);
+            }
+        }
+
+        //Si l'on doit insérer des données
+        if(insert){
+            query = new StringBuilder(String.format("INSERT INTO %s (%s) VALUES ('Etudiant'),('Professeur');",
+                            BaseDonneeEnum.ENTITE, EntiteEnum.NOM_ENTITE))
+                    .append(String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s) VALUES (2,'Admin','Admin','admin','admin',0),(1,'Etudiant','Etudiant','etudiant','etudiant',123);",
+                            BaseDonneeEnum.UTILISATEUR, UtilisateurEnum.ID_ENTITE, UtilisateurEnum.NOM_UTILISATEUR, UtilisateurEnum.PRENOM_UTILISATEUR, UtilisateurEnum.IDENTIFIANT_UTILISATEUR, UtilisateurEnum.MOT_DE_PASSE_UTILISATEUR, UtilisateurEnum.NUMERO_ETUDIANT))
+                    .append(String.format("INSERT INTO %s (%s,%s,%s,%s) VALUES ('Quel est la réponse de la vie ?',false,5,1),('Quel note devez vous mettre à notre projet ?',false,5,3),('Qui sont les membres du groupe F ?',true,8,3);",
+                            BaseDonneeEnum.QUESTION, QuestionEnum.INTITULE_QUESTION, QuestionEnum.MULTIPLE_QUESTION, QuestionEnum.DUREE_QUESTION, QuestionEnum.POINT_QUESTION))
+                    .append(String.format("INSERT INTO %s (%s,%s,%s) VALUES (1,'42',true),(1,'Alexis Lavie',false),(2,'0',false),(2,'20',true),(3,'Jean Bon',false),(3,'Sullivan Perrin',true),(3,'Eléonore Gédéon',true),(3,'Alexis Lavie',true);",
+                            BaseDonneeEnum.REPONSE,ReponseEnum.ID_QUESTION, ReponseEnum.INTITULE_REPONSE, ReponseEnum.CORRECT_REPONSE))
+                    .append(String.format("INSERT INTO %s (%s,%s,%s) VALUES ('QCM IHM','2014-01-01',2);",
+                            BaseDonneeEnum.QCM, QCMEnum.NOM_QCM, QCMEnum.DATE_CREATION, QCMEnum.ID_CREATEUR))
+                    .append(String.format("INSERT INTO %s (%s,%s) VALUES (1,1),(2,1),(3,1);",
+                            BaseDonneeEnum.QCM_QUESTION, QCMQuestionEnum.ID_QUESTION, QCMQuestionEnum.ID_QCM))
+                    .append(String.format("INSERT INTO %s (%s,%s,%s) VALUES (2,1,'2014-01-11');",
+                            BaseDonneeEnum.RESULTAT_UTILISATEUR, ResultatUtilisateurEnum.ID_UTILISATEUR, ResultatUtilisateurEnum.ID_QCM, ResultatUtilisateurEnum.DATE_RESULTAT_UTILISATEUR))
+                    .append(String.format("INSERT INTO %s (%s,%s) VALUES (1,1),(1,4),(1,5),(1,6);",
+                            BaseDonneeEnum.REPONSE_UTILISATEUR, ReponseUtilisateurEnum.ID_RESULTAT_UTILISATEUR, ReponseUtilisateurEnum.ID_REPONSE)).toString();
+
+            try {
+                stmt.execute(query);
+            } catch(SQLException e) {
+                //On log l'exception
+                MyLogger.getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "insertInitValue", MyLogger.MESSAGE_ERREUR_SQL, e);
+            }
+        }
+    }
 
     /**
      * Permet d'éxécuter une requête SQL (SELECT).

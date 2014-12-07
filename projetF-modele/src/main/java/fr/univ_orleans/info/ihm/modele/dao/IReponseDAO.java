@@ -27,7 +27,7 @@ public interface IReponseDAO {
      * @param idQuestion id de la question
      * @return liste de réponses
      */
-    public List<IReponse> getReponsesByIdQuestion(int idQuestion);
+    public List<IReponse> getReponseListByIdQuestion(int idQuestion);
 
     /**
      * Permet de mettre à jour une réponse

@@ -35,12 +35,12 @@ public interface IResultatUtilisateurDAO {
      * @param idResultatUtilisateur id du résultat utilisateur
      * @return liste de question/réponses
      */
-    public List<IQuestion> getQuestionReponsesResultatUtilisateur(int idResultatUtilisateur);
+    public List<IQuestion> getQuestionReponseListResultatUtilisateur(int idResultatUtilisateur);
 
     /**
      * Permet de calculer le score d'une instance de resultatUtilisateur
      * @param idResultatUtilisateur id du résultat utilisateur
-     * @return le resultatUtilisateur (sans la liste de réponses)
+     * @return le resultatUtilisateur (avec la liste de réponses)
      */
     public IResultatUtilisateur calculerScore(int idResultatUtilisateur);
 

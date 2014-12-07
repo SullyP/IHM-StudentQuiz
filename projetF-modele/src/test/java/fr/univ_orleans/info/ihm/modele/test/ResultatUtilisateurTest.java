@@ -71,7 +71,7 @@ public class ResultatUtilisateurTest {
         resultatUtilisateurDAO.addReponse(resultatUtilisateur.getIdResultatUtilisateur(), reponse1Question1.getIdReponse());
         resultatUtilisateurDAO.addReponse(resultatUtilisateur.getIdResultatUtilisateur(), reponse1Question2.getIdReponse());
         resultatUtilisateurDAO.addReponse(resultatUtilisateur.getIdResultatUtilisateur(), reponse2Question2.getIdReponse());
-        List<IQuestion> questionReponses = resultatUtilisateurDAO.getQuestionReponsesResultatUtilisateur(resultatUtilisateur.getIdResultatUtilisateur());
+        List<IQuestion> questionReponses = resultatUtilisateurDAO.getQuestionReponseListResultatUtilisateur(resultatUtilisateur.getIdResultatUtilisateur());
         assertNotNull(resultatUtilisateur);
         assertNotNull(questionReponses);
 

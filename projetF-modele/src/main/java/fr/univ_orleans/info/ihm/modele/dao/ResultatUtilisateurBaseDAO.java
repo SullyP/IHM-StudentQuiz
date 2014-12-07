@@ -164,7 +164,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
      * @return liste de question/réponses
      */
     @Override
-    public List<IQuestion> getQuestionReponsesResultatUtilisateur(int idResultatUtilisateur) {
+    public List<IQuestion> getQuestionReponseListResultatUtilisateur(int idResultatUtilisateur) {
         List<IQuestion> questionList = new ArrayList<>();
         //On écrit la requête à éxécuter
         String sqlQuery = String.format("SELECT r.%s, r.%s, r.%s, r.%s, q.%s, q.%s, q.%s, q.%s FROM (%s ru JOIN %s r ON ru.%s=? AND r.%s=ru.%s) JOIN %s q ON r.%s=q.%s ORDER BY r.%s;",
@@ -186,7 +186,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "getQuestionReponsesResultatUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
+            MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "getQuestionReponseListResultatUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
         }
 
         if(resultSet!=null){
@@ -220,7 +220,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                 resultSet.close();
             } catch (SQLException e) {
                 //On log l'exception
-                MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "getQuestionReponsesResultatUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
+                MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "getQuestionReponseListResultatUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -238,7 +238,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
     public IResultatUtilisateur calculerScore(int idResultatUtilisateur) {
         double score = 0;
         IResultatUtilisateur resultatUtilisateur = new ResultatUtilisateur(idResultatUtilisateur);
-        List<IQuestion> questionReponses = this.getQuestionReponsesResultatUtilisateur(idResultatUtilisateur);
+        List<IQuestion> questionReponses = this.getQuestionReponseListResultatUtilisateur(idResultatUtilisateur);
 
         //On écrit la requête à éxécuter pour récupérer le nombre total de réponses corrects d'une question
         String sqlQuery = String.format("SELECT COUNT(*) FROM %s WHERE %s=?;",

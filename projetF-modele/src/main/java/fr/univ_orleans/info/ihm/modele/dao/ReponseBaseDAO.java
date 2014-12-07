@@ -135,7 +135,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
      * @return liste de réponses
      */
     @Override
-    public List<IReponse> getReponsesByIdQuestion(int idQuestion) {
+    public List<IReponse> getReponseListByIdQuestion(int idQuestion) {
         List<IReponse> reponseList = new ArrayList<>();
         //On écrit la requête à éxécuter
         String sqlQuery = String.format("SELECT * FROM %s WHERE %s=?;",
@@ -152,7 +152,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
             //On log l'exception
-            MyLogger.getLogger().logp(Level.WARNING, ReponseBaseDAO.class.getName(), "getReponsesByIdQuestion", MyLogger.MESSAGE_ERREUR_SQL, e);
+            MyLogger.getLogger().logp(Level.WARNING, ReponseBaseDAO.class.getName(), "getReponseListByIdQuestion", MyLogger.MESSAGE_ERREUR_SQL, e);
         }
 
         if(resultSet!=null){
@@ -167,7 +167,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
                 resultSet.close();
             } catch (SQLException e) {
                 //On log l'exception
-                MyLogger.getLogger().logp(Level.WARNING, ReponseBaseDAO.class.getName(), "getReponsesByIdQuestion", MyLogger.MESSAGE_ERREUR_SQL, e);
+                MyLogger.getLogger().logp(Level.WARNING, ReponseBaseDAO.class.getName(), "getReponseListByIdQuestion", MyLogger.MESSAGE_ERREUR_SQL, e);
             }
         }
         this.getBd().closePrepared(preparedStatement);

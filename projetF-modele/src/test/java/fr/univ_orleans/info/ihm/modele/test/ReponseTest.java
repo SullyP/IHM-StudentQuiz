@@ -52,7 +52,7 @@ public class ReponseTest {
         IReponse reponse2 = reponseDAO.creerReponse(question.getIdQuestion(), "A fond la forme", false);
         assertNotNull(reponse1);
         assertNotNull(reponse2);
-        List<IReponse> reponseList = reponseDAO.getReponsesByIdQuestion(question.getIdQuestion());
+        List<IReponse> reponseList = reponseDAO.getReponseListByIdQuestion(question.getIdQuestion());
         assertNotNull(reponseList);
         assertEquals(2,reponseList.size());
 

@@ -26,6 +26,13 @@ public interface IUtilisateurDAO {
     public IUtilisateur getUtilisateur(int idUtilisateur);
 
     /**
+     * Permet d'obtenir un utilisateur via son identifiant (login).
+     * @param identifiant identifiant de l'utilisateur (login).
+     * @return l'utilisateur
+     */
+    public IUtilisateur getUtilisateurByIdentifiant(String identifiant);
+
+    /**
      * Permet de mettre à jour le mot de passe de l'utilisateur.
      * @param idUtilisateur id de l'utilisateur.
      * @param motDePasse nouveau mot de passe

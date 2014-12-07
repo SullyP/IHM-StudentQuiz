@@ -56,6 +56,20 @@ public class UtilisateurTest {
     }
 
     @Test
+    public void testGetUtilisateurByIdentifiant() throws Exception {
+        IEntite entite = entiteDAO.creerEntite("Nouvelle entité");
+        IUtilisateur utilisateur1 = utilisateurDAO.creerUtilisateur("jean", "paul", "loginUniqueJeanPaul", "azerty", 123456, entite.getIdEntite());
+        IUtilisateur utilisateur2 = utilisateurDAO.getUtilisateurByIdentifiant(utilisateur1.getIdentifiantUtilisateur());
+        assertEquals(utilisateur1.getIdUtilisateur(), utilisateur2.getIdUtilisateur());
+        assertEquals(utilisateur2.getIdEntiteUtilisateur(), entite.getIdEntite());
+        assertEquals(utilisateur1.getPrenomUtilisateur(),utilisateur2.getPrenomUtilisateur());
+        assertEquals(utilisateur1.getNomUtilisateur(),utilisateur2.getNomUtilisateur());
+        assertEquals(utilisateur1.validerMotDePasseUtilisateur("azerty"), utilisateur2.validerMotDePasseUtilisateur("azerty"));
+        assertEquals(utilisateur1.getIdentifiantUtilisateur(),utilisateur2.getIdentifiantUtilisateur());
+        assertEquals(utilisateur1.getNumeroEtudiant(),utilisateur2.getNumeroEtudiant());
+    }
+
+    @Test
     public void testMajEntiteutilisateur() throws Exception {
         IEntite entite1 = entiteDAO.creerEntite("Nouvelle");
         IEntite entite2 = entiteDAO.creerEntite("Old-School");

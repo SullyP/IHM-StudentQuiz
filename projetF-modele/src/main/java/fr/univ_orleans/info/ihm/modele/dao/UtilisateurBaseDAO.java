@@ -130,6 +130,55 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
     }
 
     @Override
+    public IUtilisateur getUtilisateurByIdentifiant(String identifiant) {
+        IUtilisateur utilisateur = null;
+        //On écrit la requête à éxécuter
+        String sqlQuery = String.format("SELECT u.%s, u.%s, u.%s, u.%s, u.%s, u.%s, u.%s, e.%s  FROM %s u JOIN %s e ON u.%s = e.%s AND u.%s=?;",
+                UtilisateurEnum.ID_UTILISATEUR, UtilisateurEnum.NUMERO_ETUDIANT, UtilisateurEnum.NOM_UTILISATEUR, UtilisateurEnum.PRENOM_UTILISATEUR,
+                UtilisateurEnum.IDENTIFIANT_UTILISATEUR, UtilisateurEnum.MOT_DE_PASSE_UTILISATEUR, UtilisateurEnum.ID_ENTITE, EntiteEnum.NOM_ENTITE,
+                BaseDonneeEnum.UTILISATEUR, BaseDonneeEnum.ENTITE,
+                UtilisateurEnum.ID_ENTITE, EntiteEnum.ID_ENTITE, UtilisateurEnum.IDENTIFIANT_UTILISATEUR);
+        //On ouvre la connection à la bdd et on prépare la requête
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+
+        ResultSet resultSet = null;
+        try {
+            //On ajoute les valeurs de la requête préparée
+            preparedStatement.setString(1, identifiant);
+            //On éxécute la requête
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e){
+            //On log l'exception
+            MyLogger.getLogger().logp(Level.WARNING, UtilisateurBaseDAO.class.getName(), "getUtilisateurByIdentifiant", MyLogger.MESSAGE_ERREUR_SQL, e);
+        }
+
+        if(resultSet!=null){
+            try {
+                //Si resusltSet n'est pas nul, on accède à la première ligne.
+                resultSet.next();
+                //On créé une instance Utilisateur avec les informations à notre disposition.
+                utilisateur = new Utilisateur(resultSet.getInt(UtilisateurEnum.ID_UTILISATEUR.toString()),
+                        resultSet.getInt(UtilisateurEnum.NUMERO_ETUDIANT.toString()),
+                        resultSet.getString(UtilisateurEnum.NOM_UTILISATEUR.toString()),
+                        resultSet.getString(UtilisateurEnum.PRENOM_UTILISATEUR.toString()),
+                        resultSet.getString(UtilisateurEnum.IDENTIFIANT_UTILISATEUR.toString()),
+                        resultSet.getString(UtilisateurEnum.MOT_DE_PASSE_UTILISATEUR.toString()));
+                //Ainsi qu'une instance d'ENTITE que l'on ajoutera dans Utilisateur
+                IEntite entite = new Entite(resultSet.getInt(UtilisateurEnum.ID_ENTITE.toString()),
+                        resultSet.getString(EntiteEnum.NOM_ENTITE.toString()));
+                utilisateur.setEntiteUtilisateur(entite);
+                resultSet.close();
+            } catch (SQLException e) {
+                //On log l'exception
+                MyLogger.getLogger().logp(Level.WARNING, UtilisateurBaseDAO.class.getName(), "getUtilisateurByIdentifiant", MyLogger.MESSAGE_ERREUR_SQL, e);
+            }
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return utilisateur;
+    }
+
+    @Override
     public IUtilisateur majMotDePasse(int idUtilisateur, String motDePasse) {
         IUtilisateur utilisateur = null;
         //On écrit la requête à éxécuter

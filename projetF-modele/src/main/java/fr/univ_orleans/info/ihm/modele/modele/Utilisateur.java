@@ -1,6 +1,10 @@
 package fr.univ_orleans.info.ihm.modele.modele;
 
-public class Utilisateur implements IUtilisateur{
+import java.io.Serializable;
+
+public class Utilisateur implements IUtilisateur, Serializable{
+    private final String NOM_ENTITE_ADMIN = "Professeur";
+
     private int idUtilisateur;
     private int numeroEtudiant;
     private String nomUtilisateur;
@@ -101,5 +105,15 @@ public class Utilisateur implements IUtilisateur{
     @Override
     public boolean validerMotDePasseUtilisateur(String motDePasse) {
         return motDePasse.equals(this.motDePasseUtilisateur);
+    }
+
+    /**
+     * Permet de savoir si un utilisateur est Admin
+     *
+     * @return vrai s'il est admin, faux sinon
+     */
+    @Override
+    public boolean isAdmin() {
+        return this.entiteUtilisateur != null && this.entiteUtilisateur.getNomEntite().equals(NOM_ENTITE_ADMIN);
     }
 }

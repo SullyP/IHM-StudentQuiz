@@ -22,4 +22,10 @@ public interface IUtilisateur {
      * @return vrai si le mot de passe est correct, faux sinon.
      */
     public boolean validerMotDePasseUtilisateur(String motDePasse);
+
+    /**
+     * Permet de savoir si un utilisateur est Admin
+     * @return vrai s'il est admin, faux sinon
+     */
+    public boolean isAdmin();
 }

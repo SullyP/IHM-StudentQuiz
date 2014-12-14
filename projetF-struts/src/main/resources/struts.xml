@@ -6,19 +6,58 @@
     <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
     <constant name="struts.devMode" value="true"/>
 
-    <include file="example.xml"/>
-
     <package name="default" namespace="/" extends="struts-default">
 
-        <default-action-ref name="index"/>
+        <interceptors>
+            <interceptor name="loginInterceptor" class="fr.univ_orleans.info.ihm.struts.interceptor.LoginInterceptor"/>
+            <interceptor name="adminInterceptor" class="fr.univ_orleans.info.ihm.struts.interceptor.AdminInterceptor"/>
+            <interceptor-stack name="loginStack">
+                <interceptor-ref name="loginInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+            <interceptor-stack name="adminStack">
+                <interceptor-ref name="adminInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
 
-        <action name="index">
-            <result type="redirectAction">
-                <param name="actionName">HelloWorld</param>
-                <param name="namespace">/example</param>
-            </result>
+        <default-action-ref name="home"/>
+
+        <global-results>
+            <result name="login">/WEB-INF/login.jsp</result>
+            <result name="nonAdmin" type="redirectAction">/utilisateur/home</result>
+            <result name="admin" type="redirectAction">/admin/home</result>
+        </global-results>
+
+        <action name="home" class="fr.univ_orleans.info.ihm.struts.action.HomeAction">
+            <result>/WEB-INF/login.jsp</result>
         </action>
 
+        <action class="fr.univ_orleans.info.ihm.struts.action.LoginAction" name="login">
+            <result name="input" type="dispatcher">/WEB-INF/login.jsp</result>
+            <result name="error">/WEB-INF/login.jsp</result>
+        </action>
+
+        <action class="fr.univ_orleans.info.ihm.struts.action.LogoutAction" name="logout">
+        </action>
+    </package>
+
+    <!-- Package pour l'ensemble de la partie administration -->
+    <package name="admin" extends="default" namespace="/admin">
+        <default-interceptor-ref name="adminStack"/>
+
+        <action name="home" class="fr.univ_orleans.info.ihm.struts.action.admin.HomeAction">
+            <result>/WEB-INF/admin/index.jsp</result>
+        </action>
+    </package>
+
+    <!-- Package pour l'ensemble de la partie utilisateur -->
+    <package name="utilisateur" extends="default" namespace="/utilisateur">
+        <default-interceptor-ref name="loginStack"/>
+
+        <action name="home" class="fr.univ_orleans.info.ihm.struts.action.utilisateur.HomeAction">
+            <result>/WEB-INF/utilisateur/index.jsp</result>
+        </action>
     </package>
 
     <!-- Add addition packages and configuration here. -->

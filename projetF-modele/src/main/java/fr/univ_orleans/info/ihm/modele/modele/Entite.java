@@ -1,6 +1,8 @@
 package fr.univ_orleans.info.ihm.modele.modele;
 
-public class Entite implements IEntite{
+import java.io.Serializable;
+
+public class Entite implements IEntite, Serializable{
     private int idEntite;
     private String nomEntite;
 

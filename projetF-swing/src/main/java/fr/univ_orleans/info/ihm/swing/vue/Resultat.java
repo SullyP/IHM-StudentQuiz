@@ -1,4 +1,4 @@
-package fr.univ_orleans.info.ihm.swing;
+package fr.univ_orleans.info.ihm.swing.vue;
 
 
 import javax.swing.*;

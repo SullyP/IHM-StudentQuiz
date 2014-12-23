@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="projectSettings">
+    <option name="alternativeWorkingDirPath" value="" />
+    <option name="localAnalysisScripName" value="&lt;NO LOCAL ANALYSIS&gt;" />
+    <option name="resources">
+      <list>
+        <Resource>
+          <option name="creationDate" value="1419352021000" />
+          <option name="date" value="1419352020000" />
+          <option name="description" value="" />
+          <option name="id" value="18" />
+          <option name="key" value="fr.univ-orleans.info.ihm:projetF" />
+          <option name="longName" value="projetF" />
+          <option name="name" value="projetF" />
+          <option name="qualifier" value="TRK" />
+          <option name="scope" value="PRJ" />
+          <option name="version" value="1.0" />
+        </Resource>
+        <Resource>
+          <option name="creationDate" value="1419352021000" />
+          <option name="date" value="1419352020000" />
+          <option name="description" value="" />
+          <option name="id" value="19" />
+          <option name="key" value="fr.univ-orleans.info.ihm:projetF-modele" />
+          <option name="longName" value="projetF-modele" />
+          <option name="name" value="projetF-modele" />
+          <option name="qualifier" value="BRC" />
+          <option name="scope" value="PRJ" />
+          <option name="version" value="1.0" />
+        </Resource>
+        <Resource>
+          <option name="creationDate" value="1419352021000" />
+          <option name="date" value="1419352020000" />
+          <option name="description" value="" />
+          <option name="id" value="21" />
+          <option name="key" value="fr.univ-orleans.info.ihm:projetF-struts" />
+          <option name="longName" value="projetF-struts" />
+          <option name="name" value="projetF-struts" />
+          <option name="qualifier" value="BRC" />
+          <option name="scope" value="PRJ" />
+          <option name="version" value="1.0" />
+        </Resource>
+        <Resource>
+          <option name="creationDate" value="1419352021000" />
+          <option name="date" value="1419352020000" />
+          <option name="description" value="" />
+          <option name="id" value="20" />
+          <option name="key" value="fr.univ-orleans.info.ihm:projetF-swing" />
+          <option name="longName" value="projetF-swing" />
+          <option name="name" value="projetF-swing" />
+          <option name="qualifier" value="BRC" />
+          <option name="scope" value="PRJ" />
+          <option name="version" value="1.0" />
+        </Resource>
+      </list>
+    </option>
+    <option name="serverName" value="SonarQube Local" />
+    <option name="useAlternativeWorkingDir" value="false" />
+    <option name="workingDirSelection" value="&lt;PROJECT&gt;" />
+  </component>
+</project>

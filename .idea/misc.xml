@@ -49,20 +49,6 @@
             </SvnBranchConfiguration>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/projetF-struts/src/main/java/fr/univ_orleans/info/ihm/struts/example">
-          <value>
-            <SvnBranchConfiguration>
-              <option name="trunkUrl" value="https://orleans.miage.fr/svn/ihmF/projetF/projetF-struts/src/main/java/fr/univ_orleans/info/ihm/example" />
-            </SvnBranchConfiguration>
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/projetF-struts/src/main/resources/fr/univ_orleans/info/ihm/struts/resources">
-          <value>
-            <SvnBranchConfiguration>
-              <option name="trunkUrl" value="https://orleans.miage.fr/svn/ihmF/projetF/projetF-struts/src/main/resources/fr/univ_orleans/info/ihm/example" />
-            </SvnBranchConfiguration>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/projetF-struts/src/test/java/fr/univ_orleans/info/ihm/struts/test">
           <value>
             <SvnBranchConfiguration>

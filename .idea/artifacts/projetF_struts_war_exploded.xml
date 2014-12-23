@@ -10,7 +10,8 @@
           <element id="archive" name="projetF-modele-1.0.jar">
             <element id="module-output" name="projetF-modele" />
           </element>
-          <element id="library" level="project" name="Maven: com.h2database:h2:1.4.182" />
+          <element id="library" level="project" name="Maven: com.h2database:h2:1.4.184" />
+          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
           <element id="library" level="project" name="Maven: org.apache.struts:struts2-core:2.3.16" />
           <element id="library" level="project" name="Maven: org.apache.struts.xwork:xwork-core:2.3.16" />
           <element id="library" level="project" name="Maven: org.apache.commons:commons-lang3:3.1" />

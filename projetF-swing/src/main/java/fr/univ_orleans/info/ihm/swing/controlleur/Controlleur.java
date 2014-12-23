@@ -1,30 +1,24 @@
 package fr.univ_orleans.info.ihm.swing.controlleur;
 
-import fr.univ_orleans.info.ihm.swing.vue.QCM;
+import fr.univ_orleans.info.ihm.swing.vue.Appli;
 import fr.univ_orleans.info.ihm.swing.vue.Question;
+import fr.univ_orleans.info.ihm.swing.vue.Resultat;
 
-/**
- * Created by Eléonore on 22/12/2014.
- */
 public class Controlleur implements ControlleurInterface{
 
     @Override
-    public void ajouterQCM() {
-
+    public Question questionSuivante(Question question) {
+        return null;
     }
 
     @Override
-    public void supprimerQCM(QCM qcm) {
-
+    public Resultat modifUtilisateurFini(Resultat resultat) {
+        return null;
     }
 
     @Override
-    public void ajouterQuestion() {
+    public void changerVue(Appli appli) {
 
     }
 
-    @Override
-    public void supprimerQuestion(Question question) {
-
-    }
 }

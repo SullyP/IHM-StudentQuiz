@@ -13,4 +13,8 @@ public class Question extends JPanel implements QuestionInterface {
     }
 
 
+    @Override
+    public void affichageReponses(Question question) {
+
+    }
 }

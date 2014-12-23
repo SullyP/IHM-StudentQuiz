@@ -5,10 +5,12 @@ import java.awt.*;
 
 public class QCM extends JPanel implements QCMInterface{
 
-    JButton supp = new JButton("-");
-
     public QCM(){
-        this.add(supp, BorderLayout.BEFORE_LINE_BEGINS);
+
     }
 
+    @Override
+    public void affichageQCM() {
+
+    }
 }

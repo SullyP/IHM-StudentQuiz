@@ -30,10 +30,7 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
     }
 
     /**
-     * Insère une nouvelle entite en BDD
-     *
-     * @param nom nom de l'entité
-     * @return l'entité créé
+     * {@inheritDoc}
      */
     @Override
     public IEntite creerEntite(String nom) {
@@ -75,10 +72,7 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
     }
 
     /**
-     * Permet d'obtenir une entité via son id
-     *
-     * @param idEntite id de l'entité
-     * @return l'entité
+     * {@inheritDoc}
      */
     @Override
     public IEntite getEntite(int idEntite) {
@@ -119,11 +113,7 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
     }
 
     /**
-     * Permet de mettre à jour le nom d'une entité
-     *
-     * @param idEntite id de l'entité
-     * @param nom      nom de l'entité
-     * @return l'entité mise à jour
+     * {@inheritDoc}
      */
     @Override
     public IEntite majEntite(int idEntite, String nom) {
@@ -154,9 +144,7 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
     }
 
     /**
-     * Permet de supprimer une entité via son id
-     *
-     * @param idEntite id de l'entité
+     * {@inheritDoc}
      */
     @Override
     public void suppressionEntite(int idEntite) {

@@ -9,17 +9,17 @@ import java.util.logging.XMLFormatter;
 /**
  * Permet de logger les messages de l'application.
  * Classe singleton.
- *
+ * <p/>
  * Niveaux de criticité :
- * ALL 	Tous les niveaux
- * SEVERE 	Niveau le plus élevé
- * WARNING 	Avertissement
- * INFO 	Information
- * CONFIG 	Configuration
- * FINE 	Niveau faible
- * FINER 	Niveau encore plus faible
- * FINEST 	Niveau le plus faible
- * OFF 	Aucun niveau
+ * ALL      Tous les niveaux
+ * SEVERE   Niveau le plus élevé
+ * WARNING  Avertissement
+ * INFO     Information
+ * CONFIG   Configuration
+ * FINE     Niveau faible
+ * FINER    Niveau encore plus faible
+ * FINEST   Niveau le plus faible
+ * OFF      Aucun niveau
  */
 public final class MyLogger {
     private static MyLogger instance = null;
@@ -41,10 +41,11 @@ public final class MyLogger {
 
     /**
      * Permet d'obtenir le logger de la classe.
+     *
      * @return logger
      */
-    public static Logger getLogger(){
-        if(instance == null){
+    public static Logger getLogger() {
+        if (instance == null) {
             instance = new MyLogger();
         }
         return LOGGER;

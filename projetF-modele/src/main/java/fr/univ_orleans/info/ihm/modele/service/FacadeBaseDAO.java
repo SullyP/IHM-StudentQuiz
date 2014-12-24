@@ -10,11 +10,9 @@ import java.util.List;
 import java.util.logging.Level;
 
 public class FacadeBaseDAO implements IFacadeDAO {
+
     /**
-     * Insère une nouvelle entite en BDD
-     *
-     * @param nom nom de l'entité
-     * @return l'entité créé
+     * {@inheritDoc}
      */
     @Override
     public IEntite creerEntite(String nom) {
@@ -22,10 +20,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'obtenir une entité via son id
-     *
-     * @param idEntite id de l'entité
-     * @return l'entité
+     * {@inheritDoc}
      */
     @Override
     public IEntite getEntite(int idEntite) {
@@ -33,11 +28,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet de mettre à jour le nom d'une entité
-     *
-     * @param idEntite id de l'entité
-     * @param nom      nom de l'entité
-     * @return l'entité mise à jour
+     * {@inheritDoc}
      */
     @Override
     public IEntite majEntite(int idEntite, String nom) {
@@ -45,9 +36,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet de supprimer une entité via son id
-     *
-     * @param idEntite id de l'entité
+     * {@inheritDoc}
      */
     @Override
     public void suppressionEntite(int idEntite) {
@@ -60,26 +49,14 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'insérer un nouvel utilisateur en BDD.
-     *
-     * @param prenom         prenom de l'utilisateur.
-     * @param nom            nom  de l'utilisateur.
-     * @param identifiant    identifiant de l'utilisateur.
-     * @param motDePasse     mot de passe de l'utilisateur.
-     * @param numeroEtudiant numero étudiant de l'utilisateur (si étudiant, 0 sinon).
-     * @param idEntite       id de l'entité de l'utilisateur.
-     * @return l'utilisateur créé.
+     * {@inheritDoc}
      */
     @Override
     public IUtilisateur creerUtilisateur(String prenom, String nom, String identifiant, String motDePasse, int numeroEtudiant, int idEntite) {
         return UtilisateurBaseDAO.getInstance().creerUtilisateur(prenom, nom, identifiant, motDePasse, numeroEtudiant, idEntite);
     }
-
     /**
-     * Permet d'obtenir un utilisateur via son id.
-     *
-     * @param idUtilisateur id de l'utilisateur.
-     * @return l'utilisateur
+     * {@inheritDoc}
      */
     @Override
     public IUtilisateur getUtilisateur(int idUtilisateur) {
@@ -87,10 +64,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'obtenir un utilisateur via son identifiant (login).
-     *
-     * @param identifiant identifiant de l'utilisateur (login).
-     * @return l'utilisateur
+     * {@inheritDoc}
      */
     @Override
     public IUtilisateur getUtilisateurByIdentifiant(String identifiant) {
@@ -98,11 +72,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet de mettre à jour le mot de passe de l'utilisateur.
-     *
-     * @param idUtilisateur id de l'utilisateur.
-     * @param motDePasse    nouveau mot de passe
-     * @return utilisateur
+     * {@inheritDoc}
      */
     @Override
     public IUtilisateur majMotDePasseUtilisateur(int idUtilisateur, String motDePasse) {
@@ -110,11 +80,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet de mettre à jour l'entité de l'utilisateur
-     *
-     * @param idUtilisateur id de l'utilisateur.
-     * @param idEntite      nouvel id de l'entité
-     * @return utilisateur
+     * {@inheritDoc}
      */
     @Override
     public IUtilisateur majEntiteUtilisateur(int idUtilisateur, int idEntite) {
@@ -122,9 +88,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet de supprimer un utilisateur
-     *
-     * @param idUtilisateur id de l'utilisateur à supprimer.
+     * {@inheritDoc}
      */
     @Override
     public void suppressionUtilisateur(int idUtilisateur) {
@@ -132,12 +96,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Créé une réponse
-     *
-     * @param idQuestion      id de la question associé à la réponse
-     * @param intituleReponse intitule de la réponse
-     * @param correct         vrai si la réponse est correct, faux sinon
-     * @return la réponse
+     * {@inheritDoc}
      */
     @Override
     public IReponse creerReponse(int idQuestion, String intituleReponse, boolean correct) {
@@ -145,10 +104,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'obtenir une réponse via son id
-     *
-     * @param idReponse id de la réponse
-     * @return la réponse
+     * {@inheritDoc}
      */
     @Override
     public IReponse getReponse(int idReponse) {
@@ -156,10 +112,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'obtenir la liste des réponses d'une question via son id
-     *
-     * @param idQuestion id de la question
-     * @return liste de réponses
+     * {@inheritDoc}
      */
     @Override
     public List<IReponse> getReponseListByIdQuestion(int idQuestion) {
@@ -167,12 +120,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet de mettre à jour une réponse
-     *
-     * @param idReponse       id de la réponse
-     * @param intituleReponse intitule de la réponse
-     * @param correct         vrai si la réponse est correct, faux sinon
-     * @return la réponse
+     * {@inheritDoc}
      */
     @Override
     public IReponse majReponse(int idReponse, String intituleReponse, boolean correct) {
@@ -180,9 +128,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet de supprimer une réponse via son id
-     *
-     * @param idReponse id de la réponse
+     * {@inheritDoc}
      */
     @Override
     public void suppressionReponse(int idReponse) {
@@ -190,13 +136,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Créer une nouvelle question
-     *
-     * @param intitule      enonce de la question
-     * @param multiple      question a multiple réponse
-     * @param duree         durée de la question en secondes
-     * @param pointQuestion nombre de point que rapporte la question
-     * @return la nouvelle question
+     * {@inheritDoc}
      */
     @Override
     public IQuestion creerQuestion(String intitule, boolean multiple, int duree, int pointQuestion) {
@@ -204,10 +144,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'obtenir une question via son id
-     *
-     * @param idQuestion id de la question
-     * @return la question
+     * {@inheritDoc}
      */
     @Override
     public IQuestion getQuestion(int idQuestion) {
@@ -215,10 +152,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'obtenir la liste des questions d'un QCM via son id
-     *
-     * @param idQCM id du QCM
-     * @return la liste de questions
+     * {@inheritDoc}
      */
     @Override
     public List<IQuestion> getQuestionListByIdQCM(int idQCM) {
@@ -226,14 +160,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet de mettre a jour la question
-     *
-     * @param idQuestion    id de la question
-     * @param intitule      intitutile de la question
-     * @param multiple      question a multiple réponse
-     * @param duree         durée de la question en secondes
-     * @param pointQuestion nombre de point que rapporte la question
-     * @return la question
+     * {@inheritDoc}
      */
     @Override
     public IQuestion majQuestion(int idQuestion, String intitule, boolean multiple, int duree, int pointQuestion) {
@@ -241,9 +168,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet de supprimer une question via son id
-     *
-     * @param idQuestion id de la question
+     * {@inheritDoc}
      */
     @Override
     public void suppressionQuestion(int idQuestion) {
@@ -251,12 +176,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Créer un QCM
-     *
-     * @param idCreateur   id du créateur
-     * @param nomQCM       nom
-     * @param dateCreation date de création
-     * @return le QCM
+     * {@inheritDoc}
      */
     @Override
     public IQCM creerQCM(int idCreateur, String nomQCM, Date dateCreation) {
@@ -264,10 +184,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'obtenir un QCM via son id
-     *
-     * @param idQCM id du QCM
-     * @return le QCM
+     * {@inheritDoc}
      */
     @Override
     public IQCM getQCM(int idQCM) {
@@ -275,10 +192,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'obtenir un QCM et toutes les questions du QCM via son id
-     *
-     * @param idQCM id du QCM
-     * @return le QCM
+     * {@inheritDoc}
      */
     @Override
     public IQCM getQCMWithQuestionList(int idQCM) {
@@ -286,10 +200,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'obtenir la liste des idQuestion appartenant au QCM
-     *
-     * @param idQCM id du QCM
-     * @return la liste des idQuestion
+     * {@inheritDoc}
      */
     @Override
     public List<Integer> getListIdQuestionQCM(int idQCM) {
@@ -297,11 +208,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet de mettre à jour le nom d'un QCM via son id
-     *
-     * @param idQCM  id du QCM
-     * @param nomQCM nouveau nom du QCM
-     * @return le QCM
+     * {@inheritDoc}
      */
     @Override
     public IQCM majNomQCM(int idQCM, String nomQCM) {
@@ -309,10 +216,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'ajouter une question dans la liste de question du QCM
-     *
-     * @param idQCM      id du QCM
-     * @param idQuestion id de la question
+     * {@inheritDoc}
      */
     @Override
     public void ajoutQCMQuestion(int idQCM, int idQuestion) {
@@ -320,10 +224,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Supprime une question dans la liste de question du QCM
-     *
-     * @param idQCM      id du QCM
-     * @param idQuestion id de la question
+     * {@inheritDoc}
      */
     @Override
     public void suppressionQCMQuestion(int idQCM, int idQuestion) {
@@ -331,9 +232,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Supprime un QCM via son id
-     *
-     * @param idQCM id du QCM
+     * {@inheritDoc}
      */
     @Override
     public void suppressionQCM(int idQCM) {
@@ -341,12 +240,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet de créer une nouvelle entrée pour un resultatUtilisateur.
-     *
-     * @param idUtilisateur id de l'utilisateur
-     * @param idQCM         id du QCM
-     * @param dateResultat  date du résultat
-     * @return le resultatUtilisateur
+     * {@inheritDoc}
      */
     @Override
     public IResultatUtilisateur creerResultatUtilisateur(int idUtilisateur, int idQCM, Date dateResultat) {
@@ -354,10 +248,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'obtenir une instance de resultatUtilisateur
-     *
-     * @param idResultatUtilisateur id du résultat utilisateur
-     * @return le resultatUtilisateur (sans la liste de réponses)
+     * {@inheritDoc}
      */
     @Override
     public IResultatUtilisateur getResultatUtilisateur(int idResultatUtilisateur) {
@@ -365,10 +256,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'ajouter une réponse à une instance de resultatUtilisateur
-     *
-     * @param idResultatUtilisateur id du résultat utilisateur
-     * @param idReponse             id de la réponse
+     * {@inheritDoc}
      */
     @Override
     public void ajoutReponseResultatUtilisateur(int idResultatUtilisateur, int idReponse) {
@@ -376,10 +264,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet d'obtenir les question/réponses d'un résultat utilisateur donné
-     *
-     * @param idResultatUtilisateur id du résultat utilisateur
-     * @return liste de question/réponses
+     * {@inheritDoc}
      */
     @Override
     public List<IQuestion> getQuestionReponseListResultatUtilisateur(int idResultatUtilisateur) {
@@ -387,10 +272,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet de calculer le score d'une instance de resultatUtilisateur
-     *
-     * @param idResultatUtilisateur id du résultat utilisateur
-     * @return le resultatUtilisateur (avec la liste de réponses)
+     * {@inheritDoc}
      */
     @Override
     public IResultatUtilisateur calculerScoreResultatUtilisateur(int idResultatUtilisateur) {
@@ -398,9 +280,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
     }
 
     /**
-     * Permet de supprimer une instance de resultatUtilisateur
-     *
-     * @param idResultatUtilisateur id du résultat utilisateur
+     * {@inheritDoc}
      */
     @Override
     public void suppressionResultatutilisateur(int idResultatUtilisateur) {

@@ -31,12 +31,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
     }
 
     /**
-     * Permet de créer une nouvelle entrée pour un resultatUtilisateur.
-     *
-     * @param idUtilisateur id de l'utilisateur
-     * @param idQCM         id du QCM
-     * @param dateResultat  date du résultat
-     * @return le resultatUtilisateur
+     * {@inheritDoc}
      */
     @Override
     public IResultatUtilisateur creerResultatUtilisateur(int idUtilisateur, int idQCM, Date dateResultat) {
@@ -82,10 +77,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
     }
 
     /**
-     * Permet d'obtenir une instance de resultatUtilisateur
-     *
-     * @param idResultatUtilisateur id du résultat utilisateur
-     * @return le resultatUtilisateur (sans la liste de réponses)
+     * {@inheritDoc}
      */
     @Override
     public IResultatUtilisateur getResultatUtilisateur(int idResultatUtilisateur) {
@@ -129,10 +121,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
     }
 
     /**
-     * Permet d'ajouter une réponse à une instance de resultatUtilisateur
-     *
-     * @param idResultatUtilisateur id du résultat utilisateur
-     * @param idReponse             id de la réponse
+     * {@inheritDoc}
      */
     @Override
     public void addReponse(int idResultatUtilisateur, int idReponse) {
@@ -158,10 +147,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
     }
 
     /**
-     * Permet d'obtenir les question/réponses d'un résultat utilisateur donné
-     *
-     * @param idResultatUtilisateur id du résultat utilisateur
-     * @return liste de question/réponses
+     * {@inheritDoc}
      */
     @Override
     public List<IQuestion> getQuestionReponseListResultatUtilisateur(int idResultatUtilisateur) {
@@ -229,10 +215,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
     }
 
     /**
-     * Permet de calculer le score d'une instance de resultatUtilisateur
-     *
-     * @param idResultatUtilisateur id du résultat utilisateur
-     * @return le resultatUtilisateur (avec la liste de réponses)
+     * {@inheritDoc}
      */
     @Override
     public IResultatUtilisateur calculerScore(int idResultatUtilisateur) {
@@ -306,9 +289,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
     }
 
     /**
-     * Permet de supprimer une instance de resultatUtilisateur
-     *
-     * @param idResultatUtilisateur id du résultat utilisateur
+     * {@inheritDoc}
      */
     @Override
     public void suppressionResultatutilisateur(int idResultatUtilisateur) {

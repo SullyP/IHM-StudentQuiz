@@ -45,7 +45,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
     }
 
     /**
-     * Permet d'ouvrir la connection à la base de donnée. A éxécuter avant de lancer executeRequest ou executeUpdate.
+     * {@inheritDoc}
      */
     @Override
     public void open(){
@@ -59,10 +59,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
     }
 
     /**
-     * Permet d'ouvrir la connection à la base de donnée, et d'obtenir une requête paramétrée.
-     *
-     * @param sql Requête sql.
-     * @return La requête paramétrée correspondant à la requête sql.
+     * {@inheritDoc}
      */
     @Override
     public PreparedStatement openPrepared(String sql) {
@@ -80,7 +77,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
 
 
     /**
-     * Permet de fermer la connection à la base de donnée.
+     * {@inheritDoc}
      */
     @Override
     public void close(){
@@ -98,9 +95,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
     }
 
     /**
-     * Permet de fermer la connection à la base de donnée, et une requête paramétrée
-     *
-     * @param preparedSql La requête paramétrée correspondant à la requête sql.
+     * {@inheritDoc}
      */
     @Override
     public void closePrepared(PreparedStatement preparedSql) {
@@ -114,7 +109,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
     }
 
     /**
-     * Permet de créer l'ensemble des tables de la base de données si ce n'est pas déjà fait.
+     * {@inheritDoc}
      */
     private void createSchema() {
         String query = new StringBuilder().append("CREATE SCHEMA IF NOT EXISTS ProjetFIHM;")
@@ -144,7 +139,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
     }
 
     /**
-     * Permet des valeurs par défaut dans la BDD s'il n'y a rien.
+     * {@inheritDoc}
      */
     private void insertInitValue() {
         String query = String.format("SELECT COUNT(*) FROM %s", BaseDonneeEnum.ENTITE);
@@ -199,10 +194,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
     }
 
     /**
-     * Permet d'éxécuter une requête SQL (SELECT).
-     * @param sql la requête SQL à éxécuter
-     * @return les résultats de la requête
-     * @throws java.sql.SQLException lève des exceptions si la requête soulève des erreurs à la BDD.
+     * {@inheritDoc}
      */
     @Override
     public ResultSet executeRequest(String sql) throws SQLException{
@@ -211,10 +203,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
 
 
     /**
-     * Permet d'éxécuter une requête SQL (UPDATE, INSERT, DELETE).
-     * @param sql la requête SQL à éxécuter
-     * @return les résultats de la requête correspondant aux id créé.
-     * @throws java.sql.SQLException lève des exceptions si la requête soulève des erreurs à la BDD.
+     * {@inheritDoc}
      */
     @Override
     public ResultSet executeUpdate(String sql) throws SQLException{
@@ -223,8 +212,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
     }
 
     /**
-     * Permet d'obtenir le chemin d'accès de la BDD.
-     * @return chemin d'accès de la BDD.
+     * {@inheritDoc}
      */
     @Override
     public String getDbPath() {
@@ -232,8 +220,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
     }
 
     /**
-     * Permet de définir le chemin d'accès de la BDD.
-     * @param path chemin d'accès de la BDD.
+     * {@inheritDoc}
      */
     @Override
     public void setDbPath(String path) {

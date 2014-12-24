@@ -33,6 +33,9 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
         return instance;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IUtilisateur creerUtilisateur(String prenom, String nom, String identifiant, String motDePasse, int numeroEtudiant, int idEntite){
         IUtilisateur utilisateur = null;
@@ -80,6 +83,9 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
         return utilisateur;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IUtilisateur getUtilisateur(int idUtilisateur) {
         IUtilisateur utilisateur = null;
@@ -129,6 +135,9 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
         return utilisateur;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IUtilisateur getUtilisateurByIdentifiant(String identifiant) {
         IUtilisateur utilisateur = null;
@@ -178,6 +187,9 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
         return utilisateur;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IUtilisateur majMotDePasse(int idUtilisateur, String motDePasse) {
         IUtilisateur utilisateur = null;
@@ -206,6 +218,9 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
         return utilisateur;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public IUtilisateur majEntite(int idUtilisateur, int idEntite) {
         IUtilisateur utilisateur = null;
@@ -234,6 +249,9 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
         return utilisateur;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void suppressionUtilisateur(int idUtilisateur) {
         String sqlQuery = String.format("DELETE FROM %s WHERE %s=?;",

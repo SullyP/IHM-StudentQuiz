@@ -32,12 +32,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
     }
 
     /**
-     * Créé une réponse
-     *
-     * @param idQuestion      id de la question associé à la réponse
-     * @param intituleReponse intitule de la réponse
-     * @param correct         vrai si la réponse est correct, faux sinon
-     * @return la réponse
+     * {@inheritDoc}
      */
     @Override
     public IReponse creerReponse(int idQuestion, String intituleReponse, boolean correct) {
@@ -83,10 +78,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
     }
 
     /**
-     * Permet d'obtenir une réponse via son id
-     *
-     * @param idReponse id de la réponse
-     * @return la réponse
+     * {@inheritDoc}
      */
     @Override
     public IReponse getReponse(int idReponse) {
@@ -129,10 +121,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
     }
 
     /**
-     * Permet d'obtenir la liste des réponses d'une question via son id
-     *
-     * @param idQuestion id de la question
-     * @return liste de réponses
+     * {@inheritDoc}
      */
     @Override
     public List<IReponse> getReponseListByIdQuestion(int idQuestion) {
@@ -176,12 +165,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
     }
 
     /**
-     * Permet de mettre à jour une réponse
-     *
-     * @param idReponse       id de la réponse
-     * @param intituleReponse intitule de la réponse
-     * @param correct         vrai si la réponse est correct, faux sinon
-     * @return la réponse
+     * {@inheritDoc}
      */
     @Override
     public IReponse majReponse(int idReponse, String intituleReponse, boolean correct) {
@@ -215,9 +199,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
     }
 
     /**
-     * Permet de supprimer une réponse via son id
-     *
-     * @param idReponse id de la réponse
+     * {@inheritDoc}
      */
     @Override
     public void suppressionReponse(int idReponse) {

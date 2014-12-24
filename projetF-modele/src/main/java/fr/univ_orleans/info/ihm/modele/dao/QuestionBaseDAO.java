@@ -33,13 +33,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
     }
 
     /**
-     * Créer une nouvelle question
-     *
-     * @param intitule      enonce de la question
-     * @param multiple      question a multiple réponse
-     * @param duree         durée de la question en secondes
-     * @param pointQuestion nombre de point que rapporte la question
-     * @return la nouvelle question
+     * {@inheritDoc}
      */
     @Override
     public IQuestion creerQuestion(String intitule, boolean multiple, int duree, int pointQuestion) {
@@ -86,10 +80,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
     }
 
     /**
-     * Permet d'obtenir une question via son id
-     *
-     * @param idQuestion id de la question
-     * @return la question
+     * {@inheritDoc}
      */
     @Override
     public IQuestion getQuestion(int idQuestion) {
@@ -134,10 +125,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
     }
 
     /**
-     * Permet d'obtenir la liste des questions d'un QCM via son id
-     *
-     * @param idQCM id du QCM
-     * @return la liste de questions
+     * {@inheritDoc}
      */
     @Override
     public List<IQuestion> getQuestionListByIdQCM(int idQCM) {
@@ -185,14 +173,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
     }
 
     /**
-     * Permet de mettre a jour la question
-     *
-     * @param idQuestion    id de la question
-     * @param intitule      intitutile de la question
-     * @param multiple      question a multiple réponse
-     * @param duree         durée de la question en secondes
-     * @param pointQuestion nombre de point que rapporte la question
-     * @return la question
+     * {@inheritDoc}
      */
     @Override
     public IQuestion majQuestion(int idQuestion, String intitule, boolean multiple, int duree, int pointQuestion) {
@@ -228,9 +209,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
     }
 
     /**
-     * Permet de supprimer une question via son id
-     *
-     * @param idQuestion id de la question
+     * {@inheritDoc}
      */
     @Override
     public void suppressionQuestion(int idQuestion) {

@@ -7,16 +7,17 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.logging.Level;
 
-public class Machin {
+public class Main {
 
     public static final String HOST = "127.0.0.1";
     public static void main(String[] args) {
-        try {
+        /*try {
             Registry registry = LocateRegistry.getRegistry(HOST, 9345);
             IFacadeDAO facadeDAO = (IFacadeDAO) registry.lookup(IFacadeDAO.SERVICE_NAME);
             //facadeDAO.creerEntite("test");
         } catch (Exception e) {
-            MyLogger.getLogger().logp(Level.SEVERE, Machin.class.getName(), "main", "ServiceRemote exception", e);
-        }
+            MyLogger.getLogger().logp(Level.SEVERE, Main.class.getName(), "main", "ServiceRemote exception", e);
+        }*/
+        System.out.println("Hello");
     }
 }

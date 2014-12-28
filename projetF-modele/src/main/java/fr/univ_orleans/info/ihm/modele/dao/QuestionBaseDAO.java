@@ -4,6 +4,7 @@ import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.QCMQuestionEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.QuestionEnum;
 import fr.univ_orleans.info.ihm.modele.modele.IQuestion;
+import fr.univ_orleans.info.ihm.modele.modele.IReponse;
 import fr.univ_orleans.info.ihm.modele.modele.Question;
 import org.apache.log4j.Logger;
 
@@ -106,6 +107,22 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
         }
         this.getBd().closePrepared(preparedStatement);
 
+        return question;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public IQuestion getQuestionWithReponseList(int idQuestion) {
+        IQuestion question = this.getQuestion(idQuestion);
+
+        if(question != null) {
+            List<IReponse> reponseList = ReponseBaseDAO.getInstance().getReponseListByIdQuestion(idQuestion);
+            for (IReponse reponse : reponseList) {
+                question.addReponse(reponse);
+            }
+        }
         return question;
     }
 

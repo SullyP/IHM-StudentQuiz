@@ -1,6 +1,7 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
 import fr.univ_orleans.info.ihm.modele.modele.IQCM;
+import fr.univ_orleans.info.ihm.modele.modele.IQuestion;
 
 import java.sql.Date;
 import java.util.List;
@@ -35,6 +36,14 @@ public interface IQCMDAO {
      * @return la liste des idQuestion
      */
     public List<Integer> getListIdQuestionQCM(int idQCM);
+
+    /**
+     * Permet d'obtenir la prochaine question du QCM pour une session utilisateur donnée
+     * @param idQCM id du QCM
+     * @param idResultatUtilisateur id du résultat courant de l'utilisateur
+     * @return la prochaine question (avec la liste des réponses)
+     */
+    public IQuestion getNextQuestionQCM(int idQCM, int idResultatUtilisateur);
 
     /**
      * Permet de mettre à jour le nom d'un QCM via son id

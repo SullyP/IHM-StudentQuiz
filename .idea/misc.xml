@@ -42,7 +42,12 @@
         <entry key="$PROJECT_DIR$">
           <value>
             <SvnBranchConfiguration>
-              <option name="trunkUrl" value="" />
+              <option name="branchUrls">
+                <list>
+                  <option value="https://orleans.miage.fr/svn/ihmF/projetF" />
+                </list>
+              </option>
+              <option name="trunkUrl" value="https://orleans.miage.fr/svn/ihmF/projetF" />
             </SvnBranchConfiguration>
           </value>
         </entry>

@@ -23,6 +23,13 @@ public interface IQuestionDAO {
     public IQuestion getQuestion(int idQuestion);
 
     /**
+     * Permet d'obtenir une question via son id
+     * @param idQuestion id de la question
+     * @return la question avec la liste des réponses
+     */
+    public IQuestion getQuestionWithReponseList(int idQuestion);
+
+    /**
      * Permet d'obtenir la liste des questions d'un QCM via son id
      * @param idQCM id du QCM
      * @return la liste de questions

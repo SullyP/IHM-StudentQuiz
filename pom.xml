@@ -14,4 +14,24 @@
         <module>projetF-struts</module>
     </modules>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Dependencies -->
+        <java-source>1.7</java-source>
+        <java-target>1.7</java-target>
+        <projetF-modele.version>1.0</projetF-modele.version>
+        <commons-logging.version>1.2</commons-logging.version>
+        <h2.version>1.4.184</h2.version>
+        <javax.servlet-api>3.1.0</javax.servlet-api>
+        <jetty-maven-plugin.version>8.1.16.v20140903</jetty-maven-plugin.version>
+        <jsp-api.version>2.2</jsp-api.version>
+        <junit.version>4.12</junit.version>
+        <log4j.version>1.2.17</log4j.version>
+        <maven-assembly-plugin.version>2.4</maven-assembly-plugin.version>
+        <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
+        <servlet-api.version>2.5</servlet-api.version>
+        <struts2.version>2.3.20</struts2.version>
+        <struts2-bootstrap-plugin.version>2.0.0</struts2-bootstrap-plugin.version>
+    </properties>
+
 </project>

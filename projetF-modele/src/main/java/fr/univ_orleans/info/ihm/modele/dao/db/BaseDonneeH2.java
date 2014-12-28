@@ -1,15 +1,15 @@
 package fr.univ_orleans.info.ihm.modele.dao.db;
 
-import fr.univ_orleans.info.ihm.modele.MyLogger;
+import org.apache.log4j.Logger;
 import org.h2.jdbcx.JdbcDataSource;
 
 import java.sql.*;
-import java.util.logging.Level;
 
 /**
  * Classe permettant l'abstraction à une base de donnée H2.
  */
 public final class BaseDonneeH2 implements IBaseDonnee {
+    private static final Logger logger = Logger.getLogger(BaseDonneeH2.class.getCanonicalName());
     private JdbcDataSource ds;
     private Connection conn;
     private Statement stmt;
@@ -24,8 +24,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
             ds.setUser("sa");
             ds.setPassword("");
         } catch (ClassNotFoundException e) {
-            //On log l'exception
-            MyLogger.getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "Constructeur", "Cannot create data source.", e);
+            logger.warn(e);
         }
     }
 
@@ -53,8 +52,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
             this.conn = this.ds.getConnection();
             this.stmt = this.conn.createStatement();
         } catch (SQLException e) {
-            //On log l'exception
-            MyLogger.getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "open", "Erreur lors de la connection à la base de donnée.", e);
+            logger.warn(e);
         }
     }
 
@@ -69,8 +67,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
             //On indique que dans le cas d'un INSERT on souhaite avoir les id générés.
             preparedStatement = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         } catch (SQLException e) {
-            //On log l'exception
-            MyLogger.getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "openPrepared" , "Erreur lors de la connection à la base de donnée.", e);
+            logger.warn(e);
         }
         return preparedStatement;
     }
@@ -89,8 +86,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
                 conn.close();
             }
         } catch (SQLException e) {
-            //On log l'exception
-            MyLogger.getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "close", "Erreur lors de la fermeture de la base de donnée.", e);
+            logger.warn(e);
         }
     }
 
@@ -102,8 +98,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
         try {
             preparedSql.close();
         } catch (SQLException e) {
-            //On log l'exception
-            MyLogger.getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "closePrepared", "Erreur lors de la fermeture de la base de donnée.", e);
+            logger.warn(e);
         }
         this.close();
     }
@@ -133,8 +128,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
         try {
             stmt.execute(query);
         } catch(SQLException e) {
-            //On log l'exception
-            MyLogger.getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "createSchema", MyLogger.MESSAGE_ERREUR_SQL, e);
+            logger.warn(e);
         }
     }
 
@@ -148,8 +142,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
         try {
             resultSet = stmt.executeQuery(query);
         } catch(SQLException e) {
-            //On log l'exception
-            MyLogger.getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "insertInitValue", MyLogger.MESSAGE_ERREUR_SQL, e);
+            logger.warn(e);
         }
 
         boolean insert = false;
@@ -160,8 +153,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
                 //Si le nombre d'entité en BDD est de 0, alors on doit insérer des données par défaut (pas d'entité, donc pas d'utilisateur...etc).
                 insert = resultSet.getInt(1) == 0;
             } catch (SQLException e) {
-                //On log l'exception
-                MyLogger.getLogger().logp(Level.WARNING, BaseDonneeH2.class.getName(), "insertInitValue", MyLogger.MESSAGE_ERREUR_SQL, e);
+                logger.warn(e);
             }
         }
 
@@ -187,8 +179,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
             try {
                 stmt.execute(query);
             } catch(SQLException e) {
-                //On log l'exception
-                MyLogger.getLogger().logp(Level.SEVERE, BaseDonneeH2.class.getName(), "insertInitValue", MyLogger.MESSAGE_ERREUR_SQL, e);
+                logger.warn(e);
             }
         }
     }

@@ -2,8 +2,8 @@ package fr.univ_orleans.info.ihm.struts.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 import fr.univ_orleans.info.ihm.modele.modele.IUtilisateur;
-import fr.univ_orleans.info.ihm.modele.service.IFacadeDAO;
-import fr.univ_orleans.info.ihm.modele.service.InitRemoteService;
+import fr.univ_orleans.info.ihm.modele.rmi.IFacadeDAO;
+import fr.univ_orleans.info.ihm.modele.rmi.InitRemoteService;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ApplicationAware;
 

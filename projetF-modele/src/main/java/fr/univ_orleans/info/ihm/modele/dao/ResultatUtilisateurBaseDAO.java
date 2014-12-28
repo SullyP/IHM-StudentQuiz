@@ -1,8 +1,8 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
-import fr.univ_orleans.info.ihm.modele.MyLogger;
 import fr.univ_orleans.info.ihm.modele.dao.db.*;
 import fr.univ_orleans.info.ihm.modele.modele.*;
+import org.apache.log4j.Logger;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -10,9 +10,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
 public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implements IResultatUtilisateurDAO {
+    private static final Logger logger = Logger.getLogger(ResultatUtilisateurBaseDAO.class.getCanonicalName());
     private static IResultatUtilisateurDAO instance=null;
 
     private ResultatUtilisateurBaseDAO(){
@@ -36,27 +36,22 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
     @Override
     public IResultatUtilisateur creerResultatUtilisateur(int idUtilisateur, int idQCM, Date dateResultat) {
         IResultatUtilisateur resultatUtilisateur = null;
-        //On écrit la requête à éxécuter
         String sqlQuery = String.format("INSERT INTO %s (%s,%s,%s) VALUES (?,?,?);",
                 BaseDonneeEnum.RESULTAT_UTILISATEUR,
                 ResultatUtilisateurEnum.ID_UTILISATEUR, ResultatUtilisateurEnum.ID_QCM, ResultatUtilisateurEnum.DATE_RESULTAT_UTILISATEUR);
-        //On ouvre la connection à la bdd et on prépare la requête
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
         ResultSet resultSet = null;
         try {
-            //On ajoute les valeurs de la requête préparée
             int numeroParametre = 1;
             preparedStatement.setInt(numeroParametre, idUtilisateur);
             preparedStatement.setInt(++numeroParametre, idQCM);
             preparedStatement.setDate(++numeroParametre, dateResultat);
-            //On éxécute la requête
             preparedStatement.executeUpdate();
             //On cherche à obtenir l'idResultatUtilisateur généré.
             resultSet = preparedStatement.getGeneratedKeys();
         } catch (SQLException e){
-            //On log l'exception
-            MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "creerResultatUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
+            logger.warn(e);
         }
 
         if(resultSet!=null){
@@ -67,8 +62,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                 resultatUtilisateur = new ResultatUtilisateur(resultSet.getInt(1), idUtilisateur, idQCM, dateResultat);
                 resultSet.close();
             } catch (SQLException e) {
-                //On log l'exception
-                MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "creerResultatUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
+                logger.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -82,22 +76,19 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
     @Override
     public IResultatUtilisateur getResultatUtilisateur(int idResultatUtilisateur) {
         IResultatUtilisateur resultatUtilisateur = null;
-        //On écrit la requête à éxécuter
+
         String sqlQuery = String.format("SELECT * FROM %s WHERE %s=?;",
                 BaseDonneeEnum.RESULTAT_UTILISATEUR,
                 ResultatUtilisateurEnum.ID_RESULTAT_UTILISATEUR);
-        //On ouvre la connection à la bdd et on prépare la requête
+
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
         ResultSet resultSet = null;
         try {
-            //On ajoute les valeurs de la requête préparée
             preparedStatement.setInt(1, idResultatUtilisateur);
-            //On éxécute la requête
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
-            //On log l'exception
-            MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "getResultatUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
+            logger.warn(e);
         }
 
         if(resultSet!=null){
@@ -111,8 +102,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                         resultSet.getDate(ResultatUtilisateurEnum.DATE_RESULTAT_UTILISATEUR.toString()));
                 resultSet.close();
             } catch (SQLException e) {
-                //On log l'exception
-                MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "getResultatUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
+                logger.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -125,23 +115,19 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
      */
     @Override
     public void addReponse(int idResultatUtilisateur, int idReponse) {
-        //On écrit la requête à éxécuter
+
         String sqlQuery = String.format("INSERT INTO %s (%s,%s) VALUES (?,?);",
                 BaseDonneeEnum.REPONSE_UTILISATEUR,
                 ReponseUtilisateurEnum.ID_RESULTAT_UTILISATEUR, ReponseUtilisateurEnum.ID_REPONSE);
-        //On ouvre la connection à la bdd et on prépare la requête
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
         try {
-            //On ajoute les valeurs de la requête préparée
             int numeroParametre = 1;
             preparedStatement.setInt(numeroParametre, idResultatUtilisateur);
             preparedStatement.setInt(++numeroParametre, idReponse);
-            //On éxécute la requête
             preparedStatement.executeUpdate();
         } catch (SQLException e){
-            //On log l'exception
-            MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "addReponse", MyLogger.MESSAGE_ERREUR_SQL, e);
+            logger.warn(e);
         }
         this.getBd().closePrepared(preparedStatement);
     }
@@ -152,7 +138,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
     @Override
     public List<IQuestion> getQuestionReponseListResultatUtilisateur(int idResultatUtilisateur) {
         List<IQuestion> questionList = new ArrayList<>();
-        //On écrit la requête à éxécuter
+
         String sqlQuery = String.format("SELECT r.%s, r.%s, r.%s, r.%s, q.%s, q.%s, q.%s, q.%s FROM (%s ru JOIN %s r ON ru.%s=? AND r.%s=ru.%s) JOIN %s q ON r.%s=q.%s ORDER BY r.%s;",
                 ReponseEnum.ID_QUESTION, ReponseEnum.ID_REPONSE, ReponseEnum.INTITULE_REPONSE, ReponseEnum.CORRECT_REPONSE, QuestionEnum.INTITULE_QUESTION, QuestionEnum.MULTIPLE_QUESTION, QuestionEnum.DUREE_QUESTION, QuestionEnum.POINT_QUESTION,
                 BaseDonneeEnum.REPONSE_UTILISATEUR, BaseDonneeEnum.REPONSE,
@@ -161,18 +147,15 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                 BaseDonneeEnum.QUESTION,
                 ReponseEnum.ID_QUESTION, QuestionEnum.ID_QUESTION,
                 ReponseEnum.ID_QUESTION);
-        //On ouvre la connection à la bdd et on prépare la requête
+
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
         ResultSet resultSet = null;
         try {
-            //On ajoute les valeurs de la requête préparée
             preparedStatement.setInt(1, idResultatUtilisateur);
-            //On exécute la requête
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
-            //On log l'exception
-            MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "getQuestionReponseListResultatUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
+            logger.warn(e);
         }
 
         if(resultSet!=null){
@@ -205,8 +188,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                 }
                 resultSet.close();
             } catch (SQLException e) {
-                //On log l'exception
-                MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "getQuestionReponseListResultatUtilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
+                logger.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -223,11 +205,10 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
         IResultatUtilisateur resultatUtilisateur = new ResultatUtilisateur(idResultatUtilisateur);
         List<IQuestion> questionReponses = this.getQuestionReponseListResultatUtilisateur(idResultatUtilisateur);
 
-        //On écrit la requête à éxécuter pour récupérer le nombre total de réponses corrects d'une question
         String sqlQuery = String.format("SELECT COUNT(*) FROM %s WHERE %s=?;",
                 BaseDonneeEnum.REPONSE,
                 ReponseEnum.ID_QUESTION);
-        //On ouvre la connection à la bdd et on prépare la requête
+
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
         for(IQuestion question:questionReponses){
@@ -248,13 +229,10 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                     //Dans le cas d'une question à choix multiple, il faut connaître le nombre total de réponses corrects
                     ResultSet resultSet = null;
                     try {
-                        //On ajoute les valeurs de la requête préparée
                         preparedStatement.setInt(1, question.getIdQuestion());
-                        //On éxécute la requête
                         resultSet = preparedStatement.executeQuery();
                     } catch (SQLException e){
-                        //On log l'exception
-                        MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "calculerScore", MyLogger.MESSAGE_ERREUR_SQL, e);
+                        logger.warn(e);
                     }
 
                     if(resultSet!=null){
@@ -269,8 +247,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                             }
 
                         } catch (SQLException e) {
-                            //On log l'exception
-                            MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "calculerScore", MyLogger.MESSAGE_ERREUR_SQL, e);
+                            logger.warn(e);
                         }
                     }
                 }else{
@@ -280,7 +257,6 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
             }
         }
 
-        //On ferme la connection à la BDD et on libère la requête paramétrée
         this.getBd().closePrepared(preparedStatement);
 
         //On enregistre le score avant de retourner le resultatUtilisateur
@@ -293,21 +269,17 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
      */
     @Override
     public void suppressionResultatutilisateur(int idResultatUtilisateur) {
-        //On écrit la requête à éxécuter
         String sqlQuery = String.format("DELETE FROM %s WHERE %s=?;",
                 BaseDonneeEnum.RESULTAT_UTILISATEUR,
                 ResultatUtilisateurEnum.ID_RESULTAT_UTILISATEUR);
-        //On ouvre la connection à la bdd et on prépare la requête
+
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
         try {
-            //On ajoute les valeurs de la requête préparée
             preparedStatement.setInt(1, idResultatUtilisateur);
-            //On éxécute la requête
             preparedStatement.executeUpdate();
         } catch (SQLException e){
-            //On log l'exception
-            MyLogger.getLogger().logp(Level.WARNING, ResultatUtilisateurBaseDAO.class.getName(), "suppressionResultatutilisateur", MyLogger.MESSAGE_ERREUR_SQL, e);
+            logger.warn(e);
         }
         this.getBd().closePrepared(preparedStatement);
     }

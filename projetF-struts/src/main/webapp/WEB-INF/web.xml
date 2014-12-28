@@ -26,6 +26,6 @@
   </welcome-file-list>
 
   <listener>
-    <listener-class>fr.univ_orleans.info.ihm.modele.service.InitRemoteService</listener-class>
+    <listener-class>fr.univ_orleans.info.ihm.modele.rmi.InitRemoteService</listener-class>
   </listener>
 </web-app>

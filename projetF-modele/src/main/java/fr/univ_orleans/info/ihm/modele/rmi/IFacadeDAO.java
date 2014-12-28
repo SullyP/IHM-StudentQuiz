@@ -1,4 +1,4 @@
-package fr.univ_orleans.info.ihm.modele.service;
+package fr.univ_orleans.info.ihm.modele.rmi;
 
 import fr.univ_orleans.info.ihm.modele.modele.*;
 
@@ -7,8 +7,10 @@ import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.List;
 
-public interface IFacadeDAO extends Remote{
+public interface IFacadeDAO extends Remote {
     public final String SERVICE_NAME = "QCMService";
+
+    public abstract void init() throws RemoteException;
 
     /**
      * Insère une nouvelle entite en BDD
@@ -37,8 +39,6 @@ public interface IFacadeDAO extends Remote{
      * @param idEntite id de l'entité
      */
     public abstract void suppressionEntite(int idEntite);
-
-    public abstract void init() throws RemoteException;
 
     /**
      * Permet d'insérer un nouvel utilisateur en BDD.

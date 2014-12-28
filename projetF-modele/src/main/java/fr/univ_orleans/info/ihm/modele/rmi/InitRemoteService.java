@@ -1,19 +1,18 @@
-package fr.univ_orleans.info.ihm.modele.service;
+package fr.univ_orleans.info.ihm.modele.rmi;
 
-import fr.univ_orleans.info.ihm.modele.MyLogger;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.logging.Level;
-
 
 public class InitRemoteService implements ServletContextListener {
+    private static final Logger logger = Logger.getLogger(InitRemoteService.class.getCanonicalName());
+    private static final int PORT_REGISTRY = 1099;
     private static boolean isRegistered = false;
     private static IFacadeDAO service;
-    private static final int PORT_REGISTRY = 9345;
 
     public InitRemoteService(){
 
@@ -24,23 +23,23 @@ public class InitRemoteService implements ServletContextListener {
     }
 
     @Override
-    public void contextInitialized(ServletContextEvent sce) {
+    public void contextInitialized(ServletContextEvent sCE) {
         if(!isRegistered){
             try {
                 service = new FacadeBaseDAO();
                 IFacadeDAO stub = (IFacadeDAO) UnicastRemoteObject.exportObject(service, 0);
                 Registry registry = LocateRegistry.createRegistry(PORT_REGISTRY);
                 registry.rebind(IFacadeDAO.SERVICE_NAME, stub);
-                MyLogger.getLogger().logp(Level.INFO, InitRemoteService.class.getName(), "contextInitialized", "RemoteService Started");
+                logger.info("Remote service bound");
                 isRegistered = true;
             } catch (Exception e) {
-                MyLogger.getLogger().logp(Level.SEVERE, InitRemoteService.class.getName(), "contextInitialized", "Init Fail", e);
+                logger.error("Remote service exception:", e);
             }
         }
     }
 
     @Override
-    public void contextDestroyed(ServletContextEvent sce) {
-        MyLogger.getLogger().logp(Level.INFO, InitRemoteService.class.getName(), "contextDestroyed", "RemoteService Destroyed");
+    public void contextDestroyed(ServletContextEvent sCE) {
+        logger.info("Remote service destroyed");
     }
 }

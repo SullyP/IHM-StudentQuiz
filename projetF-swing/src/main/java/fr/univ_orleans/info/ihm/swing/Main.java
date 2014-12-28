@@ -1,12 +1,5 @@
 package fr.univ_orleans.info.ihm.swing;
 
-import fr.univ_orleans.info.ihm.modele.MyLogger;
-import fr.univ_orleans.info.ihm.modele.service.IFacadeDAO;
-
-import java.rmi.registry.LocateRegistry;
-import java.rmi.registry.Registry;
-import java.util.logging.Level;
-
 public class Main {
 
     public static final String HOST = "127.0.0.1";

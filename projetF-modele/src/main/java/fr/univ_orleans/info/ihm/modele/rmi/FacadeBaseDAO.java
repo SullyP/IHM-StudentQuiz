@@ -1,15 +1,20 @@
-package fr.univ_orleans.info.ihm.modele.service;
+package fr.univ_orleans.info.ihm.modele.rmi;
 
-import fr.univ_orleans.info.ihm.modele.MyLogger;
 import fr.univ_orleans.info.ihm.modele.dao.*;
 import fr.univ_orleans.info.ihm.modele.modele.*;
+import org.apache.log4j.Logger;
 
 import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.List;
-import java.util.logging.Level;
 
 public class FacadeBaseDAO implements IFacadeDAO {
+    private static final Logger logger = Logger.getLogger(FacadeBaseDAO.class.getCanonicalName());
+
+    @Override
+    public void init() throws RemoteException {
+        logger.info("Initialisation du service");
+    }
 
     /**
      * {@inheritDoc}
@@ -41,11 +46,6 @@ public class FacadeBaseDAO implements IFacadeDAO {
     @Override
     public void suppressionEntite(int idEntite) {
         EntiteBaseDAO.getInstance().suppressionEntite(idEntite);
-    }
-
-    @Override
-    public void init() throws RemoteException {
-        MyLogger.getLogger().logp(Level.INFO, FacadeBaseDAO.class.getName(), "init", "Initialisation du service");
     }
 
     /**

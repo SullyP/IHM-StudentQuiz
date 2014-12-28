@@ -1,6 +1,6 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
-import fr.univ_orleans.info.ihm.modele.modele.IQuestion;
+import fr.univ_orleans.info.ihm.modele.beans.IQuestion;
 
 import java.util.List;
 

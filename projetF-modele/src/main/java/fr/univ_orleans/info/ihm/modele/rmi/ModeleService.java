@@ -1,15 +1,15 @@
 package fr.univ_orleans.info.ihm.modele.rmi;
 
+import fr.univ_orleans.info.ihm.modele.beans.*;
 import fr.univ_orleans.info.ihm.modele.dao.*;
-import fr.univ_orleans.info.ihm.modele.modele.*;
 import org.apache.log4j.Logger;
 
 import java.rmi.RemoteException;
 import java.sql.Date;
 import java.util.List;
 
-public class FacadeBaseDAO implements IFacadeDAO {
-    private static final Logger logger = Logger.getLogger(FacadeBaseDAO.class.getCanonicalName());
+public class ModeleService implements IModeleService {
+    private static final Logger logger = Logger.getLogger(ModeleService.class.getCanonicalName());
 
     @Override
     public void init() throws RemoteException {
@@ -20,7 +20,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IEntite creerEntite(String nom) {
+    public IEntite creerEntite(String nom) throws RemoteException {
         return EntiteBaseDAO.getInstance().creerEntite(nom);
     }
 
@@ -28,7 +28,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IEntite getEntite(int idEntite) {
+    public IEntite getEntite(int idEntite) throws RemoteException {
         return EntiteBaseDAO.getInstance().getEntite(idEntite);
     }
 
@@ -36,7 +36,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IEntite majEntite(int idEntite, String nom) {
+    public IEntite majEntite(int idEntite, String nom) throws RemoteException {
         return EntiteBaseDAO.getInstance().majEntite(idEntite, nom);
     }
 
@@ -44,7 +44,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public void suppressionEntite(int idEntite) {
+    public void suppressionEntite(int idEntite) throws RemoteException {
         EntiteBaseDAO.getInstance().suppressionEntite(idEntite);
     }
 
@@ -52,14 +52,15 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IUtilisateur creerUtilisateur(String prenom, String nom, String identifiant, String motDePasse, int numeroEtudiant, int idEntite) {
+    public IUtilisateur creerUtilisateur(String prenom, String nom, String identifiant, String motDePasse, int numeroEtudiant, int idEntite) throws RemoteException {
         return UtilisateurBaseDAO.getInstance().creerUtilisateur(prenom, nom, identifiant, motDePasse, numeroEtudiant, idEntite);
     }
+
     /**
      * {@inheritDoc}
      */
     @Override
-    public IUtilisateur getUtilisateur(int idUtilisateur) {
+    public IUtilisateur getUtilisateur(int idUtilisateur) throws RemoteException {
         return UtilisateurBaseDAO.getInstance().getUtilisateur(idUtilisateur);
     }
 
@@ -67,7 +68,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IUtilisateur getUtilisateurByIdentifiant(String identifiant) {
+    public IUtilisateur getUtilisateurByIdentifiant(String identifiant) throws RemoteException {
         return UtilisateurBaseDAO.getInstance().getUtilisateurByIdentifiant(identifiant);
     }
 
@@ -75,7 +76,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IUtilisateur majMotDePasseUtilisateur(int idUtilisateur, String motDePasse) {
+    public IUtilisateur majMotDePasseUtilisateur(int idUtilisateur, String motDePasse) throws RemoteException {
         return UtilisateurBaseDAO.getInstance().majMotDePasse(idUtilisateur, motDePasse);
     }
 
@@ -83,7 +84,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IUtilisateur majEntiteUtilisateur(int idUtilisateur, int idEntite) {
+    public IUtilisateur majEntiteUtilisateur(int idUtilisateur, int idEntite) throws RemoteException {
         return UtilisateurBaseDAO.getInstance().majEntite(idUtilisateur, idEntite);
     }
 
@@ -91,7 +92,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public void suppressionUtilisateur(int idUtilisateur) {
+    public void suppressionUtilisateur(int idUtilisateur) throws RemoteException {
         UtilisateurBaseDAO.getInstance().suppressionUtilisateur(idUtilisateur);
     }
 
@@ -99,7 +100,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IReponse creerReponse(int idQuestion, String intituleReponse, boolean correct) {
+    public IReponse creerReponse(int idQuestion, String intituleReponse, boolean correct) throws RemoteException {
         return ReponseBaseDAO.getInstance().creerReponse(idQuestion, intituleReponse, correct);
     }
 
@@ -107,7 +108,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IReponse getReponse(int idReponse) {
+    public IReponse getReponse(int idReponse) throws RemoteException {
         return ReponseBaseDAO.getInstance().getReponse(idReponse);
     }
 
@@ -115,7 +116,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public List<IReponse> getReponseListByIdQuestion(int idQuestion) {
+    public List<IReponse> getReponseListByIdQuestion(int idQuestion) throws RemoteException {
         return ReponseBaseDAO.getInstance().getReponseListByIdQuestion(idQuestion);
     }
 
@@ -123,7 +124,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IReponse majReponse(int idReponse, String intituleReponse, boolean correct) {
+    public IReponse majReponse(int idReponse, String intituleReponse, boolean correct) throws RemoteException {
         return ReponseBaseDAO.getInstance().majReponse(idReponse, intituleReponse, correct);
     }
 
@@ -131,7 +132,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public void suppressionReponse(int idReponse) {
+    public void suppressionReponse(int idReponse) throws RemoteException {
         ReponseBaseDAO.getInstance().suppressionReponse(idReponse);
     }
 
@@ -139,7 +140,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IQuestion creerQuestion(String intitule, boolean multiple, int duree, int pointQuestion) {
+    public IQuestion creerQuestion(String intitule, boolean multiple, int duree, int pointQuestion) throws RemoteException {
         return QuestionBaseDAO.getInstance().creerQuestion(intitule, multiple, duree, pointQuestion);
     }
 
@@ -147,7 +148,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IQuestion getQuestion(int idQuestion) {
+    public IQuestion getQuestion(int idQuestion) throws RemoteException {
         return QuestionBaseDAO.getInstance().getQuestion(idQuestion);
     }
 
@@ -155,7 +156,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public List<IQuestion> getQuestionListByIdQCM(int idQCM) {
+    public List<IQuestion> getQuestionListByIdQCM(int idQCM) throws RemoteException {
         return QuestionBaseDAO.getInstance().getQuestionListByIdQCM(idQCM);
     }
 
@@ -163,7 +164,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IQuestion majQuestion(int idQuestion, String intitule, boolean multiple, int duree, int pointQuestion) {
+    public IQuestion majQuestion(int idQuestion, String intitule, boolean multiple, int duree, int pointQuestion) throws RemoteException {
         return QuestionBaseDAO.getInstance().majQuestion(idQuestion, intitule, multiple, duree, pointQuestion);
     }
 
@@ -171,7 +172,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public void suppressionQuestion(int idQuestion) {
+    public void suppressionQuestion(int idQuestion) throws RemoteException {
         QuestionBaseDAO.getInstance().suppressionQuestion(idQuestion);
     }
 
@@ -179,7 +180,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IQCM creerQCM(int idCreateur, String nomQCM, Date dateCreation) {
+    public IQCM creerQCM(int idCreateur, String nomQCM, Date dateCreation) throws RemoteException {
         return QCMBaseDAO.getInstance().creerQCM(idCreateur, nomQCM, dateCreation);
     }
 
@@ -187,7 +188,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IQCM getQCM(int idQCM) {
+    public IQCM getQCM(int idQCM) throws RemoteException {
         return QCMBaseDAO.getInstance().getQCM(idQCM);
     }
 
@@ -195,7 +196,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IQCM getQCMWithQuestionList(int idQCM) {
+    public IQCM getQCMWithQuestionList(int idQCM) throws RemoteException {
         return QCMBaseDAO.getInstance().getQCMWithQuestionList(idQCM);
     }
 
@@ -203,7 +204,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public List<Integer> getListIdQuestionQCM(int idQCM) {
+    public List<Integer> getListIdQuestionQCM(int idQCM) throws RemoteException {
         return QCMBaseDAO.getInstance().getListIdQuestionQCM(idQCM);
     }
 
@@ -211,7 +212,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IQCM majNomQCM(int idQCM, String nomQCM) {
+    public IQCM majNomQCM(int idQCM, String nomQCM) throws RemoteException {
         return QCMBaseDAO.getInstance().majNomQCM(idQCM, nomQCM);
     }
 
@@ -219,7 +220,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public void ajoutQCMQuestion(int idQCM, int idQuestion) {
+    public void ajoutQCMQuestion(int idQCM, int idQuestion) throws RemoteException {
         QCMBaseDAO.getInstance().ajoutQCMQuestion(idQCM, idQuestion);
     }
 
@@ -227,7 +228,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public void suppressionQCMQuestion(int idQCM, int idQuestion) {
+    public void suppressionQCMQuestion(int idQCM, int idQuestion) throws RemoteException {
         QCMBaseDAO.getInstance().suppressionQCMQuestion(idQCM, idQuestion);
     }
 
@@ -235,7 +236,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public void suppressionQCM(int idQCM) {
+    public void suppressionQCM(int idQCM) throws RemoteException {
         QCMBaseDAO.getInstance().suppressionQCM(idQCM);
     }
 
@@ -243,7 +244,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IResultatUtilisateur creerResultatUtilisateur(int idUtilisateur, int idQCM, Date dateResultat) {
+    public IResultatUtilisateur creerResultatUtilisateur(int idUtilisateur, int idQCM, Date dateResultat) throws RemoteException {
         return ResultatUtilisateurBaseDAO.getInstance().creerResultatUtilisateur(idUtilisateur, idQCM, dateResultat);
     }
 
@@ -251,7 +252,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IResultatUtilisateur getResultatUtilisateur(int idResultatUtilisateur) {
+    public IResultatUtilisateur getResultatUtilisateur(int idResultatUtilisateur) throws RemoteException {
         return ResultatUtilisateurBaseDAO.getInstance().getResultatUtilisateur(idResultatUtilisateur);
     }
 
@@ -259,7 +260,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public void ajoutReponseResultatUtilisateur(int idResultatUtilisateur, int idReponse) {
+    public void ajoutReponseResultatUtilisateur(int idResultatUtilisateur, int idReponse) throws RemoteException {
         ResultatUtilisateurBaseDAO.getInstance().addReponse(idResultatUtilisateur, idReponse);
     }
 
@@ -267,7 +268,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public List<IQuestion> getQuestionReponseListResultatUtilisateur(int idResultatUtilisateur) {
+    public List<IQuestion> getQuestionReponseListResultatUtilisateur(int idResultatUtilisateur) throws RemoteException {
         return ResultatUtilisateurBaseDAO.getInstance().getQuestionReponseListResultatUtilisateur(idResultatUtilisateur);
     }
 
@@ -275,7 +276,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public IResultatUtilisateur calculerScoreResultatUtilisateur(int idResultatUtilisateur) {
+    public IResultatUtilisateur calculerScoreResultatUtilisateur(int idResultatUtilisateur) throws RemoteException {
         return ResultatUtilisateurBaseDAO.getInstance().calculerScore(idResultatUtilisateur);
     }
 
@@ -283,7 +284,7 @@ public class FacadeBaseDAO implements IFacadeDAO {
      * {@inheritDoc}
      */
     @Override
-    public void suppressionResultatutilisateur(int idResultatUtilisateur) {
+    public void suppressionResultatutilisateur(int idResultatUtilisateur) throws RemoteException {
         ResultatUtilisateurBaseDAO.getInstance().suppressionResultatutilisateur(idResultatUtilisateur);
     }
 }

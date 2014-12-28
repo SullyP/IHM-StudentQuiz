@@ -2,8 +2,8 @@ package fr.univ_orleans.info.ihm.modele.dao;
 
 import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.ReponseEnum;
-import fr.univ_orleans.info.ihm.modele.modele.IReponse;
-import fr.univ_orleans.info.ihm.modele.modele.Reponse;
+import fr.univ_orleans.info.ihm.modele.beans.IReponse;
+import fr.univ_orleans.info.ihm.modele.beans.Reponse;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;

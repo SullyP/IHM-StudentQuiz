@@ -2,7 +2,7 @@ package fr.univ_orleans.info.ihm.struts.interceptor;
 
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
-import fr.univ_orleans.info.ihm.modele.modele.IUtilisateur;
+import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
 import org.apache.struts2.StrutsStatics;
 
 import javax.servlet.http.HttpServletRequest;

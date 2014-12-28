@@ -2,10 +2,10 @@ package fr.univ_orleans.info.ihm.modele.test;
 
 import fr.univ_orleans.info.ihm.modele.dao.*;
 import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeH2;
-import fr.univ_orleans.info.ihm.modele.modele.IEntite;
-import fr.univ_orleans.info.ihm.modele.modele.IQCM;
-import fr.univ_orleans.info.ihm.modele.modele.IQuestion;
-import fr.univ_orleans.info.ihm.modele.modele.IUtilisateur;
+import fr.univ_orleans.info.ihm.modele.beans.IEntite;
+import fr.univ_orleans.info.ihm.modele.beans.IQCM;
+import fr.univ_orleans.info.ihm.modele.beans.IQuestion;
+import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

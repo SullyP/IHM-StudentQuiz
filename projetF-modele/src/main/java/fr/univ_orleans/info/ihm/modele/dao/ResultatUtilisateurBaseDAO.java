@@ -1,7 +1,7 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
 import fr.univ_orleans.info.ihm.modele.dao.db.*;
-import fr.univ_orleans.info.ihm.modele.modele.*;
+import fr.univ_orleans.info.ihm.modele.beans.*;
 import org.apache.log4j.Logger;
 
 import java.sql.Date;

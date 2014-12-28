@@ -1,9 +1,9 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
 import fr.univ_orleans.info.ihm.modele.dao.db.*;
-import fr.univ_orleans.info.ihm.modele.modele.IQCM;
-import fr.univ_orleans.info.ihm.modele.modele.IQuestion;
-import fr.univ_orleans.info.ihm.modele.modele.QCM;
+import fr.univ_orleans.info.ihm.modele.beans.IQCM;
+import fr.univ_orleans.info.ihm.modele.beans.IQuestion;
+import fr.univ_orleans.info.ihm.modele.beans.QCM;
 import org.apache.log4j.Logger;
 
 import java.sql.Date;

@@ -3,7 +3,7 @@ package fr.univ_orleans.info.ihm.modele.test;
 import fr.univ_orleans.info.ihm.modele.dao.EntiteBaseDAO;
 import fr.univ_orleans.info.ihm.modele.dao.IEntiteDAO;
 import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeH2;
-import fr.univ_orleans.info.ihm.modele.modele.IEntite;
+import fr.univ_orleans.info.ihm.modele.beans.IEntite;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

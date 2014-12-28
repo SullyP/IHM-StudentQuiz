@@ -1,11 +1,11 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
+import fr.univ_orleans.info.ihm.modele.beans.IReponse;
 import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.QCMQuestionEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.QuestionEnum;
-import fr.univ_orleans.info.ihm.modele.modele.IQuestion;
-import fr.univ_orleans.info.ihm.modele.modele.IReponse;
-import fr.univ_orleans.info.ihm.modele.modele.Question;
+import fr.univ_orleans.info.ihm.modele.beans.IQuestion;
+import fr.univ_orleans.info.ihm.modele.beans.Question;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;

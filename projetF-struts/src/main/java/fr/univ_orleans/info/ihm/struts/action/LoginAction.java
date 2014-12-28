@@ -1,16 +1,17 @@
 package fr.univ_orleans.info.ihm.struts.action;
 
 import com.opensymphony.xwork2.ActionSupport;
-import fr.univ_orleans.info.ihm.modele.modele.IUtilisateur;
-import fr.univ_orleans.info.ihm.modele.rmi.IFacadeDAO;
+import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
+import fr.univ_orleans.info.ihm.modele.rmi.IModeleService;
 import fr.univ_orleans.info.ihm.modele.rmi.InitRemoteService;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ApplicationAware;
 
+import java.rmi.RemoteException;
 import java.util.Map;
 
 public class LoginAction extends ActionSupport implements ApplicationAware{
-    private IFacadeDAO monService;
+    private IModeleService monService;
     private String identifiantUtilisateur;
     private String motDePasseUtilisateur;
 
@@ -24,7 +25,12 @@ public class LoginAction extends ActionSupport implements ApplicationAware{
 
     @Override
     public String execute() {
-        IUtilisateur utilisateur = this.monService.getUtilisateurByIdentifiant(this.identifiantUtilisateur);
+        IUtilisateur utilisateur = null;
+        try {
+            utilisateur = this.monService.getUtilisateurByIdentifiant(this.identifiantUtilisateur);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
         if(utilisateur == null){
             addActionError("Identifiant incorrect.");
             return INPUT;
@@ -50,7 +56,7 @@ public class LoginAction extends ActionSupport implements ApplicationAware{
 
     @Override
     public void setApplication(Map<String, Object> stringObjectMap) {
-        this.monService =(IFacadeDAO)stringObjectMap.get("monService");
+        this.monService =(IModeleService)stringObjectMap.get("monService");
 
         if (this.monService == null) {
             this.monService = InitRemoteService.getService();

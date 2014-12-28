@@ -3,10 +3,10 @@ package fr.univ_orleans.info.ihm.modele.dao;
 import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.EntiteEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.UtilisateurEnum;
-import fr.univ_orleans.info.ihm.modele.modele.Entite;
-import fr.univ_orleans.info.ihm.modele.modele.IEntite;
-import fr.univ_orleans.info.ihm.modele.modele.IUtilisateur;
-import fr.univ_orleans.info.ihm.modele.modele.Utilisateur;
+import fr.univ_orleans.info.ihm.modele.beans.Entite;
+import fr.univ_orleans.info.ihm.modele.beans.IEntite;
+import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
+import fr.univ_orleans.info.ihm.modele.beans.Utilisateur;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;

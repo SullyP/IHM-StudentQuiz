@@ -10,15 +10,15 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class InitRemoteService implements ServletContextListener {
     private static final Logger logger = Logger.getLogger(InitRemoteService.class.getCanonicalName());
-    private static final int PORT_REGISTRY = 1099;
+    private static final int PORT_REGISTRY = 9345;
     private static boolean isRegistered = false;
-    private static IFacadeDAO service;
+    private static IModeleService service;
 
     public InitRemoteService(){
 
     }
 
-    public static IFacadeDAO getService() {
+    public static IModeleService getService() {
         return service;
     }
 
@@ -26,10 +26,10 @@ public class InitRemoteService implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sCE) {
         if(!isRegistered){
             try {
-                service = new FacadeBaseDAO();
-                IFacadeDAO stub = (IFacadeDAO) UnicastRemoteObject.exportObject(service, 0);
+                service = new ModeleService();
+                IModeleService stub = (IModeleService) UnicastRemoteObject.exportObject(service, 0);
                 Registry registry = LocateRegistry.createRegistry(PORT_REGISTRY);
-                registry.rebind(IFacadeDAO.SERVICE_NAME, stub);
+                registry.rebind(IModeleService.SERVICE_NAME, stub);
                 logger.info("Remote service bound");
                 isRegistered = true;
             } catch (Exception e) {

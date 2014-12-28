@@ -1,6 +1,6 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
-import fr.univ_orleans.info.ihm.modele.modele.IEntite;
+import fr.univ_orleans.info.ihm.modele.beans.IEntite;
 
 /**
  * Classe d'abastraction de la table Entite

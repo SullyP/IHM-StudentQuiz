@@ -1,4 +1,4 @@
-package fr.univ_orleans.info.ihm.modele.modele;
+package fr.univ_orleans.info.ihm.modele.beans;
 
 public class Reponse implements IReponse {
     private int idReponse;

@@ -1,4 +1,4 @@
-package fr.univ_orleans.info.ihm.modele.modele;
+package fr.univ_orleans.info.ihm.modele.beans;
 
 public interface IUtilisateur {
     public int getIdUtilisateur();

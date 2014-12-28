@@ -2,7 +2,7 @@ package fr.univ_orleans.info.ihm.modele.test;
 
 import fr.univ_orleans.info.ihm.modele.dao.*;
 import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeH2;
-import fr.univ_orleans.info.ihm.modele.modele.*;
+import fr.univ_orleans.info.ihm.modele.beans.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -33,6 +33,7 @@
         <servlet-api.version>2.5</servlet-api.version>
         <struts2.version>2.3.20</struts2.version>
         <struts2-bootstrap-plugin.version>2.0.0</struts2-bootstrap-plugin.version>
+        <struts2-jquery-plugin.version>3.7.1</struts2-jquery-plugin.version>
     </properties>
 
 </project>

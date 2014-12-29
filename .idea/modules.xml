@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/projetF.iml" filepath="$PROJECT_DIR$/projetF.iml" />
-      <module fileurl="file://$PROJECT_DIR$/projetF.iml" filepath="$PROJECT_DIR$/projetF.iml" />
       <module fileurl="file://$PROJECT_DIR$/projetF-modele/projetF-modele.iml" filepath="$PROJECT_DIR$/projetF-modele/projetF-modele.iml" />
       <module fileurl="file://$PROJECT_DIR$/projetF-struts/projetF-struts.iml" filepath="$PROJECT_DIR$/projetF-struts/projetF-struts.iml" />
       <module fileurl="file://$PROJECT_DIR$/projetF-swing/projetF-swing.iml" filepath="$PROJECT_DIR$/projetF-swing/projetF-swing.iml" />

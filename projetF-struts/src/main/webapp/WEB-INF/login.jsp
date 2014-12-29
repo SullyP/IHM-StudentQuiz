@@ -13,8 +13,8 @@
   </s:if>
 
   <s:form action="login">
-    <s:textfield label="Identifiant" name="identifiantUtilisateur" />
-    <s:password label="Mot de passe" name="motDePasseUtilisateur"/>
+    <s:textfield label="Identifiant" name="userName" />
+    <s:password label="Mot de passe" name="password"/>
 
     <s:submit label="Connection" name="submit" />
   </s:form>

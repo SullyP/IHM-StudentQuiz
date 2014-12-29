@@ -10,38 +10,30 @@ import org.apache.struts2.interceptor.ApplicationAware;
 import java.rmi.RemoteException;
 import java.util.Map;
 
-public class LoginAction extends ActionSupport implements ApplicationAware{
+public class LoginAction extends ActionSupport implements ApplicationAware {
     private IModeleService monService;
-    private String identifiantUtilisateur;
-    private String motDePasseUtilisateur;
-
-    public void setIdentifiantUtilisateur(String identifiantUtilisateur) {
-        this.identifiantUtilisateur = identifiantUtilisateur;
-    }
-
-    public void setMotDePasseUtilisateur(String motDePasseUtilisateur) {
-        this.motDePasseUtilisateur = motDePasseUtilisateur;
-    }
+    private String userName;
+    private String password;
 
     @Override
     public String execute() {
-        IUtilisateur utilisateur = null;
+        IUtilisateur user = null;
         try {
-            utilisateur = this.monService.getUtilisateurByIdentifiant(this.identifiantUtilisateur);
+            user = this.monService.getUtilisateurByIdentifiant(this.userName);
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        if(utilisateur == null){
+        if (user == null) {
             addActionError("Identifiant incorrect.");
             return INPUT;
-        }else if(utilisateur.validerMotDePasseUtilisateur(this.motDePasseUtilisateur)){
-            ServletActionContext.getRequest().getSession().setAttribute("Utilisateur", utilisateur);
-            if(utilisateur.isAdmin()){
-                return "admin";
-            }else{
-                return "nonAdmin";
+        } else if (user.validerMotDePasseUtilisateur(this.password)) {
+            ServletActionContext.getRequest().getSession().setAttribute("userName", user);
+            if (user.isAdmin()) {
+                return "isAdmin";
+            } else {
+                return "isUser";
             }
-        }else{
+        } else {
             addActionError("Mot de passe incorrect.");
             return INPUT;
         }
@@ -49,18 +41,33 @@ public class LoginAction extends ActionSupport implements ApplicationAware{
 
     @Override
     public void validate() {
-        if("".equalsIgnoreCase(this.identifiantUtilisateur.trim()) || "".equalsIgnoreCase(this.motDePasseUtilisateur.trim())){
-            addActionError("Le nom d'utilisateur et le mot de passe ne peuvent pas être vide.");
+        if (this.userName.trim().length() == 0) {
+            addActionError("L'identifiant ne peut pas être vide.");
         }
     }
 
     @Override
     public void setApplication(Map<String, Object> stringObjectMap) {
-        this.monService =(IModeleService)stringObjectMap.get("monService");
-
+        this.monService = (IModeleService) stringObjectMap.get("ModeleService");
         if (this.monService == null) {
             this.monService = InitRemoteService.getService();
-            stringObjectMap.put("monService",this.monService);
+            stringObjectMap.put("ModeleService", this.monService);
         }
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

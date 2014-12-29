@@ -1,5 +1,6 @@
 package fr.univ_orleans.info.ihm.struts.interceptor;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
 import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
@@ -10,23 +11,20 @@ import javax.servlet.http.HttpSession;
 
 public class AdminInterceptor extends AbstractInterceptor implements StrutsStatics {
 
-    public String intercept(ActionInvocation invocation) throws Exception {
-        HttpServletRequest request = (HttpServletRequest) invocation.getInvocationContext().get(HTTP_REQUEST);
+    public String intercept(ActionInvocation actionInvocation) throws Exception {
+        HttpServletRequest request = (HttpServletRequest) actionInvocation.getInvocationContext().get(HTTP_REQUEST);
         HttpSession session = request.getSession(true);
+        IUtilisateur user = (IUtilisateur) session.getAttribute("userName");
 
-        //Un utilisateur est-il en session ?
-        IUtilisateur utilisateur = (IUtilisateur) session.getAttribute("Utilisateur");
-        if (utilisateur != null) {
-            //Si un utilisateur est connecté, on vérifie qu'il est admin.
-            if(utilisateur.isAdmin()){
-                return invocation.invoke();
-            }else {
-                //L'utilisateur peut donc utiliser le site, mais pas la partie admin. On le re-dirige vers la partie utilisateur.
-                return "nonAdmin";
+        if (user != null) {
+            if (user.isAdmin()){
+                return actionInvocation.invoke();
+            } else {
+                return "isUser";
             }
         } else {
             //Sinon l'utilisateur doit se connecter.
-            return "login";
+            return Action.LOGIN;
         }
     }
 }

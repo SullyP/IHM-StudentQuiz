@@ -34,7 +34,7 @@
         </global-results>
 
         <action name="home" class="fr.univ_orleans.info.ihm.struts.action.HomeAction">
-            <result>/WEB-INF/login.jsp</result>
+            <result>/WEB-INF/test.jsp</result>
         </action>
 
         <action name="login" class="fr.univ_orleans.info.ihm.struts.action.LoginAction">

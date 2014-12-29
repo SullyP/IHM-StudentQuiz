@@ -15,6 +15,13 @@ public class LoginAction extends ActionSupport implements ApplicationAware {
     private String userName;
     private String password;
 
+    public LoginAction() {
+        super();
+        monService = null;
+        userName = "";
+        password = "";
+    }
+
     @Override
     public String execute() {
         IUtilisateur user = null;

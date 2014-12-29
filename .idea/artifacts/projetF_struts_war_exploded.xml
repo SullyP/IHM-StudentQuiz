@@ -11,7 +11,6 @@
             <element id="module-output" name="projetF-modele" />
           </element>
           <element id="library" level="project" name="Maven: com.h2database:h2:1.4.184" />
-          <element id="library" level="project" name="Maven: javax.servlet:javax.servlet-api:3.1.0" />
           <element id="library" level="project" name="Maven: com.jgeppert.struts2.bootstrap:struts2-bootstrap-plugin:2.0.0" />
           <element id="library" level="project" name="Maven: org.apache.velocity:velocity:1.5" />
           <element id="library" level="project" name="Maven: commons-collections:commons-collections:3.1" />

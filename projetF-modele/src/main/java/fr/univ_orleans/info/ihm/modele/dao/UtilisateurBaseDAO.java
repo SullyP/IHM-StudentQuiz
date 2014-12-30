@@ -1,12 +1,12 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
-import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
-import fr.univ_orleans.info.ihm.modele.dao.db.EntiteEnum;
-import fr.univ_orleans.info.ihm.modele.dao.db.UtilisateurEnum;
 import fr.univ_orleans.info.ihm.modele.beans.Entite;
 import fr.univ_orleans.info.ihm.modele.beans.IEntite;
 import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
 import fr.univ_orleans.info.ihm.modele.beans.Utilisateur;
+import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
+import fr.univ_orleans.info.ihm.modele.dao.db.EntiteEnum;
+import fr.univ_orleans.info.ihm.modele.dao.db.UtilisateurEnum;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateurDAO {
-    private static final Logger logger = Logger.getLogger(UtilisateurBaseDAO.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(UtilisateurBaseDAO.class.getCanonicalName());
     private static IUtilisateurDAO instance = null;
 
     private UtilisateurBaseDAO() {
@@ -58,7 +58,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
             //On cherche à obtenir l'idUtilisateur généré.
             resultSet = preparedStatement.getGeneratedKeys();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if (resultSet != null) {
@@ -69,7 +69,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
                 utilisateur = new Utilisateur(resultSet.getInt(1), numeroEtudiant, nom, prenom, identifiant, motDePasse);
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -95,7 +95,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
             preparedStatement.setInt(1, idUtilisateur);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if (resultSet != null) {
@@ -115,7 +115,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
                 utilisateur.setEntiteUtilisateur(entite);
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -141,7 +141,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
             preparedStatement.setString(1, identifiant);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if (resultSet != null) {
@@ -161,7 +161,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
                 utilisateur.setEntiteUtilisateur(entite);
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -188,7 +188,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
             utilisateur.setMotDePasseUtilisateur(motDePasse);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
         this.getBd().closePrepared(preparedStatement);
 
@@ -214,7 +214,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
             utilisateur.setEntiteUtilisateur(new Entite(idEntite));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
         this.getBd().closePrepared(preparedStatement);
 
@@ -234,7 +234,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
             preparedStatement.setInt(1, idUtilisateur);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         this.getBd().closePrepared(preparedStatement);

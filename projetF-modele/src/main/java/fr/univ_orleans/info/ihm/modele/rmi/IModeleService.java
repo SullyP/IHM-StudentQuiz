@@ -198,6 +198,27 @@ public interface IModeleService extends Remote {
     public List<Integer> getListIdQuestionQCM(int idQCM) throws RemoteException;
 
     /**
+     * Permet d'obtenir la prochaine question du QCM pour une session utilisateur donnée
+     * @param idQCM id du QCM
+     * @param idResultatUtilisateur id du résultat courant de l'utilisateur
+     * @return la prochaine question (avec la liste des réponses)
+     */
+    public IQuestion getNextQuestionQCM(int idQCM, int idResultatUtilisateur);
+
+    /**
+     * Permet d'obtenir la liste de tous les QCM disponibles (en attente ou ouvert)
+     * @return liste de tous les QCM disponibles
+     */
+    public List<IQCM> getListQCMDispo();
+
+    /**
+     * Permet d'obtenir la liste de tous les QCM créés par un utilisateur donné
+     * @param idCreateur id du createur
+     * @return liste de tous les QCM créés par un utilisateur donné
+     */
+    public List<IQCM> getListQCMByIdCreateur(int idCreateur);
+
+    /**
      * Permet de mettre à jour le nom d'un QCM via son id
      * @param idQCM id du QCM
      * @param nomQCM nouveau nom du QCM

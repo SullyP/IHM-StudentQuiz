@@ -7,7 +7,8 @@ public enum QCMEnum {
     ID_QCM("idQCM"),
     ID_CREATEUR("idCreateur"),
     NOM_QCM("nomQCM"),
-    DATE_CREATION("dateCreation");
+    DATE_CREATION("dateCreation"),
+    ETAT_QCM("etatQCM");
 
     private String nomChampTableBaseDonnee;
     QCMEnum(String nomChampTableBaseDonnee){

@@ -4,14 +4,14 @@ package fr.univ_orleans.info.ihm.modele.dao.db;
  * Enumération contenant tous les noms des tables de la base de donnée.
  */
 public enum BaseDonneeEnum {
-    ENTITE("ProjetFIHM.Entite"),
-    UTILISATEUR("ProjetFIHM.Utilisateur"),
-    RESULTAT_UTILISATEUR("ProjetFIHM.ResultatUtilisateur"),
-    REPONSE_UTILISATEUR("ProjetFIHM.ReponseUtilisateur"),
-    REPONSE("ProjetFIHM.Reponse"),
-    QUESTION("ProjetFIHM.Question"),
-    QCM ("ProjetFIHM.QCM"),
-    QCM_QUESTION("ProjetFIHM.QCMQuestion");
+    ENTITE("IHMProjetF.Entite"),
+    UTILISATEUR("IHMProjetF.Utilisateur"),
+    RESULTAT_UTILISATEUR("IHMProjetF.ResultatUtilisateur"),
+    REPONSE_UTILISATEUR("IHMProjetF.ReponseUtilisateur"),
+    REPONSE("IHMProjetF.Reponse"),
+    QUESTION("IHMProjetF.Question"),
+    QCM ("IHMProjetF.QCM"),
+    QCM_QUESTION("IHMProjetF.QCMQuestion");
 
     private String nomBaseDonnee;
     BaseDonneeEnum(String nomBaseDonnee){

@@ -9,11 +9,11 @@ import java.sql.Date;
 import java.util.List;
 
 public class ModeleService implements IModeleService {
-    private static final Logger logger = Logger.getLogger(ModeleService.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(ModeleService.class.getCanonicalName());
 
     @Override
     public void init() throws RemoteException {
-        logger.info("Initialisation du service");
+        LOGGER.info("Initialisation du service");
     }
 
     /**
@@ -206,6 +206,30 @@ public class ModeleService implements IModeleService {
     @Override
     public List<Integer> getListIdQuestionQCM(int idQCM) throws RemoteException {
         return QCMBaseDAO.getInstance().getListIdQuestionQCM(idQCM);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public IQuestion getNextQuestionQCM(int idQCM, int idResultatUtilisateur) {
+        return QCMBaseDAO.getInstance().getNextQuestionQCM(idQCM, idResultatUtilisateur);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<IQCM> getListQCMDispo() {
+        return QCMBaseDAO.getInstance().getListQCMDispo();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<IQCM> getListQCMByIdCreateur(int idCreateur) {
+        return QCMBaseDAO.getInstance().getListQCMByIdCreateur(idCreateur);
     }
 
     /**

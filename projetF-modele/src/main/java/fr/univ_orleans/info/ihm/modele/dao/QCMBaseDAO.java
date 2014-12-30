@@ -1,9 +1,10 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
-import fr.univ_orleans.info.ihm.modele.dao.db.*;
+import fr.univ_orleans.info.ihm.modele.beans.EtatQCMEnum;
 import fr.univ_orleans.info.ihm.modele.beans.IQCM;
 import fr.univ_orleans.info.ihm.modele.beans.IQuestion;
 import fr.univ_orleans.info.ihm.modele.beans.QCM;
+import fr.univ_orleans.info.ihm.modele.dao.db.*;
 import org.apache.log4j.Logger;
 
 import java.sql.Date;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
-    private static final Logger logger = Logger.getLogger(QCMBaseDAO.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(QCMBaseDAO.class.getCanonicalName());
     private static IQCMDAO instance = null;
 
     private QCMBaseDAO() {
@@ -40,9 +41,9 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
     public IQCM creerQCM(int idCreateur, String nomQCM, Date dateCreation) {
         IQCM qcm = null;
 
-        String sqlQuery = String.format("INSERT INTO %s (%s,%s,%s) VALUES (?,?,?);",
+        String sqlQuery = String.format("INSERT INTO %s (%s,%s,%s,%s) VALUES (?,?,?,?);",
                 BaseDonneeEnum.QCM,
-                QCMEnum.ID_CREATEUR, QCMEnum.NOM_QCM, QCMEnum.DATE_CREATION);
+                QCMEnum.ID_CREATEUR, QCMEnum.NOM_QCM, QCMEnum.DATE_CREATION, QCMEnum.ETAT_QCM);
 
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
@@ -52,11 +53,12 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
             preparedStatement.setInt(numeroParametre, idCreateur);
             preparedStatement.setString(++numeroParametre, nomQCM);
             preparedStatement.setDate(++numeroParametre, dateCreation);
+            preparedStatement.setString(++numeroParametre,EtatQCMEnum.FERME.toString());
             preparedStatement.executeUpdate();
             //On cherche à obtenir l'idQCM généré.
             resultSet = preparedStatement.getGeneratedKeys();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if (resultSet != null) {
@@ -64,10 +66,10 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
                 //Si resultSet n'est pas nul, on accède à la première ligne.
                 resultSet.next();
                 //On créé une instance QCM avec les informations à notre disposition.
-                qcm = new QCM(resultSet.getInt(1), idCreateur, nomQCM, dateCreation);
+                qcm = new QCM(resultSet.getInt(1), idCreateur, nomQCM, dateCreation, EtatQCMEnum.FERME);
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -93,7 +95,7 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
             preparedStatement.setInt(1, idQCM);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if (resultSet != null) {
@@ -104,10 +106,11 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
                 qcm = new QCM(resultSet.getInt(QCMEnum.ID_QCM.toString()),
                         resultSet.getInt(QCMEnum.ID_CREATEUR.toString()),
                         resultSet.getString(QCMEnum.NOM_QCM.toString()),
-                        resultSet.getDate(QCMEnum.DATE_CREATION.toString()));
+                        resultSet.getDate(QCMEnum.DATE_CREATION.toString()),
+                        EtatQCMEnum.valueOf(resultSet.getString(QCMEnum.ETAT_QCM.toString())));
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -147,7 +150,7 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
             preparedStatement.setInt(1, idQCM);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if (resultSet != null) {
@@ -159,12 +162,96 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
                 }
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
 
         return idQuestionList;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<IQCM> getListQCMDispo() {
+        List<IQCM> listQCMDispo = new ArrayList<>();
+
+        String sqlQuery = String.format("SELECT * FROM %s WHERE %s=? OR %s=?;",
+                BaseDonneeEnum.QCM,
+                QCMEnum.ETAT_QCM, QCMEnum.ETAT_QCM);
+
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+        ResultSet resultSet = null;
+        try {
+            int numeroParametre = 1;
+            preparedStatement.setString(numeroParametre, EtatQCMEnum.EN_ATTENTE.toString());
+            preparedStatement.setString(++numeroParametre, EtatQCMEnum.OUVERT.toString());
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            LOGGER.warn(e);
+        }
+
+        if (resultSet != null) {
+            try {
+                //Tant qu'il reste des lignes dans le resultSet
+                while (resultSet.next()) {
+                    //On ajoute le QCM à la liste
+                    listQCMDispo.add(new QCM(resultSet.getInt(QCMEnum.ID_QCM.toString()),
+                            resultSet.getInt(QCMEnum.ID_CREATEUR.toString()),
+                            resultSet.getString(QCMEnum.NOM_QCM.toString()),
+                            resultSet.getDate(QCMEnum.DATE_CREATION.toString()),
+                            EtatQCMEnum.valueOf(resultSet.getString(QCMEnum.ETAT_QCM.toString()))));
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                LOGGER.warn(e);
+            }
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return listQCMDispo;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<IQCM> getListQCMByIdCreateur(int idCreateur) {
+        List<IQCM> listQCMByIdCreateur = new ArrayList<>();
+
+        String sqlQuery = String.format("SELECT * FROM %s WHERE %s=?;",
+                BaseDonneeEnum.QCM,
+                QCMEnum.ID_CREATEUR);
+
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+        ResultSet resultSet = null;
+        try {
+            preparedStatement.setInt(1, idCreateur);
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            LOGGER.warn(e);
+        }
+
+        if (resultSet != null) {
+            try {
+                //Tant qu'il reste des lignes dans le resultSet
+                while (resultSet.next()) {
+                    //On ajoute le QCM à la liste
+                    listQCMByIdCreateur.add(new QCM(resultSet.getInt(QCMEnum.ID_QCM.toString()),
+                            resultSet.getInt(QCMEnum.ID_CREATEUR.toString()),
+                            resultSet.getString(QCMEnum.NOM_QCM.toString()),
+                            resultSet.getDate(QCMEnum.DATE_CREATION.toString()),
+                            EtatQCMEnum.valueOf(resultSet.getString(QCMEnum.ETAT_QCM.toString()))));
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                LOGGER.warn(e);
+            }
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return listQCMByIdCreateur;
     }
 
     /**
@@ -193,7 +280,7 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
             preparedStatement.setInt(++numeroParametre, idResultatUtilisateur);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if (resultSet != null) {
@@ -204,7 +291,7 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
                 question = QuestionBaseDAO.getInstance().getQuestionWithReponseList(resultSet.getInt(QuestionEnum.ID_QUESTION.toString()));
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -231,7 +318,7 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
             qcm = new QCM(idQCM);
             qcm.setNomQCM(nomQCM);
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
         this.getBd().closePrepared(preparedStatement);
 
@@ -254,7 +341,7 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
             preparedStatement.setInt(++numeroParametre, idQuestion);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
         this.getBd().closePrepared(preparedStatement);
     }
@@ -275,7 +362,7 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
             preparedStatement.setInt(++numeroParametre, idQuestion);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
         this.getBd().closePrepared(preparedStatement);
     }
@@ -294,7 +381,7 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
             preparedStatement.setInt(1, idQCM);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
         this.getBd().closePrepared(preparedStatement);
     }

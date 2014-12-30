@@ -10,18 +10,21 @@ public class QCM implements IQCM{
     private String nomQCM;
     private Date dateCreationQCM;
     private List<IQuestion> questions;
+    private EtatQCMEnum etatQCM;
 
     public QCM(int idQCM){
         this.idQCM = idQCM;
         this.questions = new ArrayList<>();
+        this.etatQCM = EtatQCMEnum.FERME;
     }
 
-    public QCM(int idQCM, int idCreateurQCM, String nomQCM, Date dateCreationQCM){
+    public QCM(int idQCM, int idCreateurQCM, String nomQCM, Date dateCreationQCM, EtatQCMEnum etatQCM){
         this.idQCM = idQCM;
         this.nomQCM = nomQCM;
         this.idCreateurQCM = idCreateurQCM;
         this.dateCreationQCM = dateCreationQCM;
         this.questions = new ArrayList<>();
+        this.etatQCM = etatQCM;
     }
 
     @Override
@@ -95,5 +98,15 @@ public class QCM implements IQCM{
                 this.questions.remove(i);
             }
         }
+    }
+
+    @Override
+    public EtatQCMEnum getEtatQCM() {
+        return this.etatQCM;
+    }
+
+    @Override
+    public void setEtatQCM(EtatQCMEnum etatQCM) {
+        this.etatQCM = etatQCM;
     }
 }

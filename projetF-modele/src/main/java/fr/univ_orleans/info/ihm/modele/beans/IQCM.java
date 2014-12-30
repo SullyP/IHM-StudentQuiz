@@ -9,10 +9,12 @@ public interface IQCM {
     public String getNomQCM();
     public Date getDateCreationQCM();
     public List<IQuestion> getQuestions();
+    public EtatQCMEnum getEtatQCM();
     public IQCM getQCM();
     public void setQCM(IQCM qcm);
     public void setIdCreateurQCM(int idCreateurQCM);
     public void setNomQCM(String nomQCM);
+    public void setEtatQCM(EtatQCMEnum etatQCM);
 
     /**
      * Permet d'ajouter une question au QCM.

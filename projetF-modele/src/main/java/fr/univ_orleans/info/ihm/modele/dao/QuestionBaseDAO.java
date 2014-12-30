@@ -1,11 +1,11 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
+import fr.univ_orleans.info.ihm.modele.beans.IQuestion;
 import fr.univ_orleans.info.ihm.modele.beans.IReponse;
+import fr.univ_orleans.info.ihm.modele.beans.Question;
 import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.QCMQuestionEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.QuestionEnum;
-import fr.univ_orleans.info.ihm.modele.beans.IQuestion;
-import fr.univ_orleans.info.ihm.modele.beans.Question;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestionDAO {
-    private static final Logger logger = Logger.getLogger(QuestionBaseDAO.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(QuestionBaseDAO.class.getCanonicalName());
     private static IQuestionDAO instance = null;
 
     private QuestionBaseDAO(){
@@ -55,7 +55,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
             preparedStatement.executeUpdate();
             resultSet = preparedStatement.getGeneratedKeys();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if(resultSet!=null){
@@ -64,7 +64,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
                 question= new Question(resultSet.getInt(1),duree,pointQuestion,multiple,intitule);
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -89,7 +89,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
             preparedStatement.setInt(1, idQuestion);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if(resultSet!=null){
@@ -102,7 +102,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
                         resultSet.getString(QuestionEnum.INTITULE_QUESTION.toString()));
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -146,7 +146,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
             preparedStatement.setInt(1, idQCM);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if(resultSet!=null){
@@ -160,7 +160,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
                 }
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -191,7 +191,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
             preparedStatement.executeUpdate();
             question = new Question(idQuestion,duree,pointQuestion,multiple,intitule);
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
         this.getBd().closePrepared(preparedStatement);
 
@@ -212,7 +212,7 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
             preparedStatement.setInt(1,idQuestion);
             preparedStatement.executeUpdate();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
         this.getBd().closePrepared(preparedStatement);
     }

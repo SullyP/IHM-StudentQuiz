@@ -1,7 +1,7 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
-import fr.univ_orleans.info.ihm.modele.dao.db.*;
 import fr.univ_orleans.info.ihm.modele.beans.*;
+import fr.univ_orleans.info.ihm.modele.dao.db.*;
 import org.apache.log4j.Logger;
 
 import java.sql.Date;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implements IResultatUtilisateurDAO {
-    private static final Logger logger = Logger.getLogger(ResultatUtilisateurBaseDAO.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(ResultatUtilisateurBaseDAO.class.getCanonicalName());
     private static IResultatUtilisateurDAO instance=null;
 
     private ResultatUtilisateurBaseDAO(){
@@ -51,7 +51,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
             //On cherche à obtenir l'idResultatUtilisateur généré.
             resultSet = preparedStatement.getGeneratedKeys();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if(resultSet!=null){
@@ -62,7 +62,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                 resultatUtilisateur = new ResultatUtilisateur(resultSet.getInt(1), idUtilisateur, idQCM, dateResultat);
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -88,7 +88,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
             preparedStatement.setInt(1, idResultatUtilisateur);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if(resultSet!=null){
@@ -102,7 +102,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                         resultSet.getDate(ResultatUtilisateurEnum.DATE_RESULTAT_UTILISATEUR.toString()));
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -127,7 +127,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
             preparedStatement.setInt(++numeroParametre, idReponse);
             preparedStatement.executeUpdate();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
         this.getBd().closePrepared(preparedStatement);
     }
@@ -155,7 +155,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
             preparedStatement.setInt(1, idResultatUtilisateur);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if(resultSet!=null){
@@ -188,7 +188,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                 }
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -232,7 +232,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                         preparedStatement.setInt(1, question.getIdQuestion());
                         resultSet = preparedStatement.executeQuery();
                     } catch (SQLException e){
-                        logger.warn(e);
+                        LOGGER.warn(e);
                     }
 
                     if(resultSet!=null){
@@ -247,7 +247,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                             }
 
                         } catch (SQLException e) {
-                            logger.warn(e);
+                            LOGGER.warn(e);
                         }
                     }
                 }else{
@@ -279,7 +279,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
             preparedStatement.setInt(1, idResultatUtilisateur);
             preparedStatement.executeUpdate();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
         this.getBd().closePrepared(preparedStatement);
     }

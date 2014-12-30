@@ -1,5 +1,6 @@
 package fr.univ_orleans.info.ihm.modele.dao.db;
 
+import fr.univ_orleans.info.ihm.modele.beans.EtatQCMEnum;
 import org.apache.log4j.Logger;
 import org.h2.jdbcx.JdbcDataSource;
 
@@ -9,7 +10,7 @@ import java.sql.*;
  * Classe permettant l'abstraction à une base de donnée H2.
  */
 public final class BaseDonneeH2 implements IBaseDonnee {
-    private static final Logger logger = Logger.getLogger(BaseDonneeH2.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(BaseDonneeH2.class.getCanonicalName());
     private JdbcDataSource ds;
     private Connection conn;
     private Statement stmt;
@@ -24,7 +25,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
             ds.setUser("sa");
             ds.setPassword("");
         } catch (ClassNotFoundException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
     }
 
@@ -52,7 +53,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
             this.conn = this.ds.getConnection();
             this.stmt = this.conn.createStatement();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
     }
 
@@ -67,7 +68,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
             //On indique que dans le cas d'un INSERT on souhaite avoir les id générés.
             preparedStatement = this.conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
         return preparedStatement;
     }
@@ -86,7 +87,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
                 conn.close();
             }
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
     }
 
@@ -98,7 +99,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
         try {
             preparedSql.close();
         } catch (SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
         this.close();
     }
@@ -107,28 +108,28 @@ public final class BaseDonneeH2 implements IBaseDonnee {
      * {@inheritDoc}
      */
     private void createSchema() {
-        String query = new StringBuilder().append("CREATE SCHEMA IF NOT EXISTS ProjetFIHM;")
+        String query = new StringBuilder().append("CREATE SCHEMA IF NOT EXISTS IHMProjetF;")
                 //La table ENTITE contient toutes les entités utilisateurs, par exemple: Etudiant, Professeur...
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.ENTITE (idEntite INT NOT NULL AUTO_INCREMENT, nomEntite VARCHAR2(50), PRIMARY KEY(idEntite));")
+                .append("CREATE TABLE IF NOT EXISTS IHMProjetF.ENTITE (idEntite INT NOT NULL AUTO_INCREMENT, nomEntite VARCHAR2(50), PRIMARY KEY(idEntite));")
                         //La table Utilisateur contient tout les utilisateurs.
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.Utilisateur (idUtilisateur INT NOT NULL AUTO_INCREMENT, idEntite INT NOT NULL, numeroEtudiant INT, nomUtilisateur VARCHAR2(50), prenomUtilisateur VARCHAR2(50), identifiantUtilisateur VARCHAR2(50), motDePasseUtilisateur VARCHAR2(50), PRIMARY KEY(idUtilisateur), FOREIGN KEY(idEntite) REFERENCES ProjetFIHM.ENTITE(idEntite));")
+                .append("CREATE TABLE IF NOT EXISTS IHMProjetF.Utilisateur (idUtilisateur INT NOT NULL AUTO_INCREMENT, idEntite INT NOT NULL, numeroEtudiant INT, nomUtilisateur VARCHAR2(50), prenomUtilisateur VARCHAR2(50), identifiantUtilisateur VARCHAR2(50), motDePasseUtilisateur VARCHAR2(50), PRIMARY KEY(idUtilisateur), FOREIGN KEY(idEntite) REFERENCES IHMProjetF.ENTITE(idEntite));")
                         //La table Question contient toutes les questions disponibles pour l'ajout dans un QCM.
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.Question (idQuestion INT NOT NULL AUTO_INCREMENT, intituleQuestion VARCHAR2(250), multipleQuestion BOOLEAN, dureeQuestion INT NOT NULL, pointQuestion INT NOT NULL, PRIMARY KEY(idQuestion));")
+                .append("CREATE TABLE IF NOT EXISTS IHMProjetF.Question (idQuestion INT NOT NULL AUTO_INCREMENT, intituleQuestion VARCHAR2(250), multipleQuestion BOOLEAN, dureeQuestion INT NOT NULL, pointQuestion INT NOT NULL, PRIMARY KEY(idQuestion));")
                         //La table Reponse contient toutes les réponses associées à une question donnée.
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.Reponse (idReponse INT NOT NULL AUTO_INCREMENT, idQuestion INT NOT NULL, intituleReponse VARCHAR2(250), correctReponse BOOLEAN, PRIMARY KEY(idReponse), FOREIGN KEY(idQuestion) REFERENCES ProjetFIHM.Question(idQuestion) ON DELETE CASCADE);")
+                .append("CREATE TABLE IF NOT EXISTS IHMProjetF.Reponse (idReponse INT NOT NULL AUTO_INCREMENT, idQuestion INT NOT NULL, intituleReponse VARCHAR2(250), correctReponse BOOLEAN, PRIMARY KEY(idReponse), FOREIGN KEY(idQuestion) REFERENCES IHMProjetF.Question(idQuestion) ON DELETE CASCADE);")
                         //La table QCM contient tout les QCM créés dans l'aplication.
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.QCM (idQCM INT NOT NULL AUTO_INCREMENT, idCreateur INT NOT NULL, nomQCM VARCHAR2(250), dateCreation DATE, PRIMARY KEY(idQCM), FOREIGN KEY(idCreateur) REFERENCES ProjetFIHM.Utilisateur(idUtilisateur) ON DELETE CASCADE);")
+                .append("CREATE TABLE IF NOT EXISTS IHMProjetF.QCM (idQCM INT NOT NULL AUTO_INCREMENT, idCreateur INT NOT NULL, nomQCM VARCHAR2(250), dateCreation DATE, PRIMARY KEY(idQCM), etatQCM VARCHAR2(250), FOREIGN KEY(idCreateur) REFERENCES IHMProjetF.Utilisateur(idUtilisateur) ON DELETE CASCADE);")
                         //La table QCMQuestion contient toutes les questions associées à un QCM donné.
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.QCMQuestion (idQCM INT NOT NULL, idQuestion INT NOT NULL, PRIMARY KEY(idQCM, idQuestion), FOREIGN KEY(idQCM) REFERENCES ProjetFIHM.QCM(idQCM) ON DELETE CASCADE, FOREIGN KEY(idQuestion) REFERENCES ProjetFIHM.Question(idQuestion) ON DELETE CASCADE);")
+                .append("CREATE TABLE IF NOT EXISTS IHMProjetF.QCMQuestion (idQCM INT NOT NULL, idQuestion INT NOT NULL, PRIMARY KEY(idQCM, idQuestion), FOREIGN KEY(idQCM) REFERENCES IHMProjetF.QCM(idQCM) ON DELETE CASCADE, FOREIGN KEY(idQuestion) REFERENCES IHMProjetF.Question(idQuestion) ON DELETE CASCADE);")
                         //La table ResultatUtilisateur contient toutes les participations à un QCM pour un utilisateur donné.
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.ResultatUtilisateur (idResultatUtilisateur INT NOT NULL AUTO_INCREMENT, idUtilisateur INT NOT NULL, idQCM INT NOT NULL, dateResultatUtilisateur DATE, PRIMARY KEY(idResultatUtilisateur), FOREIGN KEY(idQCM) REFERENCES ProjetFIHM.QCM(idQCM) ON DELETE CASCADE, FOREIGN KEY(idUtilisateur) REFERENCES ProjetFIHM.Utilisateur(idUtilisateur) ON DELETE CASCADE);")
+                .append("CREATE TABLE IF NOT EXISTS IHMProjetF.ResultatUtilisateur (idResultatUtilisateur INT NOT NULL AUTO_INCREMENT, idUtilisateur INT NOT NULL, idQCM INT NOT NULL, dateResultatUtilisateur DATE, PRIMARY KEY(idResultatUtilisateur), FOREIGN KEY(idQCM) REFERENCES IHMProjetF.QCM(idQCM) ON DELETE CASCADE, FOREIGN KEY(idUtilisateur) REFERENCES IHMProjetF.Utilisateur(idUtilisateur) ON DELETE CASCADE);")
                         //La table ReponseUtilisateur contient toutes les réponses données par un utilisateur pour un ResultatUtilisateur donné (suite à la participation à un QCM).
-                .append("CREATE TABLE IF NOT EXISTS ProjetFIHM.ReponseUtilisateur (idResultatUtilisateur INT NOT NULL, idReponse INT NOT NULL, PRIMARY KEY(idResultatUtilisateur, idReponse), FOREIGN KEY(idResultatUtilisateur) REFERENCES ProjetFIHM.ResultatUtilisateur(idResultatUtilisateur) ON DELETE CASCADE, FOREIGN KEY(idReponse) REFERENCES ProjetFIHM.Reponse(idReponse) ON DELETE CASCADE);").toString();
+                .append("CREATE TABLE IF NOT EXISTS IHMProjetF.ReponseUtilisateur (idResultatUtilisateur INT NOT NULL, idReponse INT NOT NULL, PRIMARY KEY(idResultatUtilisateur, idReponse), FOREIGN KEY(idResultatUtilisateur) REFERENCES IHMProjetF.ResultatUtilisateur(idResultatUtilisateur) ON DELETE CASCADE, FOREIGN KEY(idReponse) REFERENCES IHMProjetF.Reponse(idReponse) ON DELETE CASCADE);").toString();
 
         try {
             stmt.execute(query);
         } catch(SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
     }
 
@@ -142,7 +143,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
         try {
             resultSet = stmt.executeQuery(query);
         } catch(SQLException e) {
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         boolean insert = false;
@@ -153,7 +154,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
                 //Si le nombre d'entité en BDD est de 0, alors on doit insérer des données par défaut (pas d'entité, donc pas d'utilisateur...etc).
                 insert = resultSet.getInt(1) == 0;
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
 
@@ -167,8 +168,8 @@ public final class BaseDonneeH2 implements IBaseDonnee {
                             BaseDonneeEnum.QUESTION, QuestionEnum.INTITULE_QUESTION, QuestionEnum.MULTIPLE_QUESTION, QuestionEnum.DUREE_QUESTION, QuestionEnum.POINT_QUESTION))
                     .append(String.format("INSERT INTO %s (%s,%s,%s) VALUES (1,'42',true),(1,'Alexis Lavie',false),(2,'0',false),(2,'20',true),(3,'Jean Bon',false),(3,'Sullivan Perrin',true),(3,'Eléonore Gédéon',true),(3,'Alexis Lavie',true);",
                             BaseDonneeEnum.REPONSE,ReponseEnum.ID_QUESTION, ReponseEnum.INTITULE_REPONSE, ReponseEnum.CORRECT_REPONSE))
-                    .append(String.format("INSERT INTO %s (%s,%s,%s) VALUES ('QCM IHM','2014-01-01',2);",
-                            BaseDonneeEnum.QCM, QCMEnum.NOM_QCM, QCMEnum.DATE_CREATION, QCMEnum.ID_CREATEUR))
+                    .append(String.format("INSERT INTO %s (%s,%s,%s,%s) VALUES ('QCM IHM','2014-01-01',2,%s);",
+                            BaseDonneeEnum.QCM, QCMEnum.NOM_QCM, QCMEnum.DATE_CREATION, QCMEnum.ID_CREATEUR, QCMEnum.ETAT_QCM, EtatQCMEnum.OUVERT))
                     .append(String.format("INSERT INTO %s (%s,%s) VALUES (1,1),(2,1),(3,1);",
                             BaseDonneeEnum.QCM_QUESTION, QCMQuestionEnum.ID_QUESTION, QCMQuestionEnum.ID_QCM))
                     .append(String.format("INSERT INTO %s (%s,%s,%s) VALUES (2,1,'2014-01-11');",
@@ -179,7 +180,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
             try {
                 stmt.execute(query);
             } catch(SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
     }

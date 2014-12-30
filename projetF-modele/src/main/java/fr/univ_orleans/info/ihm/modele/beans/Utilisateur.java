@@ -3,7 +3,7 @@ package fr.univ_orleans.info.ihm.modele.beans;
 import java.io.Serializable;
 
 public class Utilisateur implements IUtilisateur, Serializable{
-    private final String NOM_ENTITE_ADMIN = "Professeur";
+    private static final String NOM_ENTITE_ADMIN = "Professeur";
 
     private int idUtilisateur;
     private int numeroEtudiant;

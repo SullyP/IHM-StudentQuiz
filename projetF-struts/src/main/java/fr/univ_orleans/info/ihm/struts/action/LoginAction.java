@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
 import fr.univ_orleans.info.ihm.modele.rmi.IModeleService;
 import fr.univ_orleans.info.ihm.modele.rmi.InitRemoteService;
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ApplicationAware;
 
@@ -11,6 +12,7 @@ import java.rmi.RemoteException;
 import java.util.Map;
 
 public class LoginAction extends ActionSupport implements ApplicationAware {
+    private static final Logger LOGGER = Logger.getLogger(LoginAction.class.getCanonicalName());
     private IModeleService monService;
     private String userName;
     private String password;
@@ -28,7 +30,7 @@ public class LoginAction extends ActionSupport implements ApplicationAware {
         try {
             user = this.monService.getUtilisateurByIdentifiant(this.userName);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            LOGGER.fatal(e);
         }
         if (user == null) {
             addActionError("Identifiant incorrect.");

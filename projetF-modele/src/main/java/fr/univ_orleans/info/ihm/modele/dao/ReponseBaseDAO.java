@@ -1,9 +1,9 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
-import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
-import fr.univ_orleans.info.ihm.modele.dao.db.ReponseEnum;
 import fr.univ_orleans.info.ihm.modele.beans.IReponse;
 import fr.univ_orleans.info.ihm.modele.beans.Reponse;
+import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
+import fr.univ_orleans.info.ihm.modele.dao.db.ReponseEnum;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponseDAO{
-    private static final Logger logger = Logger.getLogger(ReponseBaseDAO.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(ReponseBaseDAO.class.getCanonicalName());
     private static IReponseDAO instance=null;
 
     private ReponseBaseDAO(){
@@ -52,7 +52,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
             //On cherche à obtenir l'idReponse généré.
             resultSet = preparedStatement.getGeneratedKeys();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if(resultSet!=null){
@@ -63,7 +63,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
                 reponse = new Reponse(resultSet.getInt(1), intituleReponse, correct);
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -87,7 +87,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
             preparedStatement.setInt(1, idReponse);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if(resultSet!=null){
@@ -100,7 +100,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
                         resultSet.getBoolean(ReponseEnum.CORRECT_REPONSE.toString()));
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -124,7 +124,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
             preparedStatement.setInt(1, idQuestion);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if(resultSet!=null){
@@ -138,7 +138,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
                 }
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -166,7 +166,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
             preparedStatement.executeUpdate();
             reponse = new Reponse(idReponse,intituleReponse,correct);
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         this.getBd().closePrepared(preparedStatement);
@@ -188,7 +188,7 @@ public final class ReponseBaseDAO extends AbstractDAOObject implements  IReponse
             preparedStatement.setInt(1, idReponse);
             preparedStatement.executeUpdate();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         this.getBd().closePrepared(preparedStatement);

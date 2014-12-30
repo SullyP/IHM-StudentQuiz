@@ -1,9 +1,9 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
-import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
-import fr.univ_orleans.info.ihm.modele.dao.db.EntiteEnum;
 import fr.univ_orleans.info.ihm.modele.beans.Entite;
 import fr.univ_orleans.info.ihm.modele.beans.IEntite;
+import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
+import fr.univ_orleans.info.ihm.modele.dao.db.EntiteEnum;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO {
-    private static final Logger logger = Logger.getLogger(EntiteBaseDAO.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(EntiteBaseDAO.class.getCanonicalName());
     private static IEntiteDAO instance=null;
 
     private EntiteBaseDAO(){
@@ -46,7 +46,7 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
             //On cherche à obtenir l'idEntite généré.
             resultSet = preparedStatement.getGeneratedKeys();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if(resultSet!=null){
@@ -57,7 +57,7 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
                 entite = new Entite(resultSet.getInt(1), nom);
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -80,7 +80,7 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
             preparedStatement.setInt(1, idEntite);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         if(resultSet!=null){
@@ -92,7 +92,7 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
                         resultSet.getString(EntiteEnum.NOM_ENTITE.toString()));
                 resultSet.close();
             } catch (SQLException e) {
-                logger.warn(e);
+                LOGGER.warn(e);
             }
         }
         this.getBd().closePrepared(preparedStatement);
@@ -118,7 +118,7 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
             //On créé une instance Entite avec les informations à notre disposition.
             entite = new Entite(idEntite, nom);
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         this.getBd().closePrepared(preparedStatement);
@@ -139,7 +139,7 @@ public final class EntiteBaseDAO extends AbstractDAOObject implements IEntiteDAO
             preparedStatement.setInt(1, idEntite);
             preparedStatement.executeUpdate();
         } catch (SQLException e){
-            logger.warn(e);
+            LOGGER.warn(e);
         }
 
         this.getBd().closePrepared(preparedStatement);

@@ -15,4 +15,7 @@ public interface ControlleurInterface {
     //pour changer de la vue
     public void changerVue(Appli appli);
 
+    //initialise la vue
+    public void initVue();
+
 }

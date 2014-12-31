@@ -21,4 +21,9 @@ public class Controlleur implements ControlleurInterface{
 
     }
 
+    @Override
+    public void initVue() {
+
+    }
+
 }

@@ -212,7 +212,7 @@ public class ModeleService implements IModeleService {
      * {@inheritDoc}
      */
     @Override
-    public IQuestion getNextQuestionQCM(int idQCM, int idResultatUtilisateur) {
+    public IQuestion getNextQuestionQCM(int idQCM, int idResultatUtilisateur) throws RemoteException {
         return QCMBaseDAO.getInstance().getNextQuestionQCM(idQCM, idResultatUtilisateur);
     }
 
@@ -220,7 +220,7 @@ public class ModeleService implements IModeleService {
      * {@inheritDoc}
      */
     @Override
-    public List<IQCM> getListQCMDispo() {
+    public List<IQCM> getListQCMDispo() throws RemoteException {
         return QCMBaseDAO.getInstance().getListQCMDispo();
     }
 
@@ -228,7 +228,7 @@ public class ModeleService implements IModeleService {
      * {@inheritDoc}
      */
     @Override
-    public List<IQCM> getListQCMByIdCreateur(int idCreateur) {
+    public List<IQCM> getListQCMByIdCreateur(int idCreateur) throws RemoteException {
         return QCMBaseDAO.getInstance().getListQCMByIdCreateur(idCreateur);
     }
 

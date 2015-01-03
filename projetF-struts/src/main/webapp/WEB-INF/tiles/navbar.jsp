@@ -15,11 +15,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href=""><s:text name="global.appName"/></a>
+                    <a class="navbar-brand" href="<s:url action=""/>"><s:text name="global.appName"/></a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse-menu">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="<s:url action="home" />"><s:text name="global.home"/></a></li>
+                        <li class="active"><a href="<s:url action="home"/>"><s:text name="global.home"/></a></li>
                         <li><a href=""><s:text name="global.about"/></a></li>
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown"><s:text

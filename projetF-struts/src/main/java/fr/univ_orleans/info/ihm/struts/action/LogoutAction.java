@@ -10,6 +10,7 @@ public class LogoutAction extends ActionSupport {
     public String execute() {
         ServletActionContext.getRequest().getSession().invalidate();
         addActionMessage("Vous êtes désormais déconnecté.");
+
         return Action.SUCCESS;
     }
 }

@@ -1,6 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 
 <html>
@@ -15,17 +13,12 @@
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <sj:head jqueryui="true"/>
-    <sb:head includeScripts="true" includeScriptsValidation="true"/>
-    <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css"/>
-    <script src="${pageContext.request.contextPath}/js/main.js"></script>
+    <link href="${pageContext.request.contextPath}/css/error.css" rel="stylesheet" type="text/css"/>
     <title><tiles:insertAttribute name="title" ignore="true"/></title>
 </head>
 
 <body>
-<tiles:insertAttribute name="header"/>
 <tiles:insertAttribute name="body"/>
-<tiles:insertAttribute name="footer"/>
 </body>
 
 </html>

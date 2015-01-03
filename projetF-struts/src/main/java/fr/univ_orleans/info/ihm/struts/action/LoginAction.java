@@ -1,5 +1,6 @@
 package fr.univ_orleans.info.ihm.struts.action;
 
+import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
 import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
 import fr.univ_orleans.info.ihm.modele.rmi.IModeleService;
@@ -20,38 +21,45 @@ public class LoginAction extends ActionSupport implements ApplicationAware {
     public LoginAction() {
         super();
         monService = null;
-        userName = "";
-        password = "";
+        userName = null;
+        password = null;
     }
 
     @Override
     public String execute() {
         IUtilisateur user = null;
-        try {
-            user = this.monService.getUtilisateurByIdentifiant(this.userName);
-        } catch (RemoteException e) {
-            LOGGER.fatal(e);
-        }
-        if (user == null) {
-            addActionError("Identifiant incorrect.");
-            return INPUT;
-        } else if (user.validerMotDePasseUtilisateur(this.password)) {
-            ServletActionContext.getRequest().getSession().setAttribute("userName", user);
-            if (user.isAdmin()) {
-                return "isAdmin";
-            } else {
-                return "isUser";
+
+        if (this.userName != null) {
+            try {
+                user = this.monService.getUtilisateurByIdentifiant(this.userName);
+            } catch (RemoteException e) {
+                LOGGER.fatal(e);
             }
-        } else {
-            addActionError("Mot de passe incorrect.");
-            return INPUT;
+            if (user == null) {
+                addActionError("Identifiant incorrect.");
+                return Action.INPUT;
+            } else if (user.validerMotDePasseUtilisateur(this.password)) {
+                ServletActionContext.getRequest().getSession().setAttribute("userName", user);
+                if (user.isAdmin()) {
+                    return "isAdmin";
+                } else {
+                    return "isUser";
+                }
+            } else {
+                addActionError("Mot de passe incorrect.");
+                return Action.INPUT;
+            }
         }
+
+        return Action.NONE;
     }
 
     @Override
     public void validate() {
-        if (this.userName.trim().length() == 0) {
-            addActionError("L'identifiant ne peut pas être vide.");
+        if (this.userName != null) {
+            if (this.userName.trim().length() == 0) {
+                addActionError("L'identifiant ne peut pas être vide.");
+            }
         }
     }
 

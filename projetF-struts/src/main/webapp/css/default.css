@@ -17,13 +17,30 @@ footer .container p {
     margin-bottom: 0;
 }
 
-/*.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-}*/
+.vertical-center {
+    height:100%;
+    width:100%;
+    text-align: center;
+}
 
-#login-nav {
+.vertical-center:before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+.vertical-center > .container {
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+#navbar-login {
     min-width: 250px;
     padding: 15px 15px 0px;
+}
+
+#form-login .panel-body {
+    padding-bottom: 0px;
 }

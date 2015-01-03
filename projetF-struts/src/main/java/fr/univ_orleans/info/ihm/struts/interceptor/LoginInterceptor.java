@@ -11,15 +11,21 @@ import javax.servlet.http.HttpSession;
 
 public class LoginInterceptor extends AbstractInterceptor implements StrutsStatics {
 
-    public String intercept(ActionInvocation actionInvocation) throws Exception {
+    public String intercept(ActionInvocation actionInvocation) throws InterceptorException {
         HttpServletRequest request = (HttpServletRequest) actionInvocation.getInvocationContext().get(HTTP_REQUEST);
         HttpSession session = request.getSession(true);
         IUtilisateur user = (IUtilisateur) session.getAttribute("userName");
 
         if (user != null) {
-            return actionInvocation.invoke();
-        } else {
-            return Action.LOGIN;
+            try {
+                return actionInvocation.invoke();
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new InterceptorException();
+            }
         }
+
+        return Action.LOGIN;
     }
+
 }

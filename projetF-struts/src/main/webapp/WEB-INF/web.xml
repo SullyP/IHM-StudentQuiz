@@ -5,28 +5,6 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <display-name>projetF-struts</display-name>
 
-    <!-- Tiles Configuration -->
-    <context-param>
-        <param-name>
-            org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG
-        </param-name>
-        <param-value>/WEB-INF/tiles.xml</param-value>
-    </context-param>
-
-    <!-- Tiles 3 Listener -->
-    <listener>
-        <listener-class>
-            org.apache.tiles.web.startup.simple.SimpleTilesListener
-        </listener-class>
-    </listener>
-
-    <!-- Modele Listener -->
-    <listener>
-        <listener-class>
-            fr.univ_orleans.info.ihm.modele.rmi.InitRemoteService
-        </listener-class>
-    </listener>
-
     <!-- Struts 2 Configuration -->
     <filter>
         <filter-name>struts2</filter-name>
@@ -39,7 +17,7 @@
         </init-param>
         <init-param>
             <param-name>struts.devMode</param-name>
-            <param-value>true</param-value>
+            <param-value>false</param-value>
         </init-param>
         <init-param>
             <param-name>struts.action.extension</param-name>
@@ -61,9 +39,36 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!-- Tiles Configuration -->
+    <context-param>
+        <param-name>
+            org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG
+        </param-name>
+        <param-value>/WEB-INF/tiles.xml</param-value>
+    </context-param>
+
+    <!-- Tiles 3 Listener -->
+    <listener>
+        <listener-class>
+            org.apache.tiles.extras.complete.CompleteAutoloadTilesListener
+        </listener-class>
+    </listener>
+
+    <!-- Modele Listener -->
+    <listener>
+        <listener-class>
+            fr.univ_orleans.info.ihm.modele.rmi.InitRemoteService
+        </listener-class>
+    </listener>
+
     <session-config>
         <session-timeout>600</session-timeout>
     </session-config>
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/WEB-INF/error/layout-404.jsp</location>
+    </error-page>
 
     <welcome-file-list>
         <welcome-file>home</welcome-file>

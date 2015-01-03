@@ -1,7 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ taglib prefix="sj" uri="/struts-jquery-tags" %>
-<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -46,20 +44,20 @@
                         <li class="dropdown">
                             <a href="<s:url action="login" />" class="dropdown-toggle" data-toggle="dropdown">Connexion
                                 <b class="caret"></b></a>
-                            <ul id="login-nav" class="dropdown-menu">
+                            <ul id="navbar-login" class="dropdown-menu">
                                 <li>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <s:form action="login" theme="bootstrap" cssClass="form">
-                                                <div class="form-group">
-                                                    <s:textfield name="userName" placeholder="Identifiant"
-                                                                 required="true"/>
-                                                </div>
-                                                <div class="form-group">
-                                                    <s:password name="password" placeholder="Mot de passe"
-                                                                required="true"/>
-                                                </div>
-                                                <s:submit cssClass="btn btn-success btn-block" value="Connexion"/>
+                                                <fieldset>
+                                                    <div class="form-group">
+                                                        <s:textfield name="userName" placeholder="Identifiant"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <s:password name="password" placeholder="Mot de passe"/>
+                                                    </div>
+                                                    <s:submit cssClass="btn btn-success btn-block" value="Connexion"/>
+                                                </fieldset>
                                             </s:form>
                                         </div>
                                     </div>

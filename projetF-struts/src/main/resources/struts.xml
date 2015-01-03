@@ -4,7 +4,11 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
 
-    <package name="default" namespace="/" extends="tiles-default">
+    <package name="default" namespace="/" extends="struts-default">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+        </result-types>
+
         <interceptors>
             <interceptor name="userInterceptor" class="fr.univ_orleans.info.ihm.struts.interceptor.LoginInterceptor"/>
             <interceptor-stack name="userStack">
@@ -22,7 +26,7 @@
         <default-action-ref name="home"/>
 
         <global-results>
-            <result name="login">/WEB-INF/login.jsp</result>
+            <result name="login" type="tiles">login.tiles</result>
 
             <result name="isUser" type="redirectAction">
                 <param name="actionName">home</param>
@@ -36,32 +40,40 @@
         </global-results>
 
         <action name="home" class="fr.univ_orleans.info.ihm.struts.action.HomeAction">
-            <result type="tiles">test.tiles</result>
+            <result type="tiles">home.tiles</result>
         </action>
 
         <action name="login" class="fr.univ_orleans.info.ihm.struts.action.LoginAction">
+            <result name="none" type="tiles">login.tiles</result>
             <result name="input" type="tiles">login.tiles</result>
-            <result name="error" type="tiles">login.tiles</result>
         </action>
 
         <action name="logout" class="fr.univ_orleans.info.ihm.struts.action.LogoutAction">
-            <result>/WEB-INF/login.jsp</result>
+            <result type="tiles">/WEB-INF/login.jsp</result>
         </action>
     </package>
 
     <package name="admin" extends="default" namespace="/admin">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+        </result-types>
+
         <default-interceptor-ref name="adminStack"/>
 
         <action name="home" class="fr.univ_orleans.info.ihm.struts.action.admin.HomeAction">
-            <result>/WEB-INF/admin/home.jsp</result>
+            <result type="tiles">admin/home.tiles</result>
         </action>
     </package>
 
     <package name="user" extends="default" namespace="/user">
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
+        </result-types>
+
         <default-interceptor-ref name="userStack"/>
 
         <action name="home" class="fr.univ_orleans.info.ihm.struts.action.user.HomeAction">
-            <result>/WEB-INF/user/home.jsp</result>
+            <result type="tiles">user/home.tiles</result>
         </action>
     </package>
 

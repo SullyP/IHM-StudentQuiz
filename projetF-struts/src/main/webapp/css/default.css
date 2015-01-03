@@ -1,10 +1,29 @@
 body {
-    margin-top: 30px;
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #F8F8F8;
+    border: solid #E7E7E7;
+    border-top-width: 1px;
+}
+
+footer .container p {
+    margin-bottom: 0;
+}
+
+/*.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}*/
+
 #login-nav {
     min-width: 250px;
-    padding-top: 15px;
-    padding-right: 15px;
-    padding-bottom: 0px;
-    padding-left: 15px;
+    padding: 15px 15px 0px;
 }

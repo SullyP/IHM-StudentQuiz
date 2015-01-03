@@ -31,6 +31,7 @@
         <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
         <maven-jar-plugin.version>2.5</maven-jar-plugin.version>
         <servlet-api.version>2.5</servlet-api.version>
+        <slf4j.version>1.7.9</slf4j.version>
         <struts2.version>2.3.20</struts2.version>
         <struts2-bootstrap-plugin.version>2.0.0</struts2-bootstrap-plugin.version>
         <struts2-jquery-plugin.version>3.7.1</struts2-jquery-plugin.version>

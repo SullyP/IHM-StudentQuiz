@@ -56,6 +56,33 @@
         </dependency>
 
         <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-tiles3-plugin</artifactId>
+            <version>${struts2.version}</version>
+        </dependency>
+
+        <!-- slf4j needed by struts2-tiles3-plugin -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <!-- slf4j-bridge for commons-logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <!-- slf4j implemented by log4j -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>${commons-logging.version}</version>

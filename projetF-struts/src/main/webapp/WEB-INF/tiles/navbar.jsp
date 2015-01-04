@@ -41,29 +41,35 @@
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="http://google.fr">I love Google</a></li>
-                        <li class="dropdown">
-                            <a href="<s:url action="login" />" class="dropdown-toggle" data-toggle="dropdown">Connexion
-                                <b class="caret"></b></a>
-                            <ul id="navbar-login" class="dropdown-menu">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <s:form action="login" theme="bootstrap" cssClass="form">
-                                                <fieldset>
-                                                    <div class="form-group">
-                                                        <s:textfield name="userName" placeholder="Identifiant"/>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <s:password name="password" placeholder="Mot de passe"/>
-                                                    </div>
-                                                    <s:submit cssClass="btn btn-success btn-block" value="Connexion"/>
-                                                </fieldset>
-                                            </s:form>
+                        <s:if test="#session.userName == null">
+                            <li class="dropdown">
+                                <a href="<s:url action="login"/>" class="dropdown-toggle" data-toggle="dropdown">Connexion
+                                    <b class="caret"></b></a>
+                                <ul id="navbar-login" class="dropdown-menu">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <s:form action="login" theme="bootstrap" cssClass="form">
+                                                    <fieldset>
+                                                        <div class="form-group">
+                                                            <s:textfield name="userName" placeholder="Identifiant"/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <s:password name="password" placeholder="Mot de passe"/>
+                                                        </div>
+                                                        <s:submit cssClass="btn btn-success btn-block"
+                                                                  value="Connexion"/>
+                                                    </fieldset>
+                                                </s:form>
+                                            </div>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
+                                    </li>
+                                </ul>
+                            </li>
+                        </s:if>
+                        <s:else>
+                            <li><a href="<s:url action="logout"/>">Déconnexion</a></li>
+                        </s:else>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->

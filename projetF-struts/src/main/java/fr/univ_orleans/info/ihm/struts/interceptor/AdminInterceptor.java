@@ -14,10 +14,11 @@ public class AdminInterceptor extends AbstractInterceptor implements StrutsStati
     public String intercept(ActionInvocation actionInvocation) throws InterceptorException {
         HttpServletRequest request = (HttpServletRequest) actionInvocation.getInvocationContext().get(HTTP_REQUEST);
         HttpSession session = request.getSession(true);
-        IUtilisateur user = (IUtilisateur) session.getAttribute("userName");
+        String userName = (String) session.getAttribute("userName");
+        String userLevel = (String) session.getAttribute("userLevel");
 
-        if (user != null) {
-            if (user.isAdmin()){
+        if (userName != null) {
+            if (userLevel.equals("isAdmin")){
                 try {
                     return actionInvocation.invoke();
                 } catch (Exception e) {

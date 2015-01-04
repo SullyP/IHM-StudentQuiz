@@ -29,13 +29,13 @@
             <result name="login" type="tiles">login.tiles</result>
 
             <result name="isUser" type="redirectAction">
-                <param name="actionName">home</param>
                 <param name="namespace">/user</param>
+                <param name="actionName">home</param>
             </result>
 
             <result name="isAdmin" type="redirectAction">
-                <param name="actionName">home</param>
                 <param name="namespace">/admin</param>
+                <param name="actionName">home</param>
             </result>
         </global-results>
 
@@ -49,7 +49,10 @@
         </action>
 
         <action name="logout" class="fr.univ_orleans.info.ihm.struts.action.LogoutAction">
-            <result type="tiles">/WEB-INF/login.jsp</result>
+            <result name="success" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">home</param>
+            </result>
         </action>
     </package>
 

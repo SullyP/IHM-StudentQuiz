@@ -14,9 +14,9 @@ public class LoginInterceptor extends AbstractInterceptor implements StrutsStati
     public String intercept(ActionInvocation actionInvocation) throws InterceptorException {
         HttpServletRequest request = (HttpServletRequest) actionInvocation.getInvocationContext().get(HTTP_REQUEST);
         HttpSession session = request.getSession(true);
-        IUtilisateur user = (IUtilisateur) session.getAttribute("userName");
+        String userName = (String) session.getAttribute("userName");
 
-        if (user != null) {
+        if (userName != null) {
             try {
                 return actionInvocation.invoke();
             } catch (Exception e) {

@@ -9,6 +9,8 @@ import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ApplicationAware;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.rmi.RemoteException;
 import java.util.Map;
 
@@ -39,10 +41,12 @@ public class LoginAction extends ActionSupport implements ApplicationAware {
                 addActionError("Identifiant incorrect.");
                 return Action.INPUT;
             } else if (user.validerMotDePasseUtilisateur(this.password)) {
-                ServletActionContext.getRequest().getSession().setAttribute("userName", user);
+                ServletActionContext.getRequest().getSession().setAttribute("userName", userName);
                 if (user.isAdmin()) {
+                    ServletActionContext.getRequest().getSession().setAttribute("userLevel", "isAdmin");
                     return "isAdmin";
                 } else {
+                    ServletActionContext.getRequest().getSession().setAttribute("userLevel", "isUser");
                     return "isUser";
                 }
             } else {
@@ -64,11 +68,11 @@ public class LoginAction extends ActionSupport implements ApplicationAware {
     }
 
     @Override
-    public void setApplication(Map<String, Object> stringObjectMap) {
-        this.monService = (IModeleService) stringObjectMap.get("ModeleService");
+    public void setApplication(Map<String, Object> application) {
+        this.monService = (IModeleService) application.get("ModeleService");
         if (this.monService == null) {
             this.monService = InitRemoteService.getService();
-            stringObjectMap.put("ModeleService", this.monService);
+            application.put("ModeleService", this.monService);
         }
     }
 

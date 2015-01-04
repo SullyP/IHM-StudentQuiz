@@ -23,8 +23,6 @@
             </interceptor-stack>
         </interceptors>
 
-        <default-action-ref name="home"/>
-
         <global-results>
             <result name="login" type="tiles">login.tiles</result>
 
@@ -38,6 +36,10 @@
                 <param name="actionName">home</param>
             </result>
         </global-results>
+
+        <action name="" class="fr.univ_orleans.info.ihm.struts.action.HomeAction">
+            <result type="tiles">home.tiles</result>
+        </action>
 
         <action name="home" class="fr.univ_orleans.info.ihm.struts.action.HomeAction">
             <result type="tiles">home.tiles</result>
@@ -57,11 +59,11 @@
     </package>
 
     <package name="admin" extends="default" namespace="/admin">
-        <result-types>
-            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
-        </result-types>
-
         <default-interceptor-ref name="adminStack"/>
+
+        <action name="" class="fr.univ_orleans.info.ihm.struts.action.admin.HomeAction">
+            <result type="tiles">admin/home.tiles</result>
+        </action>
 
         <action name="home" class="fr.univ_orleans.info.ihm.struts.action.admin.HomeAction">
             <result type="tiles">admin/home.tiles</result>
@@ -69,14 +71,24 @@
     </package>
 
     <package name="user" extends="default" namespace="/user">
-        <result-types>
-            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult"/>
-        </result-types>
-
         <default-interceptor-ref name="userStack"/>
+
+        <action name="" class="fr.univ_orleans.info.ihm.struts.action.user.HomeAction">
+            <result type="tiles">user/home.tiles</result>
+        </action>
 
         <action name="home" class="fr.univ_orleans.info.ihm.struts.action.user.HomeAction">
             <result type="tiles">user/home.tiles</result>
+        </action>
+    </package>
+
+    <package name="error" extends="default" namespace="/error">
+        <action name="404" class="fr.univ_orleans.info.ihm.struts.action.error.ErrorAction">
+            <result type="tiles">error/404.tiles</result>
+        </action>
+
+        <action name="500" class="fr.univ_orleans.info.ihm.struts.action.error.ErrorAction">
+            <result type="tiles">error/500.tiles</result>
         </action>
     </package>
 

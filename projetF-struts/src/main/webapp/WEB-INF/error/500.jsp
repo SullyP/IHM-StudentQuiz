@@ -8,10 +8,10 @@
                 <div class="error-template">
                     <h1>Oops!</h1>
 
-                    <h2>404 Not Found</h2>
+                    <h2>500 Internal Server Error</h2>
 
                     <div class="error-details">
-                        <p>Sorry, the requested page could not be found.</p>
+                        <p>Sorry, there was a problem serving the requested page.</p>
                     </div>
                     <div class="error-actions">
                         <a href="<s:url namespace="/" action="home"/>" class="btn btn-primary btn-lg"><span

@@ -13,11 +13,11 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<s:url action=""/>"><s:text name="global.appName"/></a>
+                    <a class="navbar-brand" href="<s:url namespace="/" action=""/>"><s:text name="global.appName"/></a>
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse-menu">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="<s:url action="home"/>"><s:text name="global.home"/></a></li>
+                        <li class="active"><a href="<s:url namespace="/" action="home"/>"><s:text name="global.home"/></a></li>
                         <li><a href=""><s:text name="global.about"/></a></li>
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown"><s:text
@@ -43,13 +43,13 @@
                         <li><a href="http://google.fr">I love Google</a></li>
                         <s:if test="#session.userName == null">
                             <li class="dropdown">
-                                <a href="<s:url action="login"/>" class="dropdown-toggle" data-toggle="dropdown">Connexion
+                                <a href="<s:url namespace="/" action="login"/>" class="dropdown-toggle" data-toggle="dropdown">Connexion
                                     <b class="caret"></b></a>
                                 <ul id="navbar-login" class="dropdown-menu">
                                     <li>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <s:form action="login" theme="bootstrap" cssClass="form">
+                                                <s:form namespace="/" action="login" theme="bootstrap" cssClass="form">
                                                     <fieldset>
                                                         <div class="form-group">
                                                             <s:textfield name="userName" placeholder="Identifiant"/>
@@ -68,7 +68,7 @@
                             </li>
                         </s:if>
                         <s:else>
-                            <li><a href="<s:url action="logout"/>">Déconnexion</a></li>
+                            <li><a href="<s:url namespace="/" action="logout"/>">Déconnexion</a></li>
                         </s:else>
                     </ul>
                 </div>

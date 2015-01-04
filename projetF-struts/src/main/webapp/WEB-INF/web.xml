@@ -17,7 +17,7 @@
         </init-param>
         <init-param>
             <param-name>struts.devMode</param-name>
-            <param-value>true</param-value>
+            <param-value>false</param-value>
         </init-param>
         <init-param>
             <param-name>struts.action.extension</param-name>
@@ -61,13 +61,20 @@
         </listener-class>
     </listener>
 
+    <!-- Session Configuration -->
     <session-config>
+        <!-- Time in seconds. -->
         <session-timeout>600</session-timeout>
     </session-config>
 
+    <!-- Custom Error Pages -->
     <error-page>
         <error-code>404</error-code>
-        <location>/WEB-INF/error/layout-404.jsp</location>
+        <location>/WEB-INF/error/redirect/404.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/WEB-INF/error/redirect/500.jsp</location>
     </error-page>
 
     <welcome-file-list>

@@ -9,6 +9,10 @@
         <put-attribute name="body" value=""/>
         <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
     </definition>
+    <definition name="redirectLayout" template="/WEB-INF/tiles/redirectLayout.jsp">
+        <put-attribute name="url" value=""/>
+    </definition>
+
     <definition name="home.tiles" extends="baseLayout">
         <put-attribute name="title" value="Test Page"/>
         <put-attribute name="body" value="/WEB-INF/home.jsp"/>
@@ -17,20 +21,30 @@
         <put-attribute name="title" value="Login Page"/>
         <put-attribute name="body" value="/WEB-INF/login.jsp"/>
     </definition>
+
     <definition name="admin/home.tiles" extends="baseLayout">
         <put-attribute name="title" value="Home Page"/>
         <put-attribute name="body" value="/WEB-INF/admin/home.jsp"/>
     </definition>
+
     <definition name="user/home.tiles" extends="baseLayout">
         <put-attribute name="title" value="Home Page"/>
         <put-attribute name="body" value="/WEB-INF/user/home.jsp"/>
     </definition>
-    <definition name="errorLayout" template="/WEB-INF/tiles/error/layout.jsp">
-        <put-attribute name="title" value=""/>
-        <put-attribute name="body" value=""/>
-    </definition>
-    <definition name="404.tiles" extends="errorLayout">
-        <put-attribute name="title" value="404"/>
+
+    <definition name="error/404.tiles" extends="baseLayout">
+        <put-attribute name="title" value="404 Page"/>
         <put-attribute name="body" value="/WEB-INF/error/404.jsp"/>
+    </definition>
+    <definition name="error/500.tiles" extends="baseLayout">
+        <put-attribute name="title" value="500 Page"/>
+        <put-attribute name="body" value="/WEB-INF/error/500.jsp"/>
+    </definition>
+
+    <definition name="redirect404.tiles" extends="redirectLayout">
+        <put-attribute name="url" value="error/404"/>
+    </definition>
+    <definition name="redirect500.tiles" extends="redirectLayout">
+        <put-attribute name="url" value="error/500"/>
     </definition>
 </tiles-definitions>

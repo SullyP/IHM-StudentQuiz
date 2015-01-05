@@ -37,6 +37,9 @@
         <struts2-bootstrap-plugin.version>2.0.0</struts2-bootstrap-plugin.version>
         <struts2-jquery-plugin.version>3.7.1</struts2-jquery-plugin.version>
         <velocity.version>1.7</velocity.version>
+
+        <!-- "-verbose" or "" -->
+        <javac.verbose></javac.verbose>
     </properties>
 
 </project>

@@ -10,7 +10,12 @@ import java.util.Map;
 
 public class ServiceAndSessionAwareAction extends ActionSupport implements SessionAware {
     private SessionMap<String, Object> session;
-    private IModeleService modeleService = ModeleClient.getModeleServiceInstance();
+    private IModeleService modeleService;
+
+    public ServiceAndSessionAwareAction() {
+        this.session = null;
+        this.modeleService = ModeleClient.getModeleServiceInstance();
+    }
 
     protected SessionMap<String, Object> getSession() {
         return this.session;
@@ -18,7 +23,7 @@ public class ServiceAndSessionAwareAction extends ActionSupport implements Sessi
 
     @Override
     public void setSession(Map<String, Object> session) {
-        this.session = (SessionMap) session;
+        this.session = (SessionMap<String, Object>) session;
     }
 
     protected IModeleService getModeleService() {

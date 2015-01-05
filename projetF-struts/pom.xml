@@ -135,6 +135,10 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler-plugin.version}</version>
                 <configuration>
+                    <compilerArgs>
+                        <arg>${javac.verbose}</arg>
+                        <arg>-Xlint:all</arg>
+                    </compilerArgs>
                     <source>${java-source}</source>
                     <target>${java-target}</target>
                 </configuration>

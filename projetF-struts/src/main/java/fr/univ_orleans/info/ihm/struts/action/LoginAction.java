@@ -2,6 +2,7 @@ package fr.univ_orleans.info.ihm.struts.action;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
 import fr.univ_orleans.info.ihm.modele.rmi.IModeleService;
 import fr.univ_orleans.info.ihm.modele.rmi.InitRemoteService;
@@ -9,8 +10,6 @@ import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ApplicationAware;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.rmi.RemoteException;
 import java.util.Map;
 
@@ -43,10 +42,10 @@ public class LoginAction extends ActionSupport implements ApplicationAware {
             } else if (user.validerMotDePasseUtilisateur(this.password)) {
                 ServletActionContext.getRequest().getSession().setAttribute("userName", userName);
                 if (user.isAdmin()) {
-                    ServletActionContext.getRequest().getSession().setAttribute("userLevel", "isAdmin");
+                    ServletActionContext.getRequest().getSession().setAttribute("userLevel", "admin");
                     return "isAdmin";
                 } else {
-                    ServletActionContext.getRequest().getSession().setAttribute("userLevel", "isUser");
+                    ServletActionContext.getRequest().getSession().setAttribute("userLevel", "user");
                     return "isUser";
                 }
             } else {
@@ -60,10 +59,8 @@ public class LoginAction extends ActionSupport implements ApplicationAware {
 
     @Override
     public void validate() {
-        if (this.userName != null) {
-            if (this.userName.trim().length() == 0) {
-                addActionError("L'identifiant ne peut pas être vide.");
-            }
+        if (this.userName != null && this.userName.trim().length() == 0) {
+            addActionError("L'identifiant ne peut pas être vide.");
         }
     }
 

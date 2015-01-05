@@ -8,7 +8,7 @@ import java.sql.Date;
 import java.util.List;
 
 public interface IModeleService extends Remote {
-    public final String SERVICE_NAME = "ModeleService";
+    public static final String SERVICE_NAME = "ModeleService";
 
     public abstract void init() throws RemoteException;
 

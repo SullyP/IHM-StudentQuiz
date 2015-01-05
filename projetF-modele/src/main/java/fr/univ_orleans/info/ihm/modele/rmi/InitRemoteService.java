@@ -9,7 +9,7 @@ import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 
 public class InitRemoteService implements ServletContextListener {
-    private static final Logger logger = Logger.getLogger(InitRemoteService.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(InitRemoteService.class.getCanonicalName());
     private static final int PORT_REGISTRY = 9345;
     private static boolean isRegistered = false;
     private static IModeleService service;
@@ -30,16 +30,16 @@ public class InitRemoteService implements ServletContextListener {
                 IModeleService stub = (IModeleService) UnicastRemoteObject.exportObject(service, 0);
                 Registry registry = LocateRegistry.createRegistry(PORT_REGISTRY);
                 registry.rebind(IModeleService.SERVICE_NAME, stub);
-                logger.info("Remote service bound");
+                LOGGER.info("Remote service bound");
                 isRegistered = true;
             } catch (Exception e) {
-                logger.error("Remote service exception:", e);
+                LOGGER.error("Remote service exception:", e);
             }
         }
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sCE) {
-        logger.info("Remote service destroyed");
+        LOGGER.info("Remote service destroyed");
     }
 }

@@ -17,33 +17,44 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse-menu">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="<s:url namespace="/" action="home"/>"><s:text name="global.home"/></a></li>
+                        <li class="active"><a href="<s:url namespace="/" action="home"/>"><s:text
+                                name="global.home"/></a></li>
                         <li><a href=""><s:text name="global.about"/></a></li>
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown"><s:text
                                     name="global.navbar.pages"/> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Action</a></li>
-                                <li><a href="">Another action</a></li>
-                                <li><a href="">Something else here</a></li>
-                                <li class="divider"></li>
-                                <li><a href="">Separated link</a></li>
-                                <li class="divider"></li>
-                                <li><a href="">One more separated link</a></li>
+                                <s:if test="%{#session.userLevel == 'admin'}">
+                                    <li><a href="">Action</a></li>
+                                    <li><a href="">Another action</a></li>
+                                    <li><a href="">Something else here</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="">Separated link</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="">One more separated link</a></li>
+                                </s:if>
+                                <s:elseif test="%{#session.userLevel == 'user'}">
+                                    <li><a href="">Action</a></li>
+                                    <li><a href="">Another action</a></li>
+                                </s:elseif>
+                                <s:else>
+                                    <li><a href="">Another action</a></li>
+                                </s:else>
                             </ul>
                         </li>
                     </ul>
                     <form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Chercher">
+                            <input type="text" class="form-control" placeholder="%{getText('global.search')}">
                         </div>
-                        <button type="submit" class="btn btn-default">Chercher</button>
+                        <button type="submit" class="btn btn-default"><s:text name="global.search"</button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="http://google.fr">I love Google</a></li>
-                        <s:if test="#session.userName == null">
+                        <s:if test="%{#session.userName == null}">
                             <li class="dropdown">
-                                <a href="<s:url namespace="/" action="login"/>" class="dropdown-toggle" data-toggle="dropdown">Connexion
+                                <a href="<s:url namespace="/" action="login"/>" class="dropdown-toggle"
+                                   data-toggle="dropdown">Connexion
                                     <b class="caret"></b></a>
                                 <ul id="navbar-login" class="dropdown-menu">
                                     <li>
@@ -52,13 +63,13 @@
                                                 <s:form namespace="/" action="login" theme="bootstrap" cssClass="form">
                                                     <fieldset>
                                                         <div class="form-group">
-                                                            <s:textfield name="userName" placeholder="Identifiant"/>
+                                                            <s:textfield name="userName" placeholder="%{getText('global.login.userName')}"/>
                                                         </div>
                                                         <div class="form-group">
-                                                            <s:password name="password" placeholder="Mot de passe"/>
+                                                            <s:password name="password" placeholder="%{getText('global.login.password')}"/>
                                                         </div>
                                                         <s:submit cssClass="btn btn-success btn-block"
-                                                                  value="Connexion"/>
+                                                                  value="%{getText('global.login')}"/>
                                                     </fieldset>
                                                 </s:form>
                                             </div>
@@ -68,7 +79,7 @@
                             </li>
                         </s:if>
                         <s:else>
-                            <li><a href="<s:url namespace="/" action="logout"/>">Déconnexion</a></li>
+                            <li><a href="<s:url namespace="/" action="logout"/>"><s:text name="global.logout"/></a></li>
                         </s:else>
                     </ul>
                 </div>

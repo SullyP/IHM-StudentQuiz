@@ -29,14 +29,11 @@ public class Login extends JPanel implements LoginInterface{
                 String motdepasse = new String(mdp.getPassword());
                 if(login == null && motdepasse == null ){
                     JOptionPane.showMessageDialog(null, "Veuillez remplir les champs Identifiant et Mot de passe.", "Erreur", JOptionPane.ERROR_MESSAGE);
-                }
-                else if(login == null){
+                } else if(login == null){
                     JOptionPane.showMessageDialog(null, "Veuillez remplir le champs Identifiant.", "Erreur", JOptionPane.ERROR_MESSAGE);
-                }
-                else if(motdepasse == null ){
+                } else if(motdepasse == null ){
                     JOptionPane.showMessageDialog(null, "Veuillez remplir le champs Mot de passe.", "Erreur", JOptionPane.ERROR_MESSAGE);
-                }
-                else{
+                } else{
 
                 }
             }

@@ -7,14 +7,18 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class Main {
-    private static final Logger logger = Logger.getLogger(Main.class.getCanonicalName());
+    private static final Logger LOGGER = Logger.getLogger(Main.class.getCanonicalName());
     public static final String HOST = "127.0.0.1";
+
+    private Main() {
+    }
+
     public static void main(String[] args) {
         try {
             Registry registry = LocateRegistry.getRegistry(HOST, 9345);
             IModeleService service = (IModeleService) registry.lookup(IModeleService.SERVICE_NAME);
         } catch (Exception e) {
-            logger.warn("Remote service exception", e);
+            LOGGER.warn("Remote service exception", e);
         }
     }
 }

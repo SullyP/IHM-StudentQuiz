@@ -13,7 +13,7 @@
         </filter-class>
         <init-param>
             <param-name>struts.enable.DynamicMethodInvocation</param-name>
-            <param-value>true</param-value>
+            <param-value>false</param-value>
         </init-param>
         <init-param>
             <param-name>struts.devMode</param-name>
@@ -24,8 +24,12 @@
             <param-value>,</param-value>
         </init-param>
         <init-param>
+            <param-name>struts.convention.result.path</param-name>
+            <param-value>/WEB-INF/</param-value>
+        </init-param>
+        <init-param>
             <param-name>struts.custom.i18n.resources</param-name>
-            <param-value>global</param-value>
+            <param-value>global, action</param-value>
         </init-param>
         <init-param>
             <param-name>struts.i18n.encoding</param-name>

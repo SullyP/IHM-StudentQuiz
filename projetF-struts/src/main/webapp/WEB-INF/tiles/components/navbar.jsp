@@ -25,20 +25,13 @@
                                     name="global.navbar.pages"/> <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <s:if test="%{#session.userLevel == 'admin'}">
-                                    <li><a href="">Action</a></li>
-                                    <li><a href="">Another action</a></li>
-                                    <li><a href="">Something else here</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="">Separated link</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="">One more separated link</a></li>
+                                    <%@ include file="pages/admin.jsp" %>
                                 </s:if>
                                 <s:elseif test="%{#session.userLevel == 'user'}">
-                                    <li><a href="">Action</a></li>
-                                    <li><a href="">Another action</a></li>
+                                    <%@ include file="pages/user.jsp" %>
                                 </s:elseif>
                                 <s:else>
-                                    <li><a href="">Another action</a></li>
+                                    <%@ include file="pages/visitor.jsp" %>
                                 </s:else>
                             </ul>
                         </li>
@@ -47,10 +40,7 @@
                         <div class="form-group">
                             <s:textfield cssClass="form-control" placeholder="%{getText('global.search')}"/>
                         </div>
-                        <button type="submit" class="btn btn-default">
-                            <s:text name="global.search"/>
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                        </button>
+                        <button type="submit" class="btn btn-default"><s:text name="global.search"/></button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="http://google.fr">I love Google</a></li>

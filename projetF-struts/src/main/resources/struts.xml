@@ -65,11 +65,11 @@
         <default-interceptor-ref name="adminStack"/>
 
         <action name="" class="fr.univ_orleans.info.ihm.struts.action.admin.ListQCMAction">
-            <result type="tiles">admin/home.tiles</result>
+            <result type="tiles">admin/listQCM.tiles</result>
         </action>
 
         <action name="home" class="fr.univ_orleans.info.ihm.struts.action.admin.ListQCMAction">
-            <result type="tiles">admin/home.tiles</result>
+            <result type="tiles">admin/listQCM.tiles</result>
         </action>
     </package>
 
@@ -77,11 +77,11 @@
         <default-interceptor-ref name="userStack"/>
 
         <action name="" class="fr.univ_orleans.info.ihm.struts.action.user.ListQCMAction">
-            <result type="tiles">user/home.tiles</result>
+            <result type="tiles">user/listQCM.tiles</result>
         </action>
 
         <action name="home" class="fr.univ_orleans.info.ihm.struts.action.user.ListQCMAction">
-            <result type="tiles">user/home.tiles</result>
+            <result type="tiles">user/listQCM.tiles</result>
         </action>
     </package>
 

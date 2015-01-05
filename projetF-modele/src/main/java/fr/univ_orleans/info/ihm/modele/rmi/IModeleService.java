@@ -10,21 +10,21 @@ import java.util.List;
 public interface IModeleService extends Remote {
     public static final String SERVICE_NAME = "ModeleService";
 
-    public abstract void init() throws RemoteException;
+    public void init() throws RemoteException;
 
     /**
      * Insère une nouvelle entite en BDD
      * @param nom nom de l'entité
      * @return l'entité créé
      */
-    public abstract IEntite creerEntite(String nom) throws RemoteException;
+    public IEntite creerEntite(String nom) throws RemoteException;
 
     /**
      * Permet d'obtenir une entité via son id
      * @param idEntite id de l'entité
      * @return l'entité
      */
-    public abstract IEntite getEntite(int idEntite) throws RemoteException;
+    public IEntite getEntite(int idEntite) throws RemoteException;
 
     /**
      * Permet de mettre à jour le nom d'une entité
@@ -32,13 +32,13 @@ public interface IModeleService extends Remote {
      * @param nom nom de l'entité
      * @return l'entité mise à jour
      */
-    public abstract IEntite majEntite(int idEntite, String nom) throws RemoteException;
+    public IEntite majEntite(int idEntite, String nom) throws RemoteException;
 
     /**
      * Permet de supprimer une entité via son id
      * @param idEntite id de l'entité
      */
-    public abstract void suppressionEntite(int idEntite) throws RemoteException;
+    public void suppressionEntite(int idEntite) throws RemoteException;
 
     /**
      * Permet d'insérer un nouvel utilisateur en BDD.
@@ -50,14 +50,14 @@ public interface IModeleService extends Remote {
      * @param idEntite id de l'entité de l'utilisateur.
      * @return l'utilisateur créé.
      */
-    public abstract IUtilisateur creerUtilisateur(String prenom, String nom, String identifiant, String motDePasse, int numeroEtudiant, int idEntite) throws RemoteException;
+    public IUtilisateur creerUtilisateur(String prenom, String nom, String identifiant, String motDePasse, int numeroEtudiant, int idEntite) throws RemoteException;
 
     /**
      * Permet d'obtenir un utilisateur via son id.
      * @param idUtilisateur id de l'utilisateur.
      * @return l'utilisateur
      */
-    public abstract IUtilisateur getUtilisateur(int idUtilisateur) throws RemoteException;
+    public IUtilisateur getUtilisateur(int idUtilisateur) throws RemoteException;
 
     /**
      * Permet d'obtenir un utilisateur via son identifiant (login).
@@ -72,7 +72,7 @@ public interface IModeleService extends Remote {
      * @param motDePasse nouveau mot de passe
      * @return utilisateur
      */
-    public abstract IUtilisateur majMotDePasseUtilisateur(int idUtilisateur, String motDePasse) throws RemoteException;
+    public IUtilisateur majMotDePasseUtilisateur(int idUtilisateur, String motDePasse) throws RemoteException;
 
     /**
      * Permet de mettre à jour l'entité de l'utilisateur
@@ -80,13 +80,13 @@ public interface IModeleService extends Remote {
      * @param idEntite nouvel id de l'entité
      * @return utilisateur
      */
-    public abstract IUtilisateur majEntiteUtilisateur(int idUtilisateur, int idEntite) throws RemoteException;
+    public IUtilisateur majEntiteUtilisateur(int idUtilisateur, int idEntite) throws RemoteException;
 
     /**
      * Permet de supprimer un utilisateur
      * @param idUtilisateur id de l'utilisateur à supprimer.
      */
-    public abstract void suppressionUtilisateur(int idUtilisateur) throws RemoteException;
+    public void suppressionUtilisateur(int idUtilisateur) throws RemoteException;
 
     /**
      * Créé une réponse

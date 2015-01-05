@@ -22,13 +22,17 @@
         <put-attribute name="body" value="/WEB-INF/login.jsp"/>
     </definition>
 
-    <definition name="admin/home.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Home Page"/>
+    <definition name="admin/addQCM.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Add QCM Page"/>
+        <put-attribute name="body" value="/WEB-INF/admin/addQCM.jsp"/>
+    </definition>
+    <definition name="admin/listQCM.tiles" extends="baseLayout">
+        <put-attribute name="title" value="List QCM Page"/>
         <put-attribute name="body" value="/WEB-INF/admin/listQCM.jsp"/>
     </definition>
 
-    <definition name="user/home.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Home Page"/>
+    <definition name="user/listQCM.tiles" extends="baseLayout">
+        <put-attribute name="title" value="List QCM Page"/>
         <put-attribute name="body" value="/WEB-INF/user/listQCM.jsp"/>
     </definition>
 

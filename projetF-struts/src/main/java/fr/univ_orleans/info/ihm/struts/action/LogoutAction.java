@@ -1,14 +1,13 @@
 package fr.univ_orleans.info.ihm.struts.action;
 
 import com.opensymphony.xwork2.Action;
-import com.opensymphony.xwork2.ActionSupport;
-import org.apache.struts2.ServletActionContext;
+import fr.univ_orleans.info.ihm.struts.action.def.ServiceAndSessionAwareAction;
 
-public class LogoutAction extends ActionSupport {
+public class LogoutAction extends ServiceAndSessionAwareAction {
 
     @Override
     public String execute() {
-        ServletActionContext.getRequest().getSession().invalidate();
+        this.getSession().invalidate();
         addActionMessage("Vous êtes désormais déconnecté.");
 
         return Action.SUCCESS;

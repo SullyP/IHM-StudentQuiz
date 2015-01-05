@@ -3,7 +3,7 @@
 
 <div class="container">
     <s:if test="%{listQCM.size == 0}">
-        <p><s:text name="listQCM.noQCM"/></p>
+        <p><s:text name="admin.listQCM.noQCM"/></p>
     </s:if>
     <s:else>
         <s:iterator value="listQCM">

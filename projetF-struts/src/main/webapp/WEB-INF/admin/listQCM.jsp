@@ -1,13 +1,9 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Page d'administration</title>
-</head>
-<body>
+
 <div class="container">
-    <s:if test="%{listQCM.size==0}">
-        <p><s:text name="global.noQCM"/></p>
+    <s:if test="%{listQCM.size == 0}">
+        <p><s:text name="listQCM.noQCM"/></p>
     </s:if>
     <s:else>
         <s:iterator value="listQCM">
@@ -15,5 +11,3 @@
         </s:iterator>
     </s:else>
 </div>
-</body>
-</html>

@@ -24,12 +24,12 @@
 
     <definition name="admin/home.tiles" extends="baseLayout">
         <put-attribute name="title" value="Home Page"/>
-        <put-attribute name="body" value="/WEB-INF/admin/home.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/admin/listQCM.jsp"/>
     </definition>
 
     <definition name="user/home.tiles" extends="baseLayout">
         <put-attribute name="title" value="Home Page"/>
-        <put-attribute name="body" value="/WEB-INF/user/home.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/user/listQCM.jsp"/>
     </definition>
 
     <definition name="error/404.tiles" extends="baseLayout">

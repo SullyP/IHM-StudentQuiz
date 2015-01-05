@@ -64,11 +64,11 @@
     <package name="admin" extends="default" namespace="/admin">
         <default-interceptor-ref name="adminStack"/>
 
-        <action name="" class="fr.univ_orleans.info.ihm.struts.action.admin.HomeAction">
+        <action name="" class="fr.univ_orleans.info.ihm.struts.action.admin.ListQCMAction">
             <result type="tiles">admin/home.tiles</result>
         </action>
 
-        <action name="home" class="fr.univ_orleans.info.ihm.struts.action.admin.HomeAction">
+        <action name="home" class="fr.univ_orleans.info.ihm.struts.action.admin.ListQCMAction">
             <result type="tiles">admin/home.tiles</result>
         </action>
     </package>
@@ -76,11 +76,11 @@
     <package name="user" extends="default" namespace="/user">
         <default-interceptor-ref name="userStack"/>
 
-        <action name="" class="fr.univ_orleans.info.ihm.struts.action.user.HomeAction">
+        <action name="" class="fr.univ_orleans.info.ihm.struts.action.user.ListQCMAction">
             <result type="tiles">user/home.tiles</result>
         </action>
 
-        <action name="home" class="fr.univ_orleans.info.ihm.struts.action.user.HomeAction">
+        <action name="home" class="fr.univ_orleans.info.ihm.struts.action.user.ListQCMAction">
             <result type="tiles">user/home.tiles</result>
         </action>
     </package>

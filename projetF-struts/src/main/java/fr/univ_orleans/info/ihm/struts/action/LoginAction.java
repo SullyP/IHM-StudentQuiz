@@ -39,8 +39,8 @@ public class LoginAction extends ActionSupport implements ApplicationAware {
                 addActionError(getText("login.validation.userName.wrong"));
                 return Action.INPUT;
             } else if (user.validerMotDePasseUtilisateur(this.password)) {
-                ServletActionContext.getRequest().getSession().setAttribute("userName", userName);
                 ServletActionContext.getRequest().getSession().setAttribute("userId", user.getIdUtilisateur());
+                ServletActionContext.getRequest().getSession().setAttribute("userName", userName);
                 if (user.isAdmin()) {
                     ServletActionContext.getRequest().getSession().setAttribute("userLevel", "admin");
                     return "isAdmin";

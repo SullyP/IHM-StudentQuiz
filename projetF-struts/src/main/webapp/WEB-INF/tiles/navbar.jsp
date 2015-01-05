@@ -45,9 +45,9 @@
                     </ul>
                     <form class="navbar-form navbar-left" role="search">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="%{getText('global.search')}">
+                            <s:textfield cssClass="form-control" placeholder="%{getText('global.search')}"/>
                         </div>
-                        <button type="submit" class="btn btn-default"><s:text name="global.search"</button>
+                        <button type="submit" class="btn btn-default"><s:text name="global.search"/></button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="http://google.fr">I love Google</a></li>
@@ -63,13 +63,13 @@
                                                 <s:form namespace="/" action="login" theme="bootstrap" cssClass="form">
                                                     <fieldset>
                                                         <div class="form-group">
-                                                            <s:textfield name="userName" placeholder="%{getText('global.login.userName')}"/>
+                                                            <s:textfield name="userName" placeholder="%{getText('login.userName')}"/>
                                                         </div>
                                                         <div class="form-group">
-                                                            <s:password name="password" placeholder="%{getText('global.login.password')}"/>
+                                                            <s:password name="password" placeholder="%{getText('login.password')}"/>
                                                         </div>
                                                         <s:submit cssClass="btn btn-success btn-block"
-                                                                  value="%{getText('global.login')}"/>
+                                                                  value="%{getText('login')}"/>
                                                     </fieldset>
                                                 </s:form>
                                             </div>
@@ -79,7 +79,7 @@
                             </li>
                         </s:if>
                         <s:else>
-                            <li><a href="<s:url namespace="/" action="logout"/>"><s:text name="global.logout"/></a></li>
+                            <li><a href="<s:url namespace="/" action="logout"/>"><s:text name="logout"/></a></li>
                         </s:else>
                     </ul>
                 </div>

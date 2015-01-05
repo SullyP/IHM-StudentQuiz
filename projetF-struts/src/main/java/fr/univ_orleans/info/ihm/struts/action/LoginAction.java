@@ -2,7 +2,6 @@ package fr.univ_orleans.info.ihm.struts.action;
 
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionSupport;
-import com.opensymphony.xwork2.validator.annotations.StringLengthFieldValidator;
 import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
 import fr.univ_orleans.info.ihm.modele.rmi.IModeleService;
 import fr.univ_orleans.info.ihm.modele.rmi.InitRemoteService;
@@ -37,7 +36,7 @@ public class LoginAction extends ActionSupport implements ApplicationAware {
                 LOGGER.fatal(e);
             }
             if (user == null) {
-                addActionError("Identifiant incorrect.");
+                addActionError(getText("login.validation.userName.wrong"));
                 return Action.INPUT;
             } else if (user.validerMotDePasseUtilisateur(this.password)) {
                 ServletActionContext.getRequest().getSession().setAttribute("userName", userName);
@@ -49,7 +48,7 @@ public class LoginAction extends ActionSupport implements ApplicationAware {
                     return "isUser";
                 }
             } else {
-                addActionError("Mot de passe incorrect.");
+                addActionError(getText("login.validation.password.wrong"));
                 return Action.INPUT;
             }
         }
@@ -60,7 +59,7 @@ public class LoginAction extends ActionSupport implements ApplicationAware {
     @Override
     public void validate() {
         if (this.userName != null && this.userName.trim().length() == 0) {
-            addActionError("L'identifiant ne peut pas être vide.");
+            addActionError(getText("login.validation.userName.null"));
         }
     }
 

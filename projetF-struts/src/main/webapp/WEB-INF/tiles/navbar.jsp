@@ -47,7 +47,10 @@
                         <div class="form-group">
                             <s:textfield cssClass="form-control" placeholder="%{getText('global.search')}"/>
                         </div>
-                        <button type="submit" class="btn btn-default"><s:text name="global.search"/></button>
+                        <button type="submit" class="btn btn-default">
+                            <s:text name="global.search"/>
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="http://google.fr">I love Google</a></li>

@@ -40,6 +40,7 @@ public class LoginAction extends ActionSupport implements ApplicationAware {
                 return Action.INPUT;
             } else if (user.validerMotDePasseUtilisateur(this.password)) {
                 ServletActionContext.getRequest().getSession().setAttribute("userName", userName);
+                ServletActionContext.getRequest().getSession().setAttribute("userId", user.getIdUtilisateur());
                 if (user.isAdmin()) {
                     ServletActionContext.getRequest().getSession().setAttribute("userLevel", "admin");
                     return "isAdmin";

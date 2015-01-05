@@ -168,7 +168,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
                             BaseDonneeEnum.QUESTION, QuestionEnum.INTITULE_QUESTION, QuestionEnum.MULTIPLE_QUESTION, QuestionEnum.DUREE_QUESTION, QuestionEnum.POINT_QUESTION))
                     .append(String.format("INSERT INTO %s (%s,%s,%s) VALUES (1,'42',true),(1,'Alexis Lavie',false),(2,'0',false),(2,'20',true),(3,'Jean Bon',false),(3,'Sullivan Perrin',true),(3,'Eléonore Gédéon',true),(3,'Alexis Lavie',true);",
                             BaseDonneeEnum.REPONSE,ReponseEnum.ID_QUESTION, ReponseEnum.INTITULE_REPONSE, ReponseEnum.CORRECT_REPONSE))
-                    .append(String.format("INSERT INTO %s (%s,%s,%s,%s) VALUES ('QCM IHM','2014-01-01',2,%s);",
+                    .append(String.format("INSERT INTO %s (%s,%s,%s,%s) VALUES ('QCM IHM','2014-01-01',1,'%s');",
                             BaseDonneeEnum.QCM, QCMEnum.NOM_QCM, QCMEnum.DATE_CREATION, QCMEnum.ID_CREATEUR, QCMEnum.ETAT_QCM, EtatQCMEnum.OUVERT))
                     .append(String.format("INSERT INTO %s (%s,%s) VALUES (1,1),(2,1),(3,1);",
                             BaseDonneeEnum.QCM_QUESTION, QCMQuestionEnum.ID_QUESTION, QCMQuestionEnum.ID_QCM))

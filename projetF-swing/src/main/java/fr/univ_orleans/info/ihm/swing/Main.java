@@ -1,6 +1,7 @@
 package fr.univ_orleans.info.ihm.swing;
 
 import fr.univ_orleans.info.ihm.modele.rmi.IModeleService;
+import fr.univ_orleans.info.ihm.swing.vue.Appli;
 import org.apache.log4j.Logger;
 
 import java.rmi.registry.LocateRegistry;
@@ -17,8 +18,10 @@ public class Main {
         try {
             Registry registry = LocateRegistry.getRegistry(HOST, 9345);
             IModeleService service = (IModeleService) registry.lookup(IModeleService.SERVICE_NAME);
+            Appli application=new Appli("QCM",service);
         } catch (Exception e) {
             LOGGER.warn("Remote service exception", e);
         }
+
     }
 }

@@ -19,6 +19,18 @@
         </dependency>
 
         <dependency>
+            <groupId>org.java.net.substance</groupId>
+            <artifactId>substance</artifactId>
+            <version>${substance.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.pushingpixels</groupId>
+            <artifactId>trident</artifactId>
+            <version>${trident.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>

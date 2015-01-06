@@ -4,11 +4,11 @@ import fr.univ_orleans.info.ihm.modele.beans.*;
 import fr.univ_orleans.info.ihm.modele.dao.db.*;
 import org.apache.log4j.Logger;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implements IResultatUtilisateurDAO {
@@ -46,7 +46,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
             int numeroParametre = 1;
             preparedStatement.setInt(numeroParametre, idUtilisateur);
             preparedStatement.setInt(++numeroParametre, idQCM);
-            preparedStatement.setDate(++numeroParametre, dateResultat);
+            preparedStatement.setDate(++numeroParametre, new java.sql.Date(dateResultat.getTime()));
             preparedStatement.executeUpdate();
             //On cherche à obtenir l'idResultatUtilisateur généré.
             resultSet = preparedStatement.getGeneratedKeys();

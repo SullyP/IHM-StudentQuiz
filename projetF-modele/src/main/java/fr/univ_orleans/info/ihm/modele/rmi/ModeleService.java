@@ -5,7 +5,7 @@ import fr.univ_orleans.info.ihm.modele.dao.*;
 import org.apache.log4j.Logger;
 
 import java.rmi.RemoteException;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public class ModeleService implements IModeleService {

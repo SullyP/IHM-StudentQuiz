@@ -132,3 +132,15 @@ footer .container p {
 .box .space {
     height: 30px;
 }
+
+.right-corner {
+    position: absolute;
+    top: 65px;
+    right: 5px;
+}
+
+.left-corner {
+    position: absolute;
+    top: 65px;
+    left: 5px;
+}

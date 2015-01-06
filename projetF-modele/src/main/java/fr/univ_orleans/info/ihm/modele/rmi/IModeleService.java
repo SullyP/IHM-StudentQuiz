@@ -4,7 +4,7 @@ import fr.univ_orleans.info.ihm.modele.beans.*;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public interface IModeleService extends Remote {

@@ -18,7 +18,9 @@
     <sj:head jqueryui="true"/>
     <sb:head includeScripts="true" includeScriptsValidation="true"/>
     <link href="${pageContext.request.contextPath}/css/default.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/css/pietimer.css" rel="stylesheet" type="text/css"/>
     <script src="${pageContext.request.contextPath}/js/main.js"></script>
+    <script src="${pageContext.request.contextPath}/js/jquery.pietimer.js"></script>
     <title><tiles:insertAttribute name="title" ignore="true"/></title>
 </head>
 

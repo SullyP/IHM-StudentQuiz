@@ -7,11 +7,11 @@ import fr.univ_orleans.info.ihm.modele.beans.QCM;
 import fr.univ_orleans.info.ihm.modele.dao.db.*;
 import org.apache.log4j.Logger;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
@@ -52,7 +52,7 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
             int numeroParametre = 1;
             preparedStatement.setInt(numeroParametre, idCreateur);
             preparedStatement.setString(++numeroParametre, nomQCM);
-            preparedStatement.setDate(++numeroParametre, dateCreation);
+            preparedStatement.setDate(++numeroParametre, new java.sql.Date(dateCreation.getTime()));
             preparedStatement.setString(++numeroParametre,EtatQCMEnum.FERME.toString());
             preparedStatement.executeUpdate();
             //On cherche à obtenir l'idQCM généré.

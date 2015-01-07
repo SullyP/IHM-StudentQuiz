@@ -206,6 +206,13 @@ public interface IModeleService extends Remote {
     public IQuestion getNextQuestionQCM(int idQCM, int idResultatUtilisateur) throws RemoteException;
 
     /**
+     * Permet de calculer le score maximal d'un QCM
+     * @param idQCM id du QCM
+     * @return score maximal du QCM
+     */
+    public int calculerScoreMaxQCM(int idQCM) throws RemoteException;
+
+    /**
      * Permet d'obtenir la liste de tous les QCM disponibles (en attente ou ouvert)
      * @return liste de tous les QCM disponibles
      */

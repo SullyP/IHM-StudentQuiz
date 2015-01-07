@@ -220,6 +220,14 @@ public class ModeleService implements IModeleService {
      * {@inheritDoc}
      */
     @Override
+    public int calculerScoreMaxQCM(int idQCM) throws RemoteException {
+        return QCMBaseDAO.getInstance().calculerScoreMaxQCM(idQCM);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public List<IQCM> getListQCMDispo() throws RemoteException {
         return QCMBaseDAO.getInstance().getListQCMDispo();
     }

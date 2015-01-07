@@ -44,6 +44,9 @@ public class BeginQCM extends ServiceAndSessionAwareAction{
             this.intituleQuestion = question.getIntituleQuestion();
             this.reponses = question.getReponses();
             this.dureeQuestion = question.getDureeQuestion();
+            //Variable de session pour éviter la triche
+            this.getSession().put("dureeQuestion", this.dureeQuestion);
+            this.getSession().put("beforeQuestion", Calendar.getInstance().getTime().getTime());
         } catch (RemoteException e) {
             LOGGER.fatal(e);
         }

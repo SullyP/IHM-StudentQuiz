@@ -150,7 +150,7 @@ footer .container p {
 }
 
 .box > .icon > .info > .form {
-    color: dimgrey;
+    color: #666;
 }
 
 .mycheckbox {
@@ -162,7 +162,7 @@ footer .container p {
     border-color: #333;
 }
 
-.box > .icon > .info > form > fieldset > fieldset > .form-group > .form-group > .controls > .checkbox, .box > .icon > .info > form > fieldset > fieldset > .form-group > .form-group > .controls > .radio > .radio{
+.box > .icon > .info > form > fieldset > fieldset > .form-group > .form-group > .controls > .checkbox  > label, .box > .icon > .info > form > fieldset > fieldset > .form-group > .form-group > .controls > .radio > .radio{
     display: inline-block;
     margin: 0px;
 }

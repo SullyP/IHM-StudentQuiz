@@ -261,15 +261,14 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
     public IQuestion getNextQuestionQCM(int idQCM, int idResultatUtilisateur) {
         IQuestion question = null;
 
-        String sqlQuery = String.format("SELECT %s, COUNT(*) AS NB FROM %s ru JOIN %s res ON ru.%s = res.%s AND res.%s = ? JOIN %s r ON ru.%s = r.%s AND %s NOT IN (SELECT %s  FROM %s ru JOIN %s r ON %s = ? AND ru.%s = r.%s) GROUP BY %s ORDER BY NB LIMIT 1;",
+        String sqlQuery = String.format("SELECT %s, COUNT(*) AS NB FROM %s ru JOIN %s res ON ru.%s = res.%s AND res.%s = ? JOIN %s r ON ru.%s = r.%s AND %s NOT IN (SELECT %s  FROM IHMProjetF.MemoGetNextQuestion WHERE %s = ?) GROUP BY %s ORDER BY NB LIMIT 1;",
                 ReponseEnum.ID_QUESTION,
                 BaseDonneeEnum.REPONSE_UTILISATEUR, BaseDonneeEnum.RESULTAT_UTILISATEUR,
                 ReponseUtilisateurEnum.ID_RESULTAT_UTILISATEUR, ResultatUtilisateurEnum.ID_RESULTAT_UTILISATEUR, ResultatUtilisateurEnum.ID_QCM,
                 BaseDonneeEnum.REPONSE,
                 ReponseUtilisateurEnum.ID_REPONSE, ReponseEnum.ID_REPONSE,
                 ReponseEnum.ID_QUESTION, ReponseEnum.ID_QUESTION,
-                BaseDonneeEnum.REPONSE_UTILISATEUR, BaseDonneeEnum.REPONSE,
-                ReponseUtilisateurEnum.ID_RESULTAT_UTILISATEUR, ReponseUtilisateurEnum.ID_REPONSE, ReponseEnum.ID_REPONSE,
+                ResultatUtilisateurEnum.ID_RESULTAT_UTILISATEUR,
                 ReponseEnum.ID_QUESTION);
 
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
@@ -296,7 +295,61 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
         }
         this.getBd().closePrepared(preparedStatement);
 
+        //On enregistre l'idQuestion afin de ne pas le reproposé à l'utilisateur
+        if(question != null) {
+            sqlQuery = String.format("INSERT INTO IHMProjetF.MemoGetNextQuestion (%s,%s) VALUES (?,?);",
+                    ResultatUtilisateurEnum.ID_RESULTAT_UTILISATEUR, QCMQuestionEnum.ID_QUESTION);
+
+            preparedStatement = this.getBd().openPrepared(sqlQuery);
+            try {
+                int numeroParametre = 1;
+                preparedStatement.setInt(numeroParametre, idResultatUtilisateur);
+                preparedStatement.setInt(++numeroParametre, question.getIdQuestion());
+                preparedStatement.executeUpdate();
+            } catch (SQLException e) {
+                LOGGER.warn(e);
+            }
+            this.getBd().closePrepared(preparedStatement);
+        }
+
         return question;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int calculerScoreMaxQCM(int idQCM) {
+        int scoreMax = -1;
+
+        String sqlQuery = String.format("SELECT SUM(%s) FROM %s qq JOIN %s q ON qq.%s=q.%s AND qq.%s=?",
+                QuestionEnum.POINT_QUESTION,
+                BaseDonneeEnum.QCM_QUESTION, BaseDonneeEnum.QUESTION,
+                QCMQuestionEnum.ID_QUESTION, QuestionEnum.ID_QUESTION,
+                QCMQuestionEnum.ID_QCM);
+
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+        ResultSet resultSet = null;
+        try {
+            preparedStatement.setInt(1, idQCM);
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            LOGGER.warn(e);
+        }
+
+        if (resultSet != null) {
+            try {
+                //Si resultSet n'est pas nul, on accède à la première ligne.
+                resultSet.next();
+                scoreMax = resultSet.getInt(1);
+                resultSet.close();
+            } catch (SQLException e) {
+                LOGGER.warn(e);
+            }
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return scoreMax;
     }
 
     /**

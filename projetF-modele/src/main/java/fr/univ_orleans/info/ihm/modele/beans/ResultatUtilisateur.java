@@ -8,7 +8,8 @@ public class ResultatUtilisateur implements IResultatUtilisateur {
     private int idResultatUtilisateur;
     private int idUtilisateur;
     private int idQCM;
-    private double score;
+    private int score;
+    private int scoreMax;
     private Date date;
     private List<IQuestion> questionReponses;
 
@@ -23,6 +24,16 @@ public class ResultatUtilisateur implements IResultatUtilisateur {
         this.idUtilisateur = idUtilisateur;
         this.idQCM = idQCM;
         this.date = date;
+    }
+
+    @Override
+    public int getScoreMax() {
+        return scoreMax;
+    }
+
+    @Override
+    public void setScoreMax(int scoreMax) {
+        this.scoreMax = scoreMax;
     }
 
     @Override
@@ -41,7 +52,7 @@ public class ResultatUtilisateur implements IResultatUtilisateur {
     }
 
     @Override
-    public double getScore() {
+    public int getScore() {
         return this.score;
     }
 
@@ -69,7 +80,7 @@ public class ResultatUtilisateur implements IResultatUtilisateur {
     }
 
     @Override
-    public void setScore(double score) {
+    public void setScore(int score) {
         this.score = score;
     }
 

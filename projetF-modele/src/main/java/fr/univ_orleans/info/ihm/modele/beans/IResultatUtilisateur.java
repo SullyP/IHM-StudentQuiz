@@ -7,12 +7,14 @@ public interface IResultatUtilisateur {
     public int getIdResultatUtilisateur();
     public int getIdUtilisateur();
     public int getIdQCM();
-    public double getScore();
+    public int getScore();
+    public int getScoreMax();
     public Date getDate();
     public List<IQuestion> getQuestionReponses();
     public IResultatUtilisateur getResultatUtilisateur();
     public void setResultatUtilisateur(IResultatUtilisateur resultatUtilisateur);
-    public void setScore(double score);
+    public void setScore(int score);
+    public void setScoreMax(int scoreMax);
 
     /**
      * Permet d'ajouter une réponse aux résultats.

@@ -39,6 +39,10 @@
         <put-attribute name="title" value="Question"/>
         <put-attribute name="body" value="/WEB-INF/user/question.jsp"/>
     </definition>
+    <definition name="user/endQCM.tiles" extends="baseLayout">
+        <put-attribute name="title" value="Question"/>
+        <put-attribute name="body" value="/WEB-INF/user/endQCM.jsp"/>
+    </definition>
 
     <definition name="error/404.tiles" extends="baseLayout">
         <put-attribute name="title" value="404 Page"/>

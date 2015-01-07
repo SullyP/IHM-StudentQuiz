@@ -1,13 +1,14 @@
 package fr.univ_orleans.info.ihm.modele.test;
 
+import fr.univ_orleans.info.ihm.modele.beans.*;
 import fr.univ_orleans.info.ihm.modele.dao.*;
 import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeH2;
-import fr.univ_orleans.info.ihm.modele.beans.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.sql.Date;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -33,7 +34,7 @@ public class ResultatUtilisateurTest {
         reponse2Question2 = ReponseBaseDAO.getInstance().creerReponse(question2.getIdQuestion(),"A toi de me le dire.", true);
         IEntite entite = EntiteBaseDAO.getInstance().creerEntite("Nouvelle entité");
         utilisateur = UtilisateurBaseDAO.getInstance().creerUtilisateur("jean", "paul", "jp", "azerty", 123456, entite.getIdEntite());
-        date = new Date(2014,11,23);
+        date = Calendar.getInstance().getTime();
         qcm = QCMBaseDAO.getInstance().creerQCM(utilisateur.getIdUtilisateur(),"QCMaven",date);
     }
 
@@ -60,7 +61,6 @@ public class ResultatUtilisateurTest {
         assertNotNull(resultatUtilisateur2);
         assertEquals(resultatUtilisateur.getIdResultatUtilisateur(),resultatUtilisateur2.getIdResultatUtilisateur());
         assertEquals(resultatUtilisateur.getIdQCM(),resultatUtilisateur2.getIdQCM());
-        assertEquals(resultatUtilisateur.getDate(), resultatUtilisateur2.getDate());
         assertEquals(resultatUtilisateur.getIdUtilisateur(), resultatUtilisateur2.getIdUtilisateur());
     }
 
@@ -114,8 +114,8 @@ public class ResultatUtilisateurTest {
         assertNotNull(resultatUtilisateur2);
         assertEquals(resultatUtilisateur.getIdResultatUtilisateur(),resultatUtilisateur2.getIdResultatUtilisateur());
 
-        double scoreLocal = question2.getPointQuestion(); //Première question fausse, deuxième tout juste
-        assertEquals(scoreLocal, resultatUtilisateur2.getScore(),0);
+        int scoreLocal = question2.getPointQuestion(); //Première question fausse, deuxième tout juste
+        assertEquals(scoreLocal, resultatUtilisateur2.getScore());
     }
 
     @Test

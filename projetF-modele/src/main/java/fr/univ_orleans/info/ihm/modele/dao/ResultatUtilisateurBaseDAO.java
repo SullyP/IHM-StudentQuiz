@@ -201,13 +201,13 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
      */
     @Override
     public IResultatUtilisateur calculerScore(int idResultatUtilisateur) {
-        double score = 0;
+        int score = 0;
         IResultatUtilisateur resultatUtilisateur = new ResultatUtilisateur(idResultatUtilisateur);
         List<IQuestion> questionReponses = this.getQuestionReponseListResultatUtilisateur(idResultatUtilisateur);
 
-        String sqlQuery = String.format("SELECT COUNT(*) FROM %s WHERE %s=?;",
+        String sqlQuery = String.format("SELECT COUNT(*) FROM %s WHERE %s=? AND %s=?;",
                 BaseDonneeEnum.REPONSE,
-                ReponseEnum.ID_QUESTION);
+                ReponseEnum.ID_QUESTION, ReponseEnum.CORRECT_REPONSE);
 
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
@@ -229,7 +229,9 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                     //Dans le cas d'une question à choix multiple, il faut connaître le nombre total de réponses corrects
                     ResultSet resultSet = null;
                     try {
-                        preparedStatement.setInt(1, question.getIdQuestion());
+                        int numeroParametre = 1;
+                        preparedStatement.setInt(numeroParametre, question.getIdQuestion());
+                        preparedStatement.setBoolean(++numeroParametre, true);
                         resultSet = preparedStatement.executeQuery();
                     } catch (SQLException e){
                         LOGGER.warn(e);
@@ -241,9 +243,9 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                             resultSet.next();
                             //On accède au nombre total de réponses corrects
                             int nbReponseCorrectTotal = resultSet.getInt(1);
-                            if(nbReponseCorrectTotal > 0){
+                            if(nbReponseCorrectTotal == nbReponseCorrect){
                                 //On ajoute les points au score
-                                score += question.getPointQuestion() * (nbReponseCorrect/nbReponseCorrectTotal);
+                                score += question.getPointQuestion();
                             }
 
                         } catch (SQLException e) {

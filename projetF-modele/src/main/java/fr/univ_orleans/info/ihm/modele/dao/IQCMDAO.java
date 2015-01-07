@@ -59,6 +59,13 @@ public interface IQCMDAO {
     public IQuestion getNextQuestionQCM(int idQCM, int idResultatUtilisateur);
 
     /**
+     * Permet de calculer le score maximal d'un QCM
+     * @param idQCM id du QCM
+     * @return score maximal du QCM
+     */
+    public int calculerScoreMaxQCM(int idQCM);
+
+    /**
      * Permet de mettre à jour le nom d'un QCM via son id
      * @param idQCM id du QCM
      * @param nomQCM nouveau nom du QCM

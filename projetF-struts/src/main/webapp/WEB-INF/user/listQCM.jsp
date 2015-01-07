@@ -25,7 +25,10 @@
                                     <s:property value="etatQCM"/>
                                 </p>
                                 <div class="more">
-                                    <a href="#">
+                                    <s:url namespace="%{getText('namespace.user')}" action="beginQCM" var="urlTag" >
+                                        <s:param name="idQCM"><s:property value="idQCM"/></s:param>
+                                    </s:url>
+                                    <a href="<s:property value="#urlTag" />">
                                         <s:text name="user.listQCM.participate"/> <i class="glyphicon glyphicon-chevron-right"></i>
                                     </a>
                                 </div>

@@ -144,3 +144,25 @@ footer .container p {
     top: 65px;
     left: 5px;
 }
+
+.box > .icon:hover > .info > .form {
+    color: black;
+}
+
+.box > .icon > .info > .form {
+    color: dimgrey;
+}
+
+.mycheckbox {
+    display: inline-block;
+}
+
+.box > .icon:hover > .info > form > fieldset > fieldset > .btn{
+    background-color: #333;
+    border-color: #333;
+}
+
+.box > .icon > .info > form > fieldset > fieldset > .form-group > .form-group > .controls > .checkbox, .box > .icon > .info > form > fieldset > fieldset > .form-group > .form-group > .controls > .radio > .radio{
+    display: inline-block;
+    margin: 0px;
+}

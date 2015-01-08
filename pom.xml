@@ -23,6 +23,7 @@
         <commons-collections.version>3.2.1</commons-collections.version>
         <commons-logging.version>1.2</commons-logging.version>
         <h2.version>1.4.184</h2.version>
+        <jasypt.version>1.9.2</jasypt.version>
         <javax.servlet-api>3.1.0</javax.servlet-api>
         <jetty-maven-plugin.version>8.1.16.v20140903</jetty-maven-plugin.version>
         <jsp-api.version>2.0</jsp-api.version>

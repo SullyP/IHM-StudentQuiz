@@ -17,6 +17,8 @@ import java.util.List;
 @Namespace(value = "/user")
 public class NextQuestion extends ServiceAndSessionAwareAction{
     private static final Logger LOGGER = Logger.getLogger(BeginQCM.class.getCanonicalName());
+    private static final int SECONDES_EN_MILLISECONDES = 1000;
+    private static final int DELAI_LATENCE = 2;
     //Données pour la fin du QCM
     private int score;
     private int scoreMax;
@@ -45,7 +47,7 @@ public class NextQuestion extends ServiceAndSessionAwareAction{
             long before = (long) this.getSession().get("beforeQuestion");
             int secondQuestion = (int) this.getSession().get("dureeQuestion");
             //On donne 2 secondes supplémentaires pour les problèmes de latences
-            if(now - before < (secondQuestion + 2) * 1000) {
+            if(now - before < (secondQuestion + DELAI_LATENCE) * SECONDES_EN_MILLISECONDES) {
                 if (this.multipleQuestion) {
                     //Si la question est multiple on enregistre toutes les réponses données (s'il y en a)
                     if (this.checkboxList != null) {

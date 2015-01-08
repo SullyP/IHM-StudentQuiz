@@ -1,5 +1,7 @@
 package fr.univ_orleans.info.ihm.modele.beans;
 
+import org.jasypt.util.password.StrongPasswordEncryptor;
+
 import java.io.Serializable;
 
 public class Utilisateur implements IUtilisateur, Serializable{
@@ -104,7 +106,8 @@ public class Utilisateur implements IUtilisateur, Serializable{
 
     @Override
     public boolean validerMotDePasseUtilisateur(String motDePasse) {
-        return motDePasse.equals(this.motDePasseUtilisateur);
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+        return passwordEncryptor.checkPassword(motDePasse, this.motDePasseUtilisateur);
     }
 
     /**

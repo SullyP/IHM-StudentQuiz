@@ -3,6 +3,7 @@ package fr.univ_orleans.info.ihm.modele.dao.db;
 import fr.univ_orleans.info.ihm.modele.beans.EtatQCMEnum;
 import org.apache.log4j.Logger;
 import org.h2.jdbcx.JdbcDataSource;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 
 import java.sql.*;
 
@@ -112,7 +113,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
                 //La table ENTITE contient toutes les entités utilisateurs, par exemple: Etudiant, Professeur...
                 .append("CREATE TABLE IF NOT EXISTS IHMProjetF.ENTITE (idEntite INT NOT NULL AUTO_INCREMENT, nomEntite VARCHAR2(50), PRIMARY KEY(idEntite));")
                         //La table Utilisateur contient tout les utilisateurs.
-                .append("CREATE TABLE IF NOT EXISTS IHMProjetF.Utilisateur (idUtilisateur INT NOT NULL AUTO_INCREMENT, idEntite INT NOT NULL, numeroEtudiant INT, nomUtilisateur VARCHAR2(50), prenomUtilisateur VARCHAR2(50), identifiantUtilisateur VARCHAR2(50), motDePasseUtilisateur VARCHAR2(50), PRIMARY KEY(idUtilisateur), FOREIGN KEY(idEntite) REFERENCES IHMProjetF.ENTITE(idEntite));")
+                .append("CREATE TABLE IF NOT EXISTS IHMProjetF.Utilisateur (idUtilisateur INT NOT NULL AUTO_INCREMENT, idEntite INT NOT NULL, numeroEtudiant INT, nomUtilisateur VARCHAR2(50), prenomUtilisateur VARCHAR2(50), identifiantUtilisateur VARCHAR2(50), motDePasseUtilisateur VARCHAR2(250), PRIMARY KEY(idUtilisateur), FOREIGN KEY(idEntite) REFERENCES IHMProjetF.ENTITE(idEntite));")
                         //La table Question contient toutes les questions disponibles pour l'ajout dans un QCM.
                 .append("CREATE TABLE IF NOT EXISTS IHMProjetF.Question (idQuestion INT NOT NULL AUTO_INCREMENT, intituleQuestion VARCHAR2(250), multipleQuestion BOOLEAN, dureeQuestion INT NOT NULL, pointQuestion INT NOT NULL, PRIMARY KEY(idQuestion));")
                         //La table Reponse contient toutes les réponses associées à une question donnée.
@@ -162,10 +163,15 @@ public final class BaseDonneeH2 implements IBaseDonnee {
 
         //Si l'on doit insérer des données
         if(insert){
+            //Cryptage du mot de passe
+            StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+            String motDePasseCryptAdmin = passwordEncryptor.encryptPassword("admin");
+            String motDePasseCryptEtudiant = passwordEncryptor.encryptPassword("etudiant");
+
             query = new StringBuilder(String.format("INSERT INTO %s (%s) VALUES ('Etudiant'),('Professeur');",
                             BaseDonneeEnum.ENTITE, EntiteEnum.NOM_ENTITE))
-                    .append(String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s) VALUES (2,'Admin','Admin','admin','admin',0),(1,'Etudiant','Etudiant','etudiant','etudiant',123);",
-                            BaseDonneeEnum.UTILISATEUR, UtilisateurEnum.ID_ENTITE, UtilisateurEnum.NOM_UTILISATEUR, UtilisateurEnum.PRENOM_UTILISATEUR, UtilisateurEnum.IDENTIFIANT_UTILISATEUR, UtilisateurEnum.MOT_DE_PASSE_UTILISATEUR, UtilisateurEnum.NUMERO_ETUDIANT))
+                    .append(String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s) VALUES (2,'Admin','Admin','admin','%s',0),(1,'Etudiant','Etudiant','etudiant','%s',123);",
+                            BaseDonneeEnum.UTILISATEUR, UtilisateurEnum.ID_ENTITE, UtilisateurEnum.NOM_UTILISATEUR, UtilisateurEnum.PRENOM_UTILISATEUR, UtilisateurEnum.IDENTIFIANT_UTILISATEUR, UtilisateurEnum.MOT_DE_PASSE_UTILISATEUR, UtilisateurEnum.NUMERO_ETUDIANT, motDePasseCryptAdmin, motDePasseCryptEtudiant))
                     .append(String.format("INSERT INTO %s (%s,%s,%s,%s) VALUES ('Quel est la réponse de la vie ?',false,5,1),('Quel note devez vous mettre à notre projet ?',false,5,3),('Qui sont les membres du groupe F ?',true,8,3);",
                             BaseDonneeEnum.QUESTION, QuestionEnum.INTITULE_QUESTION, QuestionEnum.MULTIPLE_QUESTION, QuestionEnum.DUREE_QUESTION, QuestionEnum.POINT_QUESTION))
                     .append(String.format("INSERT INTO %s (%s,%s,%s) VALUES (1,'42',true),(1,'Alexis Lavie',false),(2,'0',false),(2,'20',true),(3,'Jean Bon',false),(3,'Sullivan Perrin',true),(3,'Eléonore Gédéon',true),(3,'Alexis Lavie',true);",

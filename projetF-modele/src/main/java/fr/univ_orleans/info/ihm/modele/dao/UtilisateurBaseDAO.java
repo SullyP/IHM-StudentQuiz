@@ -8,6 +8,7 @@ import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.EntiteEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.UtilisateurEnum;
 import org.apache.log4j.Logger;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,13 +46,17 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
                 UtilisateurEnum.MOT_DE_PASSE_UTILISATEUR, UtilisateurEnum.NUMERO_ETUDIANT, UtilisateurEnum.ID_ENTITE);
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
+        //Cryptage du mot de passe
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+        String motDePasseCrypt = passwordEncryptor.encryptPassword(motDePasse);
+
         ResultSet resultSet = null;
         try {
             int numeroParametre = 1;
             preparedStatement.setString(numeroParametre, prenom);
             preparedStatement.setString(++numeroParametre, nom);
             preparedStatement.setString(++numeroParametre, identifiant);
-            preparedStatement.setString(++numeroParametre, motDePasse);
+            preparedStatement.setString(++numeroParametre, motDePasseCrypt);
             preparedStatement.setInt(++numeroParametre, numeroEtudiant);
             preparedStatement.setInt(++numeroParametre, idEntite);
             preparedStatement.executeUpdate();
@@ -66,7 +71,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
                 //Si resusltSet n'est pas nul, on accède à la première ligne.
                 resultSet.next();
                 //On créé une instance Utilisateur avec les informations à notre disposition.
-                utilisateur = new Utilisateur(resultSet.getInt(1), numeroEtudiant, nom, prenom, identifiant, motDePasse);
+                utilisateur = new Utilisateur(resultSet.getInt(1), numeroEtudiant, nom, prenom, identifiant, motDePasseCrypt);
                 resultSet.close();
             } catch (SQLException e) {
                 LOGGER.warn(e);
@@ -179,13 +184,17 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
                 BaseDonneeEnum.UTILISATEUR, UtilisateurEnum.MOT_DE_PASSE_UTILISATEUR, UtilisateurEnum.ID_UTILISATEUR);
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
+        //Cryptage du mot de passe
+        StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+        String motDePasseCrypt = passwordEncryptor.encryptPassword(motDePasse);
+
         try {
             int numeroParametre = 1;
-            preparedStatement.setString(numeroParametre, motDePasse);
+            preparedStatement.setString(numeroParametre, motDePasseCrypt);
             preparedStatement.setInt(++numeroParametre, idUtilisateur);
             //On créé une instance Utilisateur avec les informations à notre disposition.
             utilisateur = new Utilisateur(idUtilisateur);
-            utilisateur.setMotDePasseUtilisateur(motDePasse);
+            utilisateur.setMotDePasseUtilisateur(motDePasseCrypt);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.warn(e);

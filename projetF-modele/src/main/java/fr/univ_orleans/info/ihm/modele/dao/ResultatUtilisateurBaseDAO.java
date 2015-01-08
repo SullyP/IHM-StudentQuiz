@@ -215,11 +215,14 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
             //Ajout des réponses dans le résultatUtilisateur
             resultatUtilisateur.addReponse(question);
 
-            //On compte le nombre de réponse correct à la question
+            //On compte le nombre de réponse correct et incorrect à la question
             int nbReponseCorrect = 0;
+            int nbReponseIncorrect = 0;
             for(IReponse reponse:question.getReponses()){
                 if(reponse.isCorrectReponse()){
                     nbReponseCorrect++;
+                }else{
+                    nbReponseIncorrect++;
                 }
             }
 
@@ -243,7 +246,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                             resultSet.next();
                             //On accède au nombre total de réponses corrects
                             int nbReponseCorrectTotal = resultSet.getInt(1);
-                            if(nbReponseCorrectTotal == nbReponseCorrect){
+                            if(nbReponseCorrectTotal == nbReponseCorrect && nbReponseIncorrect == 0){
                                 //On ajoute les points au score
                                 score += question.getPointQuestion();
                             }
@@ -252,7 +255,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                             LOGGER.warn(e);
                         }
                     }
-                }else{
+                }else if(nbReponseIncorrect == 0){
                     //La question n'a qu'une seule réponse, on ajoute donc les points de la question au score
                     score += question.getPointQuestion();
                 }

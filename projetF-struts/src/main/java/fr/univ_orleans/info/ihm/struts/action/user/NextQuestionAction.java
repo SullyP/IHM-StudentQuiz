@@ -15,8 +15,8 @@ import java.util.List;
 
 @ParentPackage(value = "user")
 @Namespace(value = "/user")
-public class NextQuestion extends ServiceAndSessionAwareAction{
-    private static final Logger LOGGER = Logger.getLogger(BeginQCM.class.getCanonicalName());
+public class NextQuestionAction extends ServiceAndSessionAwareAction{
+    private static final Logger LOGGER = Logger.getLogger(NextQuestionAction.class.getCanonicalName());
     private static final int SECONDES_EN_MILLISECONDES = 1000;
     private static final int DELAI_LATENCE = 2;
     //Données pour la fin du QCM

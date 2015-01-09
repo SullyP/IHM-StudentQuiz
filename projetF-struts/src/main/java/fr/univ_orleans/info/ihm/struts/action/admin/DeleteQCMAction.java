@@ -12,8 +12,8 @@ import java.rmi.RemoteException;
 
 @ParentPackage(value = "admin")
 @Namespace(value = "/admin")
-public class DeleteQCM extends ServiceAndSessionAwareAction {
-    private static final Logger LOGGER = Logger.getLogger(AddQCM.class.getCanonicalName());
+public class DeleteQCMAction extends ServiceAndSessionAwareAction {
+    private static final Logger LOGGER = Logger.getLogger(AddQCMAction.class.getCanonicalName());
     private int idQCM;
 
     @Action(value = "deleteQCM", results = {

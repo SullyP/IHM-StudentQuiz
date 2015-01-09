@@ -14,8 +14,8 @@ import java.util.Date;
 
 @ParentPackage(value = "admin")
 @Namespace(value = "/admin")
-public class AddQCM extends ServiceAndSessionAwareAction {
-    private static final Logger LOGGER = Logger.getLogger(AddQCM.class.getCanonicalName());
+public class AddQCMAction extends ServiceAndSessionAwareAction {
+    private static final Logger LOGGER = Logger.getLogger(AddQCMAction.class.getCanonicalName());
     private int idQCM;
     private String nomQCM;
 

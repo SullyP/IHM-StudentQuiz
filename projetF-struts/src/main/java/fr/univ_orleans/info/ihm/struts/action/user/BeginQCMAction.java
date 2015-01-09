@@ -17,8 +17,8 @@ import java.util.List;
 
 @ParentPackage(value = "user")
 @Namespace(value = "/user")
-public class BeginQCM extends ServiceAndSessionAwareAction{
-    private static final Logger LOGGER = Logger.getLogger(BeginQCM.class.getCanonicalName());
+public class BeginQCMAction extends ServiceAndSessionAwareAction{
+    private static final Logger LOGGER = Logger.getLogger(BeginQCMAction.class.getCanonicalName());
     private int idQCM=0;
     private int idQuestion;
     private int dureeQuestion;

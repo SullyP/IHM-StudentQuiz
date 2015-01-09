@@ -7,12 +7,12 @@
     </s:if>
     <s:else>
         <div class="row">
-            <s:iterator value="listQCM">
-                <div class="col-lg-3 col-sm-6 col-xs-12 col-md-4">
+            <s:iterator value="listQCM" var="qCM">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
                     <div class="box">
                         <div class="icon">
                             <div class="image">
-                                <s:if test="%{etatQCM.toString() == 'OUVERT'}">
+                                <s:if test="%{qCM.isOpen()}">
                                     <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i>
                                 </s:if>
                                 <s:else>
@@ -20,17 +20,28 @@
                                 </s:else>
                             </div>
                             <div class="info">
-                                <h3 class="title"><s:property value="nomQCM"/></h3>
+                                <h3 class="title"><s:property value="qCM.nomQCM"/></h3>
+
                                 <p>
-                                    <s:property value="etatQCM"/>
+                                    <s:property value="qCM.etatQCM"/>
                                 </p>
+
                                 <div class="more">
-                                    <s:url namespace="%{getText('namespace.user')}" action="beginQCM" var="urlTag" >
-                                        <s:param name="idQCM"><s:property value="idQCM"/></s:param>
-                                    </s:url>
-                                    <a href="<s:property value="#urlTag" />">
-                                        <s:text name="user.listQCM.participate"/> <i class="glyphicon glyphicon-chevron-right"></i>
-                                    </a>
+                                    <s:if test="%{qCM.isOpen()}">
+                                        <s:url namespace="%{getText('namespace.user')}" action="beginQCM" var="urlTag">
+                                            <s:param name="idQCM"><s:property value="qCM.idQCM"/></s:param>
+                                        </s:url>
+                                        <a href="<s:property value="#urlTag" />">
+                                            <s:text name="user.listQCM.participate"/> <i
+                                                class="glyphicon glyphicon-chevron-right"></i>
+                                        </a>
+                                    </s:if>
+                                    <s:else>
+                                        <a class="invalid">
+                                            <s:text name="user.listQCM.participate"/> <i
+                                                class="glyphicon glyphicon-chevron-right"></i>
+                                        </a>
+                                    </s:else>
                                 </div>
                             </div>
                         </div>

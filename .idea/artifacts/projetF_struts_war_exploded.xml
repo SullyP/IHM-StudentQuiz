@@ -11,6 +11,7 @@
             <element id="module-output" name="projetF-modele" />
           </element>
           <element id="library" level="project" name="Maven: com.h2database:h2:1.4.184" />
+          <element id="library" level="project" name="Maven: org.jasypt:jasypt:1.9.2" />
           <element id="library" level="project" name="Maven: com.jgeppert.struts2.bootstrap:struts2-bootstrap-plugin:2.0.0" />
           <element id="library" level="project" name="Maven: com.jgeppert.struts2.jquery:struts2-jquery-plugin:3.7.1" />
           <element id="library" level="project" name="Maven: org.apache.struts:struts2-core:2.3.20" />

@@ -47,6 +47,22 @@ footer .container p {
     vertical-align: middle;
 }
 
+.vertical-center > .container {
+    display: inline-block;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+#navbar-login {
+    min-width: 250px;
+    padding: 15px 15px 0px;
+}
+
+#form-login .panel-body {
+    padding-bottom: 0px;
+}
+
+/** PieTimer CSS */
 .box .space {
     height: 30px;
 }
@@ -159,7 +175,7 @@ footer .container p {
     text-decoration: none;
 }
 
-.box > .icon:hover > .info > .more > a , .box > .icon:hover > .right-corner > a, .box > .icon:hover > .left-corner > a{
+.box > .icon:hover > .info > .more > a, .box > .icon:hover > .right-corner > a, .box > .icon:hover > .left-corner > a {
     color: #fff;
     padding: 6px 8px;
     background-color: #63B76C;
@@ -173,7 +189,7 @@ footer .container p {
     color: #666;
 }
 
-.box > .icon:hover > .info > form > fieldset > fieldset > .btn{
+.box > .icon:hover > .info > form > fieldset > fieldset > .btn {
     background-color: #333;
     border-color: #333;
 }
@@ -233,16 +249,19 @@ footer .container p {
     height:1em;
 }
 
-#navbar-login {
-    min-width: 250px;
-    padding: 15px 15px 0px;
-}
-
-#form-login .panel-body {
-    padding-bottom: 0px;
-}
-
 #timer {
     margin: 4px;
     width: 80px;
 }
+    /** Customization */
+    .box > .icon:hover > .info > .more > span , .box > .icon:hover > .right-corner > span, .box > .icon:hover > .left-corner > span {
+        color: #fff;
+        padding: 6px 8px;
+        background-color: #63B76C;
+    }
+
+    .box > .icon:hover > .info > .more > .invalid, .box > .icon:hover > .right-corner > .invalid, .box > .icon:hover > .left-corner > .invalid {
+        background-color: #d2322d;
+    }
+    /* Customization **/
+/* PieTimer CSS **/

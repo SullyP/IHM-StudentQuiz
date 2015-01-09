@@ -109,4 +109,34 @@ public class QCM implements IQCM{
     public void setEtatQCM(EtatQCMEnum etatQCM) {
         this.etatQCM = etatQCM;
     }
+
+    @Override
+    public boolean isOpen() {
+        if (this.etatQCM == EtatQCMEnum.OUVERT) {
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean open() {
+        if (this.etatQCM == EtatQCMEnum.OUVERT) {
+            this.etatQCM = EtatQCMEnum.OUVERT;
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean close() {
+        if (this.etatQCM == EtatQCMEnum.FERME) {
+            this.etatQCM = EtatQCMEnum.FERME;
+
+            return true;
+        }
+
+        return false;
+    }
 }

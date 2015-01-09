@@ -8,7 +8,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import java.util.Map;
 
-public class ServiceAndSessionAwareAction extends ActionSupport implements SessionAware {
+public abstract class ServiceAndSessionAwareAction extends ActionSupport implements SessionAware {
     private SessionMap<String, Object> session;
     private IModeleService modeleService;
 

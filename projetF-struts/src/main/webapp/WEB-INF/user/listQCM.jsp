@@ -8,7 +8,7 @@
     <s:else>
         <div class="row">
             <s:iterator value="listQCM">
-                <div class="col-lg-2 col-sm-6 col-xs-12 col-md-4">
+                <div class="col-lg-3 col-sm-6 col-xs-12 col-md-4">
                     <div class="box">
                         <div class="icon">
                             <div class="image">

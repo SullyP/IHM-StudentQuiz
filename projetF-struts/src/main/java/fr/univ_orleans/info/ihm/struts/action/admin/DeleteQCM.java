@@ -9,37 +9,36 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import java.rmi.RemoteException;
-import java.util.Calendar;
-import java.util.Date;
 
 @ParentPackage(value = "admin")
 @Namespace(value = "/admin")
-public class AddQCM extends ServiceAndSessionAwareAction {
+public class DeleteQCM extends ServiceAndSessionAwareAction {
     private static final Logger LOGGER = Logger.getLogger(AddQCM.class.getCanonicalName());
     private int idQCM;
-    private String nomQCM;
 
-    @Action(value = "addQCM", results = {
-            @Result(type = "tiles", location = "admin/listQuestionQCM.tiles")
+    @Action(value = "deleteQCM", results = {
+            @Result(type = "tiles", location = "admin/blank.tiles")
     })
     @Override
     public String execute() {
         try {
-            int idUtilisateur = (int)this.getSession().get("userId");
-            Date date = Calendar.getInstance().getTime();
-            IQCM qcm = this.getModeleService().creerQCM(idUtilisateur, this.nomQCM, date);
-            this.idQCM = qcm.getIdQCM();
+            IQCM qcm = this.getModeleService().getQCM(this.idQCM);
+            int idUtilisateur = (int) this.getSession().get("userId");
+            //On supprime le QCM uniquement si l'utilisateur connecté est le créateur du QCM
+            if(idUtilisateur == qcm.getIdCreateurQCM()){
+                this.getModeleService().suppressionQCM(this.idQCM);
+            }
         } catch (RemoteException e) {
             LOGGER.fatal(e);
         }
         return SUCCESS;
     }
 
-    public String getNomQCM() {
-        return nomQCM;
+    public int getIdQCM() {
+        return idQCM;
     }
 
-    public void setNomQCM(String nomQCM) {
-        this.nomQCM = nomQCM;
+    public void setIdQCM(int idQCM) {
+        this.idQCM = idQCM;
     }
 }

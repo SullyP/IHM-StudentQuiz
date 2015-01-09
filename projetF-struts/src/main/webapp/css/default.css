@@ -47,25 +47,50 @@ footer .container p {
     vertical-align: middle;
 }
 
+.box .space {
+    height: 30px;
+}
+
+.right-corner {
+    position: absolute;
+    top: 70px;
+    right: 5px;
+}
+
+.left-corner {
+    position: absolute;
+    top: 70px;
+    left: 5px;
+}
+
+.mycheckbox {
+    display: inline-block;
+}
+
+.pietimer {
+    position:relative;
+    font-size: 200px;
+    width:1em;
+    height:1em;
+    float: left;
+}
+
 .vertical-center > .container {
     display: inline-block;
     max-width: 100%;
     vertical-align: middle;
 }
 
-#navbar-login {
-    min-width: 250px;
-    padding: 15px 15px 0px;
-}
-
-#form-login .panel-body {
-    padding-bottom: 0px;
+.right-corner > a{
+    padding: 6px 8px;
+    color: black;
 }
 
 .box > .icon {
     text-align: center;
     position: relative;
 }
+
 .box > .icon > .image {
     position: relative;
     z-index: 2;
@@ -78,34 +103,41 @@ footer .container p {
     background: #63B76C;
     vertical-align: middle;
 }
+
 .box > .icon:hover > .image {
     background: #333;
 }
+
 .box > .icon > .image > i {
     font-size: 36px !important;
     color: #fff !important;
     top: 27%;
 }
+
 .box > .icon:hover > .image > i {
     color: white !important;
 }
+
 .box > .icon > .info {
     margin-top: -24px;
     background: rgba(0, 0, 0, 0.04);
     border: 1px solid #e0e0e0;
     padding: 15px 0 10px 0;
 }
+
 .box > .icon:hover > .info {
     background: rgba(0, 0, 0, 0.04);
     border-color: #e0e0e0;
     color: white;
 }
+
 .box > .icon > .info > h3.title {
     font-family: "Roboto",sans-serif !important;
     font-size: 16px;
     color: #222;
     font-weight: 500;
 }
+
 .box > .icon > .info > p {
     font-family: "Roboto",sans-serif !important;
     font-size: 13px;
@@ -113,9 +145,11 @@ footer .container p {
     line-height: 1.5em;
     margin: 20px;
 }
+
 .box > .icon:hover > .info > h3.title, .box > .icon:hover > .info > p, .box > .icon:hover > .info > .more > a {
     color: #222;
 }
+
 .box > .icon > .info > .more a {
     font-family: "Roboto",sans-serif !important;
     font-size: 12px;
@@ -124,25 +158,11 @@ footer .container p {
     text-transform: uppercase;
     text-decoration: none;
 }
-.box > .icon:hover > .info > .more > a {
+
+.box > .icon:hover > .info > .more > a , .box > .icon:hover > .right-corner > a, .box > .icon:hover > .left-corner > a{
     color: #fff;
     padding: 6px 8px;
     background-color: #63B76C;
-}
-.box .space {
-    height: 30px;
-}
-
-.right-corner {
-    position: absolute;
-    top: 65px;
-    right: 5px;
-}
-
-.left-corner {
-    position: absolute;
-    top: 65px;
-    left: 5px;
 }
 
 .box > .icon:hover > .info > .form {
@@ -153,10 +173,6 @@ footer .container p {
     color: #666;
 }
 
-.mycheckbox {
-    display: inline-block;
-}
-
 .box > .icon:hover > .info > form > fieldset > fieldset > .btn{
     background-color: #333;
     border-color: #333;
@@ -165,4 +181,68 @@ footer .container p {
 .box > .icon > .info > form > fieldset > fieldset > .form-group > .form-group > .controls > .checkbox  > label, .box > .icon > .info > form > fieldset > fieldset > .form-group > .form-group > .controls > .radio > .radio{
     display: inline-block;
     margin: 0px;
+}
+
+.pietimer > .percent {
+    position: absolute;
+    top: -0.5em;
+    left: 0;
+    width: 3.5em;
+    font-size: 0.23em;
+    text-align:center;
+    display: none;
+}
+
+.pietimer > .slice {
+    position:absolute;
+    width:1em;
+    height:1em;
+    clip:rect(0px,1em,1em,0.4em);
+}
+
+.pietimer > .slice.gt50 {
+    clip:rect(auto, auto, auto, auto);
+}
+
+.pietimer > .slice > .pie {
+    border: 0.1em solid #c0c0c0;
+    position:absolute;
+    width:0.8em; /* 1 - (2 * border width) */
+    height:0.8em; /* 1 - (2 * border width) */
+    clip:rect(0em,0.4em,1em,0em);
+    -moz-border-radius:0.5em;
+    -webkit-border-radius:0.5em;
+    border-radius:0.5em;
+}
+
+.pietimer > .slice > .pie.fill {
+    -moz-transform:rotate(180deg) !important;
+    -webkit-transform:rotate(180deg) !important;
+    -o-transform:rotate(180deg) !important;
+    transform:rotate(180deg) !important;
+}
+
+.pietimer.fill > .percent {
+    display: none;
+}
+
+.pietimer.fill > .slice > .pie {
+    border: transparent;
+    background-color: #c0c0c0;
+    width:1em;
+    height:1em;
+}
+
+#navbar-login {
+    min-width: 250px;
+    padding: 15px 15px 0px;
+}
+
+#form-login .panel-body {
+    padding-bottom: 0px;
+}
+
+#timer {
+    margin: 4px;
+    width: 80px;
 }

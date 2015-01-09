@@ -71,7 +71,7 @@ public class NextQuestionAction extends ServiceAndSessionAwareAction{
             }else {
                 this.idQuestion = question.getIdQuestion();
                 this.pointQuestion = question.getPointQuestion();
-                this.multipleQuestion = true;
+                this.multipleQuestion = question.isMultipleQuestion();
                 this.intituleQuestion = question.getIntituleQuestion();
                 this.reponses = question.getReponses();
                 this.dureeQuestion = question.getDureeQuestion();

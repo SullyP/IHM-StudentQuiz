@@ -60,7 +60,10 @@
                                 </div>
                                 </br>
                                 <div class="more">
-                                    <a href="#">
+                                    <s:url namespace="%{getText('namespace.admin')}" action="listQuestionQCM" var="urlTagQuestion" >
+                                        <s:param name="idQCM"><s:property value="idQCM"/></s:param>
+                                    </s:url>
+                                    <a href="<s:property value="#urlTagQuestion" />">
                                         <s:text name="admin.listQCM.more"/> <i class="glyphicon glyphicon-plus"></i>
                                     </a>
                                 </div>
@@ -122,8 +125,8 @@
         $('#deleteQCMButton').click(function () {
             $.ajax({
                 type: "POST",
-                <s:url namespace="%{getText('namespace.admin')}" action="deleteQCM" var="urlTag" />
-                url: "<s:property value="#urlTag" />",
+                <s:url namespace="%{getText('namespace.admin')}" action="deleteQCM" var="urlTagDelete" />
+                url: "<s:property value="#urlTagDelete" />",
                 data: { idQCM: idQCM}
             })
                     .done(function( msg ) {

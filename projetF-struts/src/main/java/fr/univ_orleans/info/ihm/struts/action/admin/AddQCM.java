@@ -24,13 +24,16 @@ public class AddQCM extends ServiceAndSessionAwareAction {
     })
     @Override
     public String execute() {
-        try {
-            int idUtilisateur = (int)this.getSession().get("userId");
-            Date date = Calendar.getInstance().getTime();
-            IQCM qcm = this.getModeleService().creerQCM(idUtilisateur, this.nomQCM, date);
-            this.idQCM = qcm.getIdQCM();
-        } catch (RemoteException e) {
-            LOGGER.fatal(e);
+        //On ajoute le QCM si le nom n'est pas vide
+        if(!this.nomQCM.isEmpty()) {
+            try {
+                int idUtilisateur = (int) this.getSession().get("userId");
+                Date date = Calendar.getInstance().getTime();
+                IQCM qcm = this.getModeleService().creerQCM(idUtilisateur, this.nomQCM, date);
+                this.idQCM = qcm.getIdQCM();
+            } catch (RemoteException e) {
+                LOGGER.fatal(e);
+            }
         }
         return SUCCESS;
     }

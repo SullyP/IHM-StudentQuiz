@@ -84,7 +84,7 @@
                     <s:form namespace="/admin" action="addQCM" theme="bootstrap" cssClass="form">
                         <fieldset>
                                 <div class="form-group">
-                                    <s:textfield name="nomQCM" label="%{getText('admin.listQCM.nameQCM')}" maxLength="250"/>
+                                    <s:textfield name="nomQCM" label="%{getText('admin.listQCM.nameQCM')}" maxLength="250" required="required"/>
                                 </div>
                             <s:submit cssClass="btn btn-success" value="%{getText('global.validate')}"/>
                         </fieldset>

@@ -112,11 +112,8 @@ public class QCM implements IQCM{
 
     @Override
     public boolean isOpen() {
-        if (this.etatQCM == EtatQCMEnum.OUVERT) {
-            return true;
-        }
+        return this.etatQCM == EtatQCMEnum.OUVERT;
 
-        return false;
     }
 
     @Override

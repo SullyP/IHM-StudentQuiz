@@ -1,6 +1,7 @@
 package fr.univ_orleans.info.ihm.swing;
 
 import fr.univ_orleans.info.ihm.modele.rmi.IModeleService;
+import fr.univ_orleans.info.ihm.modele.rmi.ModeleService;
 import fr.univ_orleans.info.ihm.swing.controlleur.Controlleur;
 import fr.univ_orleans.info.ihm.swing.vue.Appli;
 import org.apache.log4j.Logger;
@@ -25,20 +26,24 @@ public class Main {
 
                 try {
                     Registry registry = LocateRegistry.getRegistry(HOST, 9345);
-                    modeleService = (IModeleService) registry.lookup(IModeleService.SERVICE_NAME);
+                    modeleService = (IModeleService) registry.lookup(ModeleService.SERVICE_NAME);
                 } catch (Exception e) {
                     LOGGER.warn("Remote service exception", e);
                 }
                 try {
                     /* Select the Look and Style you love */
-//                    UIManager.setLookAndFeel("org.pushingpixels.substance.api.skin.SubstanceGeminiLookAndFeel");
+/*
+                    UIManager.setLookAndFeel("org.pushingpixels.substance.api.skin.SubstanceGeminiLookAndFeel");
+*/
                     UIManager.setLookAndFeel("org.pushingpixels.substance.api.skin.SubstanceGraphiteAquaLookAndFeel");
-//                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+/*
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+*/
                 } catch (Exception e) {
                     LOGGER.warn("Look and Feel exception", e);
                 }
 
-                new Controlleur(modeleService,appli);
+                new Controlleur(modeleService, appli);
             }
         });
     }

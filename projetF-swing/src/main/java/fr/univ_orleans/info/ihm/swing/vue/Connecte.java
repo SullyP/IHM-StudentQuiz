@@ -15,11 +15,11 @@ public class Connecte extends JPanel {
     IUtilisateur utilisateur;
     IModeleService service;
 
-    public Connecte(IUtilisateur utilisateur, IModeleService service){
+    public Connecte(IUtilisateur utilisateur, IModeleService service) {
 
-        this.utilisateur=utilisateur;
-        this.service=service;
-        labeldeco=new JLabel(utilisateur.getPrenomUtilisateur()+utilisateur.getNomEntiteUtilisateur());
+        this.utilisateur = utilisateur;
+        this.service = service;
+        labeldeco = new JLabel(utilisateur.getPrenomUtilisateur() + utilisateur.getNomEntiteUtilisateur());
         panel3.add(labeldeco);
         panel3.add(deconnecter);
         this.add(panel3, BorderLayout.PAGE_START);

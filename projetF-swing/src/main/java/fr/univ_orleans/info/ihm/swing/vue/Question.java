@@ -8,13 +8,13 @@ public class Question extends JPanel implements QuestionInterface {
 
     JButton valider = new JButton("Valider");
 
-    public Question(){
+    public Question() {
         this.add(valider, BorderLayout.SOUTH);
     }
 
 
     @Override
     public void affichageReponses(Question question) {
-
+        return;
     }
 }

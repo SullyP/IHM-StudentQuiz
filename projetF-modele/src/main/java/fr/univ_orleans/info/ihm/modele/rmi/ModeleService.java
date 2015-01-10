@@ -10,6 +10,7 @@ import java.util.List;
 
 public class ModeleService implements IModeleService {
     private static final Logger LOGGER = Logger.getLogger(ModeleService.class.getCanonicalName());
+    public static final String SERVICE_NAME = "ModeleService";
 
     @Override
     public void init() throws RemoteException {

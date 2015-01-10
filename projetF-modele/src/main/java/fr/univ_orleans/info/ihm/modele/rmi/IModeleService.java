@@ -8,8 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 public interface IModeleService extends Remote {
-    public static final String SERVICE_NAME = "ModeleService";
-
     public void init() throws RemoteException;
 
     /**

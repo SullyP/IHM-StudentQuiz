@@ -5,14 +5,14 @@ import fr.univ_orleans.info.ihm.swing.vue.Appli;
 import fr.univ_orleans.info.ihm.swing.vue.Question;
 import fr.univ_orleans.info.ihm.swing.vue.Resultat;
 
-public class Controlleur implements ControlleurInterface{
+public class Controlleur implements IControlleur {
 
     IModeleService service;
     Appli appli;
 
-    public Controlleur(IModeleService service,Appli appli){
-        this.service=service;
-        this.appli=appli;
+    public Controlleur(IModeleService service, Appli appli) {
+        this.service = service;
+        this.appli = appli;
         initVue(service);
     }
 
@@ -28,12 +28,12 @@ public class Controlleur implements ControlleurInterface{
 
     @Override
     public void changerVueLogin() {
-
+        return;
     }
 
     @Override
     public void initVue(IModeleService service) {
-        appli= new Appli("QCM",service);
+        appli = new Appli("QCM", service);
     }
 
 }

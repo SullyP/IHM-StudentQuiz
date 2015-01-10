@@ -2,21 +2,17 @@ package fr.univ_orleans.info.ihm.swing.vue;
 
 import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
 import fr.univ_orleans.info.ihm.modele.rmi.IModeleService;
-import fr.univ_orleans.info.ihm.swing.Main;
 import fr.univ_orleans.info.ihm.swing.controlleur.LoginListener;
-import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.rmi.RemoteException;
 
-public class Login extends JPanel implements LoginInterface{
+public class Login extends JPanel implements LoginInterface {
+    private static final int FIELD_COLUMN = 15;
 
-    JTextField log = new JTextField("",15);
+    JTextField log = new JTextField("", FIELD_COLUMN);
     JLabel labellog = new JLabel("Identifiant");
-    JPasswordField mdp = new JPasswordField("",15);
+    JPasswordField mdp = new JPasswordField("", FIELD_COLUMN);
     JLabel labelmdp = new JLabel("Mot de passe");
     JButton connecter = new JButton("Connecter");
     JLabel labeldeco;
@@ -28,9 +24,9 @@ public class Login extends JPanel implements LoginInterface{
     IUtilisateur utilisateur = null;
 
 
-    public Login (IModeleService service){
+    public Login(IModeleService service) {
 
-        this.monService=service;
+        this.monService = service;
         panel1.add(log);
         panel1.add(labellog);
         panel2.add(mdp);
@@ -38,15 +34,12 @@ public class Login extends JPanel implements LoginInterface{
         this.add(panel1, BorderLayout.NORTH);
         this.add(panel2, BorderLayout.CENTER);
         this.add(connecter, BorderLayout.SOUTH);
-        String login=log.getText();
-        String motdepasse=new String(mdp.getPassword());
-        connecter.addActionListener(new LoginListener(log,mdp,monService,utilisateur));
+        connecter.addActionListener(new LoginListener(log, mdp, monService, utilisateur));
     }
 
 
     @Override
     public void changerVue(IUtilisateur utilisateur) {
-
-
+        return;
     }
 }

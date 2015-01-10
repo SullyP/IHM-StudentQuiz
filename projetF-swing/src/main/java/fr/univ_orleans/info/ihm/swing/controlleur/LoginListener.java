@@ -13,40 +13,40 @@ import java.rmi.RemoteException;
 
 public class LoginListener implements ActionListener {
 
-    IUtilisateur utilisateur=null;
+    private static final Logger LOGGER = Logger.getLogger(Main.class.getCanonicalName());
+    IUtilisateur utilisateur = null;
     IModeleService service;
     String login;
     String motdepasse;
     JTextField log;
     JPasswordField mdp;
-    private static final Logger LOGGER = Logger.getLogger(Main.class.getCanonicalName());
 
-    public LoginListener(JTextField log, JPasswordField mdp, IModeleService service, IUtilisateur utilisateur){
-        this.utilisateur=utilisateur;
-        this.service=service;
-        this.log=log;
-        this.mdp=mdp;
+    public LoginListener(JTextField log, JPasswordField mdp, IModeleService service, IUtilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+        this.service = service;
+        this.log = log;
+        this.mdp = mdp;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        login=log.getText();
-        motdepasse=new String(mdp.getPassword());
-        if(login.equals("") && motdepasse.equals("") ){
+        login = log.getText();
+        motdepasse = new String(mdp.getPassword());
+        if ("".equals(login) && "".equals(motdepasse)) {
             JOptionPane.showMessageDialog(null, "Veuillez remplir les champs Identifiant et Mot de passe.", "Erreur", JOptionPane.ERROR_MESSAGE);
-        } else if(login.equals("")){
+        } else if ("".equals(login)) {
             JOptionPane.showMessageDialog(null, "Veuillez remplir le champs Identifiant.", "Erreur", JOptionPane.ERROR_MESSAGE);
-        } else if(motdepasse.equals("")){
+        } else if ("".equals(motdepasse)) {
             JOptionPane.showMessageDialog(null, "Veuillez remplir le champs Mot de passe.", "Erreur", JOptionPane.ERROR_MESSAGE);
-        } else{
+        } else {
             try {
                 utilisateur = service.getUtilisateurByIdentifiant(login);
             } catch (RemoteException e1) {
                 LOGGER.fatal(e1);
             }
-            if(utilisateur == null){
+            if (utilisateur == null) {
                 JOptionPane.showMessageDialog(null, "L'identifiant n'est pas valide", "Erreur", JOptionPane.ERROR_MESSAGE);
-            }else {
+            } else {
                 if (utilisateur.validerMotDePasseUtilisateur(motdepasse)) {
                     JOptionPane.showMessageDialog(null, "identifiant et mot de passe valides", "Information", JOptionPane.INFORMATION_MESSAGE);
 

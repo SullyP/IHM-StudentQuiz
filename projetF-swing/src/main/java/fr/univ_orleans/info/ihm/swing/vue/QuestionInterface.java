@@ -7,5 +7,4 @@ public interface QuestionInterface {
     public void affichageReponses(Question question);
 
 
-
 }

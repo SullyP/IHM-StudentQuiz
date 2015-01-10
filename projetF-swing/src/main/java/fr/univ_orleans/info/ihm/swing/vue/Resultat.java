@@ -5,17 +5,17 @@ import javax.swing.*;
 
 public class Resultat extends JPanel implements ResultatInterface {
 
-    public Resultat(){
+    public Resultat() {
 
     }
 
     @Override
     public void utilisateursFini() {
-
+        return;
     }
 
     @Override
     public void bonnesReponses() {
-
+        return;
     }
 }

@@ -15,7 +15,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
     private JdbcDataSource ds;
     private Connection conn;
     private Statement stmt;
-    private static String dbPath = "~/qcm";
+    private static String dbPath = System.getProperty("user.home") + "/qcm";
     private static BaseDonneeH2 monInstance;
 
     private BaseDonneeH2() {
@@ -109,7 +109,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
      * {@inheritDoc}
      */
     private void createSchema() {
-        String query = new StringBuilder().append("CREATE SCHEMA IF NOT EXISTS IHMProjetFF;")
+        @SuppressWarnings("StringBufferReplaceableByString") String query = new StringBuilder().append("CREATE SCHEMA IF NOT EXISTS IHMProjetFF;")
                 //La table ENTITE contient toutes les entités utilisateurs, par exemple: Etudiant, Professeur...
                 .append("CREATE TABLE IF NOT EXISTS IHMProjetFF.ENTITE (idEntite INT NOT NULL AUTO_INCREMENT, nomEntite VARCHAR2(50), PRIMARY KEY(idEntite));")
                         //La table Utilisateur contient tout les utilisateurs.
@@ -168,6 +168,7 @@ public final class BaseDonneeH2 implements IBaseDonnee {
             String motDePasseCryptAdmin = passwordEncryptor.encryptPassword("admin");
             String motDePasseCryptEtudiant = passwordEncryptor.encryptPassword("etudiant");
 
+            //noinspection StringBufferReplaceableByString
             query = new StringBuilder(String.format("INSERT INTO %s (%s) VALUES ('Etudiant'),('Professeur');",
                             BaseDonneeEnum.ENTITE, EntiteEnum.NOM_ENTITE))
                     .append(String.format("INSERT INTO %s (%s,%s,%s,%s,%s,%s) VALUES (2,'Admin','Admin','admin','%s',0),(1,'Etudiant','Etudiant','etudiant','%s',123);",

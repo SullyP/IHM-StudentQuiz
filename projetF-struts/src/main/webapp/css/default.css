@@ -1,3 +1,4 @@
+/*noinspection CssUnknownTarget*/
 @import "http://fonts.googleapis.com/css?family=Roboto:400,500";
 
 html, body {
@@ -195,7 +196,7 @@ footer .container p {
 
 .box > .icon > .info > form > fieldset > fieldset > .form-group > .form-group > .controls > .checkbox > label, .box > .icon > .info > form > fieldset > fieldset > .form-group > .form-group > .controls > .radio > .radio {
     display: inline-block;
-    margin: 0px;
+    margin: 0;
 }
 
 .box > .icon:hover > .info > .more > span, .box > .icon:hover > .right-corner > span, .box > .icon:hover > .left-corner > span {

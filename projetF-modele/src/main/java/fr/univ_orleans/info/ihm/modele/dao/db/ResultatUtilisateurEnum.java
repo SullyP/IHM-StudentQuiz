@@ -7,7 +7,8 @@ public enum ResultatUtilisateurEnum {
     ID_RESULTAT_UTILISATEUR("idResultatUtilisateur"),
     ID_UTILISATEUR("idUtilisateur"),
     ID_QCM("idQCM"),
-    DATE_RESULTAT_UTILISATEUR("dateResultatUtilisateur");
+    DATE_RESULTAT_UTILISATEUR("dateResultatUtilisateur"),
+    SCORE("score");
 
     private String nomChampTableBaseDonnee;
     ResultatUtilisateurEnum(String nomChampTableBaseDonnee){

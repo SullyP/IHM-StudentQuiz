@@ -100,6 +100,9 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                         resultSet.getInt(ResultatUtilisateurEnum.ID_UTILISATEUR.toString()),
                         resultSet.getInt(ResultatUtilisateurEnum.ID_QCM.toString()),
                         resultSet.getDate(ResultatUtilisateurEnum.DATE_RESULTAT_UTILISATEUR.toString()));
+                //Récupération du score
+                resultatUtilisateur.setScore(resultSet.getInt(ResultatUtilisateurEnum.SCORE.toString()));
+                resultatUtilisateur.setScoreMax(QCMBaseDAO.getInstance().calculerScoreMaxQCM(resultatUtilisateur.getIdQCM()));
                 resultSet.close();
             } catch (SQLException e) {
                 LOGGER.warn(e);
@@ -265,6 +268,16 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
         this.getBd().closePrepared(preparedStatement);
 
         //On enregistre le score avant de retourner le resultatUtilisateur
+        sqlQuery = String.format("UPDATE %s SET %s=? WHERE %s=?;",
+                BaseDonneeEnum.RESULTAT_UTILISATEUR, ResultatUtilisateurEnum.SCORE, ResultatUtilisateurEnum.ID_RESULTAT_UTILISATEUR);
+        preparedStatement = this.getBd().openPrepared(sqlQuery);
+        try {
+            preparedStatement.setInt(idResultatUtilisateur,score);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e){
+            LOGGER.warn(e);
+        }
+
         resultatUtilisateur.setScore(score);
         return resultatUtilisateur;
     }

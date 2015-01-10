@@ -41,7 +41,7 @@ public class BeginQCMAction extends ServiceAndSessionAwareAction{
                 Date date = Calendar.getInstance().getTime();
                 IResultatUtilisateur resultatUtilisateur = this.getModeleService().creerResultatUtilisateur(idUtilisateur, idQCM, date);
                 this.getSession().put("idResultatUtilisateur", resultatUtilisateur.getIdResultatUtilisateur());
-                IQuestion question = this.getModeleService().getNextQuestionQCM(idQCM, resultatUtilisateur.getIdResultatUtilisateur());
+                IQuestion question = this.getModeleService().getFirstQuestionQCM(idQCM, resultatUtilisateur.getIdResultatUtilisateur());
                 this.idQuestion = question.getIdQuestion();
                 this.pointQuestion = question.getPointQuestion();
                 this.multipleQuestion = question.isMultipleQuestion();

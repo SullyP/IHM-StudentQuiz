@@ -51,7 +51,15 @@ public interface IQCMDAO {
     public List<IQCM> getListQCMByIdCreateur(int idCreateur);
 
     /**
-     * Permet d'obtenir la prochaine question du QCM pour une session utilisateur donnée
+     * Permet d'obtenir la première question du QCM (choisi aléatoirement) pour une session utilisateur donnée
+     * @param idQCM id du QCM
+     * @param idResultatUtilisateur id du résultat courant de l'utilisateur
+     * @return la première question (avec la liste des réponses)
+     */
+    public IQuestion getFirstQuestionQCM(int idQCM, int idResultatUtilisateur);
+
+    /**
+     * Permet d'obtenir la prochaine question du QCM (la question choisie est celle ayant le moins de réponses) pour une session utilisateur donnée
      * @param idQCM id du QCM
      * @param idResultatUtilisateur id du résultat courant de l'utilisateur
      * @return la prochaine question (avec la liste des réponses)

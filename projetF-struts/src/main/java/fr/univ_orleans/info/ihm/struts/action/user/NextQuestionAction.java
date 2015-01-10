@@ -62,8 +62,12 @@ public class NextQuestionAction extends ServiceAndSessionAwareAction{
                     }
                 }
             }
-            //Récupération de la question suivante
-            IQuestion question = this.getModeleService().getNextQuestionQCM(idQCM,idResultatUtilisateur);
+            IQuestion question = null;
+            //On vérifie si le QCM est toujours ouvert
+            if(this.getModeleService().getQCM(idQCM).isOpen()) {
+                //Récupération de la question suivante
+                question = this.getModeleService().getNextQuestionQCM(idQCM, idResultatUtilisateur);
+            }
             if(question == null){
                 this.score = this.getModeleService().calculerScoreResultatUtilisateur(idResultatUtilisateur).getScore();
                 this.scoreMax = this.getModeleService().calculerScoreMaxQCM(idQCM);

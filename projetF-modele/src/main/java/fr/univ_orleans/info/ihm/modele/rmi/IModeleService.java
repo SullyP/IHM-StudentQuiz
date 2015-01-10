@@ -198,6 +198,14 @@ public interface IModeleService extends Remote {
     public List<Integer> getListIdQuestionQCM(int idQCM) throws RemoteException;
 
     /**
+     * Permet d'obtenir la première question du QCM (choisi aléatoirement) pour une session utilisateur donnée
+     * @param idQCM id du QCM
+     * @param idResultatUtilisateur id du résultat courant de l'utilisateur
+     * @return la première question (avec la liste des réponses)
+     */
+    public IQuestion getFirstQuestionQCM(int idQCM, int idResultatUtilisateur);
+
+    /**
      * Permet d'obtenir la prochaine question du QCM pour une session utilisateur donnée
      * @param idQCM id du QCM
      * @param idResultatUtilisateur id du résultat courant de l'utilisateur

@@ -29,7 +29,7 @@ public class InitRemoteService implements ServletContextListener {
                 service = new ModeleService();
                 IModeleService stub = (IModeleService) UnicastRemoteObject.exportObject(service, 0);
                 Registry registry = LocateRegistry.createRegistry(PORT_REGISTRY);
-                registry.rebind(IModeleService.SERVICE_NAME, stub);
+                registry.rebind(ModeleService.SERVICE_NAME, stub);
                 LOGGER.info("Remote service bound");
                 isRegistered = true;
             } catch (Exception e) {

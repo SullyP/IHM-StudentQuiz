@@ -1,16 +1,17 @@
 package fr.univ_orleans.info.ihm.modele.test;
 
-import fr.univ_orleans.info.ihm.modele.dao.*;
-import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeH2;
 import fr.univ_orleans.info.ihm.modele.beans.IEntite;
 import fr.univ_orleans.info.ihm.modele.beans.IQCM;
 import fr.univ_orleans.info.ihm.modele.beans.IQuestion;
 import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
+import fr.univ_orleans.info.ihm.modele.dao.*;
+import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeH2;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.sql.Date;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -34,7 +35,7 @@ public class QCMTest {
 
     @Test
     public void testCreerQCM() throws Exception {
-        Date date = new Date(2014,12,23);
+        Date date = Calendar.getInstance().getTime();
         IQCM qcm = qcmDAO.creerQCM(utilisateur.getIdUtilisateur(),"Test de connaissances IHM",date);
         assertNotNull(qcm);
         assertEquals(qcm.getDateCreationQCM(),date);
@@ -44,19 +45,18 @@ public class QCMTest {
 
     @Test
     public void testGetQCMById() throws Exception {
-        Date date = new Date(2014,12,23);
+        Date date = Calendar.getInstance().getTime();
         IQCM qcm1 = qcmDAO.creerQCM(utilisateur.getIdUtilisateur(), "Test de connaissances IHM", date);
         IQCM qcm2 = qcmDAO.getQCM(qcm1.getIdQCM());
         assertNotNull(qcm2);
         assertEquals(qcm1.getNomQCM(), qcm2.getNomQCM());
         assertEquals(qcm1.getIdCreateurQCM(), qcm2.getIdCreateurQCM());
-        assertEquals(qcm1.getDateCreationQCM(), qcm2.getDateCreationQCM());
         assertEquals(qcm1.getIdQCM(), qcm1.getIdQCM());
     }
 
     @Test
     public void testGetQCMWithQuestionList() throws Exception {
-        Date date = new Date(2014,12,23);
+        Date date = Calendar.getInstance().getTime();
         IQCM qcm1 = qcmDAO.creerQCM(utilisateur.getIdUtilisateur(), "Test de connaissances IHM", date);
         assertNotNull(qcm1);
         IQuestion question1 = QuestionBaseDAO.getInstance().creerQuestion("Bonjour ?", false, 10, 5);
@@ -65,12 +65,13 @@ public class QCMTest {
         assertNotNull(question2);
 
         qcmDAO.ajoutQCMQuestion(qcm1.getIdQCM(), question1.getIdQuestion());
+        ReponseBaseDAO.getInstance().creerReponse(question1.getIdQuestion(),"truc",true);
         qcmDAO.ajoutQCMQuestion(qcm1.getIdQCM(), question2.getIdQuestion());
+        ReponseBaseDAO.getInstance().creerReponse(question2.getIdQuestion(),"truc",true);
         IQCM qcm2 = qcmDAO.getQCMWithQuestionList(qcm1.getIdQCM());
         assertNotNull(qcm2);
         assertEquals(qcm1.getNomQCM(), qcm2.getNomQCM());
         assertEquals(qcm1.getIdCreateurQCM(), qcm2.getIdCreateurQCM());
-        assertEquals(qcm1.getDateCreationQCM(), qcm2.getDateCreationQCM());
         assertEquals(qcm1.getIdQCM(), qcm1.getIdQCM());
 
         assertNotNull(qcm2.getQuestions());
@@ -87,7 +88,7 @@ public class QCMTest {
 
     @Test
     public void testMajNomQCM() throws Exception {
-        Date date = new Date(2014,12,23);
+        Date date = Calendar.getInstance().getTime();
         IQCM qcm1 = qcmDAO.creerQCM(utilisateur.getIdUtilisateur(), "Test de connaissances IHM", date);
         IQCM qcm2 = qcmDAO.majNomQCM(qcm1.getIdQCM(),"Quizz IHM");
         assertNotNull(qcm2);
@@ -97,7 +98,7 @@ public class QCMTest {
 
     @Test
     public void testAjoutEtSuppressionQCMQuestion() throws Exception{
-        Date date = new Date(2014,12,23);
+        Date date = Calendar.getInstance().getTime();
         IQCM qcm1 = qcmDAO.creerQCM(utilisateur.getIdUtilisateur(), "Test de connaissances IHM", date);
         assertNotNull(qcm1);
         IQuestion question1 = QuestionBaseDAO.getInstance().creerQuestion("Bonjour ?", false, 10, 5);
@@ -122,7 +123,7 @@ public class QCMTest {
 
     @Test
     public void testSuppressionQCM() throws Exception {
-        Date date = new Date(2014,12,23);
+        Date date = Calendar.getInstance().getTime();
         IQCM qcm1 = qcmDAO.creerQCM(utilisateur.getIdUtilisateur(), "Test de connaissances IHM", date);
         int idQCM = qcm1.getIdQCM();
         qcmDAO.suppressionQCM(idQCM);

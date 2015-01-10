@@ -265,7 +265,7 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
         List<Integer> list = this.getListIdQuestionQCM(idQCM);
         //On choisit aléatoirement l'indice de l'idQuestion présent dans la liste
         Random rand = new Random();
-        int max = list.size();
+        int max = list.size()-1;
         int min = 0;
         int randomNum = rand.nextInt((max - min) + 1) + min;
 

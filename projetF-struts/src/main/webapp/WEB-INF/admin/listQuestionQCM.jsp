@@ -31,37 +31,92 @@
         $('#QuestionTable').jtable({
             title: '<s:text name="admin.listQuestionQCM.titleQuestionTable"/>',
             actions: {
-                listAction: 'CRUDController?action=list',
-                createAction:'CRUDController?action=create',
-                updateAction: 'CRUDController?action=update',
-                deleteAction: 'CRUDController?action=delete'
+                listAction: 'json/listActionQuestion?idQCM=<s:property value="idQCM"/>',
+                createAction:'json/createActionQuestion?idQCM=<s:property value="idQCM"/>',
+                updateAction: 'json/updateActionQuestion',
+                deleteAction: 'json/deleteActionQuestion'
             },
             fields: {
-                customerid: {
+                idQuestion: {
                     key: true,
+                    create: false,
+                    edit: false,
                     list: false
                 },
-                customername: {
-                    title: 'Customer Name',
-                    width: '30%'
-                },
-                email: {
-                    title: 'Email',
-                    width: '30%'
-                },
-                phone: {
-                    title: 'Phone',
-                    width: '20%',
+                //Tableau enfant pour les réponses
+                Reponses: {
+                    title: '',
+                    width: '5%',
+                    sorting: false,
+                    edit: false,
                     create: false,
-                    edit: false
+                    display: function (questionData) {
+                        //Image à afficher sur la ligne
+                        var $img = $('<img src="/css/images/list_metro.png" title="Edit phone numbers" />');
+                        //Ouverture du tableau enfant lors du click
+                        $img.click(function () {
+                            $('#QuestionTable').jtable('openChildTable',
+                                    $img.closest('tr'),
+                                    {
+                                        title: questionData.record.intituleQuestion + ' - Phone numbers',
+                                        actions: {
+                                            listAction: 'json/listActionReponse?idQuestion=' + questionData.record.idQuestion,
+                                            deleteAction: 'json/deleteActionReponse',
+                                            updateAction: 'json/updateActionReponse',
+                                            createAction: 'json/createActionReponse'
+                                        },
+                                        fields: {
+                                            idQuestion: {
+                                                type: 'hidden',
+                                                defaultValue: questionData.record.idQuestion
+                                            },
+                                            idReponse: {
+                                                key: true,
+                                                create: false,
+                                                edit: false,
+                                                list: false
+                                            },
+                                            intituleReponse: {
+                                                title: '<s:text name="admin.listQuestionQCM.intituleQuestion"/>',
+                                                width: '70%'
+                                            },
+                                            correctReponse: {
+                                                title: '<s:text name="admin.listQuestionQCM.correctReponse"/>',
+                                                width: '30%',
+                                                type: 'checkbox',
+                                                values: { 'false': '<s:text name="global.No"/>', 'true': '<s:text name="global.Yes"/>' }
+                                            }
+                                        }
+                                    }, function (data) { //handler
+                                        data.childTable.jtable('load');
+                                    });
+                        });
+                        //Retourne l'image à afficher sur la ligne
+                        return $img;
+                    }
                 },
-                city: {
-                    title: 'City',
-                    width: '20%'
-
+                intituleQuestion: {
+                    title: '<s:text name="admin.listQuestionQCM.intituleQuestion"/>',
+                    width: '50%'
+                },
+                dureeQuestion: {
+                    title: '<s:text name="admin.listQuestionQCM.dureeQuestion"/>',
+                    width: '25%'
+                },
+                pointQuestion: {
+                    title: '<s:text name="admin.listQuestionQCM.pointQuestion"/>',
+                    width: '10%'
+                },
+                multipleQuestion: {
+                    title: '<s:text name="admin.listQuestionQCM.multipleQuestion"/>',
+                    width: '10%',
+                    type: 'checkbox',
+                    values: { 'false': '<s:text name="global.No"/>', 'true': '<s:text name="global.Yes"/>' }
                 }
-
             }
         });
+
+        //Chargement des données depuis le serveur
+        $('#QuestionTable').jtable('load');
     });
 </script>

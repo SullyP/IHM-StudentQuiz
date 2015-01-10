@@ -40,6 +40,9 @@
     </script>
     <link id="jquery_theme_link" rel="stylesheet"
           href="/css/jquery-ui.min.css?s2j=3.7.1" type="text/css"/>
+    <link id="jquery_custom_link" rel="stylesheet" href="/css/jquery-ui-1.10.3.custom.css" type="text/css"/>
+    <link id="jquery_theme_link" rel="stylesheet" href="/css/jquery-ui-1.10.3.theme.css" type="text/css"/>
+    <link id="jquery_ie_link" rel="stylesheet" href="/css/jquery.ui.1.10.3.ie.css" type="text/css"/>
     <sb:head includeScripts="true" includeScriptsValidation="true"/>
     <tiles:importAttribute name="cssList"/>
     <s:iterator value="#attr.cssList" var="cssValue">

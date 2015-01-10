@@ -3,11 +3,9 @@ package fr.univ_orleans.info.ihm.modele.dao;
 import fr.univ_orleans.info.ihm.modele.beans.IQuestion;
 import fr.univ_orleans.info.ihm.modele.beans.IReponse;
 import fr.univ_orleans.info.ihm.modele.beans.Question;
-import fr.univ_orleans.info.ihm.modele.beans.Reponse;
 import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.QCMQuestionEnum;
 import fr.univ_orleans.info.ihm.modele.dao.db.QuestionEnum;
-import fr.univ_orleans.info.ihm.modele.dao.db.ReponseEnum;
 import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
@@ -135,13 +133,11 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
     public List<IQuestion> getQuestionListByIdQCM(int idQCM) {
         List<IQuestion> questionList = new ArrayList<>();
 
-        String sqlQuery = String.format("SELECT q.%s, q.%s, q.%s, q.%s, q.%s, r.%s, r.%s, r.%s FROM %s q JOIN %s qcm JOIN %s r ON qcm.%s=? AND q.%s=qcm.%s AND r.%s=q.%s ORDER BY q.%s;",
+        String sqlQuery = String.format("SELECT q.%s, q.%s, q.%s, q.%s, q.%s FROM %s q JOIN %s qcm ON qcm.%s=? AND q.%s=qcm.%s;",
                 QuestionEnum.ID_QUESTION, QuestionEnum.INTITULE_QUESTION, QuestionEnum.MULTIPLE_QUESTION, QuestionEnum.DUREE_QUESTION, QuestionEnum.POINT_QUESTION,
-                ReponseEnum.ID_REPONSE, ReponseEnum.INTITULE_REPONSE, ReponseEnum.CORRECT_REPONSE,
-                BaseDonneeEnum.QUESTION, BaseDonneeEnum.QCM_QUESTION, BaseDonneeEnum.REPONSE,
+                BaseDonneeEnum.QUESTION, BaseDonneeEnum.QCM_QUESTION,
                 QCMQuestionEnum.ID_QCM,
-                QuestionEnum.ID_QUESTION, QCMQuestionEnum.ID_QUESTION,
-                ReponseEnum.ID_QUESTION, QuestionEnum.ID_QUESTION, QuestionEnum.ID_QUESTION);
+                QuestionEnum.ID_QUESTION, QCMQuestionEnum.ID_QUESTION);
 
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
@@ -155,27 +151,12 @@ public final class QuestionBaseDAO extends AbstractDAOObject implements IQuestio
 
         if(resultSet!=null){
             try {
-                IQuestion questionEnCours = null;
                 while(resultSet.next()) {
-                    if(questionEnCours == null || resultSet.getInt(QuestionEnum.ID_QUESTION.toString()) != questionEnCours.getIdQuestion()){
-                        //Si on a changé de question, on enregistre la question précédente
-                        if(questionEnCours !=null){
-                            questionList.add(questionEnCours);
-                        }
-                        //On créé la nouvelle question
-                        questionEnCours = new Question(resultSet.getInt(QuestionEnum.ID_QUESTION.toString()),
+                    questionList.add(new Question(resultSet.getInt(QuestionEnum.ID_QUESTION.toString()),
                                 resultSet.getInt(QuestionEnum.DUREE_QUESTION.toString()),
                                 resultSet.getInt(QuestionEnum.POINT_QUESTION.toString()),
                                 resultSet.getBoolean(QuestionEnum.MULTIPLE_QUESTION.toString()),
-                                resultSet.getString(QuestionEnum.INTITULE_QUESTION.toString()));
-                    }
-                    questionEnCours.addReponse(new Reponse(resultSet.getInt(ReponseEnum.ID_REPONSE.toString()),
-                            resultSet.getString(ReponseEnum.INTITULE_REPONSE.toString()),
-                            resultSet.getBoolean(ReponseEnum.CORRECT_REPONSE.toString())));
-                }
-                //On enregistre la dernière question (sauf si elle est null)
-                if(questionEnCours !=null) {
-                    questionList.add(questionEnCours);
+                            resultSet.getString(QuestionEnum.INTITULE_QUESTION.toString())));
                 }
                 resultSet.close();
             } catch (SQLException e) {

@@ -73,6 +73,20 @@
         </action>
     </package>
 
+    <package name="json" extends="json-default">
+        <action name="*ActionQuestion" class="fr.univ_orleans.info.ihm.struts.action.admin.QuestionCRUDController"
+                method="{1}">
+            <result type="json" />
+        </action>
+        <action name="getJSONResult" class="fr.univ_orleans.info.ihm.struts.action.admin.QuestionCRUDController" method="list">
+            <result type="json" />
+        </action>
+        <action name="*ActionReponse" class="fr.univ_orleans.info.ihm.struts.action.admin.ReponseCRUDController"
+                method="{1}">
+            <result type="json" />
+        </action>
+    </package>
+
     <package name="user" extends="default" namespace="/user">
         <default-interceptor-ref name="userStack"/>
 

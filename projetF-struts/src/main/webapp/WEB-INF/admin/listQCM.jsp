@@ -19,7 +19,7 @@
 
                             <div class="more">
                                 <a type="button" href="#addQCM_modal" data-toggle="modal">
-                                    <s:text name="admin.listQCM.addQCM"/> <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
+                                    <i class="glyphicon glyphicon-plus"></i> <s:text name="admin.listQCM.addQCM"/>
                                 </a>
                             </div>
                         </div>
@@ -53,28 +53,29 @@
                                 <h3 class="title"><s:property value="nomQCM"/></h3>
 
                                 <p>
-                                    <s:property value="etatQCM"/> <br>
+                                    <s:property value="etatQCM"/> <br/>
                                     <s:text name="admin.listQCM.createOn"/> <s:property value="dateCreationQCM"/>
                                 </p>
 
                                 <div class="more">
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-pencil"/> <s:text name="Changer status"/>
-                                    </a>
-                                </div>
-                                <div class="more">
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-pencil"/> <s:text name="admin.listQCM.edit"/>
-                                    </a>
-                                </div>
-                                <br>
-                                <div class="more">
-                                    <s:url namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.listQuestionQCM')}"
+                                    <s:url namespace="%{getText('namespace.admin')}" action="listQuestionQCM"
                                            var="urlTagQuestion">
                                         <s:param name="idQCM"><s:property value="idQCM"/></s:param>
                                     </s:url>
                                     <a href="<s:property value="#urlTagQuestion" />">
-                                        <i class="glyphicon glyphicon-plus"/> <s:text name="admin.listQCM.more"/>
+                                        <i class="glyphicon glyphicon-plus"></i> <s:text name="admin.listQCM.more"/>
+                                    </a>
+                                </div>
+                                <br/>
+                                <div class="more">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-pencil"></i> <s:text name="admin.listQCM.edit"/>
+                                    </a>
+                                </div>
+                                <br/>
+                                <div class="more">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-pencil"></i> <s:text name="Changer status"/>
                                     </a>
                                 </div>
                             </div>
@@ -137,7 +138,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.changeStatus').onclick(function (event) {
+        $('.changeStatus').click(function (event) {
             $.ajax({
                 type: "POST",
                 <s:url namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.statusQCM')}" var="url" />

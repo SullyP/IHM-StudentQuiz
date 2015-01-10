@@ -14,7 +14,7 @@
                         <s:hidden id="HiddenIdQCM" name="idQCM" value="%{idQCM}"/>
                         <div class="more">
                             <a href="#addQuestion_modal" data-toggle="modal" type="button">
-                                <i class="glyphicon glyphicon-plus" aria-hidden="true"></i> <s:text name="admin.listQuestionQCM.addQuestion"/>
+                                <i class="glyphicon glyphicon-plus"></i> <s:text name="admin.listQuestionQCM.addQuestion"/>
                             </a>
                         </div>
                     </div>

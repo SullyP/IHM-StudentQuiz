@@ -11,14 +11,13 @@ import java.awt.event.WindowEvent;
 public class Appli extends AppliInterface {
 
     JLabel statut = new JLabel();
-    JButton connection = new JButton("Se déconnecter");
+
     Login login;
     //QCM qcm;
-    IModeleService service;
+
 
     public Appli(String s, IModeleService service) {
         super(s);
-        this.service=service;
         login = new Login(service);
         //qcm = new QCM(service);
         this.add(login, BorderLayout.CENTER);

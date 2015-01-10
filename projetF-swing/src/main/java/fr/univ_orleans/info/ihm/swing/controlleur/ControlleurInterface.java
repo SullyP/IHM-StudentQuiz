@@ -1,5 +1,6 @@
 package fr.univ_orleans.info.ihm.swing.controlleur;
 
+import fr.univ_orleans.info.ihm.modele.rmi.IModeleService;
 import fr.univ_orleans.info.ihm.swing.vue.Appli;
 import fr.univ_orleans.info.ihm.swing.vue.Question;
 import fr.univ_orleans.info.ihm.swing.vue.Resultat;
@@ -12,10 +13,10 @@ public interface ControlleurInterface {
     //modification du nombre d'utilisateurs ayant fini
     public Resultat modifUtilisateurFini(Resultat resultat);
 
-    //pour changer de la vue
-    public void changerVue(Appli appli);
+    //pour changer de vue une fois connecté
+    public void changerVueLogin();
 
     //initialise la vue
-    public void initVue();
+    public void initVue(IModeleService service);
 
 }

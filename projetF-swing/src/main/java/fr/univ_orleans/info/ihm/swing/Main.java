@@ -1,6 +1,7 @@
 package fr.univ_orleans.info.ihm.swing;
 
 import fr.univ_orleans.info.ihm.modele.rmi.IModeleService;
+import fr.univ_orleans.info.ihm.swing.controlleur.Controlleur;
 import fr.univ_orleans.info.ihm.swing.vue.Appli;
 import org.apache.log4j.Logger;
 
@@ -20,6 +21,7 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 IModeleService modeleService = null;
+                Appli appli = null;
 
                 try {
                     Registry registry = LocateRegistry.getRegistry(HOST, 9345);
@@ -36,7 +38,7 @@ public class Main {
                     LOGGER.warn("Look and Feel exception", e);
                 }
 
-                new Appli("QCM", modeleService);
+                new Controlleur(modeleService,appli);
             }
         });
     }

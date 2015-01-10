@@ -29,7 +29,7 @@
         </init-param>
         <init-param>
             <param-name>struts.custom.i18n.resources</param-name>
-            <param-value>global, action</param-value>
+            <param-value>action, global, title</param-value>
         </init-param>
         <init-param>
             <param-name>struts.i18n.encoding</param-name>

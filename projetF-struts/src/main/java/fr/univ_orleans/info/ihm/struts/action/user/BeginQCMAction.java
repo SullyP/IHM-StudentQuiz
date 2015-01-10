@@ -28,7 +28,7 @@ public class BeginQCMAction extends ServiceAndSessionAwareAction{
     private List<IReponse> reponses;
 
     @Action(value = "beginQCM", results = {
-            @Result(name = SUCCESS, type = "tiles", location = "user/question.tiles"),
+            @Result(name = SUCCESS, type = "tiles", location = "user/questionQCM.tiles"),
             @Result(name = ERROR, type = "redirectAction", params = {"namespace", "/error", "actionName", "404"})
     })
     @Override

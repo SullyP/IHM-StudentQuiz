@@ -8,13 +8,21 @@
         <put-attribute name="header" value="/WEB-INF/tiles/header.jsp"/>
         <put-attribute name="body" value=""/>
         <put-attribute name="footer" value="/WEB-INF/tiles/footer.jsp"/>
+        <put-list-attribute name="cssList" cascade="true">
+            <add-attribute value="/font-awesome/css/font-awesome.min.css"/>
+            <add-attribute value="/css/awesome-bootstrap-checkbox.css"/>
+            <add-attribute value="/css/default.css"/>
+        </put-list-attribute>
+        <put-list-attribute name="jsList" cascade="true">
+            <add-attribute value="/js/default.js"/>
+        </put-list-attribute>
     </definition>
     <definition name="redirectLayout" template="/WEB-INF/tiles/redirectLayout.jsp">
         <put-attribute name="url" value=""/>
     </definition>
 
     <definition name="home.tiles" extends="baseLayout">
-        <put-attribute name="title" value="Test Page"/>
+        <put-attribute name="title" value="title.home"/>
         <put-attribute name="body" value="/WEB-INF/home.jsp"/>
     </definition>
     <definition name="login.tiles" extends="baseLayout">
@@ -38,9 +46,15 @@
         <put-attribute name="title" value="List QCM Page"/>
         <put-attribute name="body" value="/WEB-INF/user/listQCM.jsp"/>
     </definition>
-    <definition name="user/question.tiles" extends="baseLayout">
+    <definition name="user/questionQCM.tiles" extends="baseLayout">
         <put-attribute name="title" value="Question"/>
-        <put-attribute name="body" value="/WEB-INF/user/question.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/user/questionQCM.jsp"/>
+        <put-list-attribute name="cssList" cascade="true" inherit="true">
+            <add-attribute value="/css/pietimer.css"/>
+        </put-list-attribute>
+        <put-list-attribute name="jsList" cascade="true" inherit="true">
+            <add-attribute value="/js/jquery.pietimer.js"/>
+        </put-list-attribute>
     </definition>
     <definition name="user/endQCM.tiles" extends="baseLayout">
         <put-attribute name="title" value="Question"/>

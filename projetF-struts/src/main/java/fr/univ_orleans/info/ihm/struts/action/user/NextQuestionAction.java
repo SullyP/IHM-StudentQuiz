@@ -35,7 +35,7 @@ public class NextQuestionAction extends ServiceAndSessionAwareAction{
     private List<IReponse> reponses;
 
     @Action(value = "nextQuestion", results = {
-            @Result(type = "tiles", location = "user/question.tiles"),
+            @Result(type = "tiles", location = "user/questionQCM.tiles"),
             @Result(name = "endQCM", type = "tiles", location = "user/endQCM.tiles")
     })
     @Override

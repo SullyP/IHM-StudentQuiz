@@ -212,7 +212,7 @@ public class ModeleService implements IModeleService {
      * {@inheritDoc}
      */
     @Override
-    public IQuestion getFirstQuestionQCM(int idQCM, int idResultatUtilisateur) {
+    public IQuestion getFirstQuestionQCM(int idQCM, int idResultatUtilisateur) throws RemoteException {
         return QCMBaseDAO.getInstance().getFirstQuestionQCM(idQCM, idResultatUtilisateur);
     }
 

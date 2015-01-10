@@ -14,7 +14,7 @@
                         <s:hidden id="HiddenIdQCM" name="idQCM" value="%{idQCM}"/>
                         <div class="more">
                             <a href="#addQuestion_modal" data-toggle="modal" type="button">
-                                <i class="glyphicon glyphicon-plus"/> <s:text name="admin.listQuestionQCM.addQuestion"/>
+                                <i class="glyphicon glyphicon-plus" aria-hidden="true"></i> <s:text name="admin.listQuestionQCM.addQuestion"/>
                             </a>
                         </div>
                     </div>
@@ -29,8 +29,8 @@
                         <div class="info">
                             <h3 class="title"><s:property value="intituleQuestion"/></h3>
                             <p>
-                                <i class="glyphicon glyphicon-time" aria-hidden="true"/> <s:property value="dureeQuestion"/> s
-                                <i class="glyphicon glyphicon-certificate" aria-hidden="true"/> <s:property value="pointQuestion"/> points
+                                <i class="glyphicon glyphicon-time" aria-hidden="true"></i> <s:property value="dureeQuestion"/> s
+                                <i class="glyphicon glyphicon-certificate" aria-hidden="true"></i> <s:property value="pointQuestion"/> points
                                 <s:if test="%{multipleQuestion}">
                                     <br>
                                     <s:text name="admin.listQuestionQCM.multipleQuestion"/>
@@ -40,10 +40,10 @@
                                     <br>
                                     <span id="reponse<s:property value="idReponse"/>">
                                         <s:if test="%{correctReponse}">
-                                            <i id="correct<s:property value="idReponse"/>" class="glyphicon glyphicon-check" aria-hidden="true"/>
+                                            <i id="correct<s:property value="idReponse"/>" class="glyphicon glyphicon-check" aria-hidden="true"></i>
                                         </s:if>
                                         <s:else>
-                                            <i id="correct<s:property value="idReponse"/>" class="glyphicon glyphicon-unchecked" aria-hidden="true"/>
+                                            <i id="correct<s:property value="idReponse"/>" class="glyphicon glyphicon-unchecked" aria-hidden="true"></i>
                                         </s:else>
                                         <s:property value="intituleReponse"/>
                                     </span>
@@ -51,7 +51,7 @@
                             </p>
                             <div class="more">
                                 <a href="#editQuestion_modal" data-toggle="modal" type="button" data-whatever="<s:property value="idQuestion"/>">
-                                    <i class="glyphicon glyphicon-pencil"/> <s:text name="admin.listQuestionQCM.editQuestion"/>
+                                    <i class="glyphicon glyphicon-pencil"></i> <s:text name="admin.listQuestionQCM.editQuestion"/>
                                 </a>
                             </div>
                         </div>

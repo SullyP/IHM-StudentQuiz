@@ -15,10 +15,10 @@
               <s:text name="user.endQCM.score"/> <s:property value="score"/> / <s:property value="scoreMax"/>
             </p>
             <div class="more">
-              <s:url namespace="%{getText('namespace.user')}" action="listQCM" var="urlTag" >
+              <s:url namespace="%{getText('namespace.user')}" action="%{getText('action.user.listQCM')}" var="urlTag" >
               </s:url>
               <a href="<s:property value="#urlTag" />">
-                <s:text name="global.home"/> <i class="glyphicon glyphicon-chevron-right"></i>
+                <s:text name="global.home"/> <i class="glyphicon glyphicon-chevron-right" aria-hidden="true"></i>
               </a>
             </div>
           </div>

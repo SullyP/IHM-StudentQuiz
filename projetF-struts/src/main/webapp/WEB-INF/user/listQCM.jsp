@@ -28,18 +28,18 @@
 
                                 <div class="more">
                                     <s:if test="%{qCM.isOpen()}">
-                                        <s:url namespace="%{getText('namespace.user')}" action="beginQCM" var="urlTag">
+                                        <s:url namespace="%{getText('namespace.user')}" action="%{getText('action.user.beginQCM')}" var="urlTag">
                                             <s:param name="idQCM"><s:property value="qCM.idQCM"/></s:param>
                                         </s:url>
                                         <a href="<s:property value="#urlTag" />">
-                                            <s:text name="user.listQCM.participate"/> <i
-                                                class="glyphicon glyphicon-chevron-right"></i>
+                                            <s:text name="user.listQCM.participate"/>
+                                            <i class="glyphicon glyphicon-chevron-right" aria-hidden="true"></i>
                                         </a>
                                     </s:if>
                                     <s:else>
                                         <a class="invalid">
-                                            <s:text name="user.listQCM.participate"/> <i
-                                                class="glyphicon glyphicon-chevron-right"></i>
+                                            <s:text name="user.listQCM.participate"/>
+                                            <i class="glyphicon glyphicon-chevron-right" aria-hidden="true"></i>
                                         </a>
                                     </s:else>
                                 </div>

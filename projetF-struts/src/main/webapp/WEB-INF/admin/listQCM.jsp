@@ -19,7 +19,7 @@
 
                             <div class="more">
                                 <a type="button" href="#addQCM_modal" data-toggle="modal">
-                                    <s:text name="admin.listQCM.addQCM"/> <i class="glyphicon glyphicon-plus"></i>
+                                    <s:text name="admin.listQCM.addQCM"/> <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
                                 </a>
                             </div>
                         </div>
@@ -53,7 +53,7 @@
                                 <h3 class="title"><s:property value="nomQCM"/></h3>
 
                                 <p>
-                                    <s:property value="etatQCM"/> </br>
+                                    <s:property value="etatQCM"/> <br>
                                     <s:text name="admin.listQCM.createOn"/> <s:property value="dateCreationQCM"/>
                                 </p>
 
@@ -67,9 +67,9 @@
                                         <i class="glyphicon glyphicon-pencil"/> <s:text name="admin.listQCM.edit"/>
                                     </a>
                                 </div>
-                                </br>
+                                <br>
                                 <div class="more">
-                                    <s:url namespace="%{getText('namespace.admin')}" action="listQuestionQCM"
+                                    <s:url namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.listQuestionQCM')}"
                                            var="urlTagQuestion">
                                         <s:param name="idQCM"><s:property value="idQCM"/></s:param>
                                     </s:url>
@@ -96,7 +96,7 @@
                     <h4 class="modal-title" id="myModalLabel"><s:text name="admin.listQCM.addQCM"/></h4>
                 </div>
                 <div class="modal-body">
-                    <s:form namespace="/admin" action="addQCM" theme="bootstrap" cssClass="form">
+                    <s:form namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.addQCM')}" theme="bootstrap" cssClass="form">
                         <fieldset>
                             <div class="form-group">
                                 <s:textfield name="nomQCM" label="%{getText('admin.listQCM.nameQCM')}" maxLength="250"
@@ -140,7 +140,7 @@
         $('.changeStatus').onclick(function (event) {
             $.ajax({
                 type: "POST",
-                <s:url namespace="%{getText('namespace.admin')}" action="statusQCM" var="url" />
+                <s:url namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.statusQCM')}" var="url" />
                 //classe à faire
                 url: "<s:property value="#url" />",
                 data: {idQCM: idQCM}
@@ -158,7 +158,7 @@
         $('#deleteQCMButton').click(function () {
             $.ajax({
                 type: "POST",
-                <s:url namespace="%{getText('namespace.admin')}" action="deleteQCM" var="urlTagDelete" />
+                <s:url namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.deleteQCM')}" var="urlTagDelete" />
                 url: "<s:property value="#urlTagDelete" />",
                 data: {idQCM: idQCM}
             })

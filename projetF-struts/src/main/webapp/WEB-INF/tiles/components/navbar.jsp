@@ -17,7 +17,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="navbar-collapse-menu">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="<s:url namespace="/" action="home"/>"><s:text
+                        <li><a href="<s:url namespace="/" action="home"/>"><s:text
                                 name="global.home"/></a></li>
                         <li><a href=""><s:text name="global.about"/></a></li>
                         <li class="dropdown">

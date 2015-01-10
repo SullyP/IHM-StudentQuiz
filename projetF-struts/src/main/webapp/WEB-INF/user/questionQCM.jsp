@@ -17,8 +17,9 @@
                     </div>
                     <div class="info">
                         <h3 class="title"><s:property value="intituleQuestion"/></h3>
-                        <s:form id="questionForm" namespace="%{getText('namespace.user')}" action="%{getText('action.user.nextQuestion')}" theme="simple"
-                                cssClass="f">
+                        <s:form id="questionForm" namespace="%{getText('namespace.user')}"
+                                action="%{getText('action.user.nextQuestion')}" theme="simple"
+                                cssClass="form">
                             <fieldset>
                                 <s:hidden name="multipleQuestion" value="%{multipleQuestion}"/>
                                 <s:hidden name="idQCM" value="%{idQCM}"/>

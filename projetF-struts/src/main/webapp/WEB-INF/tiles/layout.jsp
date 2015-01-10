@@ -18,7 +18,28 @@
     <![endif]-->
 
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico"/>
-    <sj:head jqueryui="true"/>
+    <%--<sj:head jqueryui="true"/>--%>
+    <script type="text/javascript" src="/struts/js/base/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="/js/jquery-ui.min.js?s2j=3.7.1"></script>
+    <script type="text/javascript" src="/js/jquery-ui-i18n.min.js?s2j=3.7.1"></script>
+    <script type="text/javascript" src="/struts/js/plugins/jquery.subscribe.min.js?s2j=3.7.1"></script>
+    <script type="text/javascript" src="/struts/js/struts2/jquery.struts2.min.js?s2j=3.7.1"></script>
+    <script type="text/javascript">
+        $(function () {
+            jQuery.struts2_jquery.version = "3.7.1";
+            jQuery.scriptPath = "/struts/";
+            jQuery.ajaxSettings.traditional = true;
+
+            jQuery.ajaxSetup({
+                cache: false
+            });
+
+            jQuery.struts2_jquery.require("js/struts2/jquery.ui.struts2.min.js?s2j=3.7.1");
+
+        });
+    </script>
+    <link id="jquery_theme_link" rel="stylesheet"
+          href="/css/jquery-ui.min.css?s2j=3.7.1" type="text/css"/>
     <sb:head includeScripts="true" includeScriptsValidation="true"/>
     <tiles:importAttribute name="cssList"/>
     <s:iterator value="#attr.cssList" var="cssValue">

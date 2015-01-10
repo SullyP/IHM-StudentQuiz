@@ -22,7 +22,7 @@ public class QCMTest {
     @Before
     public void setUp() {
         //Utilisation d'une base de donnée H2 uniquement pour le test
-        BaseDonneeH2.getInstance().setDbPath("~/testUnit");
+        BaseDonneeH2.getInstance().setDbPath(AllTests.DB_PATH);
         qcmDAO = QCMBaseDAO.getInstance();
         IEntite entite = EntiteBaseDAO.getInstance().creerEntite("New");
         utilisateur = UtilisateurBaseDAO.getInstance().creerUtilisateur("jean","paul","jp","azerty", 123456, entite.getIdEntite());

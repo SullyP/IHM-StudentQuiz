@@ -24,7 +24,7 @@ public class ResultatUtilisateurTest {
     @Before
     public void setUp() {
         //Utilisation d'une base de donnée H2 uniquement pour le test
-        BaseDonneeH2.getInstance().setDbPath("~/testUnit");
+        BaseDonneeH2.getInstance().setDbPath(AllTests.DB_PATH);
         resultatUtilisateurDAO = ResultatUtilisateurBaseDAO.getInstance();
         question1 = QuestionBaseDAO.getInstance().creerQuestion("Comment vas-tu ?", false, 10, 2);
         question2 = QuestionBaseDAO.getInstance().creerQuestion("Esprit es-tu là ?", true, 10, 2);

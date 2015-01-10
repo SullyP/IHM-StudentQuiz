@@ -21,7 +21,7 @@ public class UtilisateurTest {
     @Before
     public void setUp() {
         //Utilisation d'une base de donnée H2 uniquement pour le test
-        BaseDonneeH2.getInstance().setDbPath("~/testUnit");
+        BaseDonneeH2.getInstance().setDbPath(AllTests.DB_PATH);
         entiteDAO = EntiteBaseDAO.getInstance();
         utilisateurDAO = UtilisateurBaseDAO.getInstance();
     }

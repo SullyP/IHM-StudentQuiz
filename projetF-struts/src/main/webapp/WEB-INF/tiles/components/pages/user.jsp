@@ -3,4 +3,3 @@
 
 <li><a href="<s:url namespace="%{getText('namespace.user')}" action="%{getText('action.user.listQCM')}"/>"><s:text
         name="global.pages.admin.listQCM"/></a></li>
-<li><a href="">Another Action</a></li>

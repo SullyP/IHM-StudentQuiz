@@ -43,7 +43,6 @@
                         <button type="submit" class="btn btn-default"><s:text name="global.search"/></button>
                     </form>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="http://google.fr">I love Google</a></li>
                         <s:if test="%{#session.userName == null}">
                             <li class="dropdown">
                                 <a href="<s:url namespace="/" action="login"/>" class="dropdown-toggle"

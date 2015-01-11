@@ -36,7 +36,6 @@ public class LoginAction extends ServiceAndSessionAwareAction {
                 this.getSession().put("userName", userName);
                 this.getSession().put("firstName", user.getPrenomUtilisateur());
                 this.getSession().put("lastName", user.getNomUtilisateur());
-                this.getSession().put("studentID", user.getNumeroEtudiant());
                 if (user.isAdmin()) {
                     this.getSession().put("userLevel", "admin");
                     return "isAdmin";

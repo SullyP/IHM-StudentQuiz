@@ -17,7 +17,7 @@
         </init-param>
         <init-param>
             <param-name>struts.devMode</param-name>
-            <param-value>true</param-value>
+            <param-value>false</param-value>
         </init-param>
         <init-param>
             <param-name>struts.action.extension</param-name>

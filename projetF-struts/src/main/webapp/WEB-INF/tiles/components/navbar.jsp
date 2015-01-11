@@ -19,7 +19,7 @@
                     <ul class="nav navbar-nav">
                         <li><a href="<s:url namespace="/" action="home"/>"><s:text
                                 name="global.home"/></a></li>
-                        <li><a href=""><s:text name="global.about"/></a></li>
+                        <li><a href="<s:url namespace="/" action="home"/>"><s:text name="global.about"/></a></li>
                         <li class="dropdown">
                             <a href="" class="dropdown-toggle" data-toggle="dropdown"><s:text
                                     name="global.navbar.pages"/> <b class="caret"></b></a>
@@ -36,12 +36,12 @@
                             </ul>
                         </li>
                     </ul>
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                            <s:textfield cssClass="form-control" placeholder="%{getText('global.search')}"/>
-                        </div>
-                        <button type="submit" class="btn btn-default"><s:text name="global.search"/></button>
-                    </form>
+                    <%--<form class="navbar-form navbar-left" role="search">--%>
+                        <%--<div class="form-group">--%>
+                            <%--<s:textfield cssClass="form-control" placeholder="%{getText('global.search')}"/>--%>
+                        <%--</div>--%>
+                        <%--<button type="submit" class="btn btn-default"><s:text name="global.search"/></button>--%>
+                    <%--</form>--%>
                     <ul class="nav navbar-nav navbar-right">
                         <s:if test="%{#session.userName == null}">
                             <li class="dropdown">

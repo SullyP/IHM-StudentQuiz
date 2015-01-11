@@ -214,6 +214,7 @@ footer .container p {
 .line-block {
     display: block;
     width: 100%;
+    text-align: center;
 }
 
 .inline-centered {
@@ -224,6 +225,10 @@ footer .container p {
 .text-left {
     text-align: left;
 }
+
+.text-center {
+    text-align: center;
+}
 /* QuestionQCM **/
 
 /** JTable */
@@ -231,3 +236,33 @@ footer .container p {
     overflow: hidden;
 }
 /* JTable **/
+
+.intro-message > h1 {
+    margin: 0;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+    font-size: 4em;
+}
+
+.intro-divider {
+    width: 500px;
+    border-top: 1px solid #f8f8f8;
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+}
+
+.intro-message > h3 {
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+}
+
+@media(max-width:767px) {
+    .intro-message {
+        padding-bottom: 15%;
+    }
+
+    .intro-message > h1 {
+        font-size: 3em;
+    }
+
+    .intro-divider {
+        width: 100%;
+    }
+}

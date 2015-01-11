@@ -36,6 +36,6 @@ public class JListQCM extends AbstractListModel {
         } catch (RemoteException e) {
             LOGGER.trace(e);
         }
-        return qcm.getNomQCM();/*problème*/
+        return qcm.getNomQCM();
     }
 }

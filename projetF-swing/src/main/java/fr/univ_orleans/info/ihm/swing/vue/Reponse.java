@@ -4,13 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class Reponse extends JPanel implements ReponseInterface {
-
-    private JCheckBox check = new JCheckBox();
+public class Reponse extends JCheckBox implements ListCellRenderer {
 
     public Reponse() {
-        this.add(check, BorderLayout.WEST);
+
     }
 
 
+    @Override
+    public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+
+        return this;
+    }
 }

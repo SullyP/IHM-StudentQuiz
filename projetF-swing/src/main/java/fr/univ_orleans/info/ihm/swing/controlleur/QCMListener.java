@@ -4,16 +4,22 @@ import fr.univ_orleans.info.ihm.modele.beans.IQCM;
 import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
 import fr.univ_orleans.info.ihm.modele.rmi.IModeleService;
 import fr.univ_orleans.info.ihm.swing.Main;
+import fr.univ_orleans.info.ihm.swing.vue.Question;
+import org.apache.log4j.Logger;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.rmi.RemoteException;
 
 public class QCMListener implements ActionListener {
 
+    private static final Logger LOGGER = Logger.getLogger(QCMListener.class.getCanonicalName());
     IUtilisateur utilisateur=null;
     IModeleService service;
     IQCM qcm;
     java.util.List<IQCM> list=null;
+    QuestionListener questionListener;
 
     public QCMListener(IModeleService service, IUtilisateur utilisateur){
         this.service=service;
@@ -30,10 +36,17 @@ public class QCMListener implements ActionListener {
             int idqcm;
             if (nomqcm != null && qcm != null) {
                 idqcm = qcm.getIdQCM();
-                Main.appli.qcm.setVisible(false);
-                //this.questionListener = new QuestionListener(service, utilisateur);
-                //Main.appli.question.valider.addActionListener(questionListener);
-
+                try {
+                    if(service.getQCM(idqcm).isOpened()) {
+                        Main.appli.qcm.setVisible(false);
+                        Main.appli.question = new Question(service, utilisateur, idqcm);
+                        Main.appli.add(Main.appli.question, BorderLayout.CENTER);
+                        this.questionListener = new QuestionListener(service, utilisateur);
+                        Main.appli.question.valider.addActionListener(questionListener);
+                    }
+                } catch (RemoteException e1) {
+                    LOGGER.trace(e1);
+                }
             }
         }
     }

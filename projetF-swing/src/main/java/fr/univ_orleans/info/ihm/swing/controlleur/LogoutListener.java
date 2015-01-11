@@ -24,6 +24,7 @@ public class LogoutListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Main.appli.deco.setVisible(false);
         Main.appli.qcm.setVisible(false);
+        Main.appli.question.setVisible(false);
         this.utilisateur=null;
         //Main.appli.login=new Login(service,utilisateur);
         //Main.appli.add(Main.appli.login, BorderLayout.CENTER);

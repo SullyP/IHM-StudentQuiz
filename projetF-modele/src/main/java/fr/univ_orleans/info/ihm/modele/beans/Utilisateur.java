@@ -117,6 +117,6 @@ public class Utilisateur implements IUtilisateur, Serializable{
      */
     @Override
     public boolean isAdmin() {
-        return this.entiteUtilisateur != null && this.entiteUtilisateur.getNomEntite().equals(NOM_ENTITE_ADMIN);
+        return this.entiteUtilisateur != null && this.entiteUtilisateur.getIdEntite() == 2;
     }
 }

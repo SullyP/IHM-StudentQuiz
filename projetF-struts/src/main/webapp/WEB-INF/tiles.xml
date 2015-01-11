@@ -41,6 +41,17 @@
             <add-attribute value="/js/jquery.jtable.fr.js"/>
         </put-list-attribute>
     </definition>
+    <definition name="admin/listUser.tiles" extends="baseLayout">
+        <put-attribute name="title" value="List User Page"/>
+        <put-attribute name="body" value="/WEB-INF/admin/listUtilisateur.jsp"/>
+        <put-list-attribute name="cssList" cascade="true" inherit="true">
+            <add-attribute value="/css/metro/lightgray/jtable.min.css"/>
+        </put-list-attribute>
+        <put-list-attribute name="jsList" cascade="true" inherit="true">
+            <add-attribute value="/js/jquery.jtable.min.js"/>
+            <add-attribute value="/js/jquery.jtable.fr.js"/>
+        </put-list-attribute>
+    </definition>
     <definition name="admin/listQCM.tiles" extends="baseLayout">
         <put-attribute name="title" value="List QCM Page"/>
         <put-attribute name="body" value="/WEB-INF/admin/listQCM.jsp"/>

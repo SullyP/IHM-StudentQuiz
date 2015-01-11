@@ -1,10 +1,11 @@
 package fr.univ_orleans.info.ihm.modele.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class QCM implements IQCM{
+public class QCM implements IQCM , Serializable {
     private int idQCM;
     private int idCreateurQCM;
     private String nomQCM;

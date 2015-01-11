@@ -1,6 +1,8 @@
 package fr.univ_orleans.info.ihm.modele.beans;
 
-public class Reponse implements IReponse {
+import java.io.Serializable;
+
+public class Reponse implements IReponse , Serializable {
     private int idReponse;
     private String intituleReponse;
     private boolean correctReponse;

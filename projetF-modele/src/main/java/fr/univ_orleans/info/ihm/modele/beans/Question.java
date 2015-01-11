@@ -1,9 +1,10 @@
 package fr.univ_orleans.info.ihm.modele.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Question implements IQuestion {
+public class Question implements IQuestion , Serializable {
     private int idQuestion;
     private int dureeQuestion;
     private int pointQuestion;

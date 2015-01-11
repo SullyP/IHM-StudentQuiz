@@ -1,10 +1,11 @@
 package fr.univ_orleans.info.ihm.modele.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ResultatUtilisateur implements IResultatUtilisateur {
+public class ResultatUtilisateur implements IResultatUtilisateur , Serializable {
     private int idResultatUtilisateur;
     private int idUtilisateur;
     private int idQCM;

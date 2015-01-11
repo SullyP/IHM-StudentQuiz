@@ -78,10 +78,11 @@
                 method="{1}">
             <result type="json" />
         </action>
-        <action name="getJSONResult" class="fr.univ_orleans.info.ihm.struts.action.admin.QuestionCRUDController" method="list">
+        <action name="*ActionReponse" class="fr.univ_orleans.info.ihm.struts.action.admin.ReponseCRUDController"
+                method="{1}">
             <result type="json" />
         </action>
-        <action name="*ActionReponse" class="fr.univ_orleans.info.ihm.struts.action.admin.ReponseCRUDController"
+        <action name="*ActionUtilisateur" class="fr.univ_orleans.info.ihm.struts.action.admin.UtilisateurCRUDController"
                 method="{1}">
             <result type="json" />
         </action>

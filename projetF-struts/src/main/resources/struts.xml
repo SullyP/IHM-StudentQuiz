@@ -23,8 +23,6 @@
             </interceptor-stack>
         </interceptors>
 
-        <default-interceptor-ref name="defaultStack"/>
-
         <global-results>
             <result name="login" type="redirectAction">
                 <param name="namespace">/</param>

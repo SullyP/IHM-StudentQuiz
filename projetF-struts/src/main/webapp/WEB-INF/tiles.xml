@@ -16,6 +16,8 @@
         <put-list-attribute name="jsList" cascade="true">
             <add-attribute value="/js/default.js"/>
         </put-list-attribute>
+        <put-list-attribute name="jsfrList" cascade="true">
+        </put-list-attribute>
     </definition>
     <definition name="redirectLayout" template="/WEB-INF/tiles/redirectLayout.jsp">
         <put-attribute name="url" value=""/>
@@ -38,6 +40,8 @@
         </put-list-attribute>
         <put-list-attribute name="jsList" cascade="true" inherit="true">
             <add-attribute value="/js/jquery.jtable.min.js"/>
+        </put-list-attribute>
+        <put-list-attribute name="jsfrList" cascade="true" inherit="true">
             <add-attribute value="/js/jquery.jtable.fr.js"/>
         </put-list-attribute>
     </definition>
@@ -49,6 +53,8 @@
         </put-list-attribute>
         <put-list-attribute name="jsList" cascade="true" inherit="true">
             <add-attribute value="/js/jquery.jtable.min.js"/>
+        </put-list-attribute>
+        <put-list-attribute name="jsfrList" cascade="true" inherit="true">
             <add-attribute value="/js/jquery.jtable.fr.js"/>
         </put-list-attribute>
     </definition>

@@ -18,7 +18,7 @@
     <![endif]-->
 
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico"/>
-    <%--<sj:head jqueryui="true"/>--%>
+    <%--<sj:head jqueryui="true"/>--%> <%--Remplacé à la main pour inter-compatibilité de plugins--%>
     <script src="${pageContext.request.contextPath}/struts/js/base/jquery-1.11.0.min.js"
             type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/struts/js/plugins/jquery.subscribe.min.js?s2j=3.7.1"
@@ -59,6 +59,12 @@
     <s:iterator value="#attr.jsList" var="jsValue">
         <script src="${pageContext.request.contextPath}<s:url value="%{jsValue}"/>" type="text/javascript"></script>
     </s:iterator>
+    <tiles:importAttribute name="jsfrList"/>
+    <s:if test="%{#request.locale.language == 'fr'}">
+        <s:iterator value="#attr.jsfrList" var="jsfrValue">
+            <script src="${pageContext.request.contextPath}<s:url value="%{jsfrValue}"/>" type="text/javascript"></script>
+        </s:iterator>
+    </s:if>
     <s:set var="titleKey">
         <tiles:getAsString name="title" ignore="true"/>
     </s:set>

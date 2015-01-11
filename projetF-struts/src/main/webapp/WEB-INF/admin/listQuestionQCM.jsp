@@ -9,13 +9,12 @@
                     <div class="image">
                         <i class="glyphicon glyphicon-list" aria-hidden="true"></i>
                     </div>
-                    <div class="info">
+                    <div class="info infoJTable">
                         <h3 class="title"><s:property value="nomQCM"/></h3>
                         <s:hidden id="HiddenIdQCM" name="idQCM" value="%{idQCM}"/>
                         <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" id="QuestionTable"></div>
                     </div>
                 </div>
-                <div class="space"></div>
             </div>
         </div>
     </div>

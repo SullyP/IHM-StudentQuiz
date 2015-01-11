@@ -9,14 +9,13 @@
                     <div class="image">
                         <i class="glyphicon glyphicon-list" aria-hidden="true"></i>
                     </div>
-                    <div class="info">
+                    <div class="info infoJTable">
                         <h3 class="title"><s:text name="admin.listUser.userManagement"/></h3>
+                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" id="UserTable" ></div>
                     </div>
                 </div>
-                <div class="space"></div>
             </div>
         </div>
-        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" id="UserTable" ></div>
     </div>
 </div>
 <script type="text/javascript">

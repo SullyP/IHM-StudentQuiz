@@ -225,3 +225,9 @@ footer .container p {
     text-align: left;
 }
 /* QuestionQCM **/
+
+/** JTable */
+.infoJTable {
+    overflow: hidden;
+}
+/* JTable **/

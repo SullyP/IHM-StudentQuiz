@@ -12,9 +12,6 @@ public interface IControlleur {
     //modification du nombre d'utilisateurs ayant fini
     public Resultat modifUtilisateurFini(Resultat resultat);
 
-    //pour changer de vue une fois connecté
-    public void changerVueLogin();
-
     //initialise la vue
     public void initVue(IModeleService service);
 

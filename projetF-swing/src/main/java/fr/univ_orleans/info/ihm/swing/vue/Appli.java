@@ -1,6 +1,7 @@
 package fr.univ_orleans.info.ihm.swing.vue;
 
 
+import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
 import fr.univ_orleans.info.ihm.modele.rmi.IModeleService;
 
 import javax.swing.*;
@@ -11,16 +12,17 @@ public class Appli extends AppliInterface {
     private static final int HEIGHT = 480;
 
     JLabel statut = new JLabel();
-
-    Login login;
-    //QCM qcm;
+    IUtilisateur utilisateur = null;
+    public Login login;
+    public Connecte deco;
+    public QCM qcm;
 
     public Appli(String s, IModeleService service) {
         super(s);
-        login = new Login(service);
-        //qcm = new QCM(service);
+        login = new Login(service,utilisateur);
+        deco=null;
+        qcm = null;
         this.add(login, BorderLayout.CENTER);
-        //this.add(qcm, BorderLayout.SOUTH);
         setSize(WIDTH, HEIGHT);
         this.setVisible(true);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

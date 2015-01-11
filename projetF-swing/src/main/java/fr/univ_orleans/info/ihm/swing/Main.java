@@ -13,6 +13,7 @@ import java.rmi.registry.Registry;
 public class Main {
     public static final String HOST = "127.0.0.1";
     private static final Logger LOGGER = Logger.getLogger(Main.class.getCanonicalName());
+    public static Appli appli = null;
 
     private Main() {
     }
@@ -22,7 +23,7 @@ public class Main {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 IModeleService modeleService = null;
-                Appli appli = null;
+
 
                 try {
                     Registry registry = LocateRegistry.getRegistry(HOST, 9345);
@@ -43,7 +44,7 @@ public class Main {
                     LOGGER.warn("Look and Feel exception", e);
                 }
 
-                new Controlleur(modeleService, appli);
+                new Controlleur(modeleService);
             }
         });
     }

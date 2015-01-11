@@ -12,7 +12,7 @@
                     <div class="box">
                         <div class="icon">
                             <div class="image">
-                                <s:if test="%{qCM.isOpen()}">
+                                <s:if test="%{qCM.isOpened()}">
                                     <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i>
                                 </s:if>
                                 <s:else>
@@ -27,7 +27,7 @@
                                 </p>
 
                                 <div class="more">
-                                    <s:if test="%{qCM.isOpen()}">
+                                    <s:if test="%{qCM.isOpened()}">
                                         <s:url namespace="%{getText('namespace.user')}" action="%{getText('action.user.beginQCM')}" var="urlTag">
                                             <s:param name="idQCM"><s:property value="qCM.idQCM"/></s:param>
                                         </s:url>

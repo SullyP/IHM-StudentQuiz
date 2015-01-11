@@ -20,8 +20,6 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico"/>
     <%--<sj:head jqueryui="true"/>--%>
     <script type="text/javascript" src="/struts/js/base/jquery-1.11.0.min.js"></script>
-    <script type="text/javascript" src="/js/jquery-ui.min.js?s2j=3.7.1"></script>
-    <script type="text/javascript" src="/js/jquery-ui-i18n.min.js?s2j=3.7.1"></script>
     <script type="text/javascript" src="/struts/js/plugins/jquery.subscribe.min.js?s2j=3.7.1"></script>
     <script type="text/javascript" src="/struts/js/struts2/jquery.struts2.min.js?s2j=3.7.1"></script>
     <script type="text/javascript">
@@ -38,12 +36,11 @@
 
         });
     </script>
-    <link id="jquery_theme_link" rel="stylesheet"
-          href="/css/jquery-ui.min.css?s2j=3.7.1" type="text/css"/>
-    <link id="jquery_custom_link" rel="stylesheet" href="/css/jquery-ui-1.10.3.custom.css" type="text/css"/>
-    <link id="jquery_theme_link" rel="stylesheet" href="/css/jquery-ui-1.10.3.theme.css" type="text/css"/>
-    <link id="jquery_ie_link" rel="stylesheet" href="/css/jquery.ui.1.10.3.ie.css" type="text/css"/>
     <sb:head includeScripts="true" includeScriptsValidation="true"/>
+    <link href="/css/jquery-ui-1.10.3.bootstrap.css?s2j=3.7.1" rel="stylesheet" type="text/css">
+    <script src="/js/jquery-ui-1.10.3.bootstrap.min.js?s2j=3.7.1" type="text/javascript"></script>
+    <%--<script type="text/javascript" src="/js/jquery-ui.min.js?s2j=3.7.1"></script>--%>
+    <%--<script type="text/javascript" src="/js/jquery-ui-i18n.min.js?s2j=3.7.1"></script>--%>
     <tiles:importAttribute name="cssList"/>
     <s:iterator value="#attr.cssList" var="cssValue">
         <link href="${pageContext.request.contextPath}<s:url value="%{cssValue}"/>" rel="stylesheet" type="text/css">

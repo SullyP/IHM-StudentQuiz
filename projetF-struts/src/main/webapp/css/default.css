@@ -216,9 +216,12 @@ footer .container p {
     width: 100%;
 }
 
-.inline-centered-text-left {
+.inline-centered {
     display: inline-block;
     margin: 0 auto;
+}
+
+.text-left {
     text-align: left;
 }
 /* QuestionQCM **/

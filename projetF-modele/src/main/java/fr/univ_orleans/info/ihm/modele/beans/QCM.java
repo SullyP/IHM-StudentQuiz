@@ -111,15 +111,37 @@ public class QCM implements IQCM{
     }
 
     @Override
-    public boolean isOpen() {
+    public boolean isOpened() {
         return this.etatQCM == EtatQCMEnum.OUVERT;
 
     }
 
     @Override
+    public boolean isWaiting() {
+        return this.etatQCM == EtatQCMEnum.EN_ATTENTE;
+    }
+
+    @Override
+    public boolean isClosed() {
+        return this.etatQCM == EtatQCMEnum.FERME;
+    }
+
+    @Override
     public boolean open() {
-        if (this.etatQCM == EtatQCMEnum.OUVERT) {
+        if (this.etatQCM != EtatQCMEnum.OUVERT) {
             this.etatQCM = EtatQCMEnum.OUVERT;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean waiting() {
+        if (this.etatQCM != EtatQCMEnum.EN_ATTENTE) {
+            this.etatQCM = EtatQCMEnum.EN_ATTENTE;
+
             return true;
         }
 
@@ -128,7 +150,7 @@ public class QCM implements IQCM{
 
     @Override
     public boolean close() {
-        if (this.etatQCM == EtatQCMEnum.FERME) {
+        if (this.etatQCM != EtatQCMEnum.FERME) {
             this.etatQCM = EtatQCMEnum.FERME;
 
             return true;

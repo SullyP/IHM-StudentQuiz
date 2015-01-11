@@ -33,10 +33,10 @@
                     <div class="box">
                         <div class="icon">
                             <div class="image">
-                                <s:if test="%{etatQCM.toString() == 'OUVERT'}">
+                                <s:if test="%{etatQCM.toString().isOpened()}">
                                     <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i>
                                 </s:if>
-                                <s:elseif test="%{etatQCM.toString() == 'FERME'}">
+                                <s:elseif test="%{etatQCM.isClosed()}">
                                     <i class="glyphicon glyphicon-eye-close" aria-hidden="true"></i>
                                 </s:elseif>
                                 <s:else>
@@ -63,19 +63,19 @@
                                         <s:param name="idQCM"><s:property value="idQCM"/></s:param>
                                     </s:url>
                                     <a href="<s:property value="#urlTagQuestion" />">
-                                        <i class="glyphicon glyphicon-plus"></i> <s:text name="admin.listQCM.more"/>
+                                        <i class="glyphicon glyphicon-plus" aria-hidden="true"></i> <s:text name="admin.listQCM.more"/>
                                     </a>
                                 </div>
                                 <br/>
                                 <div class="more">
                                     <a href="#">
-                                        <i class="glyphicon glyphicon-pencil"></i> <s:text name="admin.listQCM.edit"/>
+                                        <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> <s:text name="admin.listQCM.edit"/>
                                     </a>
                                 </div>
                                 <br/>
                                 <div class="more">
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-pencil"></i> <s:text name="Changer status"/>
+                                    <a class="changeStatus" href="#">
+                                        <i class="glyphicon glyphicon-play" aria-hidden="true"></i> <s:text name="admin.listQCM.close"/>
                                     </a>
                                 </div>
                             </div>
@@ -142,11 +142,10 @@
             $.ajax({
                 type: "POST",
                 <s:url namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.statusQCM')}" var="url" />
-                //classe à faire
                 url: "<s:property value="#url" />",
                 data: {idQCM: idQCM}
             }).done(function () {
-//à faire
+
             });
         });
     });
@@ -163,7 +162,7 @@
                 url: "<s:property value="#urlTagDelete" />",
                 data: {idQCM: idQCM}
             })
-                    .done(function (msg) {
+                    .done(function () {
                         //Lorsque la requête est terminée, on supprime le QCM de la page
                         $('#boxQCM' + idQCM).remove();
                     });

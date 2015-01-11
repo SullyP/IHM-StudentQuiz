@@ -15,8 +15,11 @@ public interface IQCM {
     public void setIdCreateurQCM(int idCreateurQCM);
     public void setNomQCM(String nomQCM);
     public void setEtatQCM(EtatQCMEnum etatQCM);
-    public boolean isOpen();
+    public boolean isOpened();
+    public boolean isWaiting();
+    public boolean isClosed();
     public boolean open();
+    public boolean waiting();
     public boolean close();
 
     /**

@@ -100,11 +100,11 @@
 <label for="${parameters.id?html}${itemKeyStr?html}"<#include "/${parameters.templateDir}/${parameters.expandTheme}/css.ftl"/>><#rt/>
     ${itemValue}<#t/>
 </label>
-<#-- Added content : -->
+    <#-- Added content : -->
     <#if parameters.cssStyle?has_content>
         <#if "${parameters.cssStyle?html}" == "vertical">
         <br/><#rt/>
         </#if>
     </#if>
-<#-- Added content # -->
+    <#-- Added content # -->
 </@s.iterator>

@@ -17,7 +17,7 @@ import java.util.List;
 
 @ParentPackage(value = "user")
 @Namespace(value = "/user")
-public class BeginQCMAction extends ServiceAndSessionAwareAction{
+public class BeginQCMAction extends ServiceAndSessionAwareAction {
     private static final Logger LOGGER = Logger.getLogger(BeginQCMAction.class.getCanonicalName());
     private int idQCM=0;
     private int idQuestion;
@@ -34,7 +34,7 @@ public class BeginQCMAction extends ServiceAndSessionAwareAction{
     @Override
     public String execute() {
         try {
-            if (!this.getModeleService().getQCM(idQCM).isOpen()) {
+            if (!this.getModeleService().getQCM(idQCM).isOpened()) {
                 return ERROR;
             } else {
                 int idUtilisateur = (int) this.getSession().get("userId");

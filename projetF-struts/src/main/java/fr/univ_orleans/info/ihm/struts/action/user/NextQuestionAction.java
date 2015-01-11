@@ -15,7 +15,7 @@ import java.util.List;
 
 @ParentPackage(value = "user")
 @Namespace(value = "/user")
-public class NextQuestionAction extends ServiceAndSessionAwareAction{
+public class NextQuestionAction extends ServiceAndSessionAwareAction {
     private static final Logger LOGGER = Logger.getLogger(NextQuestionAction.class.getCanonicalName());
     private static final int SECONDES_EN_MILLISECONDES = 1000;
     private static final int DELAI_LATENCE = 2;
@@ -47,7 +47,7 @@ public class NextQuestionAction extends ServiceAndSessionAwareAction{
             long before = (long) this.getSession().get("beforeQuestion");
             int secondQuestion = (int) this.getSession().get("dureeQuestion");
             //On donne 2 secondes supplémentaires pour les problèmes de latences
-            if(now - before < (secondQuestion + DELAI_LATENCE) * SECONDES_EN_MILLISECONDES) {
+            if (now - before < (secondQuestion + DELAI_LATENCE) * SECONDES_EN_MILLISECONDES) {
                 if (this.multipleQuestion) {
                     //Si la question est multiple on enregistre toutes les réponses données (s'il y en a)
                     if (this.checkboxList != null) {
@@ -64,15 +64,15 @@ public class NextQuestionAction extends ServiceAndSessionAwareAction{
             }
             IQuestion question = null;
             //On vérifie si le QCM est toujours ouvert
-            if(this.getModeleService().getQCM(idQCM).isOpen()) {
+            if (this.getModeleService().getQCM(idQCM).isOpened()) {
                 //Récupération de la question suivante
                 question = this.getModeleService().getNextQuestionQCM(idQCM, idResultatUtilisateur);
             }
-            if(question == null){
+            if (question == null) {
                 this.score = this.getModeleService().calculerScoreResultatUtilisateur(idResultatUtilisateur).getScore();
                 this.scoreMax = this.getModeleService().calculerScoreMaxQCM(idQCM);
                 return "endQCM";
-            }else {
+            } else {
                 this.idQuestion = question.getIdQuestion();
                 this.pointQuestion = question.getPointQuestion();
                 this.multipleQuestion = question.isMultipleQuestion();
@@ -113,10 +113,6 @@ public class NextQuestionAction extends ServiceAndSessionAwareAction{
         this.reponse = reponse;
     }
 
-    public void setMultipleQuestion(boolean multipleQuestion) {
-        this.multipleQuestion = multipleQuestion;
-    }
-
     public int getIdQuestion() {
         return idQuestion;
     }
@@ -131,6 +127,10 @@ public class NextQuestionAction extends ServiceAndSessionAwareAction{
 
     public boolean isMultipleQuestion() {
         return multipleQuestion;
+    }
+
+    public void setMultipleQuestion(boolean multipleQuestion) {
+        this.multipleQuestion = multipleQuestion;
     }
 
     public String getIntituleQuestion() {

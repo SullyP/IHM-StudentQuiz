@@ -24,7 +24,7 @@
                                 <s:hidden name="multipleQuestion" value="%{multipleQuestion}"/>
                                 <s:hidden name="idQCM" value="%{idQCM}"/>
                                 <div class="line-block">
-                                    <div class="inline-centered-text-left">
+                                    <div class="inline-centered text-left">
                                         <s:if test="%{multipleQuestion}">
                                             <div class="checkbox checkbox-primary">
                                                 <s:checkboxlist name="checkboxList" list="reponses" listKey="idReponse"

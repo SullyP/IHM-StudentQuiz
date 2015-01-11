@@ -7,49 +7,38 @@ import org.apache.log4j.Logger;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.rmi.RemoteException;
-import java.util.*;
-import java.util.List;
 
 public class QCM extends JPanel implements QCMInterface {
 
-    JButton commencerQCM = new JButton("Commencer le QCM");
-    private IModeleService monService;
-    List list;
-    JList listeQCM;
     private static final Logger LOGGER = Logger.getLogger(QCM.class.getCanonicalName());
+    public JButton commencerQCM = new JButton("Commencer le QCM");
+    private IModeleService monService;
+    public JList listeQCM;
     JPanel panel = new JPanel();
-    JScrollPane sp ;
+    public JScrollPane sp ;
+    public java.util.List<IQCM> list=null;
 
     public QCM(IModeleService service) {
 
         this.monService=service;
-        //affichageQCM();
         listeQCM=new JList(new JListQCM(service));
         sp = new JScrollPane(listeQCM);
+        listeQCM.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        recupListQCM();
+        panel.add(sp);
         panel.add(commencerQCM);
-
-        //commencerQCM.addActionListener(commencerListener);
         this.add(panel, BorderLayout.CENTER);
         this.setVisible(true);
 
     }
 
-    @Override
-    public void affichageQCM() {
-
+    public void recupListQCM(){
         try {
-            this.list = monService.getListQCMDispo();
-
-
-        } catch (RemoteException e1) {
-            LOGGER.fatal(e1);
+            list = monService.getListQCMDispo();
+        } catch (RemoteException e) {
+            LOGGER.trace(e);
         }
-        /*for (Object aListeQCM : listeQCM) {
-            panel.add((Component) aListeQCM);
-        }*/
     }
 
     public IModeleService getMonService() {

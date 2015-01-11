@@ -24,6 +24,7 @@ public class LoginListener implements ActionListener {
     JTextField log;
     JPasswordField mdp;
     LogoutListener logoutListener;
+    QCMListener qcmListener;
 
     /*public LoginListener(JTextField log, JPasswordField mdp, IModeleService service, IUtilisateur utilisateur) {
         this.utilisateur = utilisateur;
@@ -78,6 +79,8 @@ public class LoginListener implements ActionListener {
             Main.appli.add(Main.appli.qcm, BorderLayout.CENTER);
             this.logoutListener = new LogoutListener(service, utilisateur);
             Main.appli.deco.deconnecter.addActionListener(logoutListener);
+            this.qcmListener = new QCMListener(service, utilisateur);
+            Main.appli.qcm.commencerQCM.addActionListener(qcmListener);
         //}
         /*else{
 

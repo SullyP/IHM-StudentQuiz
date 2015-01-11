@@ -11,17 +11,19 @@ public class Appli extends AppliInterface {
     private static final int WIDTH = 640;
     private static final int HEIGHT = 480;
 
-    JLabel statut = new JLabel();
+    //JLabel statut = new JLabel();
     IUtilisateur utilisateur = null;
     public Login login;
     public Connecte deco;
     public QCM qcm;
+    public Question question;
 
     public Appli(String s, IModeleService service) {
         super(s);
         login = new Login(service,utilisateur);
-        deco=null;
+        deco = null;
         qcm = null;
+        question = null;
         this.add(login, BorderLayout.CENTER);
         setSize(WIDTH, HEIGHT);
         this.setVisible(true);

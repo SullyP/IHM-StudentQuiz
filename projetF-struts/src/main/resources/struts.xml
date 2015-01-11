@@ -108,6 +108,10 @@
                 method="{1}">
             <result type="json"/>
         </action>
+        <action name="*ActionResultatUtilisateur" class="fr.univ_orleans.info.ihm.struts.action.admin.ResultatUtilisateurCRUDController"
+                method="{1}">
+            <result type="json"/>
+        </action>
     </package>
 
 </struts>

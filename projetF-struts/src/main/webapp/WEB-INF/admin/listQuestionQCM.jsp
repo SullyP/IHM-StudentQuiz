@@ -13,8 +13,11 @@
                         <h3 class="title"><s:property value="nomQCM"/></h3>
                         <s:hidden id="HiddenIdQCM" name="idQCM" value="%{idQCM}"/>
                         <div class="more">
-                            <a href="#addQuestion_modal" data-toggle="modal" type="button">
-                                <i class="glyphicon glyphicon-plus"></i> <s:text name="admin.listQuestionQCM.addQuestion"/>
+                            <s:url namespace="/admin" action="listResultatUtilisateur" var="urlResultTag">
+                                <s:param name="idQCM" value="%{idQCM}"/>
+                            </s:url>
+                            <a href="<s:property value="#urlResultTag"/>" data-toggle="modal" type="button">
+                                <i class="glyphicon glyphicon-play"></i> <s:text name="admin.listQuestionQCM.showResult"/>
                             </a>
                         </div>
                     </div>

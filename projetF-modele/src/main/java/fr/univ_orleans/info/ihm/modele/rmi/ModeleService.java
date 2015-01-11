@@ -77,6 +77,14 @@ public class ModeleService implements IModeleService {
      * {@inheritDoc}
      */
     @Override
+    public List<IResultatUtilisateur> getListResultatUtilisateurByQCM(int idQCM) throws RemoteException {
+        return ResultatUtilisateurBaseDAO.getInstance().getListResultatUtilisateurByQCM(idQCM);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public List<IUtilisateur> getListUtilisateur() throws RemoteException {
         return UtilisateurBaseDAO.getInstance().getListUtilisateur();
     }

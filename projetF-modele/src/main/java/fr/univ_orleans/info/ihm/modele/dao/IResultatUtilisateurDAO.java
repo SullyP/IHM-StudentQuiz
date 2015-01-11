@@ -24,6 +24,13 @@ public interface IResultatUtilisateurDAO {
     public IResultatUtilisateur getResultatUtilisateur(int idResultatUtilisateur);
 
     /**
+     * Permet d'obtenir les resultatUtilisateur pour un QCM donné
+     * @param idQCM id du QCM
+     * @return les resultatUtilisateur
+     */
+    public List<IResultatUtilisateur> getListResultatUtilisateurByQCM(int idQCM);
+
+    /**
      * Permet d'ajouter une réponse à une instance de resultatUtilisateur
      * @param idResultatUtilisateur id du résultat utilisateur
      * @param idReponse id de la réponse

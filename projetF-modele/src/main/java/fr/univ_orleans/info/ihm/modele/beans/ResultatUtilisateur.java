@@ -13,6 +13,7 @@ public class ResultatUtilisateur implements IResultatUtilisateur , Serializable 
     private int scoreMax;
     private Date date;
     private List<IQuestion> questionReponses;
+    private IUtilisateur utilisateur;
 
     public ResultatUtilisateur(int idResultatUtilisateur){
         this.questionReponses = new ArrayList<>();
@@ -25,6 +26,16 @@ public class ResultatUtilisateur implements IResultatUtilisateur , Serializable 
         this.idUtilisateur = idUtilisateur;
         this.idQCM = idQCM;
         this.date = date;
+    }
+
+    @Override
+    public IUtilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    @Override
+    public void setUtilisateur(IUtilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 
     @Override
@@ -93,5 +104,29 @@ public class ResultatUtilisateur implements IResultatUtilisateur , Serializable 
     @Override
     public void addReponse(IQuestion question) {
         questionReponses.add(question);
+    }
+
+    @Override
+    public int getNumeroEtudiant() {
+        if(this.utilisateur == null){
+            return 0;
+        }
+        return this.utilisateur.getNumeroEtudiant();
+    }
+
+    @Override
+    public String getNomUtilisateur() {
+        if(this.utilisateur == null){
+            return "";
+        }
+        return this.utilisateur.getNomUtilisateur();
+    }
+
+    @Override
+    public String getPrenomUtilisateur() {
+        if(this.utilisateur == null){
+            return "";
+        }
+        return this.utilisateur.getPrenomUtilisateur();
     }
 }

@@ -65,6 +65,13 @@ public interface IModeleService extends Remote {
     public IUtilisateur getUtilisateurByIdentifiant(String identifiant) throws RemoteException;
 
     /**
+     * Permet d'obtenir les resultatUtilisateur pour un QCM donné
+     * @param idQCM id du QCM
+     * @return les resultatUtilisateur
+     */
+    public List<IResultatUtilisateur> getListResultatUtilisateurByQCM(int idQCM) throws RemoteException;
+
+    /**
      * Permet d'obtenir la liste de tous les utilisateurs.
      * @return liste de tous les utilisateurs.
      */

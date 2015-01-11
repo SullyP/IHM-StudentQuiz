@@ -113,6 +113,54 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
         return resultatUtilisateur;
     }
 
+    @Override
+    public List<IResultatUtilisateur> getListResultatUtilisateurByQCM(int idQCM) {
+        List<IResultatUtilisateur> resultatUtilisateurList = new ArrayList<>();
+        String sqlQuery = String.format("SELECT  r.%s, r.%s, r.%s, u.%s, u.%s, u.%s, r.%s FROM %s r JOIN %s u ON r.%s = u.%s AND r.%s=?;",
+                ResultatUtilisateurEnum.ID_RESULTAT_UTILISATEUR, ResultatUtilisateurEnum.SCORE,
+                UtilisateurEnum.ID_UTILISATEUR, UtilisateurEnum.NUMERO_ETUDIANT, UtilisateurEnum.NOM_UTILISATEUR,
+                UtilisateurEnum.PRENOM_UTILISATEUR, ResultatUtilisateurEnum.DATE_RESULTAT_UTILISATEUR,
+                BaseDonneeEnum.RESULTAT_UTILISATEUR, BaseDonneeEnum.UTILISATEUR,
+                UtilisateurEnum.ID_UTILISATEUR, UtilisateurEnum.ID_UTILISATEUR,
+                ResultatUtilisateurEnum.ID_QCM);
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+
+        ResultSet resultSet = null;
+        try {
+            preparedStatement.setInt(1,idQCM);
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e){
+            LOGGER.warn(e);
+        }
+
+        if(resultSet!=null){
+            try {
+                //Tant qu'il reste des lignes dans le resultSet
+                while(resultSet.next()) {
+                    //On créé une instance avec les informations à notre disposition, et on l'ajoute
+                    IUtilisateur utilisateur = new Utilisateur(resultSet.getInt(UtilisateurEnum.ID_UTILISATEUR.toString()),
+                            resultSet.getInt(UtilisateurEnum.NUMERO_ETUDIANT.toString()),
+                            resultSet.getString(UtilisateurEnum.NOM_UTILISATEUR.toString()),
+                            resultSet.getString(UtilisateurEnum.PRENOM_UTILISATEUR.toString()),
+                            "","");
+                    IResultatUtilisateur resultatUtilisateur = new ResultatUtilisateur(resultSet.getInt(ResultatUtilisateurEnum.ID_RESULTAT_UTILISATEUR.toString()),
+                            utilisateur.getIdUtilisateur(),
+                            idQCM,
+                            resultSet.getDate(ResultatUtilisateurEnum.DATE_RESULTAT_UTILISATEUR.toString()));
+                    resultatUtilisateur.setScore(resultSet.getInt(ResultatUtilisateurEnum.SCORE.toString()));
+                    resultatUtilisateur.setUtilisateur(utilisateur);
+                    resultatUtilisateurList.add(resultatUtilisateur);
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                LOGGER.warn(e);
+            }
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return resultatUtilisateurList;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -272,7 +320,9 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                 BaseDonneeEnum.RESULTAT_UTILISATEUR, ResultatUtilisateurEnum.SCORE, ResultatUtilisateurEnum.ID_RESULTAT_UTILISATEUR);
         preparedStatement = this.getBd().openPrepared(sqlQuery);
         try {
-            preparedStatement.setInt(1,score);
+            int numeroParamtre = 1;
+            preparedStatement.setInt(numeroParamtre,score);
+            preparedStatement.setInt(++numeroParamtre,idResultatUtilisateur);
             preparedStatement.executeUpdate();
         } catch (SQLException e){
             LOGGER.warn(e);

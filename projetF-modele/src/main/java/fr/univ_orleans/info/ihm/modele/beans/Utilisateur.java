@@ -35,6 +35,9 @@ public class Utilisateur implements IUtilisateur, Serializable{
 
     @Override
     public int getIdEntiteUtilisateur() {
+        if(this.entiteUtilisateur == null){
+            return 0;
+        }
         return this.entiteUtilisateur.getIdEntite();
     }
 
@@ -55,6 +58,9 @@ public class Utilisateur implements IUtilisateur, Serializable{
 
     @Override
     public String getNomEntiteUtilisateur() {
+        if(this.entiteUtilisateur == null){
+            return "";
+        }
         return this.entiteUtilisateur.getNomEntite();
     }
 

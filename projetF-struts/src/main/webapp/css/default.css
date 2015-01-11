@@ -206,7 +206,7 @@ footer .container p {
 }
 
 .box > .icon:hover > .info > .more > .invalid, .box > .icon:hover > .right-corner > .invalid, .box > .icon:hover > .left-corner > .invalid {
-    background-color: #d2322d;
+    background-color: #f0ad4e;
 }
 /* ListQCM **/
 

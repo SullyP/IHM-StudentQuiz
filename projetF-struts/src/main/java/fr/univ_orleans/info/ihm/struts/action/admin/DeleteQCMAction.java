@@ -10,14 +10,14 @@ import org.apache.struts2.convention.annotation.Result;
 
 import java.rmi.RemoteException;
 
-@ParentPackage(value = "admin")
+@ParentPackage(value = "json")
 @Namespace(value = "/admin")
 public class DeleteQCMAction extends ServiceAndSessionAwareAction {
     private static final Logger LOGGER = Logger.getLogger(DeleteQCMAction.class.getCanonicalName());
     private int idQCM;
 
     @Action(value = "deleteQCM", results = {
-            @Result(type = "tiles", location = "admin/blank.tiles")
+            @Result(type = "json")
     })
     @Override
     public String execute() {

@@ -16,7 +16,6 @@
                         </div>
                         <div class="info">
                             <h3 class="title"></h3>
-
                             <div class="more">
                                 <a type="button" href="#addQCM_modal" data-toggle="modal">
                                     <i class="glyphicon glyphicon-plus"></i> <s:text name="admin.listQCM.addQCM"/>
@@ -55,8 +54,10 @@
                             <div class="info">
                                 <h3 class="title"><s:property value="nomQCM"/></h3>
 
+                                <p id="qCMTopE<s:property value="idQCM"/>">
+                                    <s:property value="etatQCM"/>
+                                </p>
                                 <p>
-                                    <s:property value="etatQCM"/> <br/>
                                     <s:text name="admin.listQCM.createOn"/> <s:property value="dateCreationQCM"/>
                                 </p>
 
@@ -73,18 +74,20 @@
                                 <br/>
 
                                 <div class="more">
-                                    <a href="#">
-                                        <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> <s:text
-                                            name="admin.listQCM.edit"/>
-                                    </a>
-                                </div>
-                                <br/>
-
-                                <div class="more">
-                                    <a type="button" class="changeStatus" data-whatever="<s:property value="idQCM"/>"
-                                       href="#">
-                                        <i class="glyphicon glyphicon-play" aria-hidden="true"></i> <s:text
-                                            name="admin.listQCM.close"/>
+                                    <a id="changeStatus<s:property value="idQCM"/>" class="changeStatus" data-whatever="<s:property value="idQCM"/>"
+                                       data-status="<s:property value="etatQCM"/>" href="#">
+                                        <s:if test="%{qCM.isOpened()}">
+                                            <i class="glyphicon glyphicon-play" aria-hidden="true"></i> <span id="qCMSAction<s:property value="idQCM"/>"><s:text
+                                                name="admin.listQCM.close"/></span>
+                                        </s:if>
+                                        <s:elseif test="%{qCM.isClosed()}">
+                                            <i class="glyphicon glyphicon-play" aria-hidden="true"></i> <span id="qCMSAction<s:property value="idQCM"/>"><s:text
+                                                name="admin.listQCM.wait"/></span>
+                                        </s:elseif>
+                                        <s:else>
+                                            <i class="glyphicon glyphicon-play" aria-hidden="true"></i> <span id="qCMSAction<s:property value="idQCM"/>"><s:text
+                                                name="admin.listQCM.open"/></span>
+                                        </s:else>
                                     </a>
                                 </div>
                             </div>
@@ -150,17 +153,35 @@
     $(document).ready(function () {
         $('.changeStatus').click(function () {
             var idQCM = $(this).data('whatever');
-            alert(idQCM);
+            var status = $(this).data('status');
             $.ajax({
                 type: "POST",
                 <s:url namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.statusQCM')}" var="url"/>
                 url: "<s:property value="#url"/>",
                 data: {idQCM: idQCM}
             }).done(function () {
-                $('#qCMTopI' + idQCM).attr();
+                if (status == "FERME") {
+                    $('#qCMTopI' + idQCM).attr("class", "glyphicon glyphicon-time");
+                    $('#qCMTopE' + idQCM).text("EN_ATTENTE");
+                    $('#qCMSAction' + idQCM).text("<s:text name="admin.listQCM.open"/>");
+                    $('#changeStatus' + idQCM).data("status", "EN_ATTENTE");
+                }
+                if (status == "EN_ATTENTE") {
+                    $('#qCMTopI' + idQCM).attr("class", "glyphicon glyphicon-eye-open");
+                    $('#qCMTopE' + idQCM).text("OUVERT");
+                    $('#qCMSAction' + idQCM).text("<s:text name="admin.listQCM.close"/>");
+                    $('#changeStatus' + idQCM).data("status", "OUVERT");
+                }
+                if (status == "OUVERT") {
+                    $('#qCMTopI' + idQCM).attr("class", "glyphicon glyphicon-eye-close");
+                    $('#qCMTopE' + idQCM).text("FERME");
+                    $('#qCMSAction' + idQCM).text("<s:text name="admin.listQCM.wait"/>");
+                    $('#changeStatus' + idQCM).data("status", "FERME");
+                }
             });
         });
     });
+
 
     $('#deleteQCM_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button qui a ouvert le modal

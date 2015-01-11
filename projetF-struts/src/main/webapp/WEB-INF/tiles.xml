@@ -75,9 +75,6 @@
         <put-attribute name="title" value="List QCM Page"/>
         <put-attribute name="body" value="/WEB-INF/admin/listQCM.jsp"/>
     </definition>
-    <definition name="admin/blank.tiles">
-        <put-attribute name="title" value="Blank"/>
-    </definition>
 
     <definition name="user/listQCM.tiles" extends="baseLayout">
         <put-attribute name="title" value="List QCM Page"/>

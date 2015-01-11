@@ -28,15 +28,15 @@
                 </div>
             </div>
             <!--- Liste des QCM -->
-            <s:iterator value="listQCM">
+            <s:iterator value="listQCM" var="qCM">
                 <div class="col-lg-3 col-sm-6 col-xs-12 col-md-4" id="boxQCM<s:property value="idQCM"/>">
                     <div class="box">
                         <div class="icon">
                             <div class="image">
-                                <s:if test="%{etatQCM.toString().isOpened()}">
+                                <s:if test="%{qCM.isOpened()}">
                                     <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i>
                                 </s:if>
-                                <s:elseif test="%{etatQCM.isClosed()}">
+                                <s:elseif test="%{qCM.isClosed()}">
                                     <i class="glyphicon glyphicon-eye-close" aria-hidden="true"></i>
                                 </s:elseif>
                                 <s:else>

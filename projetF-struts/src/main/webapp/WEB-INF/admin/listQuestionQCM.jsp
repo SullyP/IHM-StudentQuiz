@@ -58,7 +58,7 @@
                             $('#QuestionTable').jtable('openChildTable',
                                     $img.closest('tr'),
                                     {
-                                        title: questionData.record.intituleQuestion + ' - ' + <s:text name="admin.listQuestionQCM.Reponses"/>,
+                                        title: questionData.record.intituleQuestion + ' - <s:text name="admin.listQuestionQCM.Reponses"/> ',
                                         actions: {
                                             listAction: 'json/listActionReponse?idQuestion=' + questionData.record.idQuestion,
                                             deleteAction: 'json/deleteActionReponse',
@@ -127,11 +127,12 @@
                     type: 'checkbox',
                     values: { 'false': '<s:text name="global.No"/>', 'true': '<s:text name="global.Yes"/>' }
                 }
+            },
+            formCreated: function (event, data) {
+                //Permet de transformer les inputs des popup en spinner
+                $(".myspinner").spinner({min: 1});
             }
         });
-
-        //Permet de transformer les inputs des popup en spinner
-        setInterval('$(".myspinner").spinner({min: 1})',500);
 
         //Chargement des données depuis le serveur
         $('#QuestionTable').jtable('load');

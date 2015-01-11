@@ -11,7 +11,8 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 
 public class Main {
-    public static final String HOST = "127.0.0.1";
+    private static final String HOST = "127.0.0.1";
+    private static final int PORT = 9345;
     private static final Logger LOGGER = Logger.getLogger(Main.class.getCanonicalName());
     public static Appli appli = null;
 
@@ -19,14 +20,12 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 IModeleService modeleService = null;
 
-
                 try {
-                    Registry registry = LocateRegistry.getRegistry(HOST, 9345);
+                    Registry registry = LocateRegistry.getRegistry(HOST, PORT);
                     modeleService = (IModeleService) registry.lookup(ModeleService.SERVICE_NAME);
                 } catch (Exception e) {
                     LOGGER.warn("Remote service exception", e);

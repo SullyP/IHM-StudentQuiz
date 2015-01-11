@@ -46,7 +46,7 @@
                         <s:if test="%{#session.userName == null}">
                             <li class="dropdown">
                                 <a href="<s:url namespace="/" action="login"/>" class="dropdown-toggle"
-                                   data-toggle="dropdown">Connexion
+                                   data-toggle="dropdown"><s:text name="login"/>
                                     <b class="caret"></b></a>
                                 <ul id="navbar-login" class="dropdown-menu">
                                     <li>

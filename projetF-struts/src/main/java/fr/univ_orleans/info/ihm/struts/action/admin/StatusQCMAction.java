@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
+import org.apache.struts2.convention.annotation.Result;
 
 import java.rmi.RemoteException;
 
@@ -15,7 +16,9 @@ public class StatusQCMAction extends ServiceAndSessionAwareAction {
     private static final Logger LOGGER = Logger.getLogger(StatusQCMAction.class.getCanonicalName());
     private int idQCM;
 
-    @Action(value = "statusQCM")
+    @Action(value = "statusQCM", results = {
+            @Result(type = "tiles", location = "admin/blank.tiles")
+    })
     @Override
     public String execute() {
         try {
@@ -27,7 +30,6 @@ public class StatusQCMAction extends ServiceAndSessionAwareAction {
             } else if (qcm.isOpened()) {
                 qcm.close();
             }
-            qcm = this.getModeleService().majEtatQCM(idQCM, qcm.getEtatQCM());
         } catch (RemoteException e) {
             LOGGER.fatal(e);
         }

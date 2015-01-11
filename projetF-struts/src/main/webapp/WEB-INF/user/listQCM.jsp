@@ -28,7 +28,8 @@
 
                                 <div class="more">
                                     <s:if test="%{qCM.isOpened()}">
-                                        <s:url namespace="%{getText('namespace.user')}" action="%{getText('action.user.beginQCM')}" var="urlTag">
+                                        <s:url namespace="%{getText('namespace.user')}"
+                                               action="%{getText('action.user.beginQCM')}" var="urlTag">
                                             <s:param name="idQCM"><s:property value="qCM.idQCM"/></s:param>
                                         </s:url>
                                         <a href="<s:property value="#urlTag" />">

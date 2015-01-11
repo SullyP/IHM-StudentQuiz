@@ -12,17 +12,12 @@
                     <div class="info">
                         <h3 class="title"><s:property value="nomQCM"/></h3>
                         <s:hidden id="HiddenIdQCM" name="idQCM" value="%{idQCM}"/>
-                        <div class="more">
-                            <a href="#addQuestion_modal" data-toggle="modal" type="button">
-                                <i class="glyphicon glyphicon-plus"></i> <s:text name="admin.listQuestionQCM.addQuestion"/>
-                            </a>
-                        </div>
+                        <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" id="QuestionTable"></div>
                     </div>
                 </div>
                 <div class="space"></div>
             </div>
         </div>
-            <div class="col-lg-12 col-sm-12 col-xs-12 col-md-12" id="QuestionTable" ></div>
     </div>
 </div>
 <script type="text/javascript">
@@ -32,7 +27,7 @@
             title: '<s:text name="admin.listQuestionQCM.titleQuestionTable"/>',
             actions: {
                 listAction: 'json/listActionQuestion?idQCM=<s:property value="idQCM"/>',
-                createAction:'json/createActionQuestion?idQCM=<s:property value="idQCM"/>',
+                createAction: 'json/createActionQuestion?idQCM=<s:property value="idQCM"/>',
                 updateAction: 'json/updateActionQuestion',
                 deleteAction: 'json/deleteActionQuestion'
             },
@@ -85,7 +80,10 @@
                                                 title: '<s:text name="admin.listQuestionQCM.correctReponse"/>',
                                                 width: '30%',
                                                 type: 'checkbox',
-                                                values: { 'false': '<s:text name="global.No"/>', 'true': '<s:text name="global.Yes"/>' }
+                                                values: {
+                                                    'false': '<s:text name="global.No"/>',
+                                                    'true': '<s:text name="global.Yes"/>'
+                                                }
                                             }
                                         },
                                         formCreated: function (event, data) {
@@ -93,7 +91,7 @@
                                             data.form.validationEngine('attach', {
                                                 relative: true,
                                                 overflownDIV: '#' + data.form.get(0).id,
-                                                promptPosition:"bottomLeft"
+                                                promptPosition: "bottomLeft"
                                             });
                                         },
                                         //Validation du formulaire avant envoie
@@ -125,7 +123,7 @@
                         if (data.record) {
                             return '<input class="myspinner" name="dureeQuestion" value="' + data.record.dureeQuestion + '" />';
                         } else {
-                            return '<input class="myspinner" name="dureeQuestion" value="1" '+'/>';
+                            return '<input class="myspinner" name="dureeQuestion" value="1" ' + '/>';
                         }
                     },
                     inputClass: 'validate[required,custom[onlyNumberSp]]'
@@ -137,7 +135,7 @@
                         if (data.record) {
                             return '<input class="myspinner" name="pointQuestion" value="' + data.record.pointQuestion + '" />';
                         } else {
-                            return '<input class="myspinner" name="pointQuestion" value="1" '+'/>';
+                            return '<input class="myspinner" name="pointQuestion" value="1" ' + '/>';
                         }
                     },
                     inputClass: 'validate[required,custom[onlyNumberSp]]'
@@ -146,7 +144,7 @@
                     title: '<s:text name="admin.listQuestionQCM.multipleQuestion"/>',
                     width: '10%',
                     type: 'checkbox',
-                    values: { 'false': '<s:text name="global.No"/>', 'true': '<s:text name="global.Yes"/>' }
+                    values: {'false': '<s:text name="global.No"/>', 'true': '<s:text name="global.Yes"/>'}
                 }
             },
             formCreated: function (event, data) {
@@ -157,7 +155,7 @@
                 data.form.validationEngine('attach', {
                     relative: true,
                     overflownDIV: '#' + data.form.get(0).id,
-                    promptPosition:"bottomLeft"
+                    promptPosition: "bottomLeft"
                 });
             },
             //Validation du formulaire avant envoie

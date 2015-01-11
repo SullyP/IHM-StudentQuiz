@@ -98,15 +98,15 @@
     <package name="json" extends="json-default">
         <action name="*ActionQuestion" class="fr.univ_orleans.info.ihm.struts.action.admin.QuestionCRUDController"
                 method="{1}">
-            <result type="json" />
+            <result type="json"/>
         </action>
         <action name="*ActionReponse" class="fr.univ_orleans.info.ihm.struts.action.admin.ReponseCRUDController"
                 method="{1}">
-            <result type="json" />
+            <result type="json"/>
         </action>
         <action name="*ActionUtilisateur" class="fr.univ_orleans.info.ihm.struts.action.admin.UtilisateurCRUDController"
                 method="{1}">
-            <result type="json" />
+            <result type="json"/>
         </action>
     </package>
 

@@ -14,7 +14,9 @@
 
                 </s:elseif>
                 <s:else>
-                    <s:text name="global.footer.notconnected"/> (<a href="<s:url namespace="/" action="%{getText('action.login')}"/>"><s:text name="login"/></a>)
+                    <s:text name="global.footer.notconnected"/> (<a href="<s:url namespace="/"
+                                                                                 action="%{getText('action.login')}"/>"><s:text
+                        name="login"/></a>)
                 </s:else>
             </div>
         </div>

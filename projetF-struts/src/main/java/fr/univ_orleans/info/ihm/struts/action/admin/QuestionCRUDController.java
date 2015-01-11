@@ -35,7 +35,7 @@ public class QuestionCRUDController extends ServiceAndSessionAwareAction {
 
     public String create() throws IOException {
         try {
-            record = this.getModeleService().creerQuestion(intituleQuestion,multipleQuestion,dureeQuestion,pointQuestion);
+            record = this.getModeleService().creerQuestion(intituleQuestion, multipleQuestion, dureeQuestion, pointQuestion);
             this.getModeleService().ajoutQCMQuestion(idQCM, record.getIdQuestion());
             result = "OK";
 
@@ -49,7 +49,7 @@ public class QuestionCRUDController extends ServiceAndSessionAwareAction {
 
     public String update() throws IOException {
         try {
-            this.getModeleService().majQuestion(idQuestion,intituleQuestion,multipleQuestion,dureeQuestion,pointQuestion);
+            this.getModeleService().majQuestion(idQuestion, intituleQuestion, multipleQuestion, dureeQuestion, pointQuestion);
             result = "OK";
         } catch (Exception e) {
             result = "ERROR";

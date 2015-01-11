@@ -3,7 +3,9 @@
 
 <div class="container">
     <p><s:text name="global.hello"/></p>
+
     <h2>Checkboxes</h2>
+
     <form role="form">
         <div class="row">
             <div class="col-md-4">
@@ -12,8 +14,10 @@
                         Basic
                     </legend>
                     <p>
-                        Supports bootstrap brand colors: <code>.checkbox-primary</code>, <code>.checkbox-info</code> etc.
+                        Supports bootstrap brand colors: <code>.checkbox-primary</code>, <code>.checkbox-info</code>
+                        etc.
                     </p>
+
                     <div class="checkbox">
                         <input id="checkbox1" type="checkbox">
                         <label for="checkbox1">
@@ -51,6 +55,7 @@
                         </label>
                     </div>
                     <p>Inline checkboxes</p>
+
                     <div class="checkbox checkbox-inline">
                         <input type="checkbox" id="inlineCheckbox1" value="option1">
                         <label for="inlineCheckbox1"> Inline One </label>
@@ -73,6 +78,7 @@
                     <p>
                         <code>.checkbox-circle</code> for roundness.
                     </p>
+
                     <div class="checkbox checkbox-circle">
                         <input id="checkbox7" type="checkbox">
                         <label for="checkbox7">
@@ -95,6 +101,7 @@
                     <p>
                         Disabled state also supported.
                     </p>
+
                     <div class="checkbox">
                         <input id="checkbox9" type="checkbox" disabled>
                         <label for="checkbox9">
@@ -118,6 +125,7 @@
         </div>
     </form>
     <h2>Radios</h2>
+
     <form role="form">
         <div class="row">
             <div class="col-md-4">
@@ -128,6 +136,7 @@
                     <p>
                         Supports bootstrap brand colors: <code>.radio-primary</code>, <code>.radio-danger</code> etc.
                     </p>
+
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="radio">
@@ -159,6 +168,7 @@
                         </div>
                     </div>
                     <p>Inline radios</p>
+
                     <div class="radio radio-info radio-inline">
                         <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked>
                         <label for="inlineRadio1"> Inline One </label>
@@ -177,6 +187,7 @@
                     <p>
                         Disabled state also supported.
                     </p>
+
                     <div class="radio radio-danger">
                         <input type="radio" name="radio3" id="radio5" value="option1" disabled>
                         <label for="radio5">

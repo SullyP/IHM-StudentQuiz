@@ -55,10 +55,12 @@
                                                 <s:form namespace="/" action="login" theme="bootstrap" cssClass="form">
                                                     <fieldset>
                                                         <div class="form-group">
-                                                            <s:textfield name="userName" placeholder="%{getText('login.userName')}"/>
+                                                            <s:textfield name="userName"
+                                                                         placeholder="%{getText('login.userName')}"/>
                                                         </div>
                                                         <div class="form-group">
-                                                            <s:password name="password" placeholder="%{getText('login.password')}"/>
+                                                            <s:password name="password"
+                                                                        placeholder="%{getText('login.password')}"/>
                                                         </div>
                                                         <s:submit cssClass="btn btn-success btn-block"
                                                                   value="%{getText('login')}"/>

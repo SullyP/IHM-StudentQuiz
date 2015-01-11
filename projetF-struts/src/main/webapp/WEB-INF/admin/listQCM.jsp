@@ -34,13 +34,16 @@
                         <div class="icon">
                             <div class="image">
                                 <s:if test="%{qCM.isOpened()}">
-                                    <i id="qCMTopI<s:property value="idQCM"/>" class="glyphicon glyphicon-eye-open" aria-hidden="true"></i>
+                                    <i id="qCMTopI<s:property value="idQCM"/>" class="glyphicon glyphicon-eye-open"
+                                       aria-hidden="true"></i>
                                 </s:if>
                                 <s:elseif test="%{qCM.isClosed()}">
-                                    <i id="qCMTopI<s:property value="idQCM"/>" class="glyphicon glyphicon-eye-close" aria-hidden="true"></i>
+                                    <i id="qCMTopI<s:property value="idQCM"/>" class="glyphicon glyphicon-eye-close"
+                                       aria-hidden="true"></i>
                                 </s:elseif>
                                 <s:else>
-                                    <i id="qCMTopI<s:property value="idQCM"/>" class="glyphicon glyphicon-time" aria-hidden="true"></i>
+                                    <i id="qCMTopI<s:property value="idQCM"/>" class="glyphicon glyphicon-time"
+                                       aria-hidden="true"></i>
                                 </s:else>
                             </div>
                             <div class="right-corner">
@@ -78,7 +81,8 @@
                                 <br/>
 
                                 <div class="more">
-                                    <a type="button" class="changeStatus" data-whatever="<s:property value="idQCM"/>" href="#">
+                                    <a type="button" class="changeStatus" data-whatever="<s:property value="idQCM"/>"
+                                       href="#">
                                         <i class="glyphicon glyphicon-play" aria-hidden="true"></i> <s:text
                                             name="admin.listQCM.close"/>
                                     </a>

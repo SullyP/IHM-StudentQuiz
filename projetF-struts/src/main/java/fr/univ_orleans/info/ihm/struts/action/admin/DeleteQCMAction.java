@@ -25,7 +25,7 @@ public class DeleteQCMAction extends ServiceAndSessionAwareAction {
             IQCM qcm = this.getModeleService().getQCM(this.idQCM);
             int idUtilisateur = (int) this.getSession().get("userId");
             //On supprime le QCM uniquement si l'utilisateur connecté est le créateur du QCM
-            if(idUtilisateur == qcm.getIdCreateurQCM()){
+            if (idUtilisateur == qcm.getIdCreateurQCM()) {
                 this.getModeleService().suppressionQCM(this.idQCM);
             }
         } catch (RemoteException e) {

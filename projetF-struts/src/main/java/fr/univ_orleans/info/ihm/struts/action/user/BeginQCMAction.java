@@ -19,7 +19,7 @@ import java.util.List;
 @Namespace(value = "/user")
 public class BeginQCMAction extends ServiceAndSessionAwareAction {
     private static final Logger LOGGER = Logger.getLogger(BeginQCMAction.class.getCanonicalName());
-    private int idQCM=0;
+    private int idQCM = 0;
     private int idQuestion;
     private int dureeQuestion;
     private int pointQuestion;

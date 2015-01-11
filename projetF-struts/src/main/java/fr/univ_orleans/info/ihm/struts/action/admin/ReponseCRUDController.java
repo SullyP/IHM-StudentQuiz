@@ -7,7 +7,7 @@ import fr.univ_orleans.info.ihm.struts.action.def.ServiceAndSessionAwareAction;
 import java.io.IOException;
 import java.util.List;
 
-public class ReponseCRUDController  extends ServiceAndSessionAwareAction {
+public class ReponseCRUDController extends ServiceAndSessionAwareAction {
 
     private List<IReponse> records;
     private String result;
@@ -46,7 +46,7 @@ public class ReponseCRUDController  extends ServiceAndSessionAwareAction {
 
     public String update() throws IOException {
         try {
-            this.getModeleService().majReponse(idReponse,intituleReponse,correctReponse);
+            this.getModeleService().majReponse(idReponse, intituleReponse, correctReponse);
             result = "OK";
         } catch (Exception e) {
             result = "ERROR";

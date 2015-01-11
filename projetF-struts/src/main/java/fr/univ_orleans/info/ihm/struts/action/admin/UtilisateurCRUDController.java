@@ -26,15 +26,15 @@ public class UtilisateurCRUDController extends ServiceAndSessionAwareAction {
     private String fieldId;
     private String fieldValue;
 
-    public String loginVerif(){
-        try{
+    public String loginVerif() {
+        try {
             IUtilisateur utilisateur = this.getModeleService().getUtilisateurByIdentifiant(this.fieldValue);
-            if(utilisateur == null || utilisateur.getIdUtilisateur() == this.idUtilisateur){
+            if (utilisateur == null || utilisateur.getIdUtilisateur() == this.idUtilisateur) {
                 result = "OK";
-            }else {
+            } else {
                 result = "ERROR";
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             result = "ERROR";
             message = e.getMessage();
             System.err.println(e.getMessage());
@@ -56,7 +56,7 @@ public class UtilisateurCRUDController extends ServiceAndSessionAwareAction {
 
     public String create() throws IOException {
         //Si la checkbox est décochée
-        if(idEntiteUtilisateur == 0){
+        if (idEntiteUtilisateur == 0) {
             idEntiteUtilisateur = 1;
         }
         try {
@@ -74,8 +74,8 @@ public class UtilisateurCRUDController extends ServiceAndSessionAwareAction {
 
     public String update() throws IOException {
         try {
-            record = this.getModeleService().majUtilisateur(idUtilisateur,prenomUtilisateur,nomUtilisateur,identifiantUtilisateur,numeroEtudiant,idEntiteUtilisateur);
-            if(motDePasseUtilisateur.length() > 0){
+            record = this.getModeleService().majUtilisateur(idUtilisateur, prenomUtilisateur, nomUtilisateur, identifiantUtilisateur, numeroEtudiant, idEntiteUtilisateur);
+            if (motDePasseUtilisateur.length() > 0) {
                 this.getModeleService().majMotDePasseUtilisateur(idUtilisateur, motDePasseUtilisateur);
             }
             result = "OK";
@@ -203,11 +203,11 @@ public class UtilisateurCRUDController extends ServiceAndSessionAwareAction {
         this.fieldValue = fieldValue;
     }
 
-    public boolean getStatus(){
+    public boolean getStatus() {
         return "OK".equals(this.result);
     }
 
-    public void setEdit_idUtilisateur(int idUtilisateur){
+    public void setEdit_idUtilisateur(int idUtilisateur) {
         this.idUtilisateur = idUtilisateur;
     }
 }

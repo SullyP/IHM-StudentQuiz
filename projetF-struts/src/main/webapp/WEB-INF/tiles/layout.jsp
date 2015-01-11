@@ -14,7 +14,7 @@
     <meta name="keywords" content="<tiles:insertAttribute name="keywords" ignore="true"/>"/>
 
     <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico"/>
@@ -25,13 +25,15 @@
             type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/struts/js/struts2/jquery.struts2.min.js?s2j=3.7.1"
             type="text/javascript"></script>
-    <script src="${pageContext.request.contextPath}/js/jquery.validationEngine.js" type="text/javascript"></script>
     <s:if test="%{#request.locale.language == 'fr'}">
-        <script src="${pageContext.request.contextPath}/js/jquery.validationEngine-fr.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.validationEngine-fr.js"
+                type="text/javascript"></script>
     </s:if>
     <s:else>
-        <script src="${pageContext.request.contextPath}/js/jquery.validationEngine-en.js" type="text/javascript"></script>
+        <script src="${pageContext.request.contextPath}/js/jquery.validationEngine-en.js"
+                type="text/javascript"></script>
     </s:else>
+    <script src="${pageContext.request.contextPath}/js/jquery.validationEngine.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             jQuery.struts2_jquery.version = "3.7.1";
@@ -67,7 +69,8 @@
     <tiles:importAttribute name="jsfrList"/>
     <s:if test="%{#request.locale.language == 'fr'}">
         <s:iterator value="#attr.jsfrList" var="jsfrValue">
-            <script src="${pageContext.request.contextPath}<s:url value="%{jsfrValue}"/>" type="text/javascript"></script>
+            <script src="${pageContext.request.contextPath}<s:url value="%{jsfrValue}"/>"
+                    type="text/javascript"></script>
         </s:iterator>
     </s:if>
     <s:set var="titleKey">

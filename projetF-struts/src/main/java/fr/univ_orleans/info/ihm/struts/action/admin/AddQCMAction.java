@@ -25,7 +25,7 @@ public class AddQCMAction extends ServiceAndSessionAwareAction {
     @Override
     public String execute() {
         //On ajoute le QCM si le nom n'est pas vide
-        if(!this.nomQCM.isEmpty()) {
+        if (!this.nomQCM.isEmpty()) {
             try {
                 int idUtilisateur = (int) this.getSession().get("userId");
                 Date date = Calendar.getInstance().getTime();

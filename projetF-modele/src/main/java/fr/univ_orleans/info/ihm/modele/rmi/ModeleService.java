@@ -265,6 +265,11 @@ public class ModeleService implements IModeleService {
         return QCMBaseDAO.getInstance().majNomQCM(idQCM, nomQCM);
     }
 
+    @Override
+    public IQCM majEtatQCM(int idQCM, EtatQCMEnum etatQCM) throws RemoteException {
+        return QCMBaseDAO.getInstance().majEtatQCM(idQCM, etatQCM);
+    }
+
     /**
      * {@inheritDoc}
      */

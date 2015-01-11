@@ -397,6 +397,32 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
      * {@inheritDoc}
      */
     @Override
+    public IQCM majEtatQCM(int idQCM, EtatQCMEnum etatQCM) {
+        IQCM qcm = null;
+        String sqlQuery = String.format("UPDATE %s SET %s=? WHERE %s=?;",
+                BaseDonneeEnum.QCM,
+                QCMEnum.ETAT_QCM, QCMEnum.ID_QCM);
+
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+        try {
+            int numeroParametre = 1;
+            preparedStatement.setString(1, etatQCM.toString());
+            preparedStatement.setInt(++numeroParametre, idQCM);
+            preparedStatement.executeUpdate();
+            qcm = new QCM(idQCM);
+            qcm.setEtatQCM(etatQCM);
+        } catch (SQLException e) {
+            LOGGER.warn(e);
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return qcm;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void ajoutQCMQuestion(int idQCM, int idQuestion) {
         String sqlQuery = String.format("INSERT INTO %s (%s,%s) VALUES (?,?);",
                 BaseDonneeEnum.QCM_QUESTION,

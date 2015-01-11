@@ -35,6 +35,9 @@ public class UtilisateurCRUDController extends ServiceAndSessionAwareAction {
     }
 
     public String create() throws IOException {
+        if(idEntiteUtilisateur == 0){
+            idEntiteUtilisateur = 1;
+        }
         try {
             record = this.getModeleService().creerUtilisateur(prenomUtilisateur, nomUtilisateur, identifiantUtilisateur, motDePasseUtilisateur, numeroEtudiant, idEntiteUtilisateur);
             result = "OK";

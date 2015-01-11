@@ -27,6 +27,7 @@ public class StatusQCMAction extends ServiceAndSessionAwareAction {
             } else if (qcm.isOpened()) {
                 qcm.close();
             }
+            qcm = this.getModeleService().majEtatQCM(idQCM, qcm.getEtatQCM());
         } catch (RemoteException e) {
             LOGGER.fatal(e);
         }

@@ -50,11 +50,18 @@
         numeroEtudiant: {
           title: '<s:text name="admin.listUser.studentNumber"/>',
           width: '20%',
+          display: function (data) {
+            if(data.record.idEntiteUtilisateur == 1){
+              return data.record.numeroEtudiant;
+            }else{
+              return '';
+            }
+          },
           input: function (data) {
             if (data.record) {
-              return '<input class="myspinner" name="dureeQuestion" value="' + data.record.numeroEtudiant + '" />';
+              return '<input class="myspinner" name="numeroEtudiant" value="' + data.record.numeroEtudiant + '" />';
             } else {
-              return '<input class="myspinner" name="dureeQuestion" value="1" '+'/>';
+              return '<input class="myspinner" name="numeroEtudiant" value="1" '+'/>';
             }
           },
           inputClass: 'validate[required]'

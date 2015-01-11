@@ -1,5 +1,6 @@
 package fr.univ_orleans.info.ihm.modele.dao;
 
+import fr.univ_orleans.info.ihm.modele.beans.EtatQCMEnum;
 import fr.univ_orleans.info.ihm.modele.beans.IQCM;
 import fr.univ_orleans.info.ihm.modele.beans.IQuestion;
 
@@ -80,6 +81,14 @@ public interface IQCMDAO {
      * @return le QCM
      */
     public IQCM majNomQCM(int idQCM, String nomQCM);
+
+    /**
+     * Permet de mettre à jour l'état d'un QCM via son id
+     * @param idQCM id du QCM
+     * @param etatQCM nouvel etat du QCM
+     * @return le QCM
+     */
+    public IQCM majEtatQCM(int idQCM, EtatQCMEnum etatQCM);
 
     /**
      * Permet d'ajouter une question dans la liste de question du QCM

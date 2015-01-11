@@ -144,9 +144,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-        $('.changeStatus').click(function (event) {
-            var button = $(event.relatedTarget);
-            var idQCM = button.data('whatever');
+        $('.changeStatus').click(function () {
+            var idQCM = $(this).data('whatever');
             alert(idQCM);
             $.ajax({
                 type: "POST",

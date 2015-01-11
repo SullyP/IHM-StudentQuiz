@@ -45,4 +45,8 @@ public class AddQCMAction extends ServiceAndSessionAwareAction {
     public void setNomQCM(String nomQCM) {
         this.nomQCM = nomQCM;
     }
+
+    public int getIdQCM() {
+        return idQCM;
+    }
 }

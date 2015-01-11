@@ -34,13 +34,13 @@
                         <div class="icon">
                             <div class="image">
                                 <s:if test="%{qCM.isOpened()}">
-                                    <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i>
+                                    <i id="qCMTopI<s:property value="idQCM"/>" class="glyphicon glyphicon-eye-open" aria-hidden="true"></i>
                                 </s:if>
                                 <s:elseif test="%{qCM.isClosed()}">
-                                    <i class="glyphicon glyphicon-eye-close" aria-hidden="true"></i>
+                                    <i id="qCMTopI<s:property value="idQCM"/>" class="glyphicon glyphicon-eye-close" aria-hidden="true"></i>
                                 </s:elseif>
                                 <s:else>
-                                    <i class="glyphicon glyphicon-time" aria-hidden="true"></i>
+                                    <i id="qCMTopI<s:property value="idQCM"/>" class="glyphicon glyphicon-time" aria-hidden="true"></i>
                                 </s:else>
                             </div>
                             <div class="right-corner">
@@ -63,19 +63,24 @@
                                         <s:param name="idQCM"><s:property value="idQCM"/></s:param>
                                     </s:url>
                                     <a href="<s:property value="#urlTagQuestion" />">
-                                        <i class="glyphicon glyphicon-plus" aria-hidden="true"></i> <s:text name="admin.listQCM.more"/>
+                                        <i class="glyphicon glyphicon-plus" aria-hidden="true"></i> <s:text
+                                            name="admin.listQCM.more"/>
                                     </a>
                                 </div>
                                 <br/>
+
                                 <div class="more">
                                     <a href="#">
-                                        <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> <s:text name="admin.listQCM.edit"/>
+                                        <i class="glyphicon glyphicon-pencil" aria-hidden="true"></i> <s:text
+                                            name="admin.listQCM.edit"/>
                                     </a>
                                 </div>
                                 <br/>
+
                                 <div class="more">
-                                    <a class="changeStatus" href="#">
-                                        <i class="glyphicon glyphicon-play" aria-hidden="true"></i> <s:text name="admin.listQCM.close"/>
+                                    <a type="button" class="changeStatus" data-whatever="<s:property value="idQCM"/>" href="#">
+                                        <i class="glyphicon glyphicon-play" aria-hidden="true"></i> <s:text
+                                            name="admin.listQCM.close"/>
                                     </a>
                                 </div>
                             </div>
@@ -97,7 +102,8 @@
                     <h4 class="modal-title" id="myModalLabel"><s:text name="admin.listQCM.addQCM"/></h4>
                 </div>
                 <div class="modal-body">
-                    <s:form namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.addQCM')}" theme="bootstrap" cssClass="form">
+                    <s:form namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.addQCM')}"
+                            theme="bootstrap" cssClass="form">
                         <fieldset>
                             <div class="form-group">
                                 <s:textfield name="nomQCM" label="%{getText('admin.listQCM.nameQCM')}" maxLength="250"
@@ -139,17 +145,19 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('.changeStatus').click(function (event) {
+            var button = $(event.relatedTarget);
+            var idQCM = button.data('whatever');
+            alert(idQCM);
             $.ajax({
                 type: "POST",
-                <s:url namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.statusQCM')}" var="url" />
-                url: "<s:property value="#url" />",
+                <s:url namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.statusQCM')}" var="url"/>
+                url: "<s:property value="#url"/>",
                 data: {idQCM: idQCM}
             }).done(function () {
-
+                $('#qCMTopI' + idQCM).attr();
             });
         });
     });
-
 
     $('#deleteQCM_modal').on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button qui a ouvert le modal
@@ -158,14 +166,13 @@
         $('#deleteQCMButton').click(function () {
             $.ajax({
                 type: "POST",
-                <s:url namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.deleteQCM')}" var="urlTagDelete" />
-                url: "<s:property value="#urlTagDelete" />",
+                <s:url namespace="%{getText('namespace.admin')}" action="%{getText('action.admin.deleteQCM')}" var="urlTagDelete"/>
+                url: "<s:property value="#urlTagDelete"/>",
                 data: {idQCM: idQCM}
-            })
-                    .done(function () {
-                        //Lorsque la requête est terminée, on supprime le QCM de la page
-                        $('#boxQCM' + idQCM).remove();
-                    });
+            }).done(function () {
+                //Lorsque la requête est terminée, on supprime le QCM de la page
+                $('#boxQCM' + idQCM).remove();
+            });
         })
     })
 </script>

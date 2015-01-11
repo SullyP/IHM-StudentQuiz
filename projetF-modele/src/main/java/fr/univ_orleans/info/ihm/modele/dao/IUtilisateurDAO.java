@@ -41,6 +41,13 @@ public interface IUtilisateurDAO {
     public IUtilisateur getUtilisateurByIdentifiant(String identifiant);
 
     /**
+     * Permet de savoir si un identifiant est disponible.
+     * @param identifiant identifiant (login)
+     * @return vrai s'il est disponible, faux sinon.
+     */
+    public boolean identifiantIsDisponible(String identifiant);
+
+    /**
      * Permet de mettre à jour le mot de passe de l'utilisateur.
      * @param idUtilisateur id de l'utilisateur.
      * @param motDePasse nouveau mot de passe

@@ -65,6 +65,13 @@ public interface IModeleService extends Remote {
     public IUtilisateur getUtilisateurByIdentifiant(String identifiant) throws RemoteException;
 
     /**
+     * Permet de savoir si un identifiant est disponible.
+     * @param identifiant identifiant (login)
+     * @return vrai s'il est disponible, faux sinon.
+     */
+    public boolean identifiantIsDisponible(String identifiant) throws RemoteException;
+
+    /**
      * Permet d'obtenir la liste de tous les utilisateurs.
      * @return liste de tous les utilisateurs.
      */

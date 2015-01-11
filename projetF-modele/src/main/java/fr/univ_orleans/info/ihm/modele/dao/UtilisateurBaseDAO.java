@@ -74,6 +74,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
                 resultSet.next();
                 //On créé une instance Utilisateur avec les informations à notre disposition.
                 utilisateur = new Utilisateur(resultSet.getInt(1), numeroEtudiant, nom, prenom, identifiant, motDePasseCrypt);
+                utilisateur.setEntiteUtilisateur(new Entite(idEntite));
                 resultSet.close();
             } catch (SQLException e) {
                 LOGGER.warn(e);
@@ -214,6 +215,40 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
         this.getBd().closePrepared(preparedStatement);
 
         return utilisateur;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean identifiantIsDisponible(String identifiant) {
+        boolean disponible = false;
+        String sqlQuery = String.format("SELECT COUNT(*) FROM %s WHERE %s=?;",
+                BaseDonneeEnum.UTILISATEUR, UtilisateurEnum.IDENTIFIANT_UTILISATEUR);
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+
+        ResultSet resultSet = null;
+        try {
+            preparedStatement.setString(1,identifiant);
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e){
+            LOGGER.warn(e);
+        }
+
+        if(resultSet!=null){
+            try {
+                resultSet.next();
+                if(resultSet.getInt(1) == 0){
+                    disponible = true;
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                LOGGER.warn(e);
+            }
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return disponible;
     }
 
     /**

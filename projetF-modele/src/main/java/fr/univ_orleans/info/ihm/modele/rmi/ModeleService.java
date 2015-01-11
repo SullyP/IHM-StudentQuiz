@@ -77,6 +77,14 @@ public class ModeleService implements IModeleService {
      * {@inheritDoc}
      */
     @Override
+    public boolean identifiantIsDisponible(String identifiant) throws RemoteException {
+        return UtilisateurBaseDAO.getInstance().identifiantIsDisponible(identifiant);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public List<IUtilisateur> getListUtilisateur() throws RemoteException {
         return UtilisateurBaseDAO.getInstance().getListUtilisateur();
     }

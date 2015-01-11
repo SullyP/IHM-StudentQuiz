@@ -35,11 +35,13 @@ public class UtilisateurCRUDController extends ServiceAndSessionAwareAction {
     }
 
     public String create() throws IOException {
+        //Si la checkbox est décochée
         if(idEntiteUtilisateur == 0){
             idEntiteUtilisateur = 1;
         }
         try {
             record = this.getModeleService().creerUtilisateur(prenomUtilisateur, nomUtilisateur, identifiantUtilisateur, motDePasseUtilisateur, numeroEtudiant, idEntiteUtilisateur);
+            record.setMotDePasseUtilisateur("");
             result = "OK";
 
         } catch (Exception e) {

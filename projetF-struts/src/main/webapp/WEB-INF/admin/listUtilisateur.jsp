@@ -64,7 +64,7 @@
               return '<input class="myspinner" name="numeroEtudiant" value="1" '+'/>';
             }
           },
-          inputClass: 'validate[required]'
+          inputClass: 'validate[required,custom[onlyNumberSp]]'
         },
         identifiantUtilisateur: {
           title: '<s:text name="admin.listUser.login"/>',
@@ -85,10 +85,14 @@
         }
       },
       formCreated: function (event, data) {
-        //Initialisation du validateur
-        data.form.validationEngine();
         //Permet de transformer les inputs des popup en spinner
-        $(".myspinner").spinner({min: 1});
+        $(".myspinner").spinner({min: 1}).addClass('validate[required,custom[onlyNumberSp]]');
+        //Initialisation du validateur
+        data.form.validationEngine('attach', {
+          relative: true,
+          overflownDIV: '#' + data.form.get(0).id,
+          promptPosition:"bottomLeft"
+        });
       },
       //Validation du formulaire avant envoie
       formSubmitting: function (event, data) {

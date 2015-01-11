@@ -90,7 +90,11 @@
                                         },
                                         formCreated: function (event, data) {
                                             //Initialisation du validateur
-                                            data.form.validationEngine();
+                                            data.form.validationEngine('attach', {
+                                                relative: true,
+                                                overflownDIV: '#' + data.form.get(0).id,
+                                                promptPosition:"bottomLeft"
+                                            });
                                         },
                                         //Validation du formulaire avant envoie
                                         formSubmitting: function (event, data) {

@@ -65,13 +65,6 @@ public interface IModeleService extends Remote {
     public IUtilisateur getUtilisateurByIdentifiant(String identifiant) throws RemoteException;
 
     /**
-     * Permet de savoir si un identifiant est disponible.
-     * @param identifiant identifiant (login)
-     * @return vrai s'il est disponible, faux sinon.
-     */
-    public boolean identifiantIsDisponible(String identifiant) throws RemoteException;
-
-    /**
      * Permet d'obtenir la liste de tous les utilisateurs.
      * @return liste de tous les utilisateurs.
      */
@@ -86,12 +79,16 @@ public interface IModeleService extends Remote {
     public IUtilisateur majMotDePasseUtilisateur(int idUtilisateur, String motDePasse) throws RemoteException;
 
     /**
-     * Permet de mettre à jour l'entité de l'utilisateur
+     * Permet de mettre à jour un utilisateur
      * @param idUtilisateur id de l'utilisateur.
-     * @param idEntite nouvel id de l'entité
+     * @param prenom nouveau prenom de l'utilisateur.
+     * @param nom nouveau nom  de l'utilisateur.
+     * @param identifiant nouvel identifiant de l'utilisateur.
+     * @param numeroEtudiant nouveau numero étudiant de l'utilisateur (si étudiant, 0 sinon).
+     * @param idEntite nouvel id de l'entité de l'utilisateur.
      * @return utilisateur
      */
-    public IUtilisateur majEntiteUtilisateur(int idUtilisateur, int idEntite) throws RemoteException;
+    public IUtilisateur majUtilisateur(int idUtilisateur, String prenom, String nom, String identifiant, int numeroEtudiant, int idEntite) throws RemoteException;
 
     /**
      * Permet de supprimer un utilisateur

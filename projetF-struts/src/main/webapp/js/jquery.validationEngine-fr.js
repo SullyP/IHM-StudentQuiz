@@ -107,11 +107,19 @@
                     "alertText": "* Aucun caractère spécial n'est accepté"
                 },
 				// --- CUSTOM RULES -- Those are specific to the demos, they can be removed or changed to your likings
-                "ajaxUserCall": {
-                    "url": "ajaxValidateFieldUser",
-                    "extraData": "name=eric",
-                    "alertTextLoad": "* Chargement, veuillez attendre",
-                    "alertText": "* Ce nom est déjà pris"
+                "ajaxLoginUserEditCall": {
+                    "url": "json/loginVerifActionUtilisateur",
+                    "extraData": '',
+                    "extraDataDynamic": ['#Edit-idUtilisateur'],
+                    "alertTextLoad": "* Chargement, veuillez patienter",
+                    "alertText": "* Cet identifiant est déjà utilisé"
+                },
+                "ajaxLoginUserCreateCall": {
+                    "url": "json/loginVerifActionUtilisateur",
+                    "extraData": '',
+                    "extraDataDynamic": [''],
+                    "alertTextLoad": "* Chargement, veuillez patienter",
+                    "alertText": "* Cet identifiant est déjà utilisé"
                 },
                 "ajaxNameCall": {
                     "url": "ajaxValidateFieldName",

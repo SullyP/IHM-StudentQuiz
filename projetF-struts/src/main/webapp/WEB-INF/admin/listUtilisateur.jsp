@@ -58,18 +58,19 @@
             }
           },
           input: function (data) {
-            if (data.record) {
+            if (data.value && data.value.idEntiteUtilisateur == 1) {
               return '<input class="myspinner" name="numeroEtudiant" value="' + data.record.numeroEtudiant + '" />';
+            } else if (data.formType == "create") {
+              return '<input class="myspinner" name="numeroEtudiant" value="1" '+' />';
             } else {
-              return '<input class="myspinner" name="numeroEtudiant" value="1" '+'/>';
+              return '<input class="myspinner2" name="numeroEtudiant" value="1" '+' />';
             }
           },
           inputClass: 'validate[required,custom[onlyNumberSp]]'
         },
         identifiantUtilisateur: {
           title: '<s:text name="admin.listUser.login"/>',
-          width: '20%',
-          inputClass: 'validate[required]'
+          width: '20%'
         },
         motDePasseUtilisateur: {
           title: '<s:text name="login.password"/>',
@@ -86,17 +87,28 @@
       },
       formCreated: function (event, data) {
         //Permet de transformer les inputs des popup en spinner
+        $(".myspinner2").spinner({min: 1}).addClass('validate[required,custom[onlyNumberSp]]').spinner("disable");;
         $(".myspinner").spinner({min: 1}).addClass('validate[required,custom[onlyNumberSp]]');
+        //AJAX login verif
+        if(data.formType == "edit"){
+          data.form.find('input[name="identifiantUtilisateur"]').addClass('validate[required,minSize[1],maxSize[50],ajax[ajaxLoginUserEditCall]]');
+        }else{
+          data.form.find('input[name="identifiantUtilisateur"]').addClass('validate[required,minSize[1],maxSize[50],ajax[ajaxLoginUserCreateCall]]');
+        }
+        //Cacher le numéro étudiant si on est Prof
+        data.form.find('input[name="idEntiteUtilisateur"]').click(function(){
+          if($(this).get(0).checked){
+            $('#Edit-numeroEtudiant').spinner("disable");
+          }else{
+            $('#Edit-numeroEtudiant').spinner("enable");
+          }
+        });
         //Initialisation du validateur
         data.form.validationEngine('attach', {
-          relative: true,
-          overflownDIV: '#' + data.form.get(0).id,
-          promptPosition:"bottomLeft"
+            relative: true,
+            overflownDIV: '#' + data.form.get(0).id,
+            promptPosition: "bottomLeft"
         });
-      },
-      //Validation du formulaire avant envoie
-      formSubmitting: function (event, data) {
-        return data.form.validationEngine('validate');
       },
       //Libérer le validateur lors de fermeture du formulaire
       formClosed: function (event, data) {

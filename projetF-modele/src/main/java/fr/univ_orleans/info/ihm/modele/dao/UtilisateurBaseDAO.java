@@ -285,18 +285,25 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
      * {@inheritDoc}
      */
     @Override
-    public IUtilisateur majEntite(int idUtilisateur, int idEntite) {
+    public IUtilisateur majUtilisateur(int idUtilisateur, String prenom, String nom, String identifiant, int numeroEtudiant, int idEntite) {
         IUtilisateur utilisateur = null;
-        String sqlQuery = String.format("UPDATE %s SET %s=? WHERE %s=?;",
-                BaseDonneeEnum.UTILISATEUR, UtilisateurEnum.ID_ENTITE, UtilisateurEnum.ID_UTILISATEUR);
+        String sqlQuery = String.format("UPDATE %s SET %s=?,%s=?,%s=? WHERE %s=?;",
+                BaseDonneeEnum.UTILISATEUR,
+                UtilisateurEnum.PRENOM_UTILISATEUR, UtilisateurEnum.NOM_UTILISATEUR, UtilisateurEnum.IDENTIFIANT_UTILISATEUR,
+                UtilisateurEnum.NUMERO_ETUDIANT, UtilisateurEnum.ID_ENTITE,
+                UtilisateurEnum.ID_UTILISATEUR);
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
 
         try {
             int numeroParametre = 1;
-            preparedStatement.setInt(numeroParametre, idEntite);
+            preparedStatement.setString(numeroParametre, prenom);
+            preparedStatement.setString(++numeroParametre, nom);
+            preparedStatement.setString(++numeroParametre, identifiant);
+            preparedStatement.setInt(++numeroParametre, numeroEtudiant);
+            preparedStatement.setInt(++numeroParametre, idEntite);
             preparedStatement.setInt(++numeroParametre, idUtilisateur);
             //On créé une instance Utilisateur avec les informations à notre disposition.
-            utilisateur = new Utilisateur(idUtilisateur);
+            utilisateur = new Utilisateur(idUtilisateur, numeroEtudiant, nom, prenom, identifiant, "");
             utilisateur.setEntiteUtilisateur(new Entite(idEntite));
             preparedStatement.executeUpdate();
         } catch (SQLException e) {

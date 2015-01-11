@@ -22,6 +22,26 @@ public class UtilisateurCRUDController extends ServiceAndSessionAwareAction {
     private String motDePasseUtilisateur;
     private int idEntiteUtilisateur;
 
+    //Login verif
+    private String fieldId;
+    private String fieldValue;
+
+    public String loginVerif(){
+        try{
+            IUtilisateur utilisateur = this.getModeleService().getUtilisateurByIdentifiant(this.fieldValue);
+            if(utilisateur == null || utilisateur.getIdUtilisateur() == this.idUtilisateur){
+                result = "OK";
+            }else {
+                result = "ERROR";
+            }
+        } catch (Exception e){
+            result = "ERROR";
+            message = e.getMessage();
+            System.err.println(e.getMessage());
+        }
+        return Action.SUCCESS;
+    }
+
     public String list() {
         try {
             records = this.getModeleService().getListUtilisateur();
@@ -54,7 +74,10 @@ public class UtilisateurCRUDController extends ServiceAndSessionAwareAction {
 
     public String update() throws IOException {
         try {
-            //this.getModeleService().majReponse(idReponse,intituleReponse,correctReponse); //TODO
+            record = this.getModeleService().majUtilisateur(idUtilisateur,prenomUtilisateur,nomUtilisateur,identifiantUtilisateur,numeroEtudiant,idEntiteUtilisateur);
+            if(motDePasseUtilisateur.length() > 0){
+                this.getModeleService().majMotDePasseUtilisateur(idUtilisateur, motDePasseUtilisateur);
+            }
             result = "OK";
         } catch (Exception e) {
             result = "ERROR";
@@ -162,5 +185,29 @@ public class UtilisateurCRUDController extends ServiceAndSessionAwareAction {
 
     public void setIdEntiteUtilisateur(int idEntiteUtilisateur) {
         this.idEntiteUtilisateur = idEntiteUtilisateur;
+    }
+
+    public String getFieldId() {
+        return fieldId;
+    }
+
+    public void setFieldId(String fieldId) {
+        this.fieldId = fieldId;
+    }
+
+    public String getFieldValue() {
+        return fieldValue;
+    }
+
+    public void setFieldValue(String fieldValue) {
+        this.fieldValue = fieldValue;
+    }
+
+    public boolean getStatus(){
+        return "OK".equals(this.result);
+    }
+
+    public void setEdit_idUtilisateur(int idUtilisateur){
+        this.idUtilisateur = idUtilisateur;
     }
 }

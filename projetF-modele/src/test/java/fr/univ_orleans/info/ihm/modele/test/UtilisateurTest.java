@@ -1,12 +1,12 @@
 package fr.univ_orleans.info.ihm.modele.test;
 
+import fr.univ_orleans.info.ihm.modele.beans.IEntite;
+import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
 import fr.univ_orleans.info.ihm.modele.dao.EntiteBaseDAO;
 import fr.univ_orleans.info.ihm.modele.dao.IEntiteDAO;
 import fr.univ_orleans.info.ihm.modele.dao.IUtilisateurDAO;
 import fr.univ_orleans.info.ihm.modele.dao.UtilisateurBaseDAO;
 import fr.univ_orleans.info.ihm.modele.dao.db.BaseDonneeH2;
-import fr.univ_orleans.info.ihm.modele.beans.IEntite;
-import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -65,16 +65,6 @@ public class UtilisateurTest {
         assertEquals(utilisateur1.getNomUtilisateur(),utilisateur2.getNomUtilisateur());
         assertEquals(utilisateur1.getIdentifiantUtilisateur(),utilisateur2.getIdentifiantUtilisateur());
         assertEquals(utilisateur1.getNumeroEtudiant(),utilisateur2.getNumeroEtudiant());
-    }
-
-    @Test
-    public void testMajEntiteutilisateur() throws Exception {
-        IEntite entite1 = entiteDAO.creerEntite("Nouvelle");
-        IEntite entite2 = entiteDAO.creerEntite("Old-School");
-        IUtilisateur utilisateur1 = utilisateurDAO.creerUtilisateur("jean", "paul", "jp", "azerty", 123456, entite1.getIdEntite());
-        IUtilisateur utilisateur2 = utilisateurDAO.majEntite(utilisateur1.getIdUtilisateur(), entite2.getIdEntite());
-        assertEquals(utilisateur1.getIdUtilisateur(), utilisateur2.getIdUtilisateur());
-        assertEquals(utilisateur2.getIdEntiteUtilisateur(), entite2.getIdEntite());
     }
 
     @Test

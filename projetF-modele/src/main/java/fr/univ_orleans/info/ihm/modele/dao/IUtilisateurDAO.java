@@ -56,12 +56,16 @@ public interface IUtilisateurDAO {
     public IUtilisateur majMotDePasse(int idUtilisateur, String motDePasse);
 
     /**
-     * Permet de mettre à jour l'entité de l'utilisateur
+     * Permet de mettre à jour un utilisateur
      * @param idUtilisateur id de l'utilisateur.
-     * @param idEntite nouvel id de l'entité
+     * @param prenom nouveau prenom de l'utilisateur.
+     * @param nom nouveau nom  de l'utilisateur.
+     * @param identifiant nouvel identifiant de l'utilisateur.
+     * @param numeroEtudiant nouveau numero étudiant de l'utilisateur (si étudiant, 0 sinon).
+     * @param idEntite nouvel id de l'entité de l'utilisateur.
      * @return utilisateur
      */
-    public IUtilisateur majEntite(int idUtilisateur, int idEntite);
+    public IUtilisateur majUtilisateur(int idUtilisateur, String prenom, String nom, String identifiant, int numeroEtudiant, int idEntite);
 
     /**
      * Permet de supprimer un utilisateur

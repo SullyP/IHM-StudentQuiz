@@ -77,14 +77,6 @@ public class ModeleService implements IModeleService {
      * {@inheritDoc}
      */
     @Override
-    public boolean identifiantIsDisponible(String identifiant) throws RemoteException {
-        return UtilisateurBaseDAO.getInstance().identifiantIsDisponible(identifiant);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public List<IUtilisateur> getListUtilisateur() throws RemoteException {
         return UtilisateurBaseDAO.getInstance().getListUtilisateur();
     }
@@ -101,8 +93,8 @@ public class ModeleService implements IModeleService {
      * {@inheritDoc}
      */
     @Override
-    public IUtilisateur majEntiteUtilisateur(int idUtilisateur, int idEntite) throws RemoteException {
-        return UtilisateurBaseDAO.getInstance().majEntite(idUtilisateur, idEntite);
+    public IUtilisateur majUtilisateur(int idUtilisateur, String prenom, String nom, String identifiant, int numeroEtudiant, int idEntite) throws RemoteException {
+        return UtilisateurBaseDAO.getInstance().majUtilisateur(idUtilisateur, prenom, nom, identifiant, numeroEtudiant, idEntite);
     }
 
     /**

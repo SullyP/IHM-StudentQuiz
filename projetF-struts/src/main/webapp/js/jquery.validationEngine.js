@@ -1432,7 +1432,7 @@
 					 if ($(id).length) {
 						 var inputValue = field.closest("form, .validationEngineContainer").find(id).val();
 						 var keyValue = id.replace('#', '') + '=' + escape(inputValue);
-						 data[id.replace('#', '')] = inputValue;
+						 data[id.replace('#', '').replace('-','_')] = inputValue;
 					 }
 				 }
 			 }
@@ -1465,15 +1465,15 @@
 					 success: function(json) {
 
 						 // asynchronously called on success, data is the json answer from the server
-						 var errorFieldId = json[0];
+						 var errorFieldId = json.fieldId;
 						 //var errorField = $($("#" + errorFieldId)[0]);
 						 var errorField = $("#"+ errorFieldId).eq(0);
 
 						 // make sure we found the element
 						 if (errorField.length == 1) {
-							 var status = json[1];
+							 var status = json.status;
 							 // read the optional msg from the server
-							 var msg = json[2];
+							 var msg = json.message;
 							 if (!status) {
 								 // Houston we got a problem - display an red prompt
 								 options.ajaxValidCache[errorFieldId] = false;

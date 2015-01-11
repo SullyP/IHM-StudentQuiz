@@ -272,7 +272,7 @@ public final class ResultatUtilisateurBaseDAO extends AbstractDAOObject implemen
                 BaseDonneeEnum.RESULTAT_UTILISATEUR, ResultatUtilisateurEnum.SCORE, ResultatUtilisateurEnum.ID_RESULTAT_UTILISATEUR);
         preparedStatement = this.getBd().openPrepared(sqlQuery);
         try {
-            preparedStatement.setInt(idResultatUtilisateur,score);
+            preparedStatement.setInt(1,score);
             preparedStatement.executeUpdate();
         } catch (SQLException e){
             LOGGER.warn(e);

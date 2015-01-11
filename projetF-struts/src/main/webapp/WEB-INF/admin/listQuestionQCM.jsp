@@ -58,7 +58,7 @@
                             $('#QuestionTable').jtable('openChildTable',
                                     $img.closest('tr'),
                                     {
-                                        title: questionData.record.intituleQuestion + ' - Phone numbers',
+                                        title: questionData.record.intituleQuestion + ' - ' + <s:text name="admin.listQuestionQCM.Reponses"/>,
                                         actions: {
                                             listAction: 'json/listActionReponse?idQuestion=' + questionData.record.idQuestion,
                                             deleteAction: 'json/deleteActionReponse',
@@ -101,11 +101,25 @@
                 },
                 dureeQuestion: {
                     title: '<s:text name="admin.listQuestionQCM.dureeQuestion"/>',
-                    width: '25%'
+                    width: '25%',
+                    input: function (data) {
+                        if (data.record) {
+                            return '<input class="myspinner" name="dureeQuestion" value="' + data.record.dureeQuestion + '" />';
+                        } else {
+                            return '<input class="myspinner" name="dureeQuestion" value="1" '+'/>';
+                        }
+                    }
                 },
                 pointQuestion: {
                     title: '<s:text name="admin.listQuestionQCM.pointQuestion"/>',
-                    width: '10%'
+                    width: '10%',
+                    input: function (data) {
+                        if (data.record) {
+                            return '<input class="myspinner" name="pointQuestion" value="' + data.record.pointQuestion + '" />';
+                        } else {
+                            return '<input class="myspinner" name="pointQuestion" value="1" '+'/>';
+                        }
+                    }
                 },
                 multipleQuestion: {
                     title: '<s:text name="admin.listQuestionQCM.multipleQuestion"/>',
@@ -115,6 +129,9 @@
                 }
             }
         });
+
+        //Permet de transformer les inputs des popup en spinner
+        setInterval('$(".myspinner").spinner({min: 1})',500);
 
         //Chargement des données depuis le serveur
         $('#QuestionTable').jtable('load');

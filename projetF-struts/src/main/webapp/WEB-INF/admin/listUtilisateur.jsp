@@ -50,14 +50,14 @@
                     title: '<s:text name="admin.listUser.studentNumber"/>',
                     width: '20%',
                     display: function (data) {
-                        if(data.record.idEntiteUtilisateur == 1){
+                        if(data.record && data.record.idEntiteUtilisateur == 1){
                             return data.record.numeroEtudiant;
                         }else{
                             return '';
                         }
                     },
                     input: function (data) {
-                        if (data.value && data.value.idEntiteUtilisateur == 1) {
+                        if (data.record && data.record.idEntiteUtilisateur == 1) {
                             return '<input class="myspinner" name="numeroEtudiant" value="' + data.record.numeroEtudiant + '" />';
                         } else if (data.formType == "create") {
                             return '<input class="myspinner" name="numeroEtudiant" value="1" '+' />';
@@ -106,8 +106,13 @@
                 data.form.validationEngine('attach', {
                     relative: true,
                     overflownDIV: '#' + data.form.get(0).id,
-                    promptPosition: "bottomLeft"
+                    promptPosition: "bottomLeft",
+                    eventTrigger: 'submit'
                 });
+            },
+            //Validation du formulaire avant envoie
+            formSubmitting: function (event, data) {
+                return data.form.validationEngine('validate');
             },
             //Libérer le validateur lors de fermeture du formulaire
             formClosed: function (event, data) {

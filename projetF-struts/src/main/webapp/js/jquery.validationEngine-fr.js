@@ -111,14 +111,12 @@
                     "url": "json/loginVerifActionUtilisateur",
                     "extraData": '',
                     "extraDataDynamic": ['#Edit-idUtilisateur'],
-                    "alertTextLoad": "* Chargement, veuillez patienter",
                     "alertText": "* Cet identifiant est déjà utilisé"
                 },
                 "ajaxLoginUserCreateCall": {
                     "url": "json/loginVerifActionUtilisateur",
                     "extraData": '',
                     "extraDataDynamic": [''],
-                    "alertTextLoad": "* Chargement, veuillez patienter",
                     "alertText": "* Cet identifiant est déjà utilisé"
                 },
                 "ajaxNameCall": {

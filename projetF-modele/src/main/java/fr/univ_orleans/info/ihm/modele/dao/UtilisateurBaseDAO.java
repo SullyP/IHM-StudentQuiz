@@ -287,7 +287,7 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
     @Override
     public IUtilisateur majUtilisateur(int idUtilisateur, String prenom, String nom, String identifiant, int numeroEtudiant, int idEntite) {
         IUtilisateur utilisateur = null;
-        String sqlQuery = String.format("UPDATE %s SET %s=?,%s=?,%s=? WHERE %s=?;",
+        String sqlQuery = String.format("UPDATE %s SET %s=?,%s=?,%s=?,%s=?,%s=? WHERE %s=?;",
                 BaseDonneeEnum.UTILISATEUR,
                 UtilisateurEnum.PRENOM_UTILISATEUR, UtilisateurEnum.NOM_UTILISATEUR, UtilisateurEnum.IDENTIFIANT_UTILISATEUR,
                 UtilisateurEnum.NUMERO_ETUDIANT, UtilisateurEnum.ID_ENTITE,
@@ -302,10 +302,10 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
             preparedStatement.setInt(++numeroParametre, numeroEtudiant);
             preparedStatement.setInt(++numeroParametre, idEntite);
             preparedStatement.setInt(++numeroParametre, idUtilisateur);
+            preparedStatement.executeUpdate();
             //On créé une instance Utilisateur avec les informations à notre disposition.
             utilisateur = new Utilisateur(idUtilisateur, numeroEtudiant, nom, prenom, identifiant, "");
             utilisateur.setEntiteUtilisateur(new Entite(idEntite));
-            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             LOGGER.warn(e);
         }

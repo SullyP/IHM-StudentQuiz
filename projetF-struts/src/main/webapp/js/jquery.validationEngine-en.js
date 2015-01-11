@@ -146,23 +146,19 @@
                     "alertText": "* No special characters allowed"
                 },
                 // --- CUSTOM RULES -- Those are specific to the demos, they can be removed or changed to your likings
-                "ajaxUserCall": {
-                    "url": "ajaxValidateFieldUser",
-                    // you may want to pass extra data on the ajax call
-                    "extraData": "name=eric",
-                    "alertText": "* This user is already taken",
-                    "alertTextLoad": "* Validating, please wait"
+                "ajaxLoginUserEditCall": {
+                    "url": "json/loginVerifActionUtilisateur",
+                    "extraData": '',
+                    "extraDataDynamic": ['#Edit-idUtilisateur'],
+                    "alertText": "* This login is already taken"
                 },
-                "ajaxUserCallPhp": {
-                    "url": "phpajax/ajaxValidateFieldUser.php",
-                    // you may want to pass extra data on the ajax call
-                    "extraData": "name=eric",
-                    // if you provide an "alertTextOk", it will show as a green prompt when the field validates
-                    "alertTextOk": "* This username is available",
-                    "alertText": "* This user is already taken",
-                    "alertTextLoad": "* Validating, please wait"
+                "ajaxLoginUserCreateCall": {
+                    "url": "json/loginVerifActionUtilisateur",
+                    "extraData": '',
+                    "extraDataDynamic": [''],
+                    "alertText": "* This login is already taken"
                 },
-                "ajaxNameCall": {
+                "xNameCall": {
                     // remote json service location
                     "url": "ajaxValidateFieldName",
                     // error

@@ -73,21 +73,6 @@
         </action>
     </package>
 
-    <package name="json" extends="json-default">
-        <action name="*ActionQuestion" class="fr.univ_orleans.info.ihm.struts.action.admin.QuestionCRUDController"
-                method="{1}">
-            <result type="json" />
-        </action>
-        <action name="*ActionReponse" class="fr.univ_orleans.info.ihm.struts.action.admin.ReponseCRUDController"
-                method="{1}">
-            <result type="json" />
-        </action>
-        <action name="*ActionUtilisateur" class="fr.univ_orleans.info.ihm.struts.action.admin.UtilisateurCRUDController"
-                method="{1}">
-            <result type="json" />
-        </action>
-    </package>
-
     <package name="user" extends="default" namespace="/user">
         <default-interceptor-ref name="userStack"/>
 
@@ -107,6 +92,21 @@
 
         <action name="500" class="fr.univ_orleans.info.ihm.struts.action.error.ErrorAction">
             <result type="tiles">error/500.tiles</result>
+        </action>
+    </package>
+
+    <package name="json" extends="json-default">
+        <action name="*ActionQuestion" class="fr.univ_orleans.info.ihm.struts.action.admin.QuestionCRUDController"
+                method="{1}">
+            <result type="json" />
+        </action>
+        <action name="*ActionReponse" class="fr.univ_orleans.info.ihm.struts.action.admin.ReponseCRUDController"
+                method="{1}">
+            <result type="json" />
+        </action>
+        <action name="*ActionUtilisateur" class="fr.univ_orleans.info.ihm.struts.action.admin.UtilisateurCRUDController"
+                method="{1}">
+            <result type="json" />
         </action>
     </package>
 

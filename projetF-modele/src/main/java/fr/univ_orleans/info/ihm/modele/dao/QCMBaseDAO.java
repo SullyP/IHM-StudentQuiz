@@ -287,22 +287,19 @@ public final class QCMBaseDAO extends AbstractDAOObject implements IQCMDAO {
     public IQuestion getNextQuestionQCM(int idQCM, int idResultatUtilisateur) {
         IQuestion question = null;
 
-        String sqlQuery = String.format("SELECT %s, COUNT(*) AS NB FROM %s ru JOIN %s res ON ru.%s = res.%s AND res.%s = ? JOIN %s r ON ru.%s = r.%s AND %s NOT IN (SELECT %s  FROM %s WHERE %s = ?) GROUP BY %s ORDER BY NB LIMIT 1;",
+        String sqlQuery = String.format("SELECT %s, COUNT(*) NB FROM (SELECT * FROM %s WHERE %s != ? UNION (SELECT * FROM %s WHERE %s=?)) WHERE %s NOT IN (SELECT %s  FROM %s WHERE %s = ?) GROUP BY %s ORDER BY NB LIMIT 1;",
                 ReponseEnum.ID_QUESTION,
-                BaseDonneeEnum.REPONSE_UTILISATEUR, BaseDonneeEnum.RESULTAT_UTILISATEUR,
-                ReponseUtilisateurEnum.ID_RESULTAT_UTILISATEUR, ResultatUtilisateurEnum.ID_RESULTAT_UTILISATEUR, ResultatUtilisateurEnum.ID_QCM,
-                BaseDonneeEnum.REPONSE,
-                ReponseUtilisateurEnum.ID_REPONSE, ReponseEnum.ID_REPONSE,
-                ReponseEnum.ID_QUESTION, ReponseEnum.ID_QUESTION,
-                BaseDonneeEnum.MEMO_QUESTION,
-                ResultatUtilisateurEnum.ID_RESULTAT_UTILISATEUR,
+                BaseDonneeEnum.MEMO_QUESTION, ReponseUtilisateurEnum.ID_RESULTAT_UTILISATEUR,
+                BaseDonneeEnum.QCM_QUESTION, QCMQuestionEnum.ID_QCM,
+                QCMQuestionEnum.ID_QUESTION, QCMQuestionEnum.ID_QUESTION, BaseDonneeEnum.MEMO_QUESTION, ReponseUtilisateurEnum.ID_RESULTAT_UTILISATEUR,
                 ReponseEnum.ID_QUESTION);
 
         PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
         ResultSet resultSet = null;
         try {
             int numeroParametre = 1;
-            preparedStatement.setInt(numeroParametre, idQCM);
+            preparedStatement.setInt(numeroParametre, idResultatUtilisateur);
+            preparedStatement.setInt(++numeroParametre, idQCM);
             preparedStatement.setInt(++numeroParametre, idResultatUtilisateur);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {

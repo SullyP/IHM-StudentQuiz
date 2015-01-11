@@ -78,7 +78,8 @@
                                             },
                                             intituleReponse: {
                                                 title: '<s:text name="admin.listQuestionQCM.intituleQuestion"/>',
-                                                width: '70%'
+                                                width: '70%',
+                                                inputClass: 'validate[required]'
                                             },
                                             correctReponse: {
                                                 title: '<s:text name="admin.listQuestionQCM.correctReponse"/>',
@@ -86,6 +87,19 @@
                                                 type: 'checkbox',
                                                 values: { 'false': '<s:text name="global.No"/>', 'true': '<s:text name="global.Yes"/>' }
                                             }
+                                        },
+                                        formCreated: function (event, data) {
+                                            //Initialisation du validateur
+                                            data.form.validationEngine();
+                                        },
+                                        //Validation du formulaire avant envoie
+                                        formSubmitting: function (event, data) {
+                                            return data.form.validationEngine('validate');
+                                        },
+                                        //Libérer le validateur lors de fermeture du formulaire
+                                        formClosed: function (event, data) {
+                                            data.form.validationEngine('hide');
+                                            data.form.validationEngine('detach');
                                         }
                                     }, function (data) { //handler
                                         data.childTable.jtable('load');
@@ -97,7 +111,8 @@
                 },
                 intituleQuestion: {
                     title: '<s:text name="admin.listQuestionQCM.intituleQuestion"/>',
-                    width: '50%'
+                    width: '50%',
+                    inputClass: 'validate[required]'
                 },
                 dureeQuestion: {
                     title: '<s:text name="admin.listQuestionQCM.dureeQuestion"/>',
@@ -108,7 +123,8 @@
                         } else {
                             return '<input class="myspinner" name="dureeQuestion" value="1" '+'/>';
                         }
-                    }
+                    },
+                    inputClass: 'validate[required]'
                 },
                 pointQuestion: {
                     title: '<s:text name="admin.listQuestionQCM.pointQuestion"/>',
@@ -119,18 +135,30 @@
                         } else {
                             return '<input class="myspinner" name="pointQuestion" value="1" '+'/>';
                         }
-                    }
+                    },
+                    inputClass: 'validate[required]'
                 },
                 multipleQuestion: {
                     title: '<s:text name="admin.listQuestionQCM.multipleQuestion"/>',
                     width: '10%',
                     type: 'checkbox',
-                    values: { 'false': '<s:text name="global.No"/>', 'true': '<s:text name="global.Yes"/>' }
+                    values: { 'false': '<s:text name="global.No"/>', 'true': '<s:text name="global.Yes"/>' }'
                 }
             },
             formCreated: function (event, data) {
+                //Initialisation du validateur
+                data.form.validationEngine();
                 //Permet de transformer les inputs des popup en spinner
                 $(".myspinner").spinner({min: 1});
+            },
+            //Validation du formulaire avant envoie
+            formSubmitting: function (event, data) {
+                return data.form.validationEngine('validate');
+            },
+            //Libérer le validateur lors de fermeture du formulaire
+            formClosed: function (event, data) {
+                data.form.validationEngine('hide');
+                data.form.validationEngine('detach');
             }
         });
 

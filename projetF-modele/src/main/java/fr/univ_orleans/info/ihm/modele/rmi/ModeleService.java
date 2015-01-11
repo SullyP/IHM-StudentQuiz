@@ -77,6 +77,14 @@ public class ModeleService implements IModeleService {
      * {@inheritDoc}
      */
     @Override
+    public List<IUtilisateur> getListUtilisateur() throws RemoteException {
+        return UtilisateurBaseDAO.getInstance().getListUtilisateur();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public IUtilisateur majMotDePasseUtilisateur(int idUtilisateur, String motDePasse) throws RemoteException {
         return UtilisateurBaseDAO.getInstance().majMotDePasse(idUtilisateur, motDePasse);
     }

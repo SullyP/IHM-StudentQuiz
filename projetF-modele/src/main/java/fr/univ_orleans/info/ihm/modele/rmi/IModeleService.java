@@ -65,6 +65,12 @@ public interface IModeleService extends Remote {
     public IUtilisateur getUtilisateurByIdentifiant(String identifiant) throws RemoteException;
 
     /**
+     * Permet d'obtenir la liste de tous les utilisateurs.
+     * @return liste de tous les utilisateurs.
+     */
+    public List<IUtilisateur> getListUtilisateur() throws RemoteException;
+
+    /**
      * Permet de mettre à jour le mot de passe de l'utilisateur.
      * @param idUtilisateur id de l'utilisateur.
      * @param motDePasse nouveau mot de passe

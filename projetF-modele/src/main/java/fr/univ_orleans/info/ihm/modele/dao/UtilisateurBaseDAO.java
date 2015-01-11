@@ -13,6 +13,8 @@ import org.jasypt.util.password.StrongPasswordEncryptor;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtilisateurDAO {
     private static final Logger LOGGER = Logger.getLogger(UtilisateurBaseDAO.class.getCanonicalName());
@@ -126,6 +128,46 @@ public final class UtilisateurBaseDAO extends AbstractDAOObject implements IUtil
         this.getBd().closePrepared(preparedStatement);
 
         return utilisateur;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<IUtilisateur> getListUtilisateur() {
+        List<IUtilisateur> utilisateurList = new ArrayList<>();
+        String sqlQuery = String.format("SELECT * FROM %s;", BaseDonneeEnum.UTILISATEUR);
+        PreparedStatement preparedStatement = this.getBd().openPrepared(sqlQuery);
+
+        ResultSet resultSet = null;
+        try {
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e){
+            LOGGER.warn(e);
+        }
+
+        if(resultSet!=null){
+            try {
+                //Tant qu'il reste des lignes dans le resultSet
+                while(resultSet.next()) {
+                    //On créé une instance d'utilisateur avec les informations à notre disposition, et on l'ajoute
+                    IUtilisateur utilisateur = new Utilisateur(resultSet.getInt(UtilisateurEnum.ID_UTILISATEUR.toString()),
+                            resultSet.getInt(UtilisateurEnum.NUMERO_ETUDIANT.toString()),
+                            resultSet.getString(UtilisateurEnum.NOM_UTILISATEUR.toString()),
+                            resultSet.getString(UtilisateurEnum.PRENOM_UTILISATEUR.toString()),
+                            resultSet.getString(UtilisateurEnum.IDENTIFIANT_UTILISATEUR.toString()),
+                            "");
+                    utilisateur.setEntiteUtilisateur(new Entite(resultSet.getInt(UtilisateurEnum.ID_ENTITE.toString())));
+                    utilisateurList.add(utilisateur);
+                }
+                resultSet.close();
+            } catch (SQLException e) {
+                LOGGER.warn(e);
+            }
+        }
+        this.getBd().closePrepared(preparedStatement);
+
+        return utilisateurList;
     }
 
     /**

@@ -2,6 +2,8 @@ package fr.univ_orleans.info.ihm.modele.dao;
 
 import fr.univ_orleans.info.ihm.modele.beans.IUtilisateur;
 
+import java.util.List;
+
 /**
  * Classe d'abastraction de la table Utilisateur
  */
@@ -24,6 +26,12 @@ public interface IUtilisateurDAO {
      * @return l'utilisateur
      */
     public IUtilisateur getUtilisateur(int idUtilisateur);
+
+    /**
+     * Permet d'obtenir la liste de tous les utilisateurs.
+     * @return liste de tous les utilisateurs.
+     */
+    public List<IUtilisateur> getListUtilisateur();
 
     /**
      * Permet d'obtenir un utilisateur via son identifiant (login).

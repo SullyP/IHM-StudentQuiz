@@ -52,7 +52,7 @@
                     create: false,
                     display: function (questionData) {
                         //Image à afficher sur la ligne
-                        var $img = $('<img src="/css/images/list_metro.png" title="Edit phone numbers" />');
+                        var $img = $('<img src="/css/images/list_metro.png" title="<s:text name="admin.listQuestionQCM.editReponses"/>" />');
                         //Ouverture du tableau enfant lors du click
                         $img.click(function () {
                             $('#QuestionTable').jtable('openChildTable',
@@ -142,7 +142,7 @@
                     title: '<s:text name="admin.listQuestionQCM.multipleQuestion"/>',
                     width: '10%',
                     type: 'checkbox',
-                    values: { 'false': '<s:text name="global.No"/>', 'true': '<s:text name="global.Yes"/>' }'
+                    values: { 'false': '<s:text name="global.No"/>', 'true': '<s:text name="global.Yes"/>' }
                 }
             },
             formCreated: function (event, data) {

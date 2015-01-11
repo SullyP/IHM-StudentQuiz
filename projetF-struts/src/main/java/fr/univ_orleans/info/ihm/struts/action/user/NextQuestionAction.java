@@ -10,6 +10,7 @@ import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class NextQuestionAction extends ServiceAndSessionAwareAction {
     private int score;
     private int scoreMax;
     //Données formulaire
-    private int[] checkboxList;
+    private ArrayList<Integer> checkboxList;
     private int reponse = -1;
     private int idQCM;
     //Question
@@ -97,11 +98,11 @@ public class NextQuestionAction extends ServiceAndSessionAwareAction {
         this.idQCM = idQCM;
     }
 
-    public int[] getCheckboxList() {
+    public ArrayList<Integer> getCheckboxList() {
         return checkboxList;
     }
 
-    public void setCheckboxList(int[] checkboxList) {
+    public void setCheckboxList(ArrayList<Integer> checkboxList) {
         this.checkboxList = checkboxList;
     }
 
